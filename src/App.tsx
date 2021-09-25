@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { Container } from '@cig-platform/ui'
 
 import Router from 'router'
+import Container from 'components/Container/Container'
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Container title="" items={[]} onMenuClick={console.log} user={{ image: '', name: 'Eduardo' }}>
+      <Container>
         <Router />
       </Container>
     </BrowserRouter>
