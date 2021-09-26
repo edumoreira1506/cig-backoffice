@@ -11,7 +11,7 @@ export interface ContainerProps {
   children: ReactChild;
 }
 
-const items = [
+export const items = [
   {
     title: 'Home',
     icon: <AiFillHome />,
