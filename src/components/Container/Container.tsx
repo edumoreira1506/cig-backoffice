@@ -16,6 +16,11 @@ export const items = [
     title: 'Home',
     icon: <AiFillHome />,
     route: Routes.Home
+  },
+  {
+    title: 'Meu criatório',
+    icon: <AiFillHome />,
+    route: Routes.EditBreeder
   }
 ]
 
