@@ -1269,10 +1269,10 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
 
-"@cig-platform/ui@^0.1.33":
-  version "0.1.32"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.32.tgz#3ad1197dc436d0cb02207dee3b5909ff0c3384b5"
-  integrity sha512-f+ucwaTfqb+gVWosklfykMH7wX4TnPeGs53E3dqvKJSFH98JtqMyMXxkjTPs3uhI+vPtt22UCKMmTjiujtEnhA==
+"@cig-platform/ui@^0.1.34":
+  version "0.1.34"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.34.tgz#cbd1ed7aa6c79ab6b82b48272035dd20185ad44c"
+  integrity sha512-81Hvs6ir2x5IXEEjFVKkq1GsOTFyDncjiLEdYNFxJ5FiPQUDBBIQ/70p7QCR0HSC3YS4W6gA1krP59qV2oyAig==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
