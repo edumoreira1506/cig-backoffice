@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cig-platform/context": "^0.1.7",
     "@cig-platform/hooks": "^0.0.1",
     "@cig-platform/types": "^0.0.3",
     "@cig-platform/ui": "^0.1.31",
