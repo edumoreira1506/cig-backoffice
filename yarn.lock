@@ -1247,6 +1247,14 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@cig-platform/auth-bff-client@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@cig-platform/auth-bff-client/-/auth-bff-client-0.1.0.tgz#23a17aa552618ac425ce771ef9b0146dcb88aa05"
+  integrity sha512-CLSofZURvJmZNmuZTEKAzMXJEzAObdfdUTmDRP7fNT7PLTbdW5RnD/Uue4rCiH7pgYzVFvMYDCLFadSE8H0poQ==
+  dependencies:
+    "@cig-platform/types" "0.0.3"
+    axios "^0.21.4"
+
 "@cig-platform/context@^0.1.7":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@cig-platform/context/-/context-0.1.7.tgz#b0558d40e37a2fd4eee3d8a4db4a415aadf3ca4b"
@@ -1264,7 +1272,7 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
-"@cig-platform/types@^0.0.3":
+"@cig-platform/types@0.0.3", "@cig-platform/types@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
