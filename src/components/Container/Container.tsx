@@ -1,11 +1,13 @@
-import React, { ReactChild, useCallback, useMemo } from 'react'
+import React, { ReactChild, useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillHome } from 'react-icons/ai'
 import { useHistory } from 'react-router'
 import { Container as UIContainer } from '@cig-platform/ui'
 
-import useAuth from 'hooks/useAuth'
-import { Routes } from 'constants/routes'
+import useAuth from '../../hooks/useAuth'
+import { Routes } from '../../constants/routes'
+import { useBreederDispatch } from '../../contexts/BreederContext/BreederContext'
+import { setBreeders, setSelected } from '../../contexts/BreederContext/breederActions'
 
 export interface ContainerProps {
   children: ReactChild;
@@ -16,10 +18,17 @@ export const items = [
     title: 'Home',
     icon: <AiFillHome />,
     route: Routes.Home
+  },
+  {
+    title: 'Meu criatório',
+    icon: <AiFillHome />,
+    route: Routes.EditBreeder
   }
 ]
 
 export default function Container({ children }: ContainerProps) {
+  const dispatch = useBreederDispatch()
+
   const { t } = useTranslation()
 
   const { userData } = useAuth()
@@ -38,6 +47,14 @@ export default function Container({ children }: ContainerProps) {
       history.push(item.route)
     }
   }, [history])
+
+  useEffect(() => {
+    dispatch(setBreeders(userData?.breeders))
+
+    const { id: firstBreederId } = userData?.breeders?.[0] ?? {}
+
+    dispatch(setSelected(firstBreederId))
+  }, [userData?.breeders, dispatch])
 
   return (
     <UIContainer title={t('app-name')} items={items} onMenuClick={handleNavigate} user={user}>

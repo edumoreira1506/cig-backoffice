@@ -1,3 +1,18 @@
 {
-  "app-name": "CIG Backoffice"
+  "app-name": "CIG Backoffice",
+  "edit-breeder": "Edição de criatório",
+  "common.save": "Salvar",
+  "breeder.fields.name": "Nome do criatório",
+  "breeder.fields.description": "Descrição do criatório",
+  "breeder.fields.foundation-date": "Data de fundação do criatório",
+  "breeder.fields.address": "Endereço do criatório",
+  "breeder.fields.address.street": "Rua",
+  "breeder.fields.address.number": "Número",
+  "breeder.fields.address.city": "Cidade",
+  "breeder.fields.address.province": "Estado",
+  "breeder.fields.address.zipcode": "CEP",
+  "common.select-the-province": "Selecione o estado",
+  "common.updated": "Atualizado com sucesso",
+  "common.success": "Boa!",
+  "common.ops": "Ops!"
 }
