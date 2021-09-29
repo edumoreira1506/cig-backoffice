@@ -49,12 +49,12 @@ export default function Container({ children }: ContainerProps) {
   }, [history])
 
   useEffect(() => {
-    dispatch(setBreeders(userData.breeders))
+    dispatch(setBreeders(userData?.breeders))
 
-    const [{ id: firstBreederId }] = userData.breeders
+    const { id: firstBreederId } = userData?.breeders?.[0] ?? {}
 
     dispatch(setSelected(firstBreederId))
-  }, [userData.breeders, dispatch])
+  }, [userData?.breeders, dispatch])
 
   return (
     <UIContainer title={t('app-name')} items={items} onMenuClick={handleNavigate} user={user}>

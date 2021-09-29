@@ -11,7 +11,11 @@ describe('Container', () => {
   it('renders the children', () => {
     const children = 'Children'
 
-    render(<Container {...DEFAULT_PROPS}>{children}</Container>)
+    render(
+      <Container {...DEFAULT_PROPS}>
+        {children}
+      </Container>
+    )
 
     expect(screen.getByText(children)).toBeInTheDocument()
   })
