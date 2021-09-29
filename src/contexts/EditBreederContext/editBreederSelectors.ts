@@ -21,3 +21,5 @@ export const selectIsLoading = (state: EditBreederState) => state.isLoading
 export const selectError = (state: EditBreederState) => state.error
 
 export const selectFoundationDate = (state: EditBreederState) => state.foundationDate
+
+export const selectId = (state: EditBreederState) => state.id

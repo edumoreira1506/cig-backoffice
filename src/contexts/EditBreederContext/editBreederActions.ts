@@ -26,6 +26,11 @@ export const setDescription = (description: string) => ({
   payload: { description }
 } as const)
 
+export const setId = (id: string) => ({
+  type: 'SET_ID',
+  payload: { id }
+} as const)
+
 export const setAddressField = (key: keyof EditBreederState['address'], value: string | number) => ({
   type: 'SET_ADDRESS_FIELD',
   payload: { key, value }

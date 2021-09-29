@@ -13,6 +13,7 @@ export interface EditBreederState extends DefaultState {
     number: number;
   }
   foundationDate: string;
+  id: string;
 }
 
 export const INITIAL_STATE = {
@@ -25,7 +26,8 @@ export const INITIAL_STATE = {
     zipcode: '',
     number: 0
   },
-  foundationDate: ''
+  foundationDate: '',
+  id: '',
 }
 
 export type EditBreederActionTypes = ActionType<typeof actions>
@@ -35,6 +37,8 @@ export default function loginReducer(
   action: EditBreederActionTypes
 ): EditBreederState {
   switch (action.type) {
+  case 'SET_ID':
+    return { ...state, id: action.payload.id }
   case 'SET_ERROR':
     return { ...state, error: action.payload.error }
   case 'SET_IS_LOADING':

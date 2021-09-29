@@ -1,16 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
+import { useHistory } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
 
 import EditBreederForm from '../../components/EditBreederForm/EditBreederForm'
 import { useEditBreederDispatch } from '../../contexts/EditBreederContext/EditBreederContext'
-import { setDescription, setFoundationDate, setName, setAddressField } from '../../contexts/EditBreederContext/editBreederActions'
+import { setDescription, setFoundationDate, setName, setAddressField, setId } from '../../contexts/EditBreederContext/editBreederActions'
+import useEditBreeder from '../../hooks/useEditBreeder'
+import { success } from '../../utils/alert'
+import { Routes } from '../../constants/routes'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
 }
 
 export default function EditBreederContainer({ breeder }: EditBreederContainerProps) {
-  const handleSubmit = (breeder: Partial<IBreeder>) => console.log(breeder)
+  const history = useHistory()
+
+  const { t } = useTranslation()
+
+  const handleSuccess = useCallback(() => {
+    success(t('common.updated'), t, () => history.push(Routes.Home))
+  }, [t, history])
+
+  const editBreeder = useEditBreeder({ onSuccess: handleSuccess })
 
   const dispatch = useEditBreederDispatch()
 
@@ -23,9 +36,10 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
     dispatch(setAddressField('province', breeder?.address?.province ?? ''))
     dispatch(setAddressField('zipcode', breeder?.address?.zipcode ?? ''))
     dispatch(setAddressField('street', breeder?.address?.street ?? ''))
+    dispatch(setId(breeder.id))
   }, [breeder])
 
   return (
-    <EditBreederForm onSubmit={handleSubmit} />
+    <EditBreederForm onSubmit={editBreeder} />
   )
 }

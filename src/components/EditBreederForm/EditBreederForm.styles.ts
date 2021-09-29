@@ -16,6 +16,14 @@ export const StyledForm = styled.form`
       width: 98%;
     `)}
   }
+
+  [data-testid="loading"] {
+    left: 28%;
+
+    ${createMinWidthMediaQuery(`
+      left: 41%;
+    `)}
+  }
 `
 
 export const StyledFormField = styled.div`
