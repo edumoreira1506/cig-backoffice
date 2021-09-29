@@ -105,6 +105,7 @@ export default function EditBreederFormAddress() {
           onChange={handleChangeProvince}
           showEmptyOption
           emptyOptionText={t('common.select-the-province')}
+          inputTestId="province-select"
         />
       </StyledProvince>
       <StyledCity>
