@@ -15,9 +15,9 @@ export default function EditBreederPage() {
   return (
     <StyledContainer>
       <StyledDescription>{t('edit-breeder')}</StyledDescription>
-      <StyledTitle>{breeder.name}</StyledTitle>
+      <StyledTitle>{breeder?.name}</StyledTitle>
       <EditBreederProvider>
-        <EditBreederContainer breeder={breeder} />
+        {breeder && <EditBreederContainer breeder={breeder} />}
       </EditBreederProvider>
     </StyledContainer>
   )

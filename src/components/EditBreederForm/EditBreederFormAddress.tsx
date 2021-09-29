@@ -30,19 +30,19 @@ export default function EditBreederFormAddress() {
   const dispatch = useEditBreederDispatch()
 
   const handleChangeStreet = useCallback((newStreet: string | number) => {
-    dispatch(setAddressField('street', newStreet.toString()))
+    dispatch(setAddressField('street', newStreet?.toString()))
   }, [dispatch])
 
   const handleChangeNumber = useCallback((newNumber: string | number) => {
-    dispatch(setAddressField('number', newNumber.toString()))
+    dispatch(setAddressField('number', newNumber?.toString()))
   }, [dispatch])
 
   const handleChangeProvince = useCallback((newProvince: string | number) => {
-    dispatch(setAddressField('province', newProvince.toString()))
+    dispatch(setAddressField('province', newProvince?.toString()))
   }, [dispatch])
 
   const handleChangeZipcode = useCallback((newZipcode: string | number) => {
-    dispatch(setAddressField('zipcode', newZipcode.toString()))
+    dispatch(setAddressField('zipcode', newZipcode?.toString()))
   }, [dispatch])
 
   const handleChangeCity = useCallback((newCity: string | number) => {

@@ -13,5 +13,6 @@
   "breeder.fields.address.zipcode": "CEP",
   "common.select-the-province": "Selecione o estado",
   "common.updated": "Atualizado com sucesso",
-  "common.success": "Boa!"
+  "common.success": "Boa!",
+  "common.ops": "Ops!"
 }

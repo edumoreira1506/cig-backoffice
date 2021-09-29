@@ -8,10 +8,11 @@ import { AUTH_BFF_API_URL } from '../constants/url'
 import { selectId } from '../contexts/EditBreederContext/editBreederSelectors'
 import useAuth from './useAuth'
 import { filterObject } from '../utils/object'
+import { EditBreederFormProps } from 'components/EditBreederForm/EditBreederForm'
 
 const authBffClient = new AuthBffClient(AUTH_BFF_API_URL)
 
-export default function useEditBreeder({ onSuccess }: { onSuccess: () => void }) {
+export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFormProps['onSubmit'] }) {
   const dispatch = useEditBreederDispatch()
 
   const breederId = useEditBreederSelector(selectId)
@@ -28,7 +29,7 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: () => void })
     if (!authBffResponse?.ok) {
       dispatch(setError(authBffResponse?.error))
     } else {
-      onSuccess()
+      onSuccess(breeder)
     }
   }, [token, onSuccess, breederId])
 

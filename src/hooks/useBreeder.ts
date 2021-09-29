@@ -1,7 +1,8 @@
-import useAuth from './useAuth'
+import { useBreederSelector } from '../contexts/BreederContext/BreederContext'
+import { selectSelectedBreeder } from '../contexts/BreederContext/breederSelectors'
 
 export default function useBreeder() {
-  const { userData } = useAuth()
+  const breeder = useBreederSelector(selectSelectedBreeder)
 
-  return userData?.breeders?.[0]
+  return breeder
 }
