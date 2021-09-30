@@ -13,12 +13,18 @@ import { useBreederDispatch, useBreederSelector } from '../../contexts/BreederCo
 import { selectBreeders } from '../../contexts/BreederContext/breederSelectors'
 import { setBreeders } from '../../contexts/BreederContext/breederActions'
 import { selectError, selectId } from '../../contexts/EditBreederContext/editBreederSelectors'
+import useAuth from '../../hooks/useAuth'
+import useRefreshToken from '../../hooks/useRefreshToken'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
 }
 
 export default function EditBreederContainer({ breeder }: EditBreederContainerProps) {
+  const { token } = useAuth()
+
+  const refreshToken = useRefreshToken(token)
+
   const breeders = useBreederSelector(selectBreeders)
 
   const error = useEditBreederSelector(selectError)
@@ -35,8 +41,9 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
 
     breederDispatch(setBreeders(newBreeders))
 
+    refreshToken()
     success(t('common.updated'), t, () => history.push(Routes.Home))
-  }, [t, history, breeders, breederDispatch, breederId])
+  }, [t, history, breeders, breederDispatch, breederId, refreshToken])
 
   const editBreeder = useEditBreeder({ onSuccess: handleSuccess })
 
