@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { render as rtlRender, screen } from '@testing-library/react'
 import { breederFactory } from '@cig-platform/factories'
-import { render, screen } from '@testing-library/react'
 
 import * as actions from '../../../contexts/BreederContext/breederActions'
 import * as useAuth from '../../../hooks/useAuth'
@@ -9,6 +10,13 @@ import Container from '../Container'
 const DEFAULT_PROPS = {
   children: 'I am the children!'
 }
+
+
+const render = (children: ReactNode) => rtlRender(
+  <BrowserRouter>
+    {children}
+  </BrowserRouter>
+)
 
 describe('Container', () => {
   it('renders the children', () => {
