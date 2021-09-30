@@ -2,12 +2,16 @@ import React, { ReactChild, useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillHome } from 'react-icons/ai'
 import { useHistory } from 'react-router'
+import jwt from 'jsonwebtoken'
 import { Container as UIContainer } from '@cig-platform/ui'
+import { useLocalStorage } from '@cig-platform/hooks'
 
 import useAuth from '../../hooks/useAuth'
 import { Routes } from '../../constants/routes'
 import { useBreederDispatch } from '../../contexts/BreederContext/BreederContext'
 import { setBreeders, setSelected } from '../../contexts/BreederContext/breederActions'
+import useQueryParam from '../../hooks/useQueryParam'
+import { IDecodedToken } from '../../@types/token'
 
 export interface ContainerProps {
   children: ReactChild;
@@ -27,6 +31,10 @@ export const items = [
 ]
 
 export default function Container({ children }: ContainerProps) {
+  const { value: token, remove: removeQueryParamToken } = useQueryParam('token')
+
+  const { set } = useLocalStorage('token')
+
   const dispatch = useBreederDispatch()
 
   const { t } = useTranslation()
@@ -55,6 +63,18 @@ export default function Container({ children }: ContainerProps) {
 
     dispatch(setSelected(firstBreederId))
   }, [userData?.breeders, dispatch])
+
+  useEffect(() => {
+    if (!token) return
+
+    set(token)
+
+    const decodedToken = jwt.decode(token) as IDecodedToken
+
+    if (decodedToken?.breeders?.length) setBreeders(decodedToken.breeders)
+
+    removeQueryParamToken()
+  }, [token, set, removeQueryParamToken])
 
   return (
     <UIContainer title={t('app-name')} items={items} onMenuClick={handleNavigate} user={user}>

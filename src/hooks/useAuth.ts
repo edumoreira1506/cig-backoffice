@@ -1,14 +1,10 @@
 import { useMemo } from 'react'
 import jwt from 'jsonwebtoken'
 import { useLocalStorage } from '@cig-platform/hooks'
-import { IUser, IBreeder } from '@cig-platform/types'
 
-interface IDecodedToken {
-  breeders: IBreeder[];
-  email: IUser['email'];
-  id: IUser['id'];
-  name: IUser['name'];
-}
+import { IDecodedToken } from '../@types/token'
+
+
 
 export default function useAuth() {
   const { get } = useLocalStorage('token')
