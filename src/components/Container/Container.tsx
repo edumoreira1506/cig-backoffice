@@ -10,6 +10,7 @@ import { Routes } from '../../constants/routes'
 import { useBreederDispatch } from '../../contexts/BreederContext/BreederContext'
 import { setBreeders, setSelected } from '../../contexts/BreederContext/breederActions'
 import useQueryParam from '../../hooks/useQueryParam'
+import { LOGIN_URL } from '../../constants/url'
 
 export interface ContainerProps {
   children: ReactChild;
@@ -63,7 +64,7 @@ export default function Container({ children }: ContainerProps) {
   }, [userData?.breeders, dispatch])
 
   useEffect(() => {
-    if (!token) return
+    if (!token) return window.location.assign(LOGIN_URL)
 
     set(token)
 

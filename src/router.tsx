@@ -1,7 +1,7 @@
 import React from 'react'
+import { Route } from 'react-router'
 
 import { Routes } from 'constants/routes'
-import Route from 'components/Route/Route'
 import Home from 'pages/Home/Home'
 import EditBreeder from 'pages/EditBreeder/EditBreeder'
 
