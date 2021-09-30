@@ -11,6 +11,7 @@ import { useBreederDispatch } from '../../contexts/BreederContext/BreederContext
 import { setBreeders, setSelected } from '../../contexts/BreederContext/breederActions'
 import useQueryParam from '../../hooks/useQueryParam'
 import { LOGIN_URL } from '../../constants/url'
+import useRefreshToken from '../../hooks/useRefreshToken'
 
 export interface ContainerProps {
   children: ReactChild;
@@ -39,6 +40,8 @@ export default function Container({ children }: ContainerProps) {
   const { t } = useTranslation()
 
   const { userData, token } = useAuth()
+
+  const refreshToken = useRefreshToken(token)
 
   const history = useHistory()
 
@@ -70,6 +73,10 @@ export default function Container({ children }: ContainerProps) {
 
     removeQueryParamToken()
   }, [token, set, removeQueryParamToken])
+
+  useEffect(() => {
+    refreshToken()
+  }, [refreshToken])
 
   return (
     <UIContainer title={t('app-name')} items={items} onMenuClick={handleNavigate} user={user}>
