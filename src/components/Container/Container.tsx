@@ -10,6 +10,7 @@ import { Routes } from '../../constants/routes'
 import { useBreederDispatch } from '../../contexts/BreederContext/BreederContext'
 import { setBreeders, setSelected } from '../../contexts/BreederContext/breederActions'
 import useQueryParam from '../../hooks/useQueryParam'
+import { LOGIN_URL } from '../../constants/url'
 
 export interface ContainerProps {
   children: ReactChild;
@@ -37,7 +38,7 @@ export default function Container({ children }: ContainerProps) {
 
   const { t } = useTranslation()
 
-  const { userData } = useAuth()
+  const { userData, isAuthenticated } = useAuth()
 
   const history = useHistory()
 
@@ -70,6 +71,10 @@ export default function Container({ children }: ContainerProps) {
     removeQueryParamToken()
     window.location.reload()
   }, [token, set, removeQueryParamToken])
+
+  useEffect(() => {
+    if (!isAuthenticated)  window.location.assign(LOGIN_URL)
+  }, [isAuthenticated])
 
   return (
     <UIContainer title={t('app-name')} items={items} onMenuClick={handleNavigate} user={user}>

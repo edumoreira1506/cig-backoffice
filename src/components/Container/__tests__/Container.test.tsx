@@ -6,6 +6,7 @@ import { breederFactory } from '@cig-platform/factories'
 import * as actions from '../../../contexts/BreederContext/breederActions'
 import * as useAuth from '../../../hooks/useAuth'
 import Container from '../Container'
+import { LOGIN_URL } from '../../../constants/url'
 
 const DEFAULT_PROPS = {
   children: 'I am the children!'
@@ -48,5 +49,22 @@ describe('Container', () => {
     expect(mockUseAuth).toHaveBeenCalled()
     expect(mockSetBreeders).toHaveBeenCalledWith(userData.breeders)
     expect(mockSetSelected).toHaveBeenCalledWith(userData.breeders[0].id)
+  })
+
+  it.only('redirects to login page when is not authenticated', () => {
+    const mockUseAuth = jest.fn().mockReturnValue({ isAuthenticated: false })
+
+    jest.spyOn(useAuth, 'default').mockImplementation(mockUseAuth)
+
+    const mockAssign = jest.fn()
+
+    Object.defineProperty(window, 'location', {
+      writable: true,
+      value: { assign: mockAssign }
+    })
+
+    render(<Container {...DEFAULT_PROPS} />)
+
+    expect(mockAssign).toHaveBeenCalledWith(LOGIN_URL)
   })
 })
