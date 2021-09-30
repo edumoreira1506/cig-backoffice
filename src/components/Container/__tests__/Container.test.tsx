@@ -51,7 +51,7 @@ describe('Container', () => {
     expect(mockSetSelected).toHaveBeenCalledWith(userData.breeders[0].id)
   })
 
-  it.only('redirects to login page when is not authenticated', () => {
+  it('redirects to login page when is not authenticated', () => {
     const mockUseAuth = jest.fn().mockReturnValue({ isAuthenticated: false })
 
     jest.spyOn(useAuth, 'default').mockImplementation(mockUseAuth)
