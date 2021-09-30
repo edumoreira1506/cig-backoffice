@@ -38,7 +38,7 @@ export default function Container({ children }: ContainerProps) {
 
   const { t } = useTranslation()
 
-  const { userData } = useAuth()
+  const { userData, isAuthenticated } = useAuth()
 
   const history = useHistory()
 
@@ -71,6 +71,10 @@ export default function Container({ children }: ContainerProps) {
     removeQueryParamToken()
     window.location.reload()
   }, [token, set, removeQueryParamToken])
+
+  useEffect(() => {
+    if (!isAuthenticated)  window.location.assign(LOGIN_URL)
+  }, [isAuthenticated])
 
   return (
     <UIContainer title={t('app-name')} items={items} onMenuClick={handleNavigate} user={user}>
