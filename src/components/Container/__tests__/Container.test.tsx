@@ -7,6 +7,7 @@ import * as actions from '../../../contexts/BreederContext/breederActions'
 import * as useAuth from '../../../hooks/useAuth'
 import Container from '../Container'
 import { LOGIN_URL } from '../../../constants/url'
+import AuthBffService from '../../../services/AuthBffService'
 
 const DEFAULT_PROPS = {
   children: 'I am the children!'
@@ -66,5 +67,26 @@ describe('Container', () => {
     render(<Container {...DEFAULT_PROPS} />)
 
     expect(mockAssign).toHaveBeenCalledWith(LOGIN_URL)
+  })
+
+  it('refreshes the token', () => {
+    const userData = {
+      breeders: [breederFactory()]
+    }
+    const mockRefreshTokenResponse = { ok: true, token: 'token' }
+    const mockUseAuth = jest.fn().mockReturnValue({ userData, token: mockRefreshTokenResponse.token })
+    const mockRefreshToken = jest.fn().mockResolvedValue(mockRefreshTokenResponse)
+    const children = 'Children'
+
+    jest.spyOn(AuthBffService, 'refreshToken').mockImplementation(mockRefreshToken)
+    jest.spyOn(useAuth, 'default').mockImplementation(mockUseAuth)
+
+    render(
+      <Container {...DEFAULT_PROPS}>
+        {children}
+      </Container>
+    )
+
+    expect(mockRefreshToken).toHaveBeenCalledWith(mockRefreshTokenResponse.token)
   })
 })
