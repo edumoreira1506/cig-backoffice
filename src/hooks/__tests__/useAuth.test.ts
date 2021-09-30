@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks'
 import jwt from 'jsonwebtoken'
+import { BrowserRouter } from 'react-router-dom'
 
 import useAuth from '../useAuth'
 
@@ -13,7 +14,7 @@ describe('useAuth', () => {
 
     jest.spyOn(jwt, 'decode').mockImplementation(mockDecode)
 
-    renderHook(() => useAuth())
+    renderHook(() => useAuth(), { wrapper: BrowserRouter })
 
     expect(mockDecode).toHaveBeenCalledWith(token)
   })
@@ -28,7 +29,7 @@ describe('useAuth', () => {
 
     jest.spyOn(jwt, 'decode').mockImplementation(mockDecode)
 
-    const { result } = renderHook(() => useAuth())
+    const { result } = renderHook(() => useAuth(), { wrapper: BrowserRouter })
 
     expect(result.current.isAuthenticated).toBe(true)
     expect(result.current.token).toBe(token)
@@ -38,7 +39,7 @@ describe('useAuth', () => {
   it('returns is not authenticated when has no token in local storage', () => {
     window.localStorage.removeItem('token')
 
-    const { result } = renderHook(() => useAuth())
+    const { result } = renderHook(() => useAuth(), { wrapper: BrowserRouter })
 
     expect(result.current.isAuthenticated).toBe(false)
   })

@@ -30,7 +30,7 @@ export const items = [
 ]
 
 export default function Container({ children }: ContainerProps) {
-  const { value: token, remove: removeQueryParamToken } = useQueryParam('token')
+  const { remove: removeQueryParamToken } = useQueryParam('token')
 
   const { set } = useLocalStorage('token')
 
@@ -38,7 +38,7 @@ export default function Container({ children }: ContainerProps) {
 
   const { t } = useTranslation()
 
-  const { userData, isAuthenticated } = useAuth()
+  const { userData, token } = useAuth()
 
   const history = useHistory()
 
@@ -69,12 +69,7 @@ export default function Container({ children }: ContainerProps) {
     set(token)
 
     removeQueryParamToken()
-    window.location.reload()
   }, [token, set, removeQueryParamToken])
-
-  useEffect(() => {
-    if (!isAuthenticated)  window.location.assign(LOGIN_URL)
-  }, [isAuthenticated])
 
   return (
     <UIContainer title={t('app-name')} items={items} onMenuClick={handleNavigate} user={user}>

@@ -3,14 +3,16 @@ import jwt from 'jsonwebtoken'
 import { useLocalStorage } from '@cig-platform/hooks'
 
 import { IDecodedToken } from '../@types/token'
+import useQueryParam from './useQueryParam'
 
 
 
 export default function useAuth() {
+  const { value } = useQueryParam('token')
   const { get } = useLocalStorage('token')
 
   const { token, isAuthenticated, userData } = useMemo(() => {
-    const localStorageToken = get()
+    const localStorageToken = value || get()
 
     const decodedToken = jwt.decode(localStorageToken) as IDecodedToken
 
@@ -19,7 +21,7 @@ export default function useAuth() {
       isAuthenticated: Boolean(localStorageToken),
       userData: decodedToken
     }
-  }, [get])
+  }, [get, value])
 
   return { token, isAuthenticated, userData }
 }
