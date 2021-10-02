@@ -1201,13 +1201,21 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cig-platform/auth-bff-client@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@cig-platform/auth-bff-client/-/auth-bff-client-0.1.3.tgz#79c50178f4578f5ed8a17dbbc5c5bab12367a68f"
-  integrity sha512-4NE0cpv06HD+31dm9hiz7ZTG1daDhgYU/YykjYpM5qhT7CjF34zmLkuCkYTPrbr0AeKDlio+DV6I6/JK+tjR+A==
+"@cig-platform/auth-bff-client@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@cig-platform/auth-bff-client/-/auth-bff-client-0.1.4.tgz#1bf222346f0f63bd244c0826cb6418e98151085d"
+  integrity sha512-UJVN0JDsbefSkhCUogkNZmcvKcTP9Ox/VUmSOlqSGsmJhUNnlIc6itZ5rIv42UQsmYGVpyiTuj0KDg3uEs3VCA==
   dependencies:
     "@cig-platform/types" "0.0.3"
     axios "^0.21.4"
+
+"@cig-platform/backoffice-bff-client@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.2.tgz#3f8005b5cec8d39ddb0505c3fcf14bb45f11fbba"
+  integrity sha512-HM93oxLrpPM1ZZJ4WBaawdRdVCI7JCeEy8TjO+hgmmgE+hfoWjFnhY6EieCIv3Ii1sWraqD4af6S8NoCDYkGhQ==
+  dependencies:
+    "@cig-platform/types" "0.0.5"
+    axios "0.21.4"
 
 "@cig-platform/context@^0.1.7":
   version "0.1.7"
@@ -1238,6 +1246,13 @@
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
+
+"@cig-platform/types@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.5.tgz#500294d4512737f865208e97421c3759365d313a"
+  integrity sha512-Vyb/FCYVHwePfUT3+F41FEGIFCijwU4TwuyByVsw0Qg4gPOtKnPXCCMsLJbMuaH7cbnt+sLMoTqB+i4ZtqmLaQ==
+  dependencies:
+    express "^4.17.1"
 
 "@cig-platform/ui@^0.1.34":
   version "0.1.34"
@@ -2781,7 +2796,7 @@ axe-core@^4.0.2:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.3.3.tgz#b55cd8e8ddf659fe89b064680e1c6a4dceab0325"
   integrity sha512-/lqqLAmuIPi79WYfRpy2i8z+x+vxU3zX2uAm0gs1q52qTuKwolOj1P8XbufpXcsydrpKx2yGn2wzAnxCMV86QA==
 
-axios@*, axios@^0.21.4:
+axios@*, axios@0.21.4, axios@^0.21.4:
   version "0.21.4"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
   integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
