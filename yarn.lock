@@ -1226,12 +1226,12 @@
     react "^17.0.2"
     use-context-selector "^1.3.9"
 
-"@cig-platform/factories@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@cig-platform/factories/-/factories-0.0.3.tgz#6b049ce4a171f7614118973d7c28101c5cfd2b08"
-  integrity sha512-fYSpuKqrxFufAegVm1zTna0ll7WUOopXCXCW1LfpJOjhDKTUL4XBxkS3jJB/viI55m6TjjDu7EyMzM9pF/45hA==
+"@cig-platform/factories@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cig-platform/factories/-/factories-0.0.4.tgz#9c3245a1a2bfac10e9f5e91d023f263bd1ac3726"
+  integrity sha512-UYYCJcWWW1/OuAnDT+HfB7bWRUW3Du63vB6Xp4IC5AKTX0gf1StBJyrveU5gbf4ucyV/mgLJ8EM2iCSqm+35mw==
   dependencies:
-    "@cig-platform/types" "0.0.3"
+    "@cig-platform/types" "0.0.4"
     faker "^5.5.3"
 
 "@cig-platform/hooks@^0.0.2":
@@ -1247,17 +1247,22 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
 
-"@cig-platform/types@0.0.5":
+"@cig-platform/types@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.4.tgz#df05674c81e9db443f5602d501fa962c1ebc9327"
+  integrity sha512-sOvvnLOjoouJuw2HQiKHxrY2xJbQmqrT0e6/CVxipN6gjq4SmCgNoOoD0QSpVFfAFmRMVx+eOj/7mK3fOxZL8g==
+
+"@cig-platform/types@0.0.5", "@cig-platform/types@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.5.tgz#500294d4512737f865208e97421c3759365d313a"
   integrity sha512-Vyb/FCYVHwePfUT3+F41FEGIFCijwU4TwuyByVsw0Qg4gPOtKnPXCCMsLJbMuaH7cbnt+sLMoTqB+i4ZtqmLaQ==
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/ui@^0.1.35":
-  version "0.1.35"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.35.tgz#58cc22443b89266c9cb90d875d485b185b2c3b1d"
-  integrity sha512-U3NmSHhfhfsMdor9TqqGqEqdFn+wz+MFewI9M4S558oHyGI6rOa4OpVBLmVtvIAU1/aGDPoSqV/me6BdmtHglA==
+"@cig-platform/ui@^0.1.36":
+  version "0.1.36"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.36.tgz#185ec0ce4cc16a2152f514edc19970c103bf23a4"
+  integrity sha512-Sq/pPp6pqmsNPBocox7famf6gFEz3SIiTsRbzCRFXWRwIQUCcGMIzpsuGp7pO753uwe2+K3vj20I63Lx9fkfuQ==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
