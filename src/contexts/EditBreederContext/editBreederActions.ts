@@ -35,3 +35,8 @@ export const setAddressField = (key: keyof EditBreederState['address'], value: s
   type: 'SET_ADDRESS_FIELD',
   payload: { key, value }
 } as const)
+
+export const setProfileImage = (profileImage: File) => ({
+  type: 'SET_PROFILE_IMAGE',
+  payload: { profileImage }
+} as const)

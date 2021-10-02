@@ -31,6 +31,13 @@ export const StyledFormField = styled.div`
   width: 100%;
 `
 
+export const StyledProfileImage = styled.div`
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+`
+
 export const StyledAddressTitle = styled.p`
   font-weight: bold;
   margin: 55px 0 20px 0;

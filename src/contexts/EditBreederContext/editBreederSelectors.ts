@@ -23,3 +23,5 @@ export const selectError = (state: EditBreederState) => state.error
 export const selectFoundationDate = (state: EditBreederState) => state.foundationDate
 
 export const selectId = (state: EditBreederState) => state.id
+
+export const selectProfileImage = (state: EditBreederState) => state.profileImage

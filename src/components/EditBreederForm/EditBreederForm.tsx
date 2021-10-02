@@ -9,8 +9,9 @@ import EditBreederFormDescription from './EditBreederFormDescription'
 import EditBreederFormFoundationDate from './EditBreederFormFoundationDate'
 import EditBreederFormSubmitButton from './EditBreederFormSubmitButton'
 import EditBreederFormAddress from './EditBreederFormAddress'
+import EditBreederFormProfileImage from './EditBreederFormProfileImage'
 
-import { StyledForm, StyledFormField, StyledAddressTitle } from './EditBreederForm.styles'
+import { StyledForm, StyledFormField, StyledAddressTitle, StyledProfileImage } from './EditBreederForm.styles'
 
 export interface EditBreederFormProps {
   onSubmit: (breeder: Partial<IBreeder>) => void;
@@ -21,6 +22,9 @@ export default function EditBreederForm({ onSubmit }: EditBreederFormProps) {
 
   return (
     <StyledForm onSubmit={preventDefaultHandler}>
+      <StyledProfileImage>
+        <EditBreederFormProfileImage />
+      </StyledProfileImage>
       <StyledFormField>
         <EditBreederFormName />
       </StyledFormField>
