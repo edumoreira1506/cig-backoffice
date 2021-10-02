@@ -1,6 +1,6 @@
 import React, { ReactChild, useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AiFillHome } from 'react-icons/ai'
+import { IoMdHome } from 'react-icons/io'
 import { useHistory } from 'react-router'
 import { Container as UIContainer } from '@cig-platform/ui'
 import { useLocalStorage } from '@cig-platform/hooks'
@@ -20,12 +20,12 @@ export interface ContainerProps {
 export const items = [
   {
     title: 'Home',
-    icon: <AiFillHome />,
+    icon: <IoMdHome />,
     route: Routes.Home
   },
   {
     title: 'Meu criatório',
-    icon: <AiFillHome />,
+    icon: <IoMdHome />,
     route: Routes.EditBreeder
   }
 ]
