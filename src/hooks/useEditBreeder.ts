@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-import { IBreeder } from '@cig-platform/types'
 
 import backofficeBffClient from '../services/BackofficeBffService'
 import { useEditBreederDispatch, useEditBreederSelector } from '../contexts/EditBreederContext/EditBreederContext'
@@ -8,6 +7,7 @@ import { selectId } from '../contexts/EditBreederContext/editBreederSelectors'
 import useAuth from './useAuth'
 import { filterObject } from '../utils/object'
 import { EditBreederFormProps } from 'components/EditBreederForm/EditBreederForm'
+import { BreederWithFiles } from '../@types/breeder'
 
 export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFormProps['onSubmit'] }) {
   const dispatch = useEditBreederDispatch()
@@ -16,7 +16,7 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
 
   const { token } = useAuth()
 
-  const handleEditBreeder = useCallback(async (breeder: Partial<IBreeder>) => {
+  const handleEditBreeder = useCallback(async (breeder: Partial<BreederWithFiles>) => {
     dispatch(setIsLoading(true))
 
     const authBffResponse = await backofficeBffClient.editBreeder(breederId, token, filterObject(breeder))

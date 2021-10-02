@@ -12,6 +12,10 @@ export const filterObject = (object: Record<string, any>): Record<string, any> =
 
     if (isArray) return Boolean(value.length)
 
+    const isFile = value instanceof File
+
+    if (isFile) return true
+
     const isValidObject = Object.values(value).some((v) => Boolean(v)) && Boolean(Object.entries(value).length)
 
     return isValidObject
