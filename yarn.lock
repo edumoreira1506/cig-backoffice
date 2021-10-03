@@ -1260,10 +1260,10 @@
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/ui@^0.1.36":
-  version "0.1.36"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.36.tgz#185ec0ce4cc16a2152f514edc19970c103bf23a4"
-  integrity sha512-Sq/pPp6pqmsNPBocox7famf6gFEz3SIiTsRbzCRFXWRwIQUCcGMIzpsuGp7pO753uwe2+K3vj20I63Lx9fkfuQ==
+"@cig-platform/ui@^0.1.37":
+  version "0.1.37"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.37.tgz#e6ae5ffef9401d43f41899ffb0251c4427751463"
+  integrity sha512-VJeAP8YZd8ekYS7ONZr/VKeg6wACMgP+n+sHFU7wOxDIWA0wCHEgiyd0WrrcGaBREVYUwQm1C3P/LUzrnSFu4g==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
@@ -1274,7 +1274,7 @@
     "@types/react-dom" "^17.0.0"
     react "^17.0.2"
     react-dom "^17.0.2"
-    react-icons "^4.2.0"
+    react-icons "^4.3.1"
     react-number-format "^4.7.3"
     react-scripts "4.0.3"
     styled-components "^5.3.1"
@@ -2040,13 +2040,6 @@
   integrity sha512-wIvGxLfgpVDSAMH5utdL9Ngm5Owu0VsGmldro3ORLXV8CShrL8awVj06NuEXFQ5xyaYfdca7Sgbk/50Ri1GdPg==
   dependencies:
     "@types/react" "*"
-
-"@types/react-icons@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/react-icons/-/react-icons-3.0.0.tgz#27ca2823a6add881d06a371bfff093afc1b9c829"
-  integrity sha512-Vefs6LkLqF61vfV7AiAqls+vpR94q67gunhMueDznG+msAkrYgRxl7gYjNem/kZ+as2l2mNChmF1jRZzzQQtMg==
-  dependencies:
-    react-icons "*"
 
 "@types/react-router-dom@^5.3.0":
   version "5.3.0"
@@ -9554,10 +9547,10 @@ react-i18next@^11.12.0:
     "@babel/runtime" "^7.14.5"
     html-parse-stringify "^3.0.1"
 
-react-icons@*, react-icons@^4.2.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.0.tgz#c71b266a07a7e10e0c8ff7386e3e9c6727d33195"
-  integrity sha512-Rb0pqr5vp7RR8K6QLWjcjvhlxUhQTmnBxTcIdA/8YIsLqZn0BB2kCm1K/5T63Hx/G/omvntxAnMkvwv2a6ojRA==
+react-icons@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
+  integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
