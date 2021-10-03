@@ -5,7 +5,7 @@ import { IBreeder } from '@cig-platform/types'
 
 import EditBreederForm from '../../components/EditBreederForm/EditBreederForm'
 import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
-import { setDescription, setFoundationDate, setName, setAddressField, setId } from '../../contexts/EditBreederContext/editBreederActions'
+import { setDescription, setFoundationDate, setName, setAddressField, setId, setProfileImage } from '../../contexts/EditBreederContext/editBreederActions'
 import useEditBreeder from '../../hooks/useEditBreeder'
 import { success, error as showError } from '../../utils/alert'
 import { Routes } from '../../constants/routes'
@@ -15,6 +15,7 @@ import { setBreeders } from '../../contexts/BreederContext/breederActions'
 import { selectError, selectId } from '../../contexts/EditBreederContext/editBreederSelectors'
 import useAuth from '../../hooks/useAuth'
 import useRefreshToken from '../../hooks/useRefreshToken'
+import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
@@ -50,15 +51,21 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   const dispatch = useEditBreederDispatch()
 
   useEffect(() => {
-    dispatch(setName(breeder.name))
-    dispatch(setFoundationDate(breeder?.foundationDate?.toString() ?? ''))
-    dispatch(setDescription(breeder?.description ?? ''))
-    dispatch(setAddressField('city', breeder?.address?.city ?? ''))
-    dispatch(setAddressField('number', breeder?.address?.number ?? ''))
-    dispatch(setAddressField('province', breeder?.address?.province ?? ''))
-    dispatch(setAddressField('zipcode', breeder?.address?.zipcode ?? ''))
-    dispatch(setAddressField('street', breeder?.address?.street ?? ''))
-    dispatch(setId(breeder.id))
+    (async () => {
+      dispatch(setName(breeder.name))
+      dispatch(setFoundationDate(breeder?.foundationDate?.toString() ?? ''))
+      dispatch(setDescription(breeder?.description ?? ''))
+      dispatch(setAddressField('city', breeder?.address?.city ?? ''))
+      dispatch(setAddressField('number', breeder?.address?.number ?? ''))
+      dispatch(setAddressField('province', breeder?.address?.province ?? ''))
+      dispatch(setAddressField('zipcode', breeder?.address?.zipcode ?? ''))
+      dispatch(setAddressField('street', breeder?.address?.street ?? ''))
+      dispatch(setId(breeder.id))
+  
+      const profileImageUrl = breeder?.profileImageUrl || PROFILE_IMAGE_PLACEHOLDER
+
+      dispatch(setProfileImage(new File([''], profileImageUrl)))
+    })()
   }, [breeder])
 
   useEffect(() => {

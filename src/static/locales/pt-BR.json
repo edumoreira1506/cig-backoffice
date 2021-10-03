@@ -14,5 +14,6 @@
   "common.select-the-province": "Selecione o estado",
   "common.updated": "Atualizado com sucesso",
   "common.success": "Boa!",
-  "common.ops": "Ops!"
+  "common.ops": "Ops!",
+  "breeder.upload-image": "Alterar imagem de perfil"
 }
