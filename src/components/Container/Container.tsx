@@ -12,6 +12,9 @@ import { setBreeders, setSelected } from '../../contexts/BreederContext/breederA
 import useQueryParam from '../../hooks/useQueryParam'
 import { LOGIN_URL } from '../../constants/url'
 import useRefreshToken from '../../hooks/useRefreshToken'
+import { useAppSelector } from '../../contexts/AppContext/AppContext'
+import { selectError } from '../../contexts/AppContext/appSelectors'
+import { error as showError } from '../../utils/alert'
 
 export interface ContainerProps {
   children: ReactChild;
@@ -37,6 +40,8 @@ export default function Container({ children }: ContainerProps) {
 
   const dispatch = useBreederDispatch()
 
+  const error = useAppSelector(selectError)
+
   const { t } = useTranslation()
 
   const { userData, token } = useAuth()
@@ -59,11 +64,11 @@ export default function Container({ children }: ContainerProps) {
   }, [history])
 
   useEffect(() => {
-    dispatch(setBreeders(userData?.breeders))
+    dispatch(setBreeders(userData?.breeders ?? []))
 
     const { id: firstBreederId } = userData?.breeders?.[0] ?? {}
 
-    dispatch(setSelected(firstBreederId))
+    if (firstBreederId) dispatch(setSelected(firstBreederId))
   }, [userData?.breeders, dispatch])
 
   useEffect(() => {
@@ -77,6 +82,12 @@ export default function Container({ children }: ContainerProps) {
   useEffect(() => {
     refreshToken()
   }, [refreshToken])
+
+  useEffect(() => {
+    if (error) {
+      showError(error?.message ?? t('common.something-wrong'), t)
+    }
+  }, [error])
 
   return (
     <UIContainer title={t('app-name')} items={items} onMenuClick={handleNavigate} user={user}>

@@ -4,15 +4,18 @@ import Router from 'router'
 
 import Container from './components/Container/Container'
 import { BreederProvider } from './contexts/BreederContext/BreederContext'
+import { AppProvider } from './contexts/AppContext/AppContext'
 
 export default function App() {
   return (
     <BrowserRouter>
-      <BreederProvider>
-        <Container>
-          <Router />
-        </Container>
-      </BreederProvider>
+      <AppProvider>
+        <BreederProvider>
+          <Container>
+            <Router />
+          </Container>
+        </BreederProvider>
+      </AppProvider>
     </BrowserRouter>
   )
 }

@@ -1,10 +1,4 @@
-import { ApiErrorType } from '@cig-platform/types'
 import { EditBreederState } from './editBreederReducer'
-
-export const setError = (error: ApiErrorType | any) => ({
-  type: 'SET_ERROR',
-  payload: { error }
-} as const)
 
 export const setIsLoading = (isLoading: boolean) => ({
   type: 'SET_IS_LOADING',

@@ -5,9 +5,11 @@ import { breederFactory } from '@cig-platform/factories'
 
 import * as actions from '../../../contexts/BreederContext/breederActions'
 import * as useAuth from '../../../hooks/useAuth'
+import * as Alert from '../../../utils/alert'
 import Container from '../Container'
 import { LOGIN_URL } from '../../../constants/url'
 import AuthBffService from '../../../services/AuthBffService'
+import AppContext from '../../../contexts/AppContext/AppContext'
 
 const DEFAULT_PROPS = {
   children: 'I am the children!'
@@ -88,5 +90,22 @@ describe('Container', () => {
     )
 
     expect(mockRefreshToken).toHaveBeenCalledWith(mockRefreshTokenResponse.token)
+  })
+
+  it('shows the error', () => {
+    const mockUseAuth = jest.fn().mockReturnValue({})
+    const error = { name: 'ExampleError', message: 'example error' }
+    const mockShowError = jest.fn()
+
+    jest.spyOn(Alert, 'error').mockImplementation(mockShowError)
+    jest.spyOn(useAuth, 'default').mockImplementation(mockUseAuth)
+
+    render(
+      <AppContext.Provider value={{ error, dispatch: jest.fn(), isLoading: false }}>
+        <Container {...DEFAULT_PROPS} />
+      </AppContext.Provider>
+    )
+
+    expect(mockShowError).toHaveBeenCalled()
   })
 })

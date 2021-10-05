@@ -45,8 +45,6 @@ export default function editBreederReducer(
     return { ...state, profileImage: action.payload.profileImage }
   case 'SET_ID':
     return { ...state, id: action.payload.id }
-  case 'SET_ERROR':
-    return { ...state, error: action.payload.error }
   case 'SET_IS_LOADING':
     return { ...state, isLoading: action.payload.isLoading }
   case 'SET_NAME':
