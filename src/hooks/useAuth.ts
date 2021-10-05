@@ -12,14 +12,22 @@ export default function useAuth() {
   const { get } = useLocalStorage('token')
 
   const { token, isAuthenticated, userData } = useMemo(() => {
-    const localStorageToken = value || get()
+    try {
+      const localStorageToken = value || get()
 
-    const decodedToken = jwt.decode(localStorageToken) as IDecodedToken
-
-    return {
-      token: localStorageToken,
-      isAuthenticated: Boolean(localStorageToken),
-      userData: decodedToken
+      const decodedToken = jwt.decode(localStorageToken) as IDecodedToken
+  
+      return {
+        token: localStorageToken,
+        isAuthenticated: Boolean(localStorageToken),
+        userData: decodedToken
+      }
+    } catch {
+      return {
+        token: null,
+        isAuthenticated: false,
+        userData: null
+      }
     }
   }, [get, value])
 
