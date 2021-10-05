@@ -7,12 +7,12 @@ import EditBreederForm from '../../components/EditBreederForm/EditBreederForm'
 import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
 import { setDescription, setFoundationDate, setName, setAddressField, setId, setProfileImage } from '../../contexts/EditBreederContext/editBreederActions'
 import useEditBreeder from '../../hooks/useEditBreeder'
-import { success, error as showError } from '../../utils/alert'
+import { success } from '../../utils/alert'
 import { Routes } from '../../constants/routes'
 import { useBreederDispatch, useBreederSelector } from '../../contexts/BreederContext/BreederContext'
 import { selectBreeders } from '../../contexts/BreederContext/breederSelectors'
 import { setBreeders } from '../../contexts/BreederContext/breederActions'
-import { selectError, selectId } from '../../contexts/EditBreederContext/editBreederSelectors'
+import { selectId } from '../../contexts/EditBreederContext/editBreederSelectors'
 import useAuth from '../../hooks/useAuth'
 import useRefreshToken from '../../hooks/useRefreshToken'
 import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
@@ -28,7 +28,6 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
 
   const breeders = useBreederSelector(selectBreeders)
 
-  const error = useEditBreederSelector(selectError)
   const breederId = useEditBreederSelector(selectId)
 
   const breederDispatch = useBreederDispatch()
@@ -67,12 +66,6 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
       dispatch(setProfileImage(new File([''], profileImageUrl)))
     })()
   }, [breeder])
-
-  useEffect(() => {
-    if (error) {
-      showError(error?.message ?? t('common.something-wrong'), t)
-    }
-  }, [error])
 
   return (
     <EditBreederForm onSubmit={editBreeder} />
