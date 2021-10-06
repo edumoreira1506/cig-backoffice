@@ -12,8 +12,6 @@ import { useBreederDispatch, useBreederSelector } from '../../contexts/BreederCo
 import { selectBreeders } from '../../contexts/BreederContext/breederSelectors'
 import { setBreeders } from '../../contexts/BreederContext/breederActions'
 import { selectId } from '../../contexts/EditBreederContext/editBreederSelectors'
-import useAuth from '../../hooks/useAuth'
-import useRefreshToken from '../../hooks/useRefreshToken'
 import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 
 export interface EditBreederContainerProps {
@@ -21,10 +19,6 @@ export interface EditBreederContainerProps {
 }
 
 export default function EditBreederContainer({ breeder }: EditBreederContainerProps) {
-  const { token } = useAuth()
-
-  const refreshToken = useRefreshToken(token)
-
   const breeders = useBreederSelector(selectBreeders)
 
   const breederId = useEditBreederSelector(selectId)
@@ -36,13 +30,12 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   const { t } = useTranslation()
 
   const handleSuccess = useCallback((breeder: Partial<IBreeder>) => {
-    const newBreeders = breeders.map((b) => b.id === breederId ? ({ ...breeder, id: breederId }) : b) as any
+    const newBreeders = breeders.map((b) => b.id === breederId ? ({ ...b, ...breeder, id: breederId }) : b) as any
 
     breederDispatch(setBreeders(newBreeders))
 
-    refreshToken()
     success(t('common.updated'), t)
-  }, [t, history, breeders, breederDispatch, breederId, refreshToken])
+  }, [t, history, breeders, breederDispatch, breederId])
 
   const editBreeder = useEditBreeder({ onSuccess: handleSuccess })
 

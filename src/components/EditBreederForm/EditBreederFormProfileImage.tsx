@@ -15,7 +15,7 @@ export default function EditBreederFormProfileImage() {
   const { t } = useTranslation()
 
   const handleSuccessEditImage = useCallback(() => {
-    success(t('common.updated'), t)
+    success(t('common.updated'), t, () => window.location.reload())
   }, [t])
 
   const editBreeder = useEditBreeder({ onSuccess: handleSuccessEditImage })
