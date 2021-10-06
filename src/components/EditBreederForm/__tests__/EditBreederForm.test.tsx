@@ -6,6 +6,7 @@ import { createEditBreederContextRenderer } from '../../../utils/test'
 
 import EditBreederForm from '../EditBreederForm'
 import userEvent from '@testing-library/user-event'
+import { BrowserRouter } from 'react-router-dom'
 
 const DEFAULT_PROPS = {
   onSubmit: jest.fn()
@@ -39,7 +40,11 @@ describe('EditBreederForm', () => {
     }
     const render = createEditBreederContextRenderer(mockStore)
 
-    render(<EditBreederForm {...DEFAULT_PROPS} />)
+    render(
+      <BrowserRouter>
+        <EditBreederForm {...DEFAULT_PROPS} />
+      </BrowserRouter>
+    )
 
     expect(screen.getByDisplayValue(mockStore.name)).toBeInTheDocument()
     expect(screen.getByDisplayValue(mockStore.description)).toBeInTheDocument()
@@ -49,7 +54,11 @@ describe('EditBreederForm', () => {
     const render = createEditBreederContextRenderer()
     const onSubmit = jest.fn()
 
-    render(<EditBreederForm {...DEFAULT_PROPS} onSubmit={onSubmit} />)
+    render(
+      <BrowserRouter>
+        <EditBreederForm {...DEFAULT_PROPS} onSubmit={onSubmit} />
+      </BrowserRouter>)
+    
 
     userEvent.click(screen.getByText('Salvar'))
 
