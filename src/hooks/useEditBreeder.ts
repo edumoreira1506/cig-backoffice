@@ -6,6 +6,7 @@ import { setIsLoading } from '../contexts/EditBreederContext/editBreederActions'
 import { setError } from '../contexts/AppContext/appActions'
 import { selectId } from '../contexts/EditBreederContext/editBreederSelectors'
 import useAuth from './useAuth'
+import useRefreshToken from './useRefreshToken'
 import { filterObject } from '../utils/object'
 import { EditBreederFormProps } from 'components/EditBreederForm/EditBreederForm'
 import { BreederWithFiles } from '../@types/breeder'
@@ -19,6 +20,8 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
 
   const { token } = useAuth()
 
+  const refreshToken = useRefreshToken(token)
+
   const handleEditBreeder = useCallback(async (breeder: Partial<BreederWithFiles>) => {
     editBreederDispatch(setIsLoading(true))
     appDispatch(setIsLoading(true))
@@ -31,9 +34,10 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
     if (!authBffResponse?.ok) {
       appDispatch(setError(authBffResponse?.error))
     } else {
+      refreshToken()
       onSuccess(breeder)
     }
-  }, [token, onSuccess, breederId, editBreederDispatch, appDispatch])
+  }, [token, onSuccess, breederId, editBreederDispatch, appDispatch, refreshToken])
 
   return handleEditBreeder
 }
