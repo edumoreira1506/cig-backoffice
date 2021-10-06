@@ -10,8 +10,14 @@ import { createImageUrl } from '../../utils/s3'
 import { S3Folders, S3Subfolders } from '../../constants/s3'
 import useEditBreeder from '../../hooks/useEditBreeder'
 import { success } from '../../utils/alert'
+import useAuth from '../../hooks/useAuth'
+import useRefreshToken from '../../hooks/useRefreshToken'
 
 export default function EditBreederFormProfileImage() {
+  const { token } = useAuth()
+
+  const refreshToken = useRefreshToken(token)
+
   const { t } = useTranslation()
 
   const handleSuccessEditImage = useCallback(() => {
@@ -37,6 +43,7 @@ export default function EditBreederFormProfileImage() {
     } 
 
     editBreeder({ files: [newProfileImage] })
+    refreshToken()
   }, [dispatch, editBreeder])
 
   const { file, imagePlaceholderPath } = useMemo(() => ({
