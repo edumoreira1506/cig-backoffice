@@ -8,7 +8,6 @@ import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/E
 import { setDescription, setFoundationDate, setName, setAddressField, setId, setProfileImage } from '../../contexts/EditBreederContext/editBreederActions'
 import useEditBreeder from '../../hooks/useEditBreeder'
 import { success } from '../../utils/alert'
-import { Routes } from '../../constants/routes'
 import { useBreederDispatch, useBreederSelector } from '../../contexts/BreederContext/BreederContext'
 import { selectBreeders } from '../../contexts/BreederContext/breederSelectors'
 import { setBreeders } from '../../contexts/BreederContext/breederActions'
@@ -42,7 +41,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
     breederDispatch(setBreeders(newBreeders))
 
     refreshToken()
-    success(t('common.updated'), t, () => history.push(Routes.Home))
+    success(t('common.updated'), t)
   }, [t, history, breeders, breederDispatch, breederId, refreshToken])
 
   const editBreeder = useEditBreeder({ onSuccess: handleSuccess })

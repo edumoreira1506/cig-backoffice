@@ -8,9 +8,17 @@ import { setProfileImage } from '../../contexts/EditBreederContext/editBreederAc
 import { S3_BUCKET_URL } from '../../constants/url'
 import { createImageUrl } from '../../utils/s3'
 import { S3Folders, S3Subfolders } from '../../constants/s3'
+import useEditBreeder from '../../hooks/useEditBreeder'
+import { success } from '../../utils/alert'
 
 export default function EditBreederFormProfileImage() {
   const { t } = useTranslation()
+
+  const handleSuccessEditImage = useCallback(() => {
+    success(t('common.updated'), t)
+  }, [t])
+
+  const editBreeder = useEditBreeder({ onSuccess: handleSuccessEditImage })
 
   const [notUploadedFile, setNotUploadedFile] = useState('')
 
@@ -27,7 +35,9 @@ export default function EditBreederFormProfileImage() {
     fr.onload = function() {
       setNotUploadedFile(String(this.result))
     } 
-  }, [dispatch])
+
+    editBreeder({ files: [newProfileImage] })
+  }, [dispatch, editBreeder])
 
   const { file, imagePlaceholderPath } = useMemo(() => ({
     imagePlaceholderPath: notUploadedFile ?? createImageUrl({ folder: S3Folders.Breeders, subfolder: S3Subfolders.Profile, fileName: profileImage.name }),
