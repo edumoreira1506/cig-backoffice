@@ -32,7 +32,7 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
     appDispatch(setIsLoading(false))
 
     if (!authBffResponse?.ok) {
-      appDispatch(setError(authBffResponse?.error))
+      appDispatch(setError((authBffResponse as any)?.error))
     } else {
       refreshToken()
       onSuccess(breeder)
