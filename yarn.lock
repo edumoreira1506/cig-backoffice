@@ -1261,17 +1261,10 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.4.tgz#df05674c81e9db443f5602d501fa962c1ebc9327"
   integrity sha512-sOvvnLOjoouJuw2HQiKHxrY2xJbQmqrT0e6/CVxipN6gjq4SmCgNoOoD0QSpVFfAFmRMVx+eOj/7mK3fOxZL8g==
 
-"@cig-platform/types@0.0.6":
+"@cig-platform/types@0.0.6", "@cig-platform/types@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.6.tgz#bd7f8b49893481e88ef86eb49571f7c7f299688b"
   integrity sha512-qLylQxQpebRQmKNVlC4fYrmGjisj4RTOkdoQXEakhxTuomRu0p/se/oU0hamOPKvaNiuQmzkjtytpET4bpeDxg==
-  dependencies:
-    express "^4.17.1"
-
-"@cig-platform/types@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.5.tgz#500294d4512737f865208e97421c3759365d313a"
-  integrity sha512-Vyb/FCYVHwePfUT3+F41FEGIFCijwU4TwuyByVsw0Qg4gPOtKnPXCCMsLJbMuaH7cbnt+sLMoTqB+i4ZtqmLaQ==
   dependencies:
     express "^4.17.1"
 
