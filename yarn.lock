@@ -1277,10 +1277,10 @@
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/ui@^0.1.41":
-  version "0.1.41"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.41.tgz#22ee559db82463a36701b6d6c9a0872727ea1110"
-  integrity sha512-7FgHjI70+J5IxoMaYcy51YK4Brqg1QLu6SWn1STGxRsnIM5/NAzDMxR65r1ZKxOyWKyJXuVIazTGSNaWTneWDg==
+"@cig-platform/ui@^0.1.42":
+  version "0.1.42"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.42.tgz#7b30ceca149814d79f64e482031b315e9af30ece"
+  integrity sha512-CfZiwd4dFlTv/Vp0lVrvTiUlLHlmjHA0gqKGTh0bC9o0UvzVQ/qHE+qNaeVaUEA+sYw+jnWRn69Ayrk7SOzDqA==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
