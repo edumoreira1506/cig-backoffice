@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@cig-platform/auth-bff-client": "^0.1.4",
-    "@cig-platform/backoffice-bff-client": "0.0.4",
+    "@cig-platform/backoffice-bff-client": "0.0.5",
     "@cig-platform/context": "^0.1.7",
     "@cig-platform/factories": "^0.0.4",
     "@cig-platform/hooks": "^0.0.2",
