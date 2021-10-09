@@ -16,3 +16,21 @@ export const success = (message: string, t: TFunction, callback?: () => void) =>
     callback()
   }
 })
+
+export const info = (
+  message: string,
+  t: TFunction,
+  confirmedCallback?: () => void,
+  notConfirmedCallback?: () => void,
+) => Swal.fire({
+  title: t('common.confirm'),
+  text: message,
+  icon: 'warning',
+  showCancelButton: true,
+}).then((result) => {
+  if (result.value && confirmedCallback) {
+    confirmedCallback()
+  } else if (notConfirmedCallback) {
+    notConfirmedCallback()
+  }
+})

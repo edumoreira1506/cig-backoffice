@@ -2,6 +2,7 @@
   "app-name": "CIG Backoffice",
   "edit-breeder": "Edição de criatório",
   "common.save": "Salvar",
+  "common.confirm": "Confirmação",
   "common.select-files": "Selecionar arquivos",
   "breeder.fields.name": "Nome do criatório",
   "breeder.fields.description": "Descrição do criatório",
@@ -17,5 +18,6 @@
   "common.updated": "Atualizado com sucesso",
   "common.success": "Boa!",
   "common.ops": "Ops!",
-  "breeder.upload-image": "Alterar imagem de perfil"
+  "breeder.upload-image": "Alterar imagem de perfil",
+  "breeder.delete-image": "Tem certeza que deseja remover essa imagem?"
 }

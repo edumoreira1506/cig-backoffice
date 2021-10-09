@@ -9,6 +9,7 @@ import { createImageUrl } from '../../utils/s3'
 import { S3Subfolders, S3Folders } from '../../constants/s3'
 import { setImages } from '../../contexts/EditBreederContext/editBreederActions'
 import { useEditBreederDispatch } from '../../contexts/EditBreederContext/EditBreederContext'
+import { info } from '../../utils/alert'
 
 export default function EditBreederFormImages() {
   const [isOpenGallery, setIsOpenGallery] = useState(false)
@@ -60,13 +61,24 @@ export default function EditBreederFormImages() {
     } 
   }, [images, dispatch])
 
+  const handleRemoveImage = useCallback((imageSrc: string) => {
+    info(t('breeder.delete-image'), t, () => {
+      const newImages = images.map((image) => imageSrc.includes(image.imageUrl) ? ({
+        ...image,
+        isDeleted: true,
+      }) : ({ ...image }))
+
+      dispatch(setImages(newImages))
+    })
+  }, [t, dispatch, images])
+
   return (
     <>
       <FileImagesCarousel
         images={formattedImagesOfCarousel}
         onClickImage={handleClickImage}
         onUpload={handleUploadImage}
-        onDeleteImage={() => alert('deletando')}
+        onDeleteImage={handleRemoveImage}
         uploadMessage={t('common.select-files')}
       />
       <Modal
