@@ -5,7 +5,7 @@ import { IBreeder } from '@cig-platform/types'
 
 import EditBreederForm from '../../components/EditBreederForm/EditBreederForm'
 import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
-import { setDescription, setFoundationDate, setName, setAddressField, setId, setProfileImage } from '../../contexts/EditBreederContext/editBreederActions'
+import { setDescription, setFoundationDate, setName, setAddressField, setId, setProfileImage, setImages } from '../../contexts/EditBreederContext/editBreederActions'
 import useEditBreeder from '../../hooks/useEditBreeder'
 import { success } from '../../utils/alert'
 import { useBreederDispatch, useBreederSelector } from '../../contexts/BreederContext/BreederContext'
@@ -13,6 +13,8 @@ import { selectBreeders } from '../../contexts/BreederContext/breederSelectors'
 import { setBreeders } from '../../contexts/BreederContext/breederActions'
 import { selectId } from '../../contexts/EditBreederContext/editBreederSelectors'
 import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
+import BackofficeBffService from '../../services/BackofficeBffService'
+import useAuth from '../../hooks/useAuth'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
@@ -28,6 +30,8 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   const history = useHistory()
 
   const { t } = useTranslation()
+
+  const { token } = useAuth()
 
   const handleSuccess = useCallback((breeder: Partial<IBreeder>) => {
     const newBreeders = breeders.map((b) => b.id === breederId ? ({ ...b, ...breeder, id: breederId }) : b) as any
@@ -58,6 +62,21 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
       dispatch(setProfileImage(new File([''], profileImageUrl)))
     })()
   }, [breeder])
+
+  useEffect(() => {
+    if (!token || !breederId) return
+
+    (async  () => {
+      try {
+        const { breeder: { images } } = await BackofficeBffService.getBreeder(breederId, token)
+
+        dispatch(setImages(images))
+      } catch(error) {
+        console.error('Error on EditBreederContainer::getBreeder')
+        console.log(error)
+      }
+    })()
+  }, [breederId, token])
 
   return (
     <EditBreederForm onSubmit={editBreeder} />
