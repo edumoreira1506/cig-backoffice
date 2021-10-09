@@ -11,6 +11,7 @@
   "breeder.fields.address.city": "Cidade",
   "breeder.fields.address.province": "Estado",
   "breeder.fields.address.zipcode": "CEP",
+  "breeder.images": "Imagens do criatório",
   "common.select-the-province": "Selecione o estado",
   "common.updated": "Atualizado com sucesso",
   "common.success": "Boa!",
