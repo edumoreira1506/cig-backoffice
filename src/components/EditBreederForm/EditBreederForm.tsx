@@ -10,6 +10,7 @@ import EditBreederFormFoundationDate from './EditBreederFormFoundationDate'
 import EditBreederFormSubmitButton from './EditBreederFormSubmitButton'
 import EditBreederFormAddress from './EditBreederFormAddress'
 import EditBreederFormProfileImage from './EditBreederFormProfileImage'
+import EditBreederFormImages from './EditBreederFormImages'
 
 import { StyledForm, StyledFormField, StyledSubtitle, StyledProfileImage } from './EditBreederForm.styles'
 
@@ -35,6 +36,7 @@ export default function EditBreederForm({ onSubmit }: EditBreederFormProps) {
         <EditBreederFormFoundationDate />
       </StyledFormField>
       <StyledSubtitle>{t('breeder.images')}</StyledSubtitle>
+      <EditBreederFormImages />
       <StyledSubtitle>{t('breeder.fields.address')}</StyledSubtitle>
       <EditBreederFormAddress />
       <StyledFormField>

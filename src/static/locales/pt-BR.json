@@ -2,6 +2,7 @@
   "app-name": "CIG Backoffice",
   "edit-breeder": "Edição de criatório",
   "common.save": "Salvar",
+  "common.select-files": "Selecionar arquivos",
   "breeder.fields.name": "Nome do criatório",
   "breeder.fields.description": "Descrição do criatório",
   "breeder.fields.foundation-date": "Data de fundação do criatório",
