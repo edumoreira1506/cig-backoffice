@@ -5,6 +5,11 @@ import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 
 import * as actions from './editBreederActions'
 
+interface EditBreederImage extends IBreederImage {
+  isNew?: boolean;
+  isDeleted?: boolean;
+}
+
 export interface EditBreederState extends DefaultState {
   name: string;
   description: string;
@@ -18,7 +23,7 @@ export interface EditBreederState extends DefaultState {
   foundationDate: string;
   id: string;
   profileImage: File;
-  images: IBreederImage[];
+  images: EditBreederImage[]
 }
 
 export const INITIAL_STATE = {
