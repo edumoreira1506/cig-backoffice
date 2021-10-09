@@ -63,12 +63,22 @@ export default function EditBreederFormImages() {
 
   const handleRemoveImage = useCallback((imageSrc: string) => {
     info(t('breeder.delete-image'), t, () => {
-      const newImages = images.map((image) => imageSrc.includes(image.imageUrl) ? ({
-        ...image,
-        isDeleted: true,
-      }) : ({ ...image }))
+      const image = images.find((image) => imageSrc.includes(image.imageUrl))
 
-      dispatch(setImages(newImages))
+      if (!image) return
+
+      if (image.isNew) {
+        const newImages = images.filter((image) => imageSrc.includes(image.imageUrl))
+
+        dispatch(setImages(newImages))
+      } else {
+        const newImages = images.map((image) => imageSrc.includes(image.imageUrl) ? ({
+          ...image,
+          isDeleted: true,
+        }) : ({ ...image }))
+
+        dispatch(setImages(newImages))
+      }
     })
   }, [t, dispatch, images])
 
