@@ -1,4 +1,5 @@
 import { DefaultState, ActionType } from '@cig-platform/context'
+import { IBreederImage } from '@cig-platform/types'
 
 import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 
@@ -17,6 +18,7 @@ export interface EditBreederState extends DefaultState {
   foundationDate: string;
   id: string;
   profileImage: File;
+  images: IBreederImage[];
 }
 
 export const INITIAL_STATE = {
@@ -32,6 +34,7 @@ export const INITIAL_STATE = {
   foundationDate: '',
   id: '',
   profileImage: new File([''], PROFILE_IMAGE_PLACEHOLDER),
+  images: [] as IBreederImage[]
 }
 
 export type EditBreederActionTypes = ActionType<typeof actions>
