@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
 
 import { preventDefaultHandler } from '../../utils/dom'
+import { EditBreederState } from '../../contexts/EditBreederContext/editBreederReducer'
 
 import EditBreederFormName from './EditBreederFormName'
 import EditBreederFormDescription from './EditBreederFormDescription'
@@ -15,7 +16,7 @@ import EditBreederFormImages from './EditBreederFormImages'
 import { StyledForm, StyledFormField, StyledSubtitle, StyledProfileImage } from './EditBreederForm.styles'
 
 export interface EditBreederFormProps {
-  onSubmit: (breeder: Partial<IBreeder>) => void;
+  onSubmit: (breeder: Partial<IBreeder & { images: EditBreederState['images'] }>) => void;
 }
 
 export default function EditBreederForm({ onSubmit }: EditBreederFormProps) {

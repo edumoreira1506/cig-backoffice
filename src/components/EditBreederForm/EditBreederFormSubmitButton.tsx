@@ -3,7 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@cig-platform/ui'
 
 import { useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
-import { selectName, selectDescription, selectFoundationDate, selectAddress, selectIsLoading } from '../../contexts/EditBreederContext/editBreederSelectors'
+import {
+  selectName,
+  selectDescription,
+  selectFoundationDate,
+  selectAddress,
+  selectIsLoading,
+  selectImages,
+} from '../../contexts/EditBreederContext/editBreederSelectors'
 
 import { EditBreederFormProps } from './EditBreederForm'
 
@@ -19,12 +26,19 @@ export default function EditBreederFormSubmitButton({ onSubmit }: EditBreederFor
   const address = useEditBreederSelector(selectAddress)
   const foundationDate = useEditBreederSelector(selectFoundationDate)
   const isLoading = useEditBreederSelector(selectIsLoading)
+  const images = useEditBreederSelector(selectImages)
 
   const handleSubmit = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
-    onSubmit({ name, address, description, foundationDate: new Date(foundationDate) })
-  }, [onSubmit, name, address, description, foundationDate])
+    onSubmit({
+      name,
+      address,
+      description,
+      foundationDate: new Date(foundationDate),
+      images,
+    })
+  }, [onSubmit, name, address, description, foundationDate, images])
 
   return (
     <Button onClick={handleSubmit} type="submit" isLoading={isLoading}>

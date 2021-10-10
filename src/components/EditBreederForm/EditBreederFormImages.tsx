@@ -50,14 +50,15 @@ export default function EditBreederFormImages() {
     fr.readAsDataURL(newImage)
     fr.onload = function() {
       const src = String(this.result)
-      const newImage = {
+      const image = {
         breederId: '',
         id: '',
         imageUrl: src,
         isNew: true,
+        raw: newImage
       }
 
-      dispatch(setImages([...images, newImage]))
+      dispatch(setImages([...images, image]))
     } 
   }, [images, dispatch])
 

@@ -5,9 +5,10 @@ import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 
 import * as actions from './editBreederActions'
 
-interface EditBreederImage extends IBreederImage {
+export interface EditBreederImage extends IBreederImage {
   isNew?: boolean;
   isDeleted?: boolean;
+  raw?: File;
 }
 
 export interface EditBreederState extends DefaultState {
