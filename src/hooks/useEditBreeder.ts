@@ -29,6 +29,8 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
     const newImages = (breeder?.images?.filter(image => image.isNew && image.raw).map(image => image.raw) ?? []) as File[]
     const removedImageIds = breeder?.images?.filter(image => image.isDeleted).map(image => image.id) ?? []
 
+    delete breeder['images']
+
     const authBffResponse = await backofficeBffClient.editBreeder(
       breederId,
       token,
