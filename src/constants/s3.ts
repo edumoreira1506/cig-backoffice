@@ -3,7 +3,8 @@ export enum S3Folders {
 }
 
 export enum S3Subfolders {
-  Profile = 'profile'
+  Profile = 'profile',
+  Images = 'images'
 }
 
 export const PROFILE_IMAGE_PLACEHOLDER = 'placeholder-user.png'

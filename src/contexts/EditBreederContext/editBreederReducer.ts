@@ -1,8 +1,15 @@
 import { DefaultState, ActionType } from '@cig-platform/context'
+import { IBreederImage } from '@cig-platform/types'
 
 import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 
 import * as actions from './editBreederActions'
+
+export interface EditBreederImage extends IBreederImage {
+  isNew?: boolean;
+  isDeleted?: boolean;
+  raw?: File;
+}
 
 export interface EditBreederState extends DefaultState {
   name: string;
@@ -17,6 +24,7 @@ export interface EditBreederState extends DefaultState {
   foundationDate: string;
   id: string;
   profileImage: File;
+  images: EditBreederImage[]
 }
 
 export const INITIAL_STATE = {
@@ -32,6 +40,7 @@ export const INITIAL_STATE = {
   foundationDate: '',
   id: '',
   profileImage: new File([''], PROFILE_IMAGE_PLACEHOLDER),
+  images: [] as IBreederImage[]
 }
 
 export type EditBreederActionTypes = ActionType<typeof actions>
@@ -41,6 +50,8 @@ export default function editBreederReducer(
   action: EditBreederActionTypes
 ): EditBreederState {
   switch (action.type) {
+  case 'SET_IMAGES':
+    return { ...state, images: action.payload.images }
   case 'SET_PROFILE_IMAGE':
     return { ...state, profileImage: action.payload.profileImage }
   case 'SET_ID':

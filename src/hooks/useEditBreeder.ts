@@ -26,13 +26,24 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
     editBreederDispatch(setIsLoading(true))
     appDispatch(setIsLoading(true))
 
-    const authBffResponse = await backofficeBffClient.editBreeder(breederId, token, filterObject(breeder))
+    const newImages = (breeder?.images?.filter(image => image.isNew && image.raw).map(image => image.raw) ?? []) as File[]
+    const removedImageIds = breeder?.images?.filter(image => image.isDeleted).map(image => image.id) ?? []
+
+    delete breeder['images']
+
+    const authBffResponse = await backofficeBffClient.editBreeder(
+      breederId,
+      token,
+      filterObject(breeder),
+      newImages,
+      removedImageIds
+    )
 
     editBreederDispatch(setIsLoading(false))
     appDispatch(setIsLoading(false))
 
     if (!authBffResponse?.ok) {
-      appDispatch(setError(authBffResponse?.error))
+      appDispatch(setError((authBffResponse as any)?.error))
     } else {
       refreshToken()
       onSuccess(breeder)

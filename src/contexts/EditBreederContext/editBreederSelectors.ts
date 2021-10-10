@@ -25,3 +25,5 @@ export const selectFoundationDate = (state: EditBreederState) => state.foundatio
 export const selectId = (state: EditBreederState) => state.id
 
 export const selectProfileImage = (state: EditBreederState) => state.profileImage
+
+export const selectImages = (state: EditBreederState) => state.images

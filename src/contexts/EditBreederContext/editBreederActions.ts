@@ -1,8 +1,14 @@
+import { IBreederImage } from '@cig-platform/types'
 import { EditBreederState } from './editBreederReducer'
 
 export const setIsLoading = (isLoading: boolean) => ({
   type: 'SET_IS_LOADING',
   payload: { isLoading }
+} as const)
+
+export const setImages = (images: IBreederImage[]) => ({
+  type: 'SET_IMAGES',
+  payload: { images }
 } as const)
 
 export const setName = (name: string) => ({

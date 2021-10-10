@@ -7,7 +7,7 @@ export const StyledContainer = styled.section`
   width: calc(100% - 15px);
 
   ${createMinWidthMediaQuery(`
-    width: 50%;
+    width: 80%;
   `)}
 `
 

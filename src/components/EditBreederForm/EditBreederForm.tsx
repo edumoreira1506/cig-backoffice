@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
 
 import { preventDefaultHandler } from '../../utils/dom'
+import { EditBreederState } from '../../contexts/EditBreederContext/editBreederReducer'
 
 import EditBreederFormName from './EditBreederFormName'
 import EditBreederFormDescription from './EditBreederFormDescription'
@@ -10,11 +11,12 @@ import EditBreederFormFoundationDate from './EditBreederFormFoundationDate'
 import EditBreederFormSubmitButton from './EditBreederFormSubmitButton'
 import EditBreederFormAddress from './EditBreederFormAddress'
 import EditBreederFormProfileImage from './EditBreederFormProfileImage'
+import EditBreederFormImages from './EditBreederFormImages'
 
-import { StyledForm, StyledFormField, StyledAddressTitle, StyledProfileImage } from './EditBreederForm.styles'
+import { StyledForm, StyledFormField, StyledSubtitle, StyledProfileImage } from './EditBreederForm.styles'
 
 export interface EditBreederFormProps {
-  onSubmit: (breeder: Partial<IBreeder>) => void;
+  onSubmit: (breeder: Partial<IBreeder & { images: EditBreederState['images'] }>) => void;
 }
 
 export default function EditBreederForm({ onSubmit }: EditBreederFormProps) {
@@ -34,7 +36,9 @@ export default function EditBreederForm({ onSubmit }: EditBreederFormProps) {
       <StyledFormField>
         <EditBreederFormFoundationDate />
       </StyledFormField>
-      <StyledAddressTitle>{t('breeder.fields.address')}</StyledAddressTitle>
+      <StyledSubtitle>{t('breeder.images')}</StyledSubtitle>
+      <EditBreederFormImages />
+      <StyledSubtitle>{t('breeder.fields.address')}</StyledSubtitle>
       <EditBreederFormAddress />
       <StyledFormField>
         <EditBreederFormSubmitButton onSubmit={onSubmit} />

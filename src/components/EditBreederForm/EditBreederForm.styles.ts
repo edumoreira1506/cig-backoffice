@@ -38,7 +38,7 @@ export const StyledProfileImage = styled.div`
   padding-bottom: 30px;
 `
 
-export const StyledAddressTitle = styled.p`
+export const StyledSubtitle = styled.p`
   font-weight: bold;
   margin: 55px 0 20px 0;
   color: ${Colors.DarkGrey};
