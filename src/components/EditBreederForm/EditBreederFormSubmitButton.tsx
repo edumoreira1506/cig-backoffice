@@ -10,6 +10,7 @@ import {
   selectAddress,
   selectIsLoading,
   selectImages,
+  selectMainVideo,
 } from '../../contexts/EditBreederContext/editBreederSelectors'
 
 import { EditBreederFormProps } from './EditBreederForm'
@@ -27,6 +28,7 @@ export default function EditBreederFormSubmitButton({ onSubmit }: EditBreederFor
   const foundationDate = useEditBreederSelector(selectFoundationDate)
   const isLoading = useEditBreederSelector(selectIsLoading)
   const images = useEditBreederSelector(selectImages)
+  const mainVideo = useEditBreederSelector(selectMainVideo)
 
   const handleSubmit = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -37,8 +39,17 @@ export default function EditBreederFormSubmitButton({ onSubmit }: EditBreederFor
       description,
       foundationDate: new Date(foundationDate),
       images,
+      mainVideo
     })
-  }, [onSubmit, name, address, description, foundationDate, images])
+  }, [
+    onSubmit,
+    name,
+    address,
+    description,
+    foundationDate,
+    images,
+    mainVideo,
+  ])
 
   return (
     <Button onClick={handleSubmit} type="submit" isLoading={isLoading}>

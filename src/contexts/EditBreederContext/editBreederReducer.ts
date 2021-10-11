@@ -24,7 +24,8 @@ export interface EditBreederState extends DefaultState {
   foundationDate: string;
   id: string;
   profileImage: File;
-  images: EditBreederImage[]
+  images: EditBreederImage[];
+  mainVideo: string;
 }
 
 export const INITIAL_STATE = {
@@ -40,7 +41,8 @@ export const INITIAL_STATE = {
   foundationDate: '',
   id: '',
   profileImage: new File([''], PROFILE_IMAGE_PLACEHOLDER),
-  images: [] as IBreederImage[]
+  images: [] as IBreederImage[],
+  mainVideo: ''
 }
 
 export type EditBreederActionTypes = ActionType<typeof actions>
@@ -66,6 +68,8 @@ export default function editBreederReducer(
     return { ...state, description: action.payload.description }
   case 'SET_FOUNDATION_DATE':
     return { ...state, foundationDate: action.payload.foundationDate }
+  case 'SET_MAIN_VIDEO':
+    return { ...state, mainVideo: action.payload.mainVideo }
   default:
     return state
   }
