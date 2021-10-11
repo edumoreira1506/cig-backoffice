@@ -170,7 +170,7 @@ export default function EditBreederFormAddress() {
         />
       </StyledCity>
       {hasValidCoords && (
-        <StyledMapContainer>
+        <StyledMapContainer data-testid="map">
           <GoogleMapReact
             bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
             defaultCenter={{ lat: latitude, lng: longitude }}
