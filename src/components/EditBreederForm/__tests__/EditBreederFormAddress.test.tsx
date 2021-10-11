@@ -38,7 +38,9 @@ describe('EditBreederFormAddress', () => {
         province: 'SP',
         street: 'Rua bacana',
         zipcode: '4545',
-        number: 139 
+        number: 139,
+        latitude: 10,
+        longitude: 10,
       }
     }
     const render = createEditBreederContextRenderer(mockStore)
