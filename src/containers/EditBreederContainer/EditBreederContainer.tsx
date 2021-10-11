@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
@@ -24,12 +24,15 @@ import { selectId } from '../../contexts/EditBreederContext/editBreederSelectors
 import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 import BackofficeBffService from '../../services/BackofficeBffService'
 import useAuth from '../../hooks/useAuth'
+import { Button } from '@cig-platform/ui'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
 }
 
 export default function EditBreederContainer({ breeder }: EditBreederContainerProps) {
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+
   const breeders = useBreederSelector(selectBreeders)
 
   const breederId = useEditBreederSelector(selectId)
@@ -41,6 +44,8 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   const { t } = useTranslation()
 
   const { token } = useAuth()
+
+  const showPreview = useCallback(() => setIsPreviewOpen(true), [])
 
   const handleSuccess = useCallback((breeder: Partial<IBreeder>) => {
     const newBreeders = breeders.map((b) => b.id === breederId ? ({ ...b, ...breeder, id: breederId }) : b) as any
@@ -91,6 +96,11 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   }, [breederId, token])
 
   return (
-    <EditBreederForm onSubmit={editBreeder} />
+    <>
+      <EditBreederForm onSubmit={editBreeder} />
+      <Button onClick={showPreview}>
+        {t('breeder.preview')}
+      </Button>
+    </>
   )
 }
