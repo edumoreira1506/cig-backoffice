@@ -12,7 +12,7 @@ export default function MicroFrontend({ name, host, containerId, breeder }: Micr
   useEffect(() => {
     const renderMicroFrontend = () => {
       const windowRender = (window as any)?.[`render${name}`]
-      console.log(windowRender)
+
       if (windowRender) windowRender(containerId, breeder)
     }
 
