@@ -26,12 +26,15 @@ import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 import BackofficeBffService from '../../services/BackofficeBffService'
 import useAuth from '../../hooks/useAuth'
 import Modal from '../../components/Modal/Modal'
+import MicroFrontend from '../../components/MicroFrontend/MicroFrontend'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
 }
 
 export default function EditBreederContainer({ breeder }: EditBreederContainerProps) {
+  const editedBreeder = useEditBreederSelector(state => state)
+
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
 
   const breeders = useBreederSelector(selectBreeders)
@@ -104,7 +107,14 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
         {t('breeder.preview')}
       </Button>
       <Modal isOpen={isPreviewOpen} onClose={hidePreview}>
-        <h1>Daora</h1>
+        <div id="breeder-preview">
+          <MicroFrontend
+            name="BreederPage"
+            host="https://cig-breeder-page.herokuapp.com"
+            containerId="breeder-preview"
+            breeder={{ ...editedBreeder, foundationDate: new Date(editedBreeder.foundationDate) }}
+          />
+        </div>
       </Modal>
     </>
   )
