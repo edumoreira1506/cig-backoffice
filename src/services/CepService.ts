@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { ErrorHandler } from '@cig-platform/decorators'
 
 const ViaCepClient = axios.create({
   baseURL: process.env.REACT_APP_VIA_CEP_URL,
@@ -18,13 +19,10 @@ interface ICepInfo {
 }
 
 export default class CepService {
-  static async getInfo(cep: string): Promise<null | ICepInfo> {
-    try {
-      const { data } = await ViaCepClient.get<ICepInfo>(`/ws/${cep}/json`)
+  @ErrorHandler(null)
+  static async getInfo(cep: string) {
+    const { data } = await ViaCepClient.get<ICepInfo>(`/ws/${cep}/json`)
 
-      return data
-    } catch {
-      return null
-    }
+    return data
   }
 }
