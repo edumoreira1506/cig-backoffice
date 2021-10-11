@@ -1,10 +1,13 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import ReactPlayer from 'react-player'
 import { Input } from '@cig-platform/ui'
 
 import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
 import { selectMainVideo } from '../../contexts/EditBreederContext/editBreederSelectors'
 import { setMainVideo } from '../../contexts/EditBreederContext/editBreederActions'
+
+import { StyledPlayer } from './EditBreederFormMainVideo.styles'
 
 export default function EditBreederFormMainVideo() {
   const { t } = useTranslation()
@@ -18,11 +21,18 @@ export default function EditBreederFormMainVideo() {
   }, [dispatch])
 
   return (
-    <Input
-      placeholder="URL do youtube do vídeo de apresentação"
-      label={t('breeder.fields.main-video')}
-      value={mainVideo}
-      onChange={handleChangeMainVideo}
-    />
+    <>
+      <Input
+        placeholder="URL do youtube do vídeo de apresentação"
+        label={t('breeder.fields.main-video')}
+        value={mainVideo}
+        onChange={handleChangeMainVideo}
+      />
+      {mainVideo && (
+        <StyledPlayer>
+          <ReactPlayer url={mainVideo} />
+        </StyledPlayer>
+      )}
+    </>
   )
 }
