@@ -39,8 +39,8 @@ export const INITIAL_STATE = {
     street: '',
     zipcode: '',
     number: 0,
-    latitude: 0,
-    longitude: 0
+    latitude: -15.7801,
+    longitude: -47.9292
   },
   foundationDate: '',
   id: '',
