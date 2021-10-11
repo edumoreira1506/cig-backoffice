@@ -31,10 +31,12 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
 
     delete breeder['images']
 
+    const filteredObject = filterObject(breeder)
+
     const authBffResponse = await backofficeBffClient.editBreeder(
       breederId,
       token,
-      filterObject(breeder),
+      { ...filteredObject, ...(filteredObject.address ? ({ address: JSON.stringify(filteredObject.address) }) : ({})) } as any,
       newImages,
       removedImageIds
     )
