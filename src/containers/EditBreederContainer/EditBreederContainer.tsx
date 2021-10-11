@@ -78,8 +78,15 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
       dispatch(setAddressField('province', breeder?.address?.province ?? ''))
       dispatch(setAddressField('zipcode', breeder?.address?.zipcode ?? ''))
       dispatch(setAddressField('street', breeder?.address?.street ?? ''))
-      dispatch(setAddressField('longitude', breeder?.address?.longitude ?? 0))
-      dispatch(setAddressField('latitude', breeder?.address?.latitude ?? 0))
+
+      if (breeder?.address?.longitude) {
+        dispatch(setAddressField('longitude', breeder.address.longitude))
+      }
+
+      if (breeder?.address?.latitude) {
+        dispatch(setAddressField('latitude', breeder.address.latitude))
+      }
+
       dispatch(setId(breeder.id))
       dispatch(setMainVideo(breeder?.mainVideo ?? ''))
   
