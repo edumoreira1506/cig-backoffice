@@ -72,13 +72,21 @@ export default function EditBreederFormAddress() {
     dispatch(setAddressField('city', newCity))
   }, [dispatch])
 
+  const handleChangeLatitude = useCallback((newLatitude: number) => {
+    dispatch(setAddressField('latitude', newLatitude))
+  }, [dispatch])
+
+  const handleChangeLongitude = useCallback((newLongitude: number) => {
+    dispatch(setAddressField('longitude', newLongitude))
+  }, [dispatch])
+
   const handleDragMap = useCallback((e: { center: { lat: () => number; lng: () => number; } }) => {
     const newLatitude = e.center.lat()
     const newLongitude = e.center.lng()
 
-    dispatch(setAddressField('longitude', newLongitude))
-    dispatch(setAddressField('latitude', newLatitude))
-  }, [dispatch])
+    handleChangeLatitude(newLatitude)
+    handleChangeLongitude(newLongitude)
+  }, [handleChangeLatitude, handleChangeLongitude])
 
   useDebouncedEffect(() => {
     (async () => {
@@ -95,8 +103,22 @@ export default function EditBreederFormAddress() {
       handleChangeCity(addressInfo.localidade)
       handleChangeProvince(addressInfo.uf)
       handleChangeStreet(addressInfo.logradouro)
+
+      const coords = await CepService.getGeoCoords(zipcode)
+
+      if (!coords) return
+
+      handleChangeLatitude(coords.latitude)
+      handleChangeLongitude(coords.longitude)
     })()
-  }, 500, [zipcode, handleChangeStreet, handleChangeCity, handleChangeProvince])
+  }, 500, [
+    zipcode,
+    handleChangeStreet,
+    handleChangeCity,
+    handleChangeProvince,
+    handleChangeLatitude,
+    handleChangeLongitude
+  ])
 
   return (
     <StyledContainer>
