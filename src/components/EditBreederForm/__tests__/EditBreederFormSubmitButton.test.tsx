@@ -32,6 +32,7 @@ describe('EditBreederFormSubmitButton', () => {
       name: INITIAL_STATE.name,
       description: INITIAL_STATE.description,
       address: INITIAL_STATE.address,
+      mainVideo: INITIAL_STATE.mainVideo,
     }))
   })
 })

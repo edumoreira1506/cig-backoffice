@@ -32,7 +32,7 @@ export default function EditBreederFormMainVideo() {
         onChange={handleChangeMainVideo}
       />
       {isValidYoutubeUrl && (
-        <StyledPlayer>
+        <StyledPlayer data-testid="player">
           <ReactPlayer url={mainVideo} />
         </StyledPlayer>
       )}
