@@ -1,15 +1,34 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import GoogleMapReact from 'google-map-react'
 import { Input, Select } from '@cig-platform/ui'
 import { useDebouncedEffect } from '@cig-platform/hooks'
 
 import { setAddressField } from '../../contexts/EditBreederContext/editBreederActions'
 import { useEditBreederSelector, useEditBreederDispatch } from '../../contexts/EditBreederContext/EditBreederContext'
-import { selectAddressStreet, selectAddressNumber, selectAddressProvince, selectAddressZipcode, selectAddressCity } from '../../contexts/EditBreederContext/editBreederSelectors'
+import {
+  selectAddressStreet,
+  selectAddressNumber,
+  selectAddressProvince,
+  selectAddressZipcode,
+  selectAddressCity,
+  selectLatitude,
+  selectLongitude
+} from '../../contexts/EditBreederContext/editBreederSelectors'
 import { AVAILABLE_PROVINCES } from '../../constants/breeder'
 import CepService from '../../services/CepService'
+import { GOOGLE_MAPS_API_KEY } from '../../constants/keys'
 
-import { StyledContainer, StyledCity, StyledNumber, StyledProvince, StyledStreet, StyledZipcode } from './EditBreederFormAddress.styles'
+import {
+  StyledContainer,
+  StyledCity,
+  StyledNumber,
+  StyledProvince,
+  StyledStreet,
+  StyledZipcode,
+  StyledMapContainer,
+} from './EditBreederFormAddress.styles'
+import Pin from 'components/Pin/Pin'
 
 const selectOptions = AVAILABLE_PROVINCES.map(province => ({
   label: province,
@@ -26,8 +45,12 @@ export default function EditBreederFormAddress() {
   const province = useEditBreederSelector(selectAddressProvince)
   const zipcode = useEditBreederSelector(selectAddressZipcode)
   const city = useEditBreederSelector(selectAddressCity)
+  const latitude = useEditBreederSelector(selectLatitude)
+  const longitude = useEditBreederSelector(selectLongitude)
 
   const dispatch = useEditBreederDispatch()
+
+  const hasValidCoords = useMemo(() => Boolean(latitude && longitude), [latitude, longitude])
 
   const handleChangeStreet = useCallback((newStreet: string | number) => {
     dispatch(setAddressField('street', newStreet?.toString()))
@@ -47,6 +70,14 @@ export default function EditBreederFormAddress() {
 
   const handleChangeCity = useCallback((newCity: string | number) => {
     dispatch(setAddressField('city', newCity))
+  }, [dispatch])
+
+  const handleDragMap = useCallback((e: { center: { lat: () => number; lng: () => number; } }) => {
+    const newLatitude = e.center.lat()
+    const newLongitude = e.center.lng()
+
+    dispatch(setAddressField('longitude', newLongitude))
+    dispatch(setAddressField('latitude', newLatitude))
   }, [dispatch])
 
   useDebouncedEffect(() => {
@@ -116,6 +147,18 @@ export default function EditBreederFormAddress() {
           placeholder="São Paulo"
         />
       </StyledCity>
+      {hasValidCoords && (
+        <StyledMapContainer>
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
+            defaultCenter={{ lat: latitude, lng: longitude }}
+            defaultZoom={11}
+            onDragEnd={handleDragMap}
+          >
+            <Pin lat={latitude} lng={longitude} />
+          </GoogleMapReact>
+        </StyledMapContainer>
+      )}
     </StyledContainer>
   )
 }

@@ -56,3 +56,8 @@ export const StyledProvince = styled.div`
     width: 35%;
   `)}
 `
+
+export const StyledMapContainer = styled.div`
+  height: 500px;
+  width: 100%;
+`

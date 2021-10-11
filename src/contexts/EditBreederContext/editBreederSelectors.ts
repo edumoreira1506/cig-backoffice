@@ -29,3 +29,7 @@ export const selectProfileImage = (state: EditBreederState) => state.profileImag
 export const selectImages = (state: EditBreederState) => state.images
 
 export const selectMainVideo = (state: EditBreederState) => state.mainVideo
+
+export const selectLongitude = (state: EditBreederState) => selectAddress(state).longitude
+
+export const selectLatitude = (state: EditBreederState) => selectAddress(state).latitude
