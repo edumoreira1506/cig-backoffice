@@ -27,6 +27,10 @@ import BackofficeBffService from '../../services/BackofficeBffService'
 import useAuth from '../../hooks/useAuth'
 import Modal from '../../components/Modal/Modal'
 import MicroFrontend from '../../components/MicroFrontend/MicroFrontend'
+import { BREEDER_PAGE_URL } from '../../constants/url'
+
+import { StyledPreview } from './EditBreederContainer.styles'
+import './editBreederContainer.css'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
@@ -106,15 +110,15 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
       <Button onClick={showPreview}>
         {t('breeder.preview')}
       </Button>
-      <Modal isOpen={isPreviewOpen} onClose={hidePreview}>
-        <div id="breeder-preview">
+      <Modal isOpen={isPreviewOpen} onClose={hidePreview} className="preview-modal">
+        <StyledPreview id="breeder-preview">
           <MicroFrontend
             name="BreederPage"
-            host="https://cig-breeder-page.herokuapp.com"
+            host={BREEDER_PAGE_URL}
             containerId="breeder-preview"
             breeder={{ ...editedBreeder, foundationDate: new Date(editedBreeder.foundationDate) }}
           />
-        </div>
+        </StyledPreview>
       </Modal>
     </>
   )
