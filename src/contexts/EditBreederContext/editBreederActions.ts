@@ -11,6 +11,11 @@ export const setImages = (images: IBreederImage[]) => ({
   payload: { images }
 } as const)
 
+export const setMainVideo = (mainVideo: string) => ({
+  type: 'SET_MAIN_VIDEO',
+  payload: { mainVideo }
+} as const)
+
 export const setName = (name: string) => ({
   type: 'SET_NAME',
   payload: { name }

@@ -27,3 +27,5 @@ export const selectId = (state: EditBreederState) => state.id
 export const selectProfileImage = (state: EditBreederState) => state.profileImage
 
 export const selectImages = (state: EditBreederState) => state.images
+
+export const selectMainVideo = (state: EditBreederState) => state.mainVideo

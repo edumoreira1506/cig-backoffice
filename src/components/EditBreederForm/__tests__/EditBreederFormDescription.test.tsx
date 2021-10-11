@@ -1,4 +1,5 @@
 import React from 'react'
+import userEvent from '@testing-library/user-event'
 import { screen } from '@testing-library/react'
 
 import { INITIAL_STATE } from '../../../contexts/EditBreederContext/editBreederReducer'
@@ -6,7 +7,6 @@ import { createEditBreederContextRenderer } from '../../../utils/test'
 import * as actions from '../../../contexts/EditBreederContext/editBreederActions'
 
 import EditBreederFormDescription from '../EditBreederFormDescription'
-import userEvent from '@testing-library/user-event'
 
 describe('EditBreederFormDescription', () => {
   it('renders correctly', () => {

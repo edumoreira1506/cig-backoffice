@@ -13,6 +13,7 @@
   "breeder.fields.address.city": "Cidade",
   "breeder.fields.address.province": "Estado",
   "breeder.fields.address.zipcode": "CEP",
+  "breeder.fields.main-video": "Vídeo de apresentação",
   "breeder.images": "Imagens do criatório",
   "common.select-the-province": "Selecione o estado",
   "common.updated": "Atualizado com sucesso",
