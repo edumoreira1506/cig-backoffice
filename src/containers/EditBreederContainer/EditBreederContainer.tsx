@@ -47,7 +47,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
 
     breederDispatch(setBreeders(newBreeders))
 
-    success(t('common.updated'), t)
+    success(t('common.updated'), t, () => window.location.reload())
   }, [t, history, breeders, breederDispatch, breederId])
 
   const editBreeder = useEditBreeder({ onSuccess: handleSuccess })
