@@ -3,4 +3,5 @@
   height: 90vh;
   margin-top: 10vh;
   border-radius: 3px;
+  overflow: hidden auto;
 }
