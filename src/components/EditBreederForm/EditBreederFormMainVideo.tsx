@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
+import youtubeUrl from 'youtube-url'
 import { Input } from '@cig-platform/ui'
 
 import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
@@ -20,6 +21,8 @@ export default function EditBreederFormMainVideo() {
     dispatch(setMainVideo(String(newMainVideo)))
   }, [dispatch])
 
+  const isValidYoutubeUrl = useMemo(() => youtubeUrl.valid(mainVideo), [mainVideo])
+
   return (
     <>
       <Input
@@ -28,7 +31,7 @@ export default function EditBreederFormMainVideo() {
         value={mainVideo}
         onChange={handleChangeMainVideo}
       />
-      {mainVideo && (
+      {isValidYoutubeUrl && (
         <StyledPlayer>
           <ReactPlayer url={mainVideo} />
         </StyledPlayer>
