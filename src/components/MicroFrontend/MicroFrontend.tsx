@@ -13,7 +13,11 @@ export default function MicroFrontend({ name, host, containerId, breeder }: Micr
     const renderMicroFrontend = () => {
       const windowRender = (window as any)?.[`render${name}`]
 
-      if (windowRender) windowRender(containerId, breeder)
+      if (windowRender) {
+        if (breeder) {
+          windowRender(containerId, breeder)
+        }
+      }
     }
 
     fetch(`${host}/asset-manifest.json`)
