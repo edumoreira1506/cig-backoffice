@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Modal from 'react-modal'
-import { Colors, FileImagesCarousel, ImageGallery } from '@cig-platform/ui'
+import { FileImagesCarousel, ImageGallery } from '@cig-platform/ui'
 
 import { useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
 import { selectImages } from '../../contexts/EditBreederContext/editBreederSelectors'
@@ -10,6 +9,7 @@ import { S3Subfolders, S3Folders } from '../../constants/s3'
 import { setImages } from '../../contexts/EditBreederContext/editBreederActions'
 import { useEditBreederDispatch } from '../../contexts/EditBreederContext/EditBreederContext'
 import { info } from '../../utils/alert'
+import Modal from '../Modal/Modal'
 
 export default function EditBreederFormImages() {
   const [isOpenGallery, setIsOpenGallery] = useState(false)
@@ -92,11 +92,7 @@ export default function EditBreederFormImages() {
         onDeleteImage={handleRemoveImage}
         uploadMessage={t('common.select-files')}
       />
-      <Modal
-        isOpen={isOpenGallery}
-        onRequestClose={closeGallery}
-        style={{ overlay: { background: Colors.BlackTransparent, zIndex: 1000 } }}
-      >
+      <Modal isOpen={isOpenGallery} onClose={closeGallery} >
         <ImageGallery
           showPlayButton={false}
           items={formattedImagesOfGallery}

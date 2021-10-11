@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
+import { Button } from '@cig-platform/ui'
 
 import EditBreederForm from '../../components/EditBreederForm/EditBreederForm'
 import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
@@ -24,12 +25,22 @@ import { selectId } from '../../contexts/EditBreederContext/editBreederSelectors
 import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 import BackofficeBffService from '../../services/BackofficeBffService'
 import useAuth from '../../hooks/useAuth'
+import Modal from '../../components/Modal/Modal'
+import MicroFrontend from '../../components/MicroFrontend/MicroFrontend'
+import { BREEDER_PAGE_URL } from '../../constants/url'
+
+import { StyledPreview } from './EditBreederContainer.styles'
+import './editBreederContainer.css'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
 }
 
 export default function EditBreederContainer({ breeder }: EditBreederContainerProps) {
+  const editedBreeder = useEditBreederSelector(state => state)
+
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+
   const breeders = useBreederSelector(selectBreeders)
 
   const breederId = useEditBreederSelector(selectId)
@@ -41,6 +52,9 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   const { t } = useTranslation()
 
   const { token } = useAuth()
+
+  const showPreview = useCallback(() => setIsPreviewOpen(true), [])
+  const hidePreview = useCallback(() => setIsPreviewOpen(false), [])
 
   const handleSuccess = useCallback((breeder: Partial<IBreeder>) => {
     const newBreeders = breeders.map((b) => b.id === breederId ? ({ ...b, ...breeder, id: breederId }) : b) as any
@@ -91,6 +105,21 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   }, [breederId, token])
 
   return (
-    <EditBreederForm onSubmit={editBreeder} />
+    <>
+      <EditBreederForm onSubmit={editBreeder} />
+      <Button onClick={showPreview}>
+        {t('breeder.preview')}
+      </Button>
+      <Modal isOpen={isPreviewOpen} onClose={hidePreview} className="preview-modal">
+        <StyledPreview id="breeder-preview">
+          <MicroFrontend
+            name="BreederPage"
+            host={BREEDER_PAGE_URL}
+            containerId="breeder-preview"
+            breeder={{ ...editedBreeder, foundationDate: new Date(editedBreeder.foundationDate) }}
+          />
+        </StyledPreview>
+      </Modal>
+    </>
   )
 }

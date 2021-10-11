@@ -20,5 +20,6 @@
   "common.success": "Boa!",
   "common.ops": "Ops!",
   "breeder.upload-image": "Alterar imagem de perfil",
-  "breeder.delete-image": "Tem certeza que deseja remover essa imagem?"
+  "breeder.delete-image": "Tem certeza que deseja remover essa imagem?",
+  "breeder.preview": "Pré-visualizar alterações"
 }
