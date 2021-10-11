@@ -5,7 +5,16 @@ import { IBreeder } from '@cig-platform/types'
 
 import EditBreederForm from '../../components/EditBreederForm/EditBreederForm'
 import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
-import { setDescription, setFoundationDate, setName, setAddressField, setId, setProfileImage, setImages } from '../../contexts/EditBreederContext/editBreederActions'
+import {
+  setDescription,
+  setFoundationDate,
+  setName,
+  setAddressField,
+  setId,
+  setProfileImage,
+  setImages,
+  setMainVideo,
+} from '../../contexts/EditBreederContext/editBreederActions'
 import useEditBreeder from '../../hooks/useEditBreeder'
 import { success } from '../../utils/alert'
 import { useBreederDispatch, useBreederSelector } from '../../contexts/BreederContext/BreederContext'
@@ -55,7 +64,10 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
       dispatch(setAddressField('province', breeder?.address?.province ?? ''))
       dispatch(setAddressField('zipcode', breeder?.address?.zipcode ?? ''))
       dispatch(setAddressField('street', breeder?.address?.street ?? ''))
+      dispatch(setAddressField('longitude', breeder?.address?.longitude ?? 0))
+      dispatch(setAddressField('latitude', breeder?.address?.latitude ?? 0))
       dispatch(setId(breeder.id))
+      dispatch(setMainVideo(breeder?.mainVideo ?? ''))
   
       const profileImageUrl = breeder?.profileImageUrl || PROFILE_IMAGE_PLACEHOLDER
 

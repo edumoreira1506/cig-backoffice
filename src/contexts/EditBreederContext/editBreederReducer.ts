@@ -20,6 +20,8 @@ export interface EditBreederState extends DefaultState {
     province: string;
     street: string;
     number: number;
+    latitude: number;
+    longitude: number;
   }
   foundationDate: string;
   id: string;
@@ -36,7 +38,9 @@ export const INITIAL_STATE = {
     province: '',
     street: '',
     zipcode: '',
-    number: 0
+    number: 0,
+    latitude: 0,
+    longitude: 0
   },
   foundationDate: '',
   id: '',

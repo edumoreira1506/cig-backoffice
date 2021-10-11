@@ -1,15 +1,34 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import GoogleMapReact from 'google-map-react'
 import { Input, Select } from '@cig-platform/ui'
 import { useDebouncedEffect } from '@cig-platform/hooks'
 
 import { setAddressField } from '../../contexts/EditBreederContext/editBreederActions'
 import { useEditBreederSelector, useEditBreederDispatch } from '../../contexts/EditBreederContext/EditBreederContext'
-import { selectAddressStreet, selectAddressNumber, selectAddressProvince, selectAddressZipcode, selectAddressCity } from '../../contexts/EditBreederContext/editBreederSelectors'
+import {
+  selectAddressStreet,
+  selectAddressNumber,
+  selectAddressProvince,
+  selectAddressZipcode,
+  selectAddressCity,
+  selectLatitude,
+  selectLongitude
+} from '../../contexts/EditBreederContext/editBreederSelectors'
 import { AVAILABLE_PROVINCES } from '../../constants/breeder'
 import CepService from '../../services/CepService'
+import { GOOGLE_MAPS_API_KEY } from '../../constants/keys'
 
-import { StyledContainer, StyledCity, StyledNumber, StyledProvince, StyledStreet, StyledZipcode } from './EditBreederFormAddress.styles'
+import {
+  StyledContainer,
+  StyledCity,
+  StyledNumber,
+  StyledProvince,
+  StyledStreet,
+  StyledZipcode,
+  StyledMapContainer,
+} from './EditBreederFormAddress.styles'
+import Pin from 'components/Pin/Pin'
 
 const selectOptions = AVAILABLE_PROVINCES.map(province => ({
   label: province,
@@ -26,8 +45,12 @@ export default function EditBreederFormAddress() {
   const province = useEditBreederSelector(selectAddressProvince)
   const zipcode = useEditBreederSelector(selectAddressZipcode)
   const city = useEditBreederSelector(selectAddressCity)
+  const latitude = useEditBreederSelector(selectLatitude)
+  const longitude = useEditBreederSelector(selectLongitude)
 
   const dispatch = useEditBreederDispatch()
+
+  const hasValidCoords = useMemo(() => Boolean(latitude && longitude), [latitude, longitude])
 
   const handleChangeStreet = useCallback((newStreet: string | number) => {
     dispatch(setAddressField('street', newStreet?.toString()))
@@ -49,6 +72,22 @@ export default function EditBreederFormAddress() {
     dispatch(setAddressField('city', newCity))
   }, [dispatch])
 
+  const handleChangeLatitude = useCallback((newLatitude: number) => {
+    dispatch(setAddressField('latitude', newLatitude))
+  }, [dispatch])
+
+  const handleChangeLongitude = useCallback((newLongitude: number) => {
+    dispatch(setAddressField('longitude', newLongitude))
+  }, [dispatch])
+
+  const handleDragMap = useCallback((e: { center: { lat: () => number; lng: () => number; } }) => {
+    const newLatitude = e.center.lat()
+    const newLongitude = e.center.lng()
+
+    handleChangeLatitude(newLatitude)
+    handleChangeLongitude(newLongitude)
+  }, [handleChangeLatitude, handleChangeLongitude])
+
   useDebouncedEffect(() => {
     (async () => {
       if (!zipcode) return
@@ -64,8 +103,22 @@ export default function EditBreederFormAddress() {
       handleChangeCity(addressInfo.localidade)
       handleChangeProvince(addressInfo.uf)
       handleChangeStreet(addressInfo.logradouro)
+
+      const coords = await CepService.getGeoCoords(zipcode)
+
+      if (!coords) return
+
+      handleChangeLatitude(coords.latitude)
+      handleChangeLongitude(coords.longitude)
     })()
-  }, 500, [zipcode, handleChangeStreet, handleChangeCity, handleChangeProvince])
+  }, 500, [
+    zipcode,
+    handleChangeStreet,
+    handleChangeCity,
+    handleChangeProvince,
+    handleChangeLatitude,
+    handleChangeLongitude
+  ])
 
   return (
     <StyledContainer>
@@ -116,6 +169,18 @@ export default function EditBreederFormAddress() {
           placeholder="São Paulo"
         />
       </StyledCity>
+      {hasValidCoords && (
+        <StyledMapContainer data-testid="map">
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
+            defaultCenter={{ lat: latitude, lng: longitude }}
+            defaultZoom={11}
+            onDragEnd={handleDragMap}
+          >
+            <Pin lat={latitude} lng={longitude} />
+          </GoogleMapReact>
+        </StyledMapContainer>
+      )}
     </StyledContainer>
   )
 }

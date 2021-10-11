@@ -38,7 +38,9 @@ describe('EditBreederFormAddress', () => {
         province: 'SP',
         street: 'Rua bacana',
         zipcode: '4545',
-        number: 139 
+        number: 139,
+        latitude: 10,
+        longitude: 10,
       }
     }
     const render = createEditBreederContextRenderer(mockStore)
@@ -170,5 +172,45 @@ describe('EditBreederFormAddress', () => {
     userEvent.type(screen.getByDisplayValue(city), newCity)
 
     expect(mockSetAddressField).toHaveBeenCalledWith('city', newCity)
+  })
+
+  it('does not render the map', () => {
+    const mockStore = {
+      ...INITIAL_STATE,
+      address: {
+        city: 'Itapeva',
+        province: 'SP',
+        street: 'Rua bacana',
+        zipcode: '4545',
+        number: 139,
+        latitude: 0,
+        longitude: 0,
+      }
+    }
+    const render = createEditBreederContextRenderer(mockStore)
+
+    render(<EditBreederFormAddress />)
+
+    expect(screen.queryByTestId('map')).not.toBeInTheDocument()
+  })
+
+  it('renders the map', () => {
+    const mockStore = {
+      ...INITIAL_STATE,
+      address: {
+        city: 'Itapeva',
+        province: 'SP',
+        street: 'Rua bacana',
+        zipcode: '4545',
+        number: 139,
+        latitude: 10,
+        longitude: 10,
+      }
+    }
+    const render = createEditBreederContextRenderer(mockStore)
+
+    render(<EditBreederFormAddress />)
+
+    expect(screen.getByTestId('map')).toBeInTheDocument()
   })
 })
