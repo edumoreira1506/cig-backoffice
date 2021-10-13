@@ -38,6 +38,8 @@ export const items = [
   }
 ]
 
+export const shortcuts = ['Sair']
+
 export default function Container({ children }: ContainerProps) {
   const { remove: removeQueryParamToken } = useQueryParam('token')
 
@@ -74,6 +76,14 @@ export default function Container({ children }: ContainerProps) {
     }
   }, [history, logout])
 
+  const handleShortcutClick = useCallback((shortcut: string) => {
+    if (shortcut === 'Sair') {
+      logout()
+    } else {
+      alert('outro')
+    }
+  }, [logout])
+
   useEffect(() => {
     dispatch(setBreeders(userData?.breeders ?? []))
 
@@ -101,7 +111,14 @@ export default function Container({ children }: ContainerProps) {
   }, [error])
 
   return (
-    <UIContainer title={t('app-name')} items={items} onMenuClick={handleNavigate} user={user}>
+    <UIContainer
+      title={t('app-name')}
+      items={items}
+      onMenuClick={handleNavigate}
+      user={user}
+      shortcuts={shortcuts}
+      onShortcutClick={handleShortcutClick}
+    >
       {children}
     </UIContainer>
   )  
