@@ -14,7 +14,7 @@
     "@cig-platform/factories": "^0.0.6",
     "@cig-platform/hooks": "^0.0.2",
     "@cig-platform/types": "^0.0.8",
-    "@cig-platform/ui": "^0.1.45",
+    "@cig-platform/ui": "^0.1.47",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

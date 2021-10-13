@@ -17,7 +17,7 @@ export const StyledStreet = styled.div`
   margin-bottom: 10px;
 
   ${createMinWidthMediaQuery(`
-    width: 48%;
+    width: calc(50% - 7.5px);
   `)}
 `
 
@@ -26,7 +26,7 @@ export const StyledNumber = styled.div`
   margin-bottom: 10px;
 
   ${createMinWidthMediaQuery(`
-    width: 30%;
+    width: calc(30% - 35px);
   `)}
 `
 
@@ -35,7 +35,7 @@ export const StyledZipcode = styled.div`
   margin-bottom: 10px;
 
   ${createMinWidthMediaQuery(`
-    width: 48%;
+    width: calc(50% - 7.5px);
   `)}
 `
 
@@ -44,7 +44,7 @@ export const StyledCity = styled.div`
   margin-bottom: 10px;
 
   ${createMinWidthMediaQuery(`
-    width: 30%;
+    width: calc(40% - 15px);
   `)}
 `
 
@@ -53,7 +53,7 @@ export const StyledProvince = styled.div`
   margin-bottom: 10px;
 
   ${createMinWidthMediaQuery(`
-    width: 35%;
+    width: calc(30% - 15px);
   `)}
 `
 
