@@ -1,6 +1,6 @@
 import React, { ReactChild, useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { AiFillHome } from 'react-icons/ai'
+import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai'
 import { useHistory } from 'react-router'
 import { Container as UIContainer } from '@cig-platform/ui'
 import { useLocalStorage } from '@cig-platform/hooks'
@@ -15,6 +15,7 @@ import useRefreshToken from '../../hooks/useRefreshToken'
 import { useAppSelector } from '../../contexts/AppContext/AppContext'
 import { selectError } from '../../contexts/AppContext/appSelectors'
 import { error as showError } from '../../utils/alert'
+import useLogout from '../../hooks/useLogout'
 
 export interface ContainerProps {
   children: ReactChild;
@@ -30,11 +31,17 @@ export const items = [
     title: 'Meu criatório',
     icon: <AiFillHome />,
     route: Routes.EditBreeder
+  },
+  {
+    title: 'Sair',
+    icon: <AiOutlinePoweroff />
   }
 ]
 
 export default function Container({ children }: ContainerProps) {
   const { remove: removeQueryParamToken } = useQueryParam('token')
+
+  const logout = useLogout()
 
   const { set } = useLocalStorage('token')
 
@@ -59,9 +66,13 @@ export default function Container({ children }: ContainerProps) {
     const item = items.find(({ title }) => title === pageTitle)
 
     if (item) {
-      history.push(item.route)
+      if (item.route) {
+        history.push(item.route)
+      } else {
+        logout()
+      }
     }
-  }, [history])
+  }, [history, logout])
 
   useEffect(() => {
     dispatch(setBreeders(userData?.breeders ?? []))
