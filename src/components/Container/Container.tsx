@@ -38,7 +38,11 @@ export const items = [
   }
 ]
 
-export const shortcuts = ['Sair']
+export const shortcuts = ['Sair', 'Editar senha']
+
+const shortcutLinks = {
+  [shortcuts[1]]: Routes.EditPassword
+}
 
 export default function Container({ children }: ContainerProps) {
   const { remove: removeQueryParamToken } = useQueryParam('token')
@@ -80,9 +84,9 @@ export default function Container({ children }: ContainerProps) {
     if (shortcut === 'Sair') {
       logout()
     } else {
-      alert('outro')
+      history.push(shortcutLinks[shortcut])
     }
-  }, [logout])
+  }, [history, logout])
 
   useEffect(() => {
     dispatch(setBreeders(userData?.breeders ?? []))

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import Router from 'router'
 
+import Router from './router'
 import Container from './components/Container/Container'
 import { BreederProvider } from './contexts/BreederContext/BreederContext'
 import { AppProvider } from './contexts/AppContext/AppContext'
