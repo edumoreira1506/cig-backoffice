@@ -1,4 +1,5 @@
 export enum Routes {
   Home = '/',
-  EditBreeder = '/criatorio'
+  EditBreeder = '/criatorio',
+  EditPassword = '/editar-senha'
 }
