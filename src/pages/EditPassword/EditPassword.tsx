@@ -4,20 +4,33 @@ import { FormField, Input, Button } from '@cig-platform/ui'
 
 import PageTitle from '../../components/PageTitle/PageTitle'
 import Main from '../../components/Main/Main'
+import useEditPassword from '../../hooks/useEditPassword'
+import { success } from '../../utils/alert'
 
 import { StyledForm, StyledField } from './EditPassword.styles'
 
 export default function EditPasswordPage() {
   const { t } = useTranslation()
 
+  const handleSuccessEditPassword = useCallback(() => {
+    success(t('common.updated'), t)
+  }, [])
+
+  const editPassword = useEditPassword({ onSuccess: handleSuccessEditPassword })
+
+  const [isLoading, setIsLoading] = useState(false)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
-    console.log({ password, confirmPassword })
-  }, [password, confirmPassword])
+    setIsLoading(true)
+
+    await editPassword(password, confirmPassword)
+
+    setIsLoading(false)
+  }, [password, confirmPassword, editPassword])
 
   const handleChangePassword = useCallback((newPassword: string | number) =>
     setPassword(String(newPassword))
@@ -54,7 +67,7 @@ export default function EditPasswordPage() {
           </FormField>
         </StyledField>
         <StyledField>
-          <Button onClick={handleSubmit}>
+          <Button onClick={handleSubmit} isLoading={isLoading} type="submit">
             {t('common.save')}
           </Button>
         </StyledField>
