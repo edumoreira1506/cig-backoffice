@@ -1229,13 +1229,13 @@
     "@cig-platform/types" "0.0.3"
     axios "^0.21.4"
 
-"@cig-platform/backoffice-bff-client@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.7.tgz#71bce5dc75466a578a1ea0faa715869a6b8c1e9b"
-  integrity sha512-/YtvwsK2lDcg0BEu0wRqfuA5rwej8M2E6280kCHKwaEmYeKucStElwxzMHU2no1R+ty7EozA0SZdeAfe7EsM2g==
+"@cig-platform/backoffice-bff-client@0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.10.tgz#d9d9e16918a22c2599fef5739e809d3861bd69c9"
+  integrity sha512-4eXKeRqq6b49SyYrT+y2WeO4re+gEZ9InL548lVv6Nom0A5iSLu0JDhMgmyG8yjzITc+No3PID0soarWHtiBSQ==
   dependencies:
     "@cig-platform/decorators" "0.0.1"
-    "@cig-platform/types" "0.0.7"
+    "@cig-platform/types" "0.0.11"
     axios "0.21.4"
     form-data "^4.0.0"
 
@@ -1271,19 +1271,19 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
+"@cig-platform/types@0.0.11", "@cig-platform/types@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.11.tgz#f3cee238167f5eed057af29b64714643ac6cc5f1"
+  integrity sha512-AW+2kkQowbv3hL3nXisZBLFa62+cTPMXvBhBDJpzPW4oIKI9WeyDFgYcJTsHYcn8NdX6f5nz2qca+SJpEnaCpQ==
+  dependencies:
+    express "^4.17.1"
+
 "@cig-platform/types@0.0.3", "@cig-platform/types@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
 
-"@cig-platform/types@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.7.tgz#a3d0b23d6d2e02c43529d781190e355f93d59eb6"
-  integrity sha512-Ei1IjP+P7pV0kUXUQbLw1aYQGcWSPlgNLDiFpJIJPQbr2T6bwAPNvEeXdpWt5b+5c+iVKS/TgKu8sJjpL/q+Ow==
-  dependencies:
-    express "^4.17.1"
-
-"@cig-platform/types@0.0.8", "@cig-platform/types@^0.0.8":
+"@cig-platform/types@0.0.8":
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.8.tgz#60165a722590e4690b26788bd31aca53b29ddbb5"
   integrity sha512-iNvyHcLUu3fxvUvzFmKa7kBTYtu3TBKI1aH3679HWJpC2QF0i/GJQSdz0rI9chPhbMHMU3GQufOoVitVzf+ybw==

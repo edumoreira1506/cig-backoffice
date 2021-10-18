@@ -1,6 +1,7 @@
 import React, { ReactChild, useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai'
+import { GiChicken } from 'react-icons/gi'
 import { useHistory } from 'react-router'
 import { Container as UIContainer } from '@cig-platform/ui'
 import { useLocalStorage } from '@cig-platform/hooks'
@@ -31,6 +32,11 @@ export const items = [
     title: 'Meu criatório',
     icon: <AiFillHome />,
     route: Routes.EditBreeder
+  },
+  {
+    title: 'Meu plantel',
+    icon: <GiChicken />,
+    route: Routes.ListPoultries
   },
   {
     title: 'Sair',
