@@ -24,5 +24,6 @@
   "breeder.preview": "Pré-visualizar alterações",
   "user.edit-password": "Editar senha",
   "user.fields.password": "Senha",
-  "user.fields.confirm-password": "Confirmação de senha"
+  "user.fields.confirm-password": "Confirmação de senha",
+  "list-poultries": "Meu plantel"
 }
