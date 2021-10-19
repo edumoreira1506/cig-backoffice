@@ -2,15 +2,15 @@ import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@cig-platform/ui'
 
-import { NewPoultryFormProps } from './NewPoultryForm'
+import { PoultryFormProps } from './PoultryForm'
 import { usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import { selectBirthDate, selectColors, selectType, selectVideos } from 'contexts/PoultryContext/poultrySelectors'
 
-export interface NewPoultryFormSubmitButtonProps {
-  onSubmit: NewPoultryFormProps['onSubmit']
+export interface PoultryFormSubmitButtonProps {
+  onSubmit: PoultryFormProps['onSubmit']
 }
 
-export default function NewPoultryFormSubmitButton({ onSubmit }: NewPoultryFormSubmitButtonProps) {
+export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitButtonProps) {
   const { t } = useTranslation()
 
   const type = usePoultrySelector(selectType)

@@ -6,7 +6,7 @@ import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/
 import { selectBirthDate } from 'contexts/PoultryContext/poultrySelectors'
 import { setBirthDate } from 'contexts/PoultryContext/poultryActions'
 
-export default function NewPoultryFormBirthDate() {
+export default function PoultryFormBirthDate() {
   const birthDate = usePoultrySelector(selectBirthDate)
 
   const dispatch = usePoultryDispatch()

@@ -14,7 +14,7 @@ const availableTypes = [
   }
 ]
 
-export default function NewPoultryFormType() {
+export default function PoultryFormType() {
   const { t } = useTranslation()
 
   const dispatch = usePoultryDispatch()

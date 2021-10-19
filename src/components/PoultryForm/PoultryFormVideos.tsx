@@ -8,9 +8,9 @@ import { selectVideos } from 'contexts/PoultryContext/poultrySelectors'
 import Player from 'components/Player/Player'
 import { setVideo } from 'contexts/PoultryContext/poultryActions'
 
-import { StyledFormField } from './NewPoultryForm.styles'
+import { StyledFormField } from './PoultryForm.styles'
 
-export default function NewPoultryFormVideos() {
+export default function PoultryFormVideos() {
   const { t } = useTranslation()
 
   const videos = usePoultrySelector(selectVideos)
