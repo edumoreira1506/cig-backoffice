@@ -34,7 +34,7 @@ export const items = [
     route: Routes.EditBreeder
   },
   {
-    title: 'Meu plantel',
+    title: 'Minhas aves',
     icon: <GiChicken />,
     route: Routes.ListPoultries
   },
