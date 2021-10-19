@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Colors } from '@cig-platform/ui'
+import { Colors, createMinWidthMediaQuery } from '@cig-platform/ui'
 
 export const StyledContainer = styled.div`
   display: flex;
@@ -20,4 +20,13 @@ export const StyledLabel = styled.label`
 export const StyledItem = styled.div`
   width: 100%;
   margin-bottom: 30px;
+
+  ${createMinWidthMediaQuery(`
+    width: 33%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  `)}
 `

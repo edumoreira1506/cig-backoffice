@@ -1,14 +1,12 @@
 import React, { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import ReactPlayer from 'react-player'
 import youtubeUrl from 'youtube-url'
 import { Input } from '@cig-platform/ui'
 
-import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
-import { selectMainVideo } from '../../contexts/EditBreederContext/editBreederSelectors'
-import { setMainVideo } from '../../contexts/EditBreederContext/editBreederActions'
-
-import { StyledPlayer } from './EditBreederFormMainVideo.styles'
+import { useEditBreederDispatch, useEditBreederSelector } from 'contexts/EditBreederContext/EditBreederContext'
+import { selectMainVideo } from 'contexts/EditBreederContext/editBreederSelectors'
+import { setMainVideo } from 'contexts/EditBreederContext/editBreederActions'
+import Player from 'components/Player/Player'
 
 export default function EditBreederFormMainVideo() {
   const { t } = useTranslation()
@@ -32,9 +30,7 @@ export default function EditBreederFormMainVideo() {
         onChange={handleChangeMainVideo}
       />
       {isValidYoutubeUrl && (
-        <StyledPlayer data-testid="player">
-          <ReactPlayer url={mainVideo} />
-        </StyledPlayer>
+        <Player url={mainVideo} dataTestId="player" />
       )}
     </>
   )
