@@ -1,27 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useHistory } from 'react-router'
 import { IPoultry } from '@cig-platform/types'
+import { Button } from '@cig-platform/ui'
 
-import Main from '../../components/Main/Main'
-import PageTitle from '../../components/PageTitle/PageTitle'
-import { useAppDispatch } from '../../contexts/AppContext/AppContext'
-import { setError } from '../../contexts/AppContext/appActions'
-import BackofficeBffService from '../../services/BackofficeBffService'
-import useBreeder from '../../hooks/useBreeder'
-import useAuth from '../../hooks/useAuth'
+import Main from 'components/Main/Main'
+import PageTitle from 'components/PageTitle/PageTitle'
+import { useAppDispatch } from 'contexts/AppContext/AppContext'
+import { setError } from 'contexts/AppContext/appActions'
+import BackofficeBffService from 'services/BackofficeBffService'
+import useBreeder from 'hooks/useBreeder'
+import useAuth from 'hooks/useAuth'
+import { Routes } from 'constants/routes'
 
-import { StyledItem, StyledList } from './ListPoultries.styles'
+import { StyledItem, StyledList, StyledNewPoultry } from './ListPoultries.styles'
 
 export default function ListPoultriesPage() {
   const { t } = useTranslation()
 
   const dispatch = useAppDispatch()
 
+  const history = useHistory()
+
   const breeder = useBreeder()
 
   const { token } = useAuth()
 
   const [poultries, setPoultries] = useState<IPoultry[]>([])
+
+  const handleNavigateToNewPoultry = useCallback(() => {
+    history.push(Routes.NewPoultry)
+  }, [history])
 
   useEffect(() => {
     if (!breeder) return
@@ -42,6 +51,11 @@ export default function ListPoultriesPage() {
       <PageTitle>
         {t('list-poultries')}
       </PageTitle>
+      <StyledNewPoultry>
+        <Button onClick={handleNavigateToNewPoultry} type="button">
+          {t('create-poultry')}
+        </Button>
+      </StyledNewPoultry>
       <StyledList>
         {poultries.map((poultry) => (
           <StyledItem key={poultry.id}>
