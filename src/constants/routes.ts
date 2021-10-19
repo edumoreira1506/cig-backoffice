@@ -3,5 +3,6 @@ export enum Routes {
   EditBreeder = '/criatorio',
   EditPassword = '/editar-senha',
   ListPoultries = '/meu-plantel',
-  NewPoultry = '/nova-ave'
+  NewPoultry = '/nova-ave',
+  EditPoultry = '/ave/:poultryId/editar'
 }

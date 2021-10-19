@@ -30,6 +30,7 @@
   "user.fields.confirm-password": "Confirmação de senha",
   "list-poultries": "Meu plantel",
   "new-poultry": "Nova ave",
+  "edit-poultry": "Editar ave",
   "poultry.fields.type": "Raça da ave",
   "poultry.fields.birth-date": "Data de nascimento",
   "poultry.fields.colors": "Cores",
