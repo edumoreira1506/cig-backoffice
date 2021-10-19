@@ -32,6 +32,10 @@ export default function ListPoultriesPage() {
     history.push(Routes.NewPoultry)
   }, [history])
 
+  const handleNavigateToEditPoultry = (poultryId: string) => {
+    history.push(Routes.EditPoultry.replace(':poultryId', poultryId))
+  }
+
   useEffect(() => {
     if (!breeder) return
 
@@ -58,7 +62,7 @@ export default function ListPoultriesPage() {
       </StyledNewPoultry>
       <StyledList>
         {poultries.map((poultry) => (
-          <StyledItem key={poultry.id}>
+          <StyledItem key={poultry.id} onClick={() => handleNavigateToEditPoultry(poultry.id)}>
             {poultry.id}
           </StyledItem>
         ))}

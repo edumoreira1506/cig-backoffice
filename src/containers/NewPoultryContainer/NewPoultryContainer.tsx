@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react'
-
-import NewPoultryForm from 'components/NewPoultryForm/NewPoultryForm'
-import useSavePoultry from 'hooks/useSavePoultry'
-import { success } from 'utils/alert'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
+
+import PoultryForm from 'components/PoultryForm/PoultryForm'
+import useSavePoultry from 'hooks/useSavePoultry'
+import { success } from 'utils/alert'
 import { Routes } from 'constants/routes'
 
 export default function NewPoultryContainer() {
@@ -19,6 +19,6 @@ export default function NewPoultryContainer() {
   const savePoultry = useSavePoultry({ onSuccess: handleSuccess })
 
   return (
-    <NewPoultryForm onSubmit={savePoultry} />
+    <PoultryForm onSubmit={savePoultry} />
   )
 }

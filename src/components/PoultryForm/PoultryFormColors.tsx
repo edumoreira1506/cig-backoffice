@@ -6,9 +6,9 @@ import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/
 import { selectColors } from 'contexts/PoultryContext/poultrySelectors'
 import { setColor } from 'contexts/PoultryContext/poultryActions'
 
-import { StyledContainer, StyledPicker, StyledLabel, StyledItem } from './NewPoultryFormColors.styles'
+import { StyledContainer, StyledPicker, StyledLabel, StyledItem } from './PoultryFormColors.styles'
 
-export default function NewPoultryFormColors() {
+export default function PoultryFormColors() {
   const { t } = useTranslation()
 
   const colors = usePoultrySelector(selectColors)
