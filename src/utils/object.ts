@@ -15,6 +15,7 @@ export const filterObject = (object: Record<string, any>): Record<string, any> =
     const isFile = value instanceof File
 
     if (isFile) return true
+    if (value instanceof Date) return true
 
     const isValidObject = Object.values(value).some((v) => Boolean(v)) && Boolean(Object.entries(value).length)
 
