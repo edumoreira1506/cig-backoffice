@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import backofficeBffClient from '../services/BackofficeBffService'
+import BackofficeBffService from '../services/BackofficeBffService'
 import { useEditBreederDispatch, useEditBreederSelector } from '../contexts/EditBreederContext/EditBreederContext'
 import { setIsLoading } from '../contexts/EditBreederContext/editBreederActions'
 import { setError } from '../contexts/AppContext/appActions'
@@ -33,7 +33,7 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
 
     const filteredObject = filterObject(breeder)
 
-    const authBffResponse = await backofficeBffClient.editBreeder(
+    const authBffResponse = await BackofficeBffService.updateBreeder(
       breederId,
       token,
       { ...filteredObject, ...(filteredObject.address ? ({ address: JSON.stringify(filteredObject.address) }) : ({})) } as any,
