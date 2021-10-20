@@ -18,7 +18,7 @@ import EditBreederFormContacts from './EditBreederFormContacts'
 import { StyledForm, StyledFormField, StyledSubtitle, StyledProfileImage } from './EditBreederForm.styles'
 
 export interface EditBreederFormProps {
-  onSubmit: (breeder: Partial<IBreeder & { images: EditBreederState['images'] }>) => void;
+  onSubmit: (breeder: Partial<Omit<IBreeder, 'foundationDate'> & { foundationDate: string; }  & { images: EditBreederState['images'] } & { contacts: EditBreederState['contacts'] }>) => void;
 }
 
 export default function EditBreederForm({ onSubmit }: EditBreederFormProps) {

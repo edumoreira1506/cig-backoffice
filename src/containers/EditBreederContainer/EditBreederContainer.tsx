@@ -57,7 +57,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   const showPreview = useCallback(() => setIsPreviewOpen(true), [])
   const hidePreview = useCallback(() => setIsPreviewOpen(false), [])
 
-  const handleSuccess = useCallback((breeder: Partial<IBreeder>) => {
+  const handleSuccess = useCallback((breeder: Partial<Omit<IBreeder, 'foundationDate'> & { foundationDate: string; }>) => {
     const newBreeders = breeders.map((b) => b.id === breederId ? ({ ...b, ...breeder, id: breederId }) : b) as any
 
     breederDispatch(setBreeders(newBreeders))
