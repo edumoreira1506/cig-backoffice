@@ -5,6 +5,7 @@ import { useAppDispatch } from 'contexts/AppContext/AppContext'
 import { filterObject } from 'utils/object'
 import { setError, setIsLoading } from 'contexts/AppContext/appActions'
 import BackofficeBffService from 'services/BackofficeBffService'
+import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
 
 import useBreeder from './useBreeder'
 import useAuth from './useAuth'
@@ -16,13 +17,25 @@ export default function useEditPoultry({ onSuccess, poultryId }: { onSuccess: ()
 
   const { token } = useAuth()
 
-  const handleEditPoultry = useCallback(async (poultry: Partial<IPoultry>) => {
+  const handleEditPoultry = useCallback(async (poultry: Partial<IPoultry> & { images?: PoultryState['images'] }) => {
     if (!breeder || !poultryId) return
 
     try {
       appDispatch(setIsLoading(true))
 
-      await BackofficeBffService.updatePoultry(breeder.id, poultryId, token, filterObject(poultry))
+      const newImages = (poultry?.images?.filter(image => image.isNew && image.raw).map(image => image.raw) ?? []) as File[]
+      const removedImageIds = poultry?.images?.filter(image => image.isDeleted).map(image => image.id) ?? []
+
+      delete poultry['images']
+
+      await BackofficeBffService.updatePoultry(
+        breeder.id,
+        poultryId,
+        token,
+        filterObject(poultry),
+        newImages,
+        removedImageIds
+      )
   
       onSuccess()
     } catch (error) {
