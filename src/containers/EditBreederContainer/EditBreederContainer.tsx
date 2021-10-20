@@ -15,6 +15,7 @@ import {
   setProfileImage,
   setImages,
   setMainVideo,
+  setContacts,
 } from '../../contexts/EditBreederContext/editBreederActions'
 import useEditBreeder from '../../hooks/useEditBreeder'
 import { success } from '../../utils/alert'
@@ -56,7 +57,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   const showPreview = useCallback(() => setIsPreviewOpen(true), [])
   const hidePreview = useCallback(() => setIsPreviewOpen(false), [])
 
-  const handleSuccess = useCallback((breeder: Partial<IBreeder>) => {
+  const handleSuccess = useCallback((breeder: Partial<Omit<IBreeder, 'foundationDate'> & { foundationDate: string; }>) => {
     const newBreeders = breeders.map((b) => b.id === breederId ? ({ ...b, ...breeder, id: breederId }) : b) as any
 
     breederDispatch(setBreeders(newBreeders))
@@ -89,7 +90,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
 
       dispatch(setId(breeder.id))
       dispatch(setMainVideo(breeder?.mainVideo ?? ''))
-  
+
       const profileImageUrl = breeder?.profileImageUrl || PROFILE_IMAGE_PLACEHOLDER
 
       dispatch(setProfileImage(new File([''], profileImageUrl)))
@@ -101,9 +102,10 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
 
     (async  () => {
       try {
-        const { breeder: { images } } = await BackofficeBffService.getBreeder(breederId, token)
+        const { breeder: { images, contacts } } = await BackofficeBffService.getBreeder(breederId, token)
 
         dispatch(setImages(images))
+        dispatch(setContacts(contacts))
       } catch(error) {
         console.error('Error on EditBreederContainer::getBreeder')
         console.log(error)

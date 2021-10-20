@@ -1,8 +1,10 @@
 import { IBreeder } from '@cig-platform/types'
 
-import { EditBreederImage } from '../contexts/EditBreederContext/editBreederReducer'
+import { EditBreederContact, EditBreederImage } from '../contexts/EditBreederContext/editBreederReducer'
 
-export interface BreederWithFiles extends IBreeder {
+export interface BreederWithFilesAndContacts extends Omit<IBreeder, 'foundationDate'> {
   files?: File[];
   images?: EditBreederImage[];
+  contacts?: EditBreederContact[];
+  foundationDate: string;
 }

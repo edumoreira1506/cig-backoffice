@@ -33,3 +33,5 @@ export const selectMainVideo = (state: EditBreederState) => state.mainVideo
 export const selectLongitude = (state: EditBreederState) => selectAddress(state).longitude
 
 export const selectLatitude = (state: EditBreederState) => selectAddress(state).latitude
+
+export const selectContacts = (state: EditBreederState) => state.contacts

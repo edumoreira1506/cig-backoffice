@@ -1229,13 +1229,13 @@
     "@cig-platform/types" "0.0.3"
     axios "^0.21.4"
 
-"@cig-platform/backoffice-bff-client@0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.12.tgz#df5b604e6a58397ea2ee41aaab2095dbdea1ff9a"
-  integrity sha512-3Ptk/aCgE4nxozATUqpfAoh+RRw1x3G5Rd5vagf4CN2kwdAXyGHSAm/Jv0L7wczi4Ql2gX3bh47yzKg1xFL0XQ==
+"@cig-platform/backoffice-bff-client@0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.14.tgz#13e5762b0bc7fd329bc24419bc74384aebebaa14"
+  integrity sha512-dVbLWWqAeBBs7xBqXfq+rBmTSvgmv1LltW/uUpAxIDM45jzX11WMJUlizr/TjEqaZL8sXyJLc/lDaMlDGv0Amw==
   dependencies:
     "@cig-platform/decorators" "0.0.1"
-    "@cig-platform/types" "0.0.11"
+    "@cig-platform/types" "0.0.12"
     axios "0.21.4"
     form-data "^4.0.0"
 
@@ -1271,10 +1271,10 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
-"@cig-platform/types@0.0.11", "@cig-platform/types@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.11.tgz#f3cee238167f5eed057af29b64714643ac6cc5f1"
-  integrity sha512-AW+2kkQowbv3hL3nXisZBLFa62+cTPMXvBhBDJpzPW4oIKI9WeyDFgYcJTsHYcn8NdX6f5nz2qca+SJpEnaCpQ==
+"@cig-platform/types@0.0.12", "@cig-platform/types@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.12.tgz#640ecdfd03950b0ecba9483aa69ac03cfaf48eb2"
+  integrity sha512-L77JOSKSbZllYY79j+6ukZuHS1afa3VUEGojdPH3NDm7ehh9biKiRncMlXK1Qv5zUbKKmrL3SJDGCNWHYniy4A==
   dependencies:
     express "^4.17.1"
 

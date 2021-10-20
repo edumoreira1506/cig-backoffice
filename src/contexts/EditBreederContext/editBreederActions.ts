@@ -1,4 +1,4 @@
-import { IBreederImage } from '@cig-platform/types'
+import { IBreederContact, IBreederImage } from '@cig-platform/types'
 import { EditBreederState } from './editBreederReducer'
 
 export const setIsLoading = (isLoading: boolean) => ({
@@ -44,4 +44,9 @@ export const setAddressField = (key: keyof EditBreederState['address'], value: s
 export const setProfileImage = (profileImage: File) => ({
   type: 'SET_PROFILE_IMAGE',
   payload: { profileImage }
+} as const)
+
+export const setContacts = (contacts: IBreederContact[]) => ({
+  type: 'SET_CONTACTS',
+  payload: { contacts }
 } as const)

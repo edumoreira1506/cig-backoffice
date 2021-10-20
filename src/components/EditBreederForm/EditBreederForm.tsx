@@ -13,11 +13,12 @@ import EditBreederFormAddress from './EditBreederFormAddress'
 import EditBreederFormProfileImage from './EditBreederFormProfileImage'
 import EditBreederFormImages from './EditBreederFormImages'
 import EditBreederFormMainVideo from './EditBreederFormMainVideo'
+import EditBreederFormContacts from './EditBreederFormContacts'
 
 import { StyledForm, StyledFormField, StyledSubtitle, StyledProfileImage } from './EditBreederForm.styles'
 
 export interface EditBreederFormProps {
-  onSubmit: (breeder: Partial<IBreeder & { images: EditBreederState['images'] }>) => void;
+  onSubmit: (breeder: Partial<Omit<IBreeder, 'foundationDate'> & { foundationDate: string; }  & { images: EditBreederState['images'] } & { contacts: EditBreederState['contacts'] }>) => void;
 }
 
 export default function EditBreederForm({ onSubmit }: EditBreederFormProps) {
@@ -44,6 +45,8 @@ export default function EditBreederForm({ onSubmit }: EditBreederFormProps) {
       <EditBreederFormImages />
       <StyledSubtitle>{t('breeder.fields.address')}</StyledSubtitle>
       <EditBreederFormAddress />
+      <StyledSubtitle>{t('breeder.fields.contacts')}</StyledSubtitle>
+      <EditBreederFormContacts />
       <StyledFormField>
         <EditBreederFormSubmitButton onSubmit={onSubmit} />
       </StyledFormField>

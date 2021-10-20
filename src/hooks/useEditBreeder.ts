@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import backofficeBffClient from '../services/BackofficeBffService'
+import BackofficeBffService from '../services/BackofficeBffService'
 import { useEditBreederDispatch, useEditBreederSelector } from '../contexts/EditBreederContext/EditBreederContext'
 import { setIsLoading } from '../contexts/EditBreederContext/editBreederActions'
 import { setError } from '../contexts/AppContext/appActions'
@@ -9,7 +9,7 @@ import useAuth from './useAuth'
 import useRefreshToken from './useRefreshToken'
 import { filterObject } from '../utils/object'
 import { EditBreederFormProps } from 'components/EditBreederForm/EditBreederForm'
-import { BreederWithFiles } from '../@types/breeder'
+import { BreederWithFilesAndContacts } from '../@types/breeder'
 import { useAppDispatch } from '../contexts/AppContext/AppContext'
 
 export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFormProps['onSubmit'] }) {
@@ -22,33 +22,39 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
 
   const refreshToken = useRefreshToken(token)
 
-  const handleEditBreeder = useCallback(async (breeder: Partial<BreederWithFiles>) => {
+  const handleEditBreeder = useCallback(async (breeder: Partial<BreederWithFilesAndContacts>) => {
     editBreederDispatch(setIsLoading(true))
     appDispatch(setIsLoading(true))
 
     const newImages = (breeder?.images?.filter(image => image.isNew && image.raw).map(image => image.raw) ?? []) as File[]
     const removedImageIds = breeder?.images?.filter(image => image.isDeleted).map(image => image.id) ?? []
 
+    const removedContactIds = breeder?.contacts?.filter(contact => contact.isDeleted).map(contact => contact.id) ?? []
+    const contacts = breeder?.contacts?.filter(contact => !contact.isDeleted)
+
     delete breeder['images']
+    delete breeder['contacts']
 
     const filteredObject = filterObject(breeder)
 
-    const authBffResponse = await backofficeBffClient.editBreeder(
-      breederId,
-      token,
-      { ...filteredObject, ...(filteredObject.address ? ({ address: JSON.stringify(filteredObject.address) }) : ({})) } as any,
-      newImages,
-      removedImageIds
-    )
+    try {
+      await BackofficeBffService.updateBreeder(
+        breederId,
+        token,
+        { ...filteredObject, ...(filteredObject.address ? ({ address: JSON.stringify(filteredObject.address) }) : ({})) } as any,
+        newImages,
+        removedImageIds,
+        removedContactIds,
+        contacts
+      )
 
-    editBreederDispatch(setIsLoading(false))
-    appDispatch(setIsLoading(false))
-
-    if (!authBffResponse?.ok) {
-      appDispatch(setError((authBffResponse as any)?.error))
-    } else {
       refreshToken()
-      onSuccess(breeder)
+      onSuccess({ ...breeder, foundationDate: String(breeder.foundationDate?.toString() ?? '') })
+    } catch (error) {
+      appDispatch(setError(error))
+    } finally {
+      editBreederDispatch(setIsLoading(false))
+      appDispatch(setIsLoading(false))
     }
   }, [token, onSuccess, breederId, editBreederDispatch, appDispatch, refreshToken])
 
