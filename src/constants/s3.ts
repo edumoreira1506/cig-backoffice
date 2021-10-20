@@ -1,5 +1,6 @@
 export enum S3Folders {
-  Breeders = 'breeders'
+  Breeders = 'breeders',
+  Poultries = 'poultries'
 }
 
 export enum S3Subfolders {

@@ -10,6 +10,7 @@ import PoultryFormColors from './PoultryFormColors'
 import PoultryFormType from './PoultryFormType'
 import PoultryFormVideos from './PoultryFormVideos'
 import PoultryFormSubmitButton from './PoultryFormSubmitButton'
+import PoultryFormImages from './PoultryFormImages'
 
 export interface PoultryFormProps {
   onSubmit: (poultry: Partial<IPoultry>) => void;
@@ -30,6 +31,8 @@ export default function PoultryForm({ onSubmit }: PoultryFormProps) {
       <PoultryFormColors />
       <StyledSubtitle>{t('poultry.fields.videos')}</StyledSubtitle>
       <PoultryFormVideos />
+      <StyledSubtitle>{t('poultry.fields.images')}</StyledSubtitle>
+      <PoultryFormImages />
       <StyledFormField>
         <PoultryFormSubmitButton onSubmit={onSubmit} />
       </StyledFormField>

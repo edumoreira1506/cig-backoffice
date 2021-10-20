@@ -21,6 +21,7 @@ export const StyledForm = styled.form`
 export const StyledFormField = styled.div`
   margin-bottom: 15px;
   width: 100%;
+  margin-top: 15px;
 `
 
 export const StyledSubtitle = styled.p`
