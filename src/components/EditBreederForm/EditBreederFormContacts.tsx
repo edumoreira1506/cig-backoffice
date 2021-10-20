@@ -68,6 +68,9 @@ export default function EditBreederFormContacts() {
     const newContacts = [...contacts, { value: newContactValue, type: newContactType, id: '', breederId: '' }]
 
     dispatch(setContacts(newContacts))
+
+    setNewContactType('')
+    setNewContactValue('')
   }, [newContactType, newContactValue, dispatch, contacts])
 
   return (
