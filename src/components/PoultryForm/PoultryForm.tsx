@@ -11,9 +11,10 @@ import PoultryFormType from './PoultryFormType'
 import PoultryFormVideos from './PoultryFormVideos'
 import PoultryFormSubmitButton from './PoultryFormSubmitButton'
 import PoultryFormImages from './PoultryFormImages'
+import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
 
 export interface PoultryFormProps {
-  onSubmit: (poultry: Partial<IPoultry>) => void;
+  onSubmit: (poultry: Partial<IPoultry> & { images: PoultryState['images'] }) => void;
 }
 
 export default function PoultryForm({ onSubmit }: PoultryFormProps) {
