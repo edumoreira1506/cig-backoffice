@@ -1229,13 +1229,13 @@
     "@cig-platform/types" "0.0.3"
     axios "^0.21.4"
 
-"@cig-platform/backoffice-bff-client@0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.14.tgz#13e5762b0bc7fd329bc24419bc74384aebebaa14"
-  integrity sha512-dVbLWWqAeBBs7xBqXfq+rBmTSvgmv1LltW/uUpAxIDM45jzX11WMJUlizr/TjEqaZL8sXyJLc/lDaMlDGv0Amw==
+"@cig-platform/backoffice-bff-client@0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.15.tgz#9b1803df3aa918f97f70e27d001f579a51b591b5"
+  integrity sha512-tqIhWhBLIZRcT+xQq1SbG7bLTxLc8BvkhZxL6cSQY8KqhBos25PbE/RQHQoLsMKriWggfhIZaAIJIYw5mbBvgg==
   dependencies:
     "@cig-platform/decorators" "0.0.1"
-    "@cig-platform/types" "0.0.12"
+    "@cig-platform/types" "0.0.13"
     axios "0.21.4"
     form-data "^4.0.0"
 
@@ -1271,10 +1271,10 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
-"@cig-platform/types@0.0.12", "@cig-platform/types@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.12.tgz#640ecdfd03950b0ecba9483aa69ac03cfaf48eb2"
-  integrity sha512-L77JOSKSbZllYY79j+6ukZuHS1afa3VUEGojdPH3NDm7ehh9biKiRncMlXK1Qv5zUbKKmrL3SJDGCNWHYniy4A==
+"@cig-platform/types@0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.13.tgz#360cc4cab39dbba9d9db0f1e14136ee60e54b279"
+  integrity sha512-TBScEaQ/EoPeAtNkrULrm1TKDhTAlpf6s0BdYRmNoMIu9sawEeKyTAVqW0VTV91lb/VFcD7yZAakjMjqFxCQZA==
   dependencies:
     express "^4.17.1"
 
@@ -1287,6 +1287,13 @@
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.8.tgz#60165a722590e4690b26788bd31aca53b29ddbb5"
   integrity sha512-iNvyHcLUu3fxvUvzFmKa7kBTYtu3TBKI1aH3679HWJpC2QF0i/GJQSdz0rI9chPhbMHMU3GQufOoVitVzf+ybw==
+  dependencies:
+    express "^4.17.1"
+
+"@cig-platform/types@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.12.tgz#640ecdfd03950b0ecba9483aa69ac03cfaf48eb2"
+  integrity sha512-L77JOSKSbZllYY79j+6ukZuHS1afa3VUEGojdPH3NDm7ehh9biKiRncMlXK1Qv5zUbKKmrL3SJDGCNWHYniy4A==
   dependencies:
     express "^4.17.1"
 
