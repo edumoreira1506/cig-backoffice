@@ -11,6 +11,10 @@ export interface EditBreederImage extends IBreederImage {
   raw?: File;
 }
 
+export interface EditBreederContact extends IBreederContact {
+  isDeleted?: boolean;
+}
+
 export interface EditBreederState extends DefaultState {
   name: string;
   description: string;
@@ -28,7 +32,7 @@ export interface EditBreederState extends DefaultState {
   profileImage: File;
   images: EditBreederImage[];
   mainVideo: string;
-  contacts: IBreederContact[];
+  contacts: EditBreederContact[];
 }
 
 export const INITIAL_STATE = {
