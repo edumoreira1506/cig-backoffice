@@ -1,13 +1,12 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FileImagesCarousel } from '@cig-platform/ui'
 
 import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import { selectImages } from 'contexts/PoultryContext/poultrySelectors'
-import { createImageUrl } from 'utils/s3'
 import { S3Folders, S3Subfolders } from 'constants/s3'
 import { setImages } from 'contexts/PoultryContext/poultryActions'
 import { info } from 'utils/alert'
+import ImagesWithGallery from 'components/ImagesWithGallery/ImagesWithGallery'
 
 export default function PoultryFormImages() {
   const { t } = useTranslation()
@@ -15,13 +14,6 @@ export default function PoultryFormImages() {
   const images = usePoultrySelector(selectImages)
 
   const dispatch = usePoultryDispatch()
-
-  const activeImages = useMemo(() => images.filter(image => !image.isDeleted), [images])
-
-  const formattedImagesOfCarousel = useMemo(() => activeImages.map((image) => ({
-    src: image.isNew ? image.imageUrl : createImageUrl({ folder: S3Folders.Poultries, fileName: image.imageUrl, subfolder: S3Subfolders.Images }),
-    alt: image.imageUrl
-  })), [activeImages])
 
   const handleUploadImage = useCallback((newImage: File) => {
     const fr = new FileReader()
@@ -63,12 +55,12 @@ export default function PoultryFormImages() {
   }, [t, dispatch, images])
 
   return (
-    <FileImagesCarousel
-      images={formattedImagesOfCarousel}
-      onClickImage={console.log}
+    <ImagesWithGallery
+      images={images}
+      folder={S3Folders.Poultries}
+      subfolder={S3Subfolders.Images}
       onUpload={handleUploadImage}
-      onDeleteImage={handleRemoveImage}
-      uploadMessage={t('common.select-files')}
+      onRemove={handleRemoveImage}
     />
   )
 }
