@@ -8,6 +8,7 @@ import BackofficeBffService from 'services/BackofficeBffService'
 
 import useBreeder from './useBreeder'
 import useAuth from './useAuth'
+import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
 
 export default function useSavePoultry({ onSuccess }: { onSuccess: () => void }) {
   const appDispatch = useAppDispatch()
@@ -16,13 +17,17 @@ export default function useSavePoultry({ onSuccess }: { onSuccess: () => void })
 
   const { token } = useAuth()
 
-  const handleSavePoultry = useCallback(async (poultry: Partial<IPoultry>) => {
+  const handleSavePoultry = useCallback(async (poultry: Partial<IPoultry> & { images?: PoultryState['images'] }) => {
     if (!breeder) return
 
     try {
       appDispatch(setIsLoading(true))
 
-      await BackofficeBffService.postPoultry(breeder.id, token, filterObject(poultry))
+      const images = (poultry.images ?? []).map(image => image.raw) as File[]
+
+      delete poultry['images']
+
+      await BackofficeBffService.postPoultry(breeder.id, token, filterObject(poultry), images)
   
       onSuccess()
     } catch (error) {

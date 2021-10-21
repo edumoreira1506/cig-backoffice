@@ -1,20 +1,19 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
-import { selectImages } from '../../contexts/EditBreederContext/editBreederSelectors'
-import { S3Subfolders, S3Folders } from '../../constants/s3'
-import { setImages } from '../../contexts/EditBreederContext/editBreederActions'
-import { useEditBreederDispatch } from '../../contexts/EditBreederContext/EditBreederContext'
-import { info } from '../../utils/alert'
+import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
+import { selectImages } from 'contexts/PoultryContext/poultrySelectors'
+import { S3Folders, S3Subfolders } from 'constants/s3'
+import { setImages } from 'contexts/PoultryContext/poultryActions'
+import { info } from 'utils/alert'
 import ImagesWithGallery from 'components/ImagesWithGallery/ImagesWithGallery'
 
-export default function EditBreederFormImages() {
-  const dispatch = useEditBreederDispatch()
-
-  const images = useEditBreederSelector(selectImages)
-
+export default function PoultryFormImages() {
   const { t } = useTranslation()
+
+  const images = usePoultrySelector(selectImages)
+
+  const dispatch = usePoultryDispatch()
 
   const handleUploadImage = useCallback((newImage: File) => {
     const fr = new FileReader()
@@ -23,7 +22,7 @@ export default function EditBreederFormImages() {
     fr.onload = function() {
       const src = String(this.result)
       const image = {
-        breederId: '',
+        poultryId: '',
         id: '',
         imageUrl: src,
         isNew: true,
@@ -58,7 +57,7 @@ export default function EditBreederFormImages() {
   return (
     <ImagesWithGallery
       images={images}
-      folder={S3Folders.Breeders}
+      folder={S3Folders.Poultries}
       subfolder={S3Subfolders.Images}
       onUpload={handleUploadImage}
       onRemove={handleRemoveImage}

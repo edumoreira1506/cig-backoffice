@@ -1,3 +1,4 @@
+import { IPoultryImage } from '@cig-platform/types'
 import { PoultryState } from './poultryReducer'
 
 export const setType = (type: string) => ({
@@ -18,4 +19,9 @@ export const setColor = (color: string, field: keyof PoultryState['colors']) => 
 export const setVideo = (video: string, field: keyof PoultryState['videos']) => ({
   payload: { video, field },
   type: 'SET_VIDEO'
+} as const)
+
+export const setImages = (images: IPoultryImage[]) => ({
+  type: 'SET_IMAGES',
+  payload: { images }
 } as const)

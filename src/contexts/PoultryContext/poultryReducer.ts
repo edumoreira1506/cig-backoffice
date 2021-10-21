@@ -1,13 +1,20 @@
 import { DefaultState, ActionType } from '@cig-platform/context'
-import { IPoultryColors, IPoultryVideos } from '@cig-platform/types'
+import { IPoultryColors, IPoultryImage, IPoultryVideos } from '@cig-platform/types'
 
 import * as actions from './poultryActions'
+
+export interface PoultryImage extends IPoultryImage {
+  isNew?: boolean;
+  isDeleted?: boolean;
+  raw?: File;
+}
 
 export interface PoultryState extends DefaultState {
   type: string;
   birthDate: string;
   colors: IPoultryColors;
   videos: IPoultryVideos;
+  images: PoultryImage[];
 }
 
 export const INITIAL_STATE: PoultryState = {
@@ -21,7 +28,8 @@ export const INITIAL_STATE: PoultryState = {
   videos: {
     presentation: '',
     walking: ''
-  }
+  },
+  images: [] as PoultryImage[]
 }
 
 export type PoultryActionTypes = ActionType<typeof actions>
@@ -31,6 +39,11 @@ export default function breederReducer(
   action: PoultryActionTypes
 ): PoultryState {
   switch (action.type) {
+  case 'SET_IMAGES':
+    return {
+      ...state,
+      images: action.payload.images
+    }
   case 'SET_VIDEO':
     return {
       ...state,

@@ -7,3 +7,5 @@ export const selectBirthDate = (state: PoultryState) => state.birthDate
 export const selectColors = (state: PoultryState) => state.colors
 
 export const selectVideos = (state: PoultryState) => state.videos
+
+export const selectImages = (state: PoultryState) => state.images
