@@ -38,6 +38,7 @@
   "new-poultry": "Nova ave",
   "edit-poultry": "Editar ave",
   "poultry.fields.type": "Raça da ave",
+  "poultry.fields.name": "Nome",
   "poultry.fields.gender": "Sexagem da ave",
   "poultry.fields.birth-date": "Data de nascimento",
   "poultry.fields.colors": "Cores",

@@ -7,7 +7,7 @@ import { success } from 'utils/alert'
 import useEditPoultry from 'hooks/useEditPoultry'
 import PoultryForm from 'components/PoultryForm/PoultryForm'
 import { useAppDispatch } from 'contexts/AppContext/AppContext'
-import { setIsLoading } from 'contexts/EditBreederContext/editBreederActions'
+import { setIsLoading, setName } from 'contexts/EditBreederContext/editBreederActions'
 import { setError } from 'contexts/AppContext/appActions'
 import BackofficeBffService from 'services/BackofficeBffService'
 import useBreeder from 'hooks/useBreeder'
@@ -47,6 +47,10 @@ export default function EditPoultryContainer() {
 
         poultryDispatch(setType(poultry.type))
         poultryDispatch(setBirthDate(poultry.birthDate?.toString() ?? ''))
+
+        if (poultry.name) {
+          poultryDispatch(setName(poultry.name))
+        }
 
         if (poultry.colors?.eyes) {
           poultryDispatch(setColor(poultry.colors?.eyes ?? '', 'eyes'))

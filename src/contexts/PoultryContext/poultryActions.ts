@@ -21,6 +21,11 @@ export const setColor = (color: string, field: keyof PoultryState['colors']) => 
   type: 'SET_COLOR'
 } as const)
 
+export const setName = (name: string) => ({
+  payload: { name },
+  type: 'SET_NAME'
+} as const)
+
 export const setVideo = (video: string, field: keyof PoultryState['videos']) => ({
   payload: { video, field },
   type: 'SET_VIDEO'

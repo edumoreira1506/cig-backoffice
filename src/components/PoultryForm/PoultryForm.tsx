@@ -13,6 +13,7 @@ import PoultryFormVideos from './PoultryFormVideos'
 import PoultryFormSubmitButton from './PoultryFormSubmitButton'
 import PoultryFormImages from './PoultryFormImages'
 import PoultryFormGender from './PoultryFormGender'
+import PoultryFormName from './PoultryFormName'
 
 export interface PoultryFormProps {
   onSubmit: (poultry: Partial<IPoultry> & { images: PoultryState['images'] }) => void;
@@ -29,6 +30,9 @@ export default function PoultryForm({ onSubmit, disabledFields }: PoultryFormPro
       </StyledFormField>
       <StyledFormField>
         <PoultryFormGender disabled={disabledFields?.includes('gender')} />
+      </StyledFormField>
+      <StyledFormField>
+        <PoultryFormName />
       </StyledFormField>
       <StyledFormField>
         <PoultryFormBirthDate />
