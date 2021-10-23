@@ -13,7 +13,7 @@ import BackofficeBffService from 'services/BackofficeBffService'
 import useBreeder from 'hooks/useBreeder'
 import useAuth from 'hooks/useAuth'
 import { usePoultryDispatch } from 'contexts/PoultryContext/PoultryContext'
-import { setBirthDate, setColor, setImages, setType, setVideo } from 'contexts/PoultryContext/poultryActions'
+import { setBirthDate, setColor, setGender, setImages, setType, setVideo } from 'contexts/PoultryContext/poultryActions'
 
 export default function EditPoultryContainer() {
   const { t } = useTranslation()
@@ -68,6 +68,10 @@ export default function EditPoultryContainer() {
           poultryDispatch(setVideo(poultry.videos?.walking ?? '', 'walking'))
         }
 
+        if (poultry.gender) {
+          poultryDispatch(setGender(poultry.gender))
+        }
+
         if (poultry?.images) {
           poultryDispatch(setImages(poultry.images))
         }
@@ -80,6 +84,6 @@ export default function EditPoultryContainer() {
   }, [appDispatch, breeder, poultryId, token, poultryDispatch])
 
   return (
-    <PoultryForm onSubmit={editPoultry} />
+    <PoultryForm onSubmit={editPoultry} disabledFields={['gender', 'type']} />
   )
 }

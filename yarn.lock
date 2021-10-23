@@ -1219,23 +1219,23 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cig-platform/auth-bff-client@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@cig-platform/auth-bff-client/-/auth-bff-client-0.1.6.tgz#438dc6f28dbc92dc687e1fca72ed5cf50b38e034"
-  integrity sha512-2qdz22NyKUqxhkyCp5mIDgAsttFgNF7dtNOXxqnv8ND0VvcjRpy/Nb5lUS/CusB0szrOKlRKDnzVGHfBNGd4xg==
+"@cig-platform/auth-bff-client@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@cig-platform/auth-bff-client/-/auth-bff-client-0.1.7.tgz#5a23aacf0ed1c01c508723d4fb267dc26a44ea70"
+  integrity sha512-gIkfssVxJv3lorY9Fcrw6qFxlAwbwPep7JFDU7ksvva9bvSH3r4VWb4Oju026q03U971RsYFJONEX2FpTEk3kw==
   dependencies:
     "@babel/plugin-proposal-decorators" "^7.15.8"
     "@cig-platform/decorators" "0.0.1"
-    "@cig-platform/types" "0.0.3"
+    "@cig-platform/types" "0.0.14"
     axios "^0.21.4"
 
-"@cig-platform/backoffice-bff-client@0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.15.tgz#9b1803df3aa918f97f70e27d001f579a51b591b5"
-  integrity sha512-tqIhWhBLIZRcT+xQq1SbG7bLTxLc8BvkhZxL6cSQY8KqhBos25PbE/RQHQoLsMKriWggfhIZaAIJIYw5mbBvgg==
+"@cig-platform/backoffice-bff-client@0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.16.tgz#2cab5bd06ec9180ddf14f8eeb856b14ee2f85984"
+  integrity sha512-vz61eaJpWwUF0EScWbx8s0LQ+vvRPj2EUOTzOz13VRYpJtjUgSWLtcsDnr+XL2unXrYMCum+5lVM4dEERiJ41Q==
   dependencies:
     "@cig-platform/decorators" "0.0.1"
-    "@cig-platform/types" "0.0.13"
+    "@cig-platform/types" "0.0.14"
     axios "0.21.4"
     form-data "^4.0.0"
 
@@ -1271,17 +1271,12 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
-"@cig-platform/types@0.0.13", "@cig-platform/types@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.13.tgz#360cc4cab39dbba9d9db0f1e14136ee60e54b279"
-  integrity sha512-TBScEaQ/EoPeAtNkrULrm1TKDhTAlpf6s0BdYRmNoMIu9sawEeKyTAVqW0VTV91lb/VFcD7yZAakjMjqFxCQZA==
+"@cig-platform/types@0.0.14", "@cig-platform/types@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.14.tgz#0ff5cf055a97da735b32ec4703f2f813306c063b"
+  integrity sha512-BLPzdGqZuDJWRjh/3jtHS1M6dMGJyKRZobnNhsSCbh/ZdnzYB1fKxGxsevXMe4ikQGlhSd60+T1zPsKHMJT+CQ==
   dependencies:
     express "^4.17.1"
-
-"@cig-platform/types@0.0.3", "@cig-platform/types@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
-  integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
 
 "@cig-platform/types@0.0.8":
   version "0.0.8"
@@ -1290,10 +1285,15 @@
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/ui@^0.1.49":
-  version "0.1.49"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.49.tgz#72bfb849a4bf515fa69d8ae41badaca3f6c707de"
-  integrity sha512-hP9mkpWH86rcph4fnbZNLhhQ9b+y/cEvOGsK2dBveHfcEeipZeZjphWN4P783KnwYvBZDOeMoP656R5SPrsPYA==
+"@cig-platform/types@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
+  integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
+
+"@cig-platform/ui@^0.1.50":
+  version "0.1.50"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.50.tgz#836e9cc3b82be97d1f516eac8dac1d3785d42082"
+  integrity sha512-/FQ5QUhf9t1uTdqmlg79ZFfrBe3CWBESXHHQTuFbzxxZ9ATROAYFqZiL5y7jejLTP1K8zk98JKJ0pnseIxmTOw==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"

@@ -11,6 +11,11 @@ export const setBirthDate = (birthDate: string) => ({
   type: 'SET_BIRTH_DATE'
 } as const)
 
+export const setGender = (gender: string) => ({
+  payload: { gender },
+  type: 'SET_GENDER'
+} as const)
+
 export const setColor = (color: string, field: keyof PoultryState['colors']) => ({
   payload: { color, field },
   type: 'SET_COLOR'

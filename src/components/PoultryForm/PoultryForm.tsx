@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { IPoultry } from '@cig-platform/types'
 
 import { preventDefaultHandler } from 'utils/dom'
+import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
 
 import { StyledForm, StyledFormField, StyledSubtitle } from './PoultryForm.styles'
 import PoultryFormBirthDate from './PoultryFormBirthDate'
@@ -11,19 +12,23 @@ import PoultryFormType from './PoultryFormType'
 import PoultryFormVideos from './PoultryFormVideos'
 import PoultryFormSubmitButton from './PoultryFormSubmitButton'
 import PoultryFormImages from './PoultryFormImages'
-import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
+import PoultryFormGender from './PoultryFormGender'
 
 export interface PoultryFormProps {
   onSubmit: (poultry: Partial<IPoultry> & { images: PoultryState['images'] }) => void;
+  disabledFields?: (keyof IPoultry)[]
 }
 
-export default function PoultryForm({ onSubmit }: PoultryFormProps) {
+export default function PoultryForm({ onSubmit, disabledFields }: PoultryFormProps) {
   const { t } = useTranslation()
 
   return (
     <StyledForm onSubmit={preventDefaultHandler}>
       <StyledFormField>
-        <PoultryFormType />
+        <PoultryFormType disabled={disabledFields?.includes('type')} />
+      </StyledFormField>
+      <StyledFormField>
+        <PoultryFormGender disabled={disabledFields?.includes('gender')} />
       </StyledFormField>
       <StyledFormField>
         <PoultryFormBirthDate />

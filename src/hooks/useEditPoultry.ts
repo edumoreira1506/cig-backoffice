@@ -27,6 +27,7 @@ export default function useEditPoultry({ onSuccess, poultryId }: { onSuccess: ()
       const removedImageIds = poultry?.images?.filter(image => image.isDeleted).map(image => image.id) ?? []
 
       delete poultry['images']
+      delete poultry['gender']
 
       await BackofficeBffService.updatePoultry(
         breeder.id,
