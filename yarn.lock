@@ -1271,7 +1271,7 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
-"@cig-platform/types@0.0.13", "@cig-platform/types@^0.0.13":
+"@cig-platform/types@0.0.13":
   version "0.0.13"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.13.tgz#360cc4cab39dbba9d9db0f1e14136ee60e54b279"
   integrity sha512-TBScEaQ/EoPeAtNkrULrm1TKDhTAlpf6s0BdYRmNoMIu9sawEeKyTAVqW0VTV91lb/VFcD7yZAakjMjqFxCQZA==
@@ -1287,6 +1287,13 @@
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.8.tgz#60165a722590e4690b26788bd31aca53b29ddbb5"
   integrity sha512-iNvyHcLUu3fxvUvzFmKa7kBTYtu3TBKI1aH3679HWJpC2QF0i/GJQSdz0rI9chPhbMHMU3GQufOoVitVzf+ybw==
+  dependencies:
+    express "^4.17.1"
+
+"@cig-platform/types@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.14.tgz#0ff5cf055a97da735b32ec4703f2f813306c063b"
+  integrity sha512-BLPzdGqZuDJWRjh/3jtHS1M6dMGJyKRZobnNhsSCbh/ZdnzYB1fKxGxsevXMe4ikQGlhSd60+T1zPsKHMJT+CQ==
   dependencies:
     express "^4.17.1"
 
