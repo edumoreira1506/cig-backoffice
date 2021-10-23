@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { IPoultry } from '@cig-platform/types'
 
 import { preventDefaultHandler } from 'utils/dom'
+import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
 
 import { StyledForm, StyledFormField, StyledSubtitle } from './PoultryForm.styles'
 import PoultryFormBirthDate from './PoultryFormBirthDate'
@@ -11,7 +12,7 @@ import PoultryFormType from './PoultryFormType'
 import PoultryFormVideos from './PoultryFormVideos'
 import PoultryFormSubmitButton from './PoultryFormSubmitButton'
 import PoultryFormImages from './PoultryFormImages'
-import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
+import PoultryFormGender from './PoultryFormGender'
 
 export interface PoultryFormProps {
   onSubmit: (poultry: Partial<IPoultry> & { images: PoultryState['images'] }) => void;
@@ -24,6 +25,9 @@ export default function PoultryForm({ onSubmit }: PoultryFormProps) {
     <StyledForm onSubmit={preventDefaultHandler}>
       <StyledFormField>
         <PoultryFormType />
+      </StyledFormField>
+      <StyledFormField>
+        <PoultryFormGender />
       </StyledFormField>
       <StyledFormField>
         <PoultryFormBirthDate />
