@@ -17,6 +17,7 @@ import {
   setBirthDate,
   setColor,
   setCrest,
+  setDewlap,
   setGender,
   setImages,
   setRegister,
@@ -59,6 +60,10 @@ export default function EditPoultryContainer() {
 
         if (poultry.crest) {
           poultryDispatch(setCrest(poultry.crest))
+        }
+
+        if (poultry.dewlap) {
+          poultryDispatch(setDewlap(poultry.dewlap))
         }
 
         if (poultry.register) {
