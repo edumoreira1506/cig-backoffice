@@ -25,6 +25,10 @@ export default function PoultryFormVideos() {
     dispatch(setVideo(String(newWalking), 'walking'))
   }, [dispatch])
 
+  const handleChangeMeasurement = useCallback((newMeasurement: string | number) => {
+    dispatch(setVideo(String(newMeasurement), 'measurement'))
+  }, [dispatch])
+
   return (
     <>
       <StyledFormField>
@@ -48,6 +52,17 @@ export default function PoultryFormVideos() {
       </StyledFormField>
       {youtubeUrl.valid(videos.walking) && (
         <Player url={videos.walking ?? ''} />
+      )}
+      <StyledFormField>
+        <Input
+          type="text"
+          label={t('poultry.fields.videos.measurement')}
+          value={videos.measurement ?? ''}
+          onChange={handleChangeMeasurement}
+        />
+      </StyledFormField>
+      {youtubeUrl.valid(videos.measurement) && (
+        <Player url={videos.measurement ?? ''} />
       )}
     </>
   )
