@@ -11,3 +11,5 @@ export const selectVideos = (state: PoultryState) => state.videos
 export const selectImages = (state: PoultryState) => state.images
 
 export const selectGender = (state: PoultryState) => state.gender
+
+export const selectName = (state: PoultryState) => state.name

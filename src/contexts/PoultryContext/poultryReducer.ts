@@ -16,10 +16,12 @@ export interface PoultryState extends DefaultState {
   videos: IPoultryVideos;
   images: PoultryImage[];
   gender: string;
+  name: string;
 }
 
 export const INITIAL_STATE: PoultryState = {
   type: '',
+  name: '',
   birthDate: '',
   colors: {
     plumage: '#ffffff',
@@ -42,6 +44,11 @@ export default function breederReducer(
   action: PoultryActionTypes
 ): PoultryState {
   switch (action.type) {
+  case 'SET_NAME':
+    return {
+      ...state,
+      name: action.payload.name 
+    }
   case 'SET_GENDER':
     return {
       ...state,
