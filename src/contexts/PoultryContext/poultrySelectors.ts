@@ -15,3 +15,5 @@ export const selectGender = (state: PoultryState) => state.gender
 export const selectName = (state: PoultryState) => state.name
 
 export const selectRegister = (state: PoultryState) => state.register
+
+export const selectCrest = (state: PoultryState) => state.crest
