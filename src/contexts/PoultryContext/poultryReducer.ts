@@ -28,7 +28,8 @@ export const INITIAL_STATE: PoultryState = {
   },
   videos: {
     presentation: '',
-    walking: ''
+    walking: '',
+    measurement: '',
   },
   images: [] as PoultryImage[],
   gender: '',

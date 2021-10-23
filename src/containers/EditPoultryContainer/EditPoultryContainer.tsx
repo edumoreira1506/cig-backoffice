@@ -68,6 +68,10 @@ export default function EditPoultryContainer() {
           poultryDispatch(setVideo(poultry.videos?.walking ?? '', 'walking'))
         }
 
+        if (poultry.videos?.measurement) {
+          poultryDispatch(setVideo(poultry.videos?.measurement ?? '', 'measurement'))
+        }
+
         if (poultry.gender) {
           poultryDispatch(setGender(poultry.gender))
         }
