@@ -13,3 +13,9 @@ export enum PoultryCrests {
   Pea = 'ERVILHA',
   Ball = 'BOLA'
 }
+
+export enum PoultryDewlaps {
+  EMPTY = 'AUSENCIA_TOTAL',
+  DOUBLE = 'DUPLA',
+  SINGLE = 'UNICA'
+}

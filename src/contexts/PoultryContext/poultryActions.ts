@@ -1,5 +1,11 @@
 import { IPoultryImage } from '@cig-platform/types'
+
 import { PoultryState } from './poultryReducer'
+
+export const setDewlap = (dewlap: string) => ({
+  payload: { dewlap },
+  type: 'SET_DEWLAP'
+} as const)
 
 export const setType = (type: string) => ({
   payload: { type },
