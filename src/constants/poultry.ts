@@ -19,3 +19,9 @@ export enum PoultryDewlaps {
   DOUBLE = 'DUPLA',
   SINGLE = 'UNICA'
 }
+
+export enum PoultryTails {
+  LOW = 'BAIXA',
+  HIGH = 'ALTA',
+  MEDIUM = 'MEDIA'
+}
