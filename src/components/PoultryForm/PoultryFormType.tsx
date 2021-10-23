@@ -7,6 +7,10 @@ import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/
 import { selectType } from 'contexts/PoultryContext/poultrySelectors'
 import { setType } from 'contexts/PoultryContext/poultryActions'
 
+export interface PoultryFormTypeProps {
+  disabled?: boolean;
+}
+
 const availableTypes = [
   {
     value: PoultryTypes.IndioGigante,
@@ -14,7 +18,7 @@ const availableTypes = [
   }
 ]
 
-export default function PoultryFormType() {
+export default function PoultryFormType({ disabled = false }: PoultryFormTypeProps) {
   const { t } = useTranslation()
 
   const dispatch = usePoultryDispatch()
@@ -32,6 +36,7 @@ export default function PoultryFormType() {
       value={type}
       onChange={handleChangeType}
       showEmptyOption
+      disabled={disabled}
       emptyOptionText={t('common.select-the-type')}
     />
   )

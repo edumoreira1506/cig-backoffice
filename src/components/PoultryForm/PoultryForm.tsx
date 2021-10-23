@@ -16,18 +16,19 @@ import PoultryFormGender from './PoultryFormGender'
 
 export interface PoultryFormProps {
   onSubmit: (poultry: Partial<IPoultry> & { images: PoultryState['images'] }) => void;
+  disabledFields?: (keyof IPoultry)[]
 }
 
-export default function PoultryForm({ onSubmit }: PoultryFormProps) {
+export default function PoultryForm({ onSubmit, disabledFields }: PoultryFormProps) {
   const { t } = useTranslation()
 
   return (
     <StyledForm onSubmit={preventDefaultHandler}>
       <StyledFormField>
-        <PoultryFormType />
+        <PoultryFormType disabled={disabledFields?.includes('type')} />
       </StyledFormField>
       <StyledFormField>
-        <PoultryFormGender />
+        <PoultryFormGender disabled={disabledFields?.includes('gender')} />
       </StyledFormField>
       <StyledFormField>
         <PoultryFormBirthDate />

@@ -26,7 +26,11 @@ const availableGenders = [
   }
 ]
 
-export default function PoultryFormGender() {
+export interface PoultryFormGenderProps {
+  disabled?: boolean;
+}
+
+export default function PoultryFormGender({ disabled = false }: PoultryFormGenderProps) {
   const { t } = useTranslation()
 
   const dispatch = usePoultryDispatch()
@@ -44,6 +48,7 @@ export default function PoultryFormGender() {
       value={gender}
       onChange={handleChangeGender}
       showEmptyOption
+      disabled={disabled}
       emptyOptionText={t('common.select-the-gender')}
     />
   )

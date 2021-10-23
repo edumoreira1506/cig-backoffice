@@ -84,6 +84,6 @@ export default function EditPoultryContainer() {
   }, [appDispatch, breeder, poultryId, token, poultryDispatch])
 
   return (
-    <PoultryForm onSubmit={editPoultry} />
+    <PoultryForm onSubmit={editPoultry} disabledFields={['gender', 'type']} />
   )
 }
