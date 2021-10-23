@@ -26,6 +26,11 @@ export const setName = (name: string) => ({
   type: 'SET_NAME'
 } as const)
 
+export const setCrest = (crest: string) => ({
+  payload: { crest },
+  type: 'SET_CREST'
+} as const)
+
 export const setRegister = (register: string) => ({
   payload: { register },
   type: 'SET_REGISTER'

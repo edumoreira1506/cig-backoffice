@@ -8,3 +8,8 @@ export enum PoultryGenders {
   MaleChicken = 'FRANGO',
   FemaleChicken = 'FRANGA'
 }
+
+export enum PoultryCrests {
+  Pea = 'ERVILHA',
+  Ball = 'BOLA'
+}
