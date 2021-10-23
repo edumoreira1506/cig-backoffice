@@ -4,7 +4,7 @@ import { Button } from '@cig-platform/ui'
 
 import { PoultryFormProps } from './PoultryForm'
 import { usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
-import { selectImages, selectBirthDate, selectColors, selectType, selectVideos, selectGender, selectName } from 'contexts/PoultryContext/poultrySelectors'
+import { selectImages, selectBirthDate, selectColors, selectType, selectVideos, selectGender, selectName, selectRegister } from 'contexts/PoultryContext/poultrySelectors'
 
 export interface PoultryFormSubmitButtonProps {
   onSubmit: PoultryFormProps['onSubmit']
@@ -20,6 +20,7 @@ export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitB
   const images = usePoultrySelector(selectImages)
   const gender = usePoultrySelector(selectGender)
   const name = usePoultrySelector(selectName)
+  const register = usePoultrySelector(selectRegister)
 
   const handleSubmit = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -31,7 +32,8 @@ export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitB
       birthDate: new Date(birthDate),
       images,
       gender,
-      name
+      name,
+      register,
     })
   }, [
     name,
@@ -41,7 +43,8 @@ export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitB
     videos,
     birthDate,
     images,
-    gender
+    gender,
+    register
   ])
 
   return (

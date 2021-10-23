@@ -13,7 +13,7 @@ import BackofficeBffService from 'services/BackofficeBffService'
 import useBreeder from 'hooks/useBreeder'
 import useAuth from 'hooks/useAuth'
 import { usePoultryDispatch } from 'contexts/PoultryContext/PoultryContext'
-import { setBirthDate, setColor, setGender, setImages, setType, setVideo } from 'contexts/PoultryContext/poultryActions'
+import { setBirthDate, setColor, setGender, setImages, setRegister, setType, setVideo } from 'contexts/PoultryContext/poultryActions'
 
 export default function EditPoultryContainer() {
   const { t } = useTranslation()
@@ -47,6 +47,10 @@ export default function EditPoultryContainer() {
 
         poultryDispatch(setType(poultry.type))
         poultryDispatch(setBirthDate(poultry.birthDate?.toString() ?? ''))
+
+        if (poultry.register) {
+          poultryDispatch(setRegister(poultry.register))
+        }
 
         if (poultry.name) {
           poultryDispatch(setName(poultry.name))

@@ -11,6 +11,7 @@ export interface PoultryImage extends IPoultryImage {
 
 export interface PoultryState extends DefaultState {
   type: string;
+  register: string;
   birthDate: string;
   colors: IPoultryColors;
   videos: IPoultryVideos;
@@ -23,6 +24,7 @@ export const INITIAL_STATE: PoultryState = {
   type: '',
   name: '',
   birthDate: '',
+  register: '',
   colors: {
     plumage: '#ffffff',
     shins: '#ffffff',
@@ -44,6 +46,11 @@ export default function breederReducer(
   action: PoultryActionTypes
 ): PoultryState {
   switch (action.type) {
+  case 'SET_REGISTER':
+    return {
+      ...state,
+      register: action.payload.register
+    }
   case 'SET_NAME':
     return {
       ...state,
