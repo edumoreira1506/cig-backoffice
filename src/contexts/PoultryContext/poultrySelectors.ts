@@ -9,3 +9,5 @@ export const selectColors = (state: PoultryState) => state.colors
 export const selectVideos = (state: PoultryState) => state.videos
 
 export const selectImages = (state: PoultryState) => state.images
+
+export const selectGender = (state: PoultryState) => state.gender
