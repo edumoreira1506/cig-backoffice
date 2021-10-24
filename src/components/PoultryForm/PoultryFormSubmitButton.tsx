@@ -15,6 +15,7 @@ import {
   selectRegister,
   selectCrest,
   selectDewlap,
+  selectTail
 } from 'contexts/PoultryContext/poultrySelectors'
 
 export interface PoultryFormSubmitButtonProps {
@@ -34,6 +35,7 @@ export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitB
   const register = usePoultrySelector(selectRegister)
   const crest = usePoultrySelector(selectCrest)
   const dewlap = usePoultrySelector(selectDewlap)
+  const tail = usePoultrySelector(selectTail)
 
   const handleSubmit = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -49,6 +51,7 @@ export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitB
       register,
       crest,
       dewlap,
+      tail
     })
   }, [
     name,
@@ -61,7 +64,8 @@ export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitB
     gender,
     register,
     crest,
-    dewlap
+    dewlap,
+    tail
   ])
 
   return (

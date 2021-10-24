@@ -7,6 +7,11 @@ export const setDewlap = (dewlap: string) => ({
   type: 'SET_DEWLAP'
 } as const)
 
+export const setTail = (tail: string) => ({
+  payload: { tail },
+  type: 'SET_TAIL'
+} as const)
+
 export const setType = (type: string) => ({
   payload: { type },
   type: 'SET_TYPE'

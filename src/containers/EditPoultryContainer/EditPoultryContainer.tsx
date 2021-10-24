@@ -21,6 +21,7 @@ import {
   setGender,
   setImages,
   setRegister,
+  setTail,
   setType,
   setVideo,
 } from 'contexts/PoultryContext/poultryActions'
@@ -57,6 +58,10 @@ export default function EditPoultryContainer() {
 
         poultryDispatch(setType(poultry.type))
         poultryDispatch(setBirthDate(poultry.birthDate?.toString() ?? ''))
+
+        if (poultry.tail) {
+          poultryDispatch(setTail(poultry.tail))
+        }
 
         if (poultry.crest) {
           poultryDispatch(setCrest(poultry.crest))
