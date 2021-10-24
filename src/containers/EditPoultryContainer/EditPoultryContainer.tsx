@@ -24,6 +24,7 @@ import {
   setTail,
   setType,
   setVideo,
+  setDescription,
 } from 'contexts/PoultryContext/poultryActions'
 
 export default function EditPoultryContainer() {
@@ -58,6 +59,10 @@ export default function EditPoultryContainer() {
 
         poultryDispatch(setType(poultry.type))
         poultryDispatch(setBirthDate(poultry.birthDate?.toString() ?? ''))
+
+        if (poultry.description) {
+          poultryDispatch(setDescription(poultry.description))
+        }
 
         if (poultry.tail) {
           poultryDispatch(setTail(poultry.tail))

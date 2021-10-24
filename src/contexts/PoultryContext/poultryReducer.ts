@@ -21,6 +21,7 @@ export interface PoultryState extends DefaultState {
   crest: string;
   dewlap: string;
   tail: string;
+  description: string;
 }
 
 export const INITIAL_STATE: PoultryState = {
@@ -28,6 +29,7 @@ export const INITIAL_STATE: PoultryState = {
   name: '',
   birthDate: '',
   crest: '',
+  description: '',
   register: '',
   tail: '',
   dewlap: '',
@@ -52,6 +54,11 @@ export default function breederReducer(
   action: PoultryActionTypes
 ): PoultryState {
   switch (action.type) {
+  case 'SET_DESCRIPTION':
+    return {
+      ...state,
+      description: action.payload.description
+    }
   case 'SET_DEWLAP':
     return {
       ...state,

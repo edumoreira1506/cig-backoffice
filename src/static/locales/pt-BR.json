@@ -46,6 +46,7 @@
   "poultry.fields.dewlap": "Tipo de barbela",
   "poultry.fields.name": "Nome",
   "poultry.fields.register": "Registro",
+  "poultry.fields.description": "Descrição",
   "poultry.fields.gender": "Sexagem da ave",
   "poultry.fields.birth-date": "Data de nascimento",
   "poultry.fields.colors": "Cores",
