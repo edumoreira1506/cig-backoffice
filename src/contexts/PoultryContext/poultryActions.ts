@@ -12,6 +12,11 @@ export const setTail = (tail: string) => ({
   type: 'SET_TAIL'
 } as const)
 
+export const setDescription = (description: string) => ({
+  payload: { description },
+  type: 'SET_DESCRIPTION'
+} as const)
+
 export const setType = (type: string) => ({
   payload: { type },
   type: 'SET_TYPE'

@@ -21,3 +21,5 @@ export const selectCrest = (state: PoultryState) => state.crest
 export const selectDewlap = (state: PoultryState) => state.dewlap
 
 export const selectTail = (state: PoultryState) => state.tail
+
+export const selectDescription = (state: PoultryState) => state.description
