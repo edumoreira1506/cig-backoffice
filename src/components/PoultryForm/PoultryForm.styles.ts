@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Colors, createMinWidthMediaQuery } from '@cig-platform/ui'
+import { Colors } from '@cig-platform/ui'
 
 export const StyledForm = styled.form`
   width: 100%;
@@ -7,14 +7,6 @@ export const StyledForm = styled.form`
 
   textarea {
     height: 100px;
-  }
-
-  textarea, input {
-    width: 96%;
-
-    ${createMinWidthMediaQuery(`
-      width: 98%;
-    `)}
   }
 `
 
