@@ -52,11 +52,17 @@ export default function ListPoultriesPage() {
     history.push(Routes.NewPoultry)
   }, [history])
 
-  const handleClickPoultry = useCallback((poultryId: string) => {
+  const handleNavigateToEditPoultry = useCallback((poultryId: string) => {
     if (poultryId) {
       history.push(Routes.EditPoultry.replace(':poultryId', poultryId))
     }
-  }, [poultries.male])
+  }, [history])
+
+  const handleNavigateToViewPoultry = useCallback((poultryId: string) => {
+    if (poultryId) {
+      history.push(Routes.ViewPoultry.replace(':poultryId', poultryId))
+    }
+  }, [history])
 
   useEffect(() => {
     if (!breeder) return
@@ -130,7 +136,9 @@ export default function ListPoultriesPage() {
             {t('poultry.fields.gender.matrix')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
-            onClickImage={handleClickPoultry}
+            onEditPoultry={handleNavigateToEditPoultry}
+            onClickImage={handleNavigateToViewPoultry}
+            onViewPoultry={handleNavigateToViewPoultry}
             poultries={poultries.matrix}
           />
         </StyledPoultriesCarousel>
@@ -141,7 +149,9 @@ export default function ListPoultriesPage() {
             {t('poultry.fields.gender.reproductive')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
-            onClickImage={handleClickPoultry}
+            onEditPoultry={handleNavigateToEditPoultry}
+            onClickImage={handleNavigateToViewPoultry}
+            onViewPoultry={handleNavigateToViewPoultry}
             poultries={poultries.reproductives}
           />
         </StyledPoultriesCarousel>
@@ -152,7 +162,9 @@ export default function ListPoultriesPage() {
             {t('poultry.fields.gender.male')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
-            onClickImage={handleClickPoultry}
+            onEditPoultry={handleNavigateToEditPoultry}
+            onClickImage={handleNavigateToViewPoultry}
+            onViewPoultry={handleNavigateToViewPoultry}
             poultries={poultries.male}
           />
         </StyledPoultriesCarousel>
@@ -163,7 +175,9 @@ export default function ListPoultriesPage() {
             {t('poultry.fields.gender.female')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
-            onClickImage={handleClickPoultry}
+            onEditPoultry={handleNavigateToEditPoultry}
+            onClickImage={handleNavigateToViewPoultry}
+            onViewPoultry={handleNavigateToViewPoultry}
             poultries={poultries.female}
           />
         </StyledPoultriesCarousel>

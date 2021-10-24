@@ -8,6 +8,7 @@ import EditPassword from 'pages/EditPassword/EditPassword'
 import ListPoultries from 'pages/ListPoultries/ListPoultries'
 import NewPoultry from 'pages/NewPoultry/NewPoultry'
 import EditPoultry from 'pages/EditPoultry/EditPoultry'
+import ViewPoultry from 'pages/ViewPoultry/ViewPoultry'
 
 export default function Router() {
   return (
@@ -18,6 +19,7 @@ export default function Router() {
       <Route exact path={Routes.ListPoultries} component={ListPoultries} />
       <Route exact path={Routes.NewPoultry} component={NewPoultry} />
       <Route exact path={Routes.EditPoultry} component={EditPoultry} />
+      <Route exact path={Routes.ViewPoultry} component={ViewPoultry} />
     </>
   )
 }

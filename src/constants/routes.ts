@@ -4,5 +4,6 @@ export enum Routes {
   EditPassword = '/editar-senha',
   ListPoultries = '/meu-plantel',
   NewPoultry = '/nova-ave',
-  EditPoultry = '/ave/:poultryId/editar'
+  EditPoultry = '/ave/:poultryId/editar',
+  ViewPoultry = '/ave/:poultryId/visualizar'
 }
