@@ -32,12 +32,14 @@ export interface EditBreederState extends DefaultState {
   profileImage: File;
   images: EditBreederImage[];
   mainVideo: string;
+  code: string;
   contacts: EditBreederContact[];
 }
 
 export const INITIAL_STATE = {
   name: '',
   description: '',
+  code: '',
   address: {
     city: '',
     province: '',
@@ -62,6 +64,8 @@ export default function editBreederReducer(
   action: EditBreederActionTypes
 ): EditBreederState {
   switch (action.type) {
+  case 'SET_CODE':
+    return { ...state, code: action.payload.code }
   case 'SET_CONTACTS':
     return { ...state, contacts: action.payload.contacts }
   case 'SET_IMAGES':

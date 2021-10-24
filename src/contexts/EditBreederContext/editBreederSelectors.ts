@@ -35,3 +35,5 @@ export const selectLongitude = (state: EditBreederState) => selectAddress(state)
 export const selectLatitude = (state: EditBreederState) => selectAddress(state).latitude
 
 export const selectContacts = (state: EditBreederState) => state.contacts
+
+export const selectCode = (state: EditBreederState) => state.code

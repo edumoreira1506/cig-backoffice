@@ -16,6 +16,7 @@ import {
   setImages,
   setMainVideo,
   setContacts,
+  setCode,
 } from '../../contexts/EditBreederContext/editBreederActions'
 import useEditBreeder from '../../hooks/useEditBreeder'
 import { success } from '../../utils/alert'
@@ -79,6 +80,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
       dispatch(setAddressField('province', breeder?.address?.province ?? ''))
       dispatch(setAddressField('zipcode', breeder?.address?.zipcode ?? ''))
       dispatch(setAddressField('street', breeder?.address?.street ?? ''))
+      dispatch(setCode(breeder?.code ?? ''))
 
       if (breeder?.address?.longitude) {
         dispatch(setAddressField('longitude', breeder.address.longitude))
