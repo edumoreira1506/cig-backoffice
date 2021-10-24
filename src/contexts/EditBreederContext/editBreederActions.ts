@@ -50,3 +50,8 @@ export const setContacts = (contacts: IBreederContact[]) => ({
   type: 'SET_CONTACTS',
   payload: { contacts }
 } as const)
+
+export const setCode = (code: string) => ({
+  payload: { code },
+  type: 'SET_CODE'
+} as const)
