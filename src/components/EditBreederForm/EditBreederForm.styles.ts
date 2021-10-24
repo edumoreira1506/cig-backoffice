@@ -9,14 +9,6 @@ export const StyledForm = styled.form`
     height: 100px;
   }
 
-  textarea, input {
-    width: 96%;
-
-    ${createMinWidthMediaQuery(`
-      width: 98%;
-    `)}
-  }
-
   [data-testid="loading"] {
     left: 28%;
 
