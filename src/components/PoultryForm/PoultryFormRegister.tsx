@@ -23,6 +23,7 @@ export default function PoultryFormRegister() {
       label={t('poultry.fields.register')}
       value={register}
       onChange={handleChangeRegister}
+      helpMessage={t('poultry.fields.register.help-text')}
     />
   )
 }

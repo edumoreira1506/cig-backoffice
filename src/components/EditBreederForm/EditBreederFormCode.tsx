@@ -23,6 +23,7 @@ export default function EditBreederFormCode() {
       value={code}
       onChange={handleChangeCode}
       disabled
+      helpMessage={t('breeder.fields.code.help-text')}
     />
   )
 }
