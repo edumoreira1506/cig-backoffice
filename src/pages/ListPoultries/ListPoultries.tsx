@@ -52,35 +52,9 @@ export default function ListPoultriesPage() {
     history.push(Routes.NewPoultry)
   }, [history])
 
-  const handleClickMatrixPoultry = useCallback((imageSrc: string) => {
-    const poultry = poultries.matrix.find((poultry) => poultry.mainImage.includes(imageSrc))
-
-    if (poultry) {
-      history.push(Routes.EditPoultry.replace(':poultryId', poultry.id))
-    }
-  }, [poultries.matrix])
-
-  const handleClickReproductivePoultry = useCallback((imageSrc: string) => {
-    const poultry = poultries.reproductives.find((poultry) => poultry.mainImage.includes(imageSrc))
-
-    if (poultry) {
-      history.push(Routes.EditPoultry.replace(':poultryId', poultry.id))
-    }
-  }, [poultries.reproductives])
-
-  const handleClickFemalePoultry = useCallback((imageSrc: string) => {
-    const poultry = poultries.female.find((poultry) => poultry.mainImage.includes(imageSrc))
-
-    if (poultry) {
-      history.push(Routes.EditPoultry.replace(':poultryId', poultry.id))
-    }
-  }, [poultries.female])
-
-  const handleClickMalePoultry = useCallback((imageSrc: string) => {
-    const poultry = poultries.male.find((poultry) => poultry.mainImage.includes(imageSrc))
-
-    if (poultry) {
-      history.push(Routes.EditPoultry.replace(':poultryId', poultry.id))
+  const handleClickPoultry = useCallback((poultryId: string) => {
+    if (poultryId) {
+      history.push(Routes.EditPoultry.replace(':poultryId', poultryId))
     }
   }, [poultries.male])
 
@@ -156,7 +130,7 @@ export default function ListPoultriesPage() {
             {t('poultry.fields.gender.matrix')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
-            onClickImage={handleClickMatrixPoultry}
+            onClickImage={handleClickPoultry}
             poultries={poultries.matrix}
           />
         </StyledPoultriesCarousel>
@@ -167,7 +141,7 @@ export default function ListPoultriesPage() {
             {t('poultry.fields.gender.reproductive')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
-            onClickImage={handleClickReproductivePoultry}
+            onClickImage={handleClickPoultry}
             poultries={poultries.reproductives}
           />
         </StyledPoultriesCarousel>
@@ -178,7 +152,7 @@ export default function ListPoultriesPage() {
             {t('poultry.fields.gender.male')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
-            onClickImage={handleClickMalePoultry}
+            onClickImage={handleClickPoultry}
             poultries={poultries.male}
           />
         </StyledPoultriesCarousel>
@@ -189,7 +163,7 @@ export default function ListPoultriesPage() {
             {t('poultry.fields.gender.female')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
-            onClickImage={handleClickFemalePoultry}
+            onClickImage={handleClickPoultry}
             poultries={poultries.female}
           />
         </StyledPoultriesCarousel>
