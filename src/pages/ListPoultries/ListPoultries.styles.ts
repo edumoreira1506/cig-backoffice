@@ -1,11 +1,9 @@
 import { createMinWidthMediaQuery } from '@cig-platform/ui'
 import styled from 'styled-components'
 
-export const StyledList = styled.ul``
+export const StyledPoultriesCarousel = styled.div``
 
-export const StyledItem = styled.li`
-  cursor: pointer;
-`
+export const StyledPoultriesCarouselTitle = styled.p``
 
 export const StyledNewPoultry = styled.div`
   ${createMinWidthMediaQuery(`

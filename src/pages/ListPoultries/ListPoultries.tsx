@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
 import { IPoultry } from '@cig-platform/types'
-import { Button } from '@cig-platform/ui'
+import { Button, PoultriesCarousel } from '@cig-platform/ui'
 
 import Main from 'components/Main/Main'
 import PageTitle from 'components/PageTitle/PageTitle'
@@ -13,7 +13,17 @@ import useBreeder from 'hooks/useBreeder'
 import useAuth from 'hooks/useAuth'
 import { Routes } from 'constants/routes'
 
-import { StyledItem, StyledList, StyledNewPoultry } from './ListPoultries.styles'
+import {
+  StyledNewPoultry,
+  StyledPoultriesCarousel,
+  StyledPoultriesCarouselTitle,
+} from './ListPoultries.styles'
+import { createImageUrl } from 'utils/s3'
+import { S3Folders, S3Subfolders } from 'constants/s3'
+
+interface Poultry extends IPoultry {
+  mainImage: string;
+}
 
 export default function ListPoultriesPage() {
   const { t } = useTranslation()
@@ -26,15 +36,27 @@ export default function ListPoultriesPage() {
 
   const { token } = useAuth()
 
-  const [poultries, setPoultries] = useState<IPoultry[]>([])
+  const [poultries, setPoultries] = useState<{
+    reproductives: Poultry[];
+    matrix: Poultry[];
+    male: Poultry[];
+    female: Poultry[];
+  }>({
+    reproductives: [],
+    male: [],
+    matrix: [],
+    female: []
+  })
 
   const handleNavigateToNewPoultry = useCallback(() => {
     history.push(Routes.NewPoultry)
   }, [history])
 
-  const handleNavigateToEditPoultry = (poultryId: string) => {
-    history.push(Routes.EditPoultry.replace(':poultryId', poultryId))
-  }
+  const handleClickPoultry = useCallback((poultryId: string) => {
+    if (poultryId) {
+      history.push(Routes.EditPoultry.replace(':poultryId', poultryId))
+    }
+  }, [poultries.male])
 
   useEffect(() => {
     if (!breeder) return
@@ -42,8 +64,50 @@ export default function ListPoultriesPage() {
     (async () => {
       try {
         const newPoultries = await BackofficeBffService.getPoultries(breeder.id, token)
+        const poultries = {
+          reproductives: newPoultries.reproductives.map((poultry) => ({
+            ...poultry,
+            mainImage: poultry.mainImage
+              ? createImageUrl({
+                folder: S3Folders.Poultries,
+                subfolder: S3Subfolders.Images,
+                fileName: poultry.mainImage
+              })
+              : 'https://farmhousepoultry.ca/wp-content/uploads/2016/03/Product_ImageComingSoon_592x592-380x400.jpg'
+          })),
+          matrix: newPoultries.matrix.map((poultry) => ({
+            ...poultry,
+            mainImage: poultry.mainImage
+              ? createImageUrl({
+                folder: S3Folders.Poultries,
+                subfolder: S3Subfolders.Images,
+                fileName: poultry.mainImage
+              })
+              : 'https://farmhousepoultry.ca/wp-content/uploads/2016/03/Product_ImageComingSoon_592x592-380x400.jpg'
+          })),
+          male: newPoultries.male.map((poultry) => ({
+            ...poultry,
+            mainImage: poultry.mainImage
+              ? createImageUrl({
+                folder: S3Folders.Poultries,
+                subfolder: S3Subfolders.Images,
+                fileName: poultry.mainImage
+              })
+              : 'https://farmhousepoultry.ca/wp-content/uploads/2016/03/Product_ImageComingSoon_592x592-380x400.jpg'
+          })),
+          female: newPoultries.female.map((poultry) => ({
+            ...poultry,
+            mainImage: poultry.mainImage
+              ? createImageUrl({
+                folder: S3Folders.Poultries,
+                subfolder: S3Subfolders.Images,
+                fileName: poultry.mainImage
+              })
+              : 'https://farmhousepoultry.ca/wp-content/uploads/2016/03/Product_ImageComingSoon_592x592-380x400.jpg'
+          })),
+        }
 
-        setPoultries(newPoultries)
+        setPoultries(poultries)
       } catch (error) {
         dispatch(setError(error))
       }
@@ -60,13 +124,50 @@ export default function ListPoultriesPage() {
           {t('create-poultry')}
         </Button>
       </StyledNewPoultry>
-      <StyledList>
-        {poultries.map((poultry) => (
-          <StyledItem key={poultry.id} onClick={() => handleNavigateToEditPoultry(poultry.id)}>
-            {poultry.id}
-          </StyledItem>
-        ))}
-      </StyledList>
+      {Boolean(poultries.matrix.length) && (
+        <StyledPoultriesCarousel>
+          <StyledPoultriesCarouselTitle>
+            {t('poultry.fields.gender.matrix')}
+          </StyledPoultriesCarouselTitle>
+          <PoultriesCarousel
+            onClickImage={handleClickPoultry}
+            poultries={poultries.matrix}
+          />
+        </StyledPoultriesCarousel>
+      )}
+      {Boolean(poultries.reproductives.length) && (
+        <StyledPoultriesCarousel>
+          <StyledPoultriesCarouselTitle>
+            {t('poultry.fields.gender.reproductive')}
+          </StyledPoultriesCarouselTitle>
+          <PoultriesCarousel
+            onClickImage={handleClickPoultry}
+            poultries={poultries.reproductives}
+          />
+        </StyledPoultriesCarousel>
+      )}
+      {Boolean(poultries.male.length) && (
+        <StyledPoultriesCarousel>
+          <StyledPoultriesCarouselTitle>
+            {t('poultry.fields.gender.male')}
+          </StyledPoultriesCarouselTitle>
+          <PoultriesCarousel
+            onClickImage={handleClickPoultry}
+            poultries={poultries.male}
+          />
+        </StyledPoultriesCarousel>
+      )}
+      {Boolean(poultries.female.length) && (
+        <StyledPoultriesCarousel>
+          <StyledPoultriesCarouselTitle>
+            {t('poultry.fields.gender.female')}
+          </StyledPoultriesCarouselTitle>
+          <PoultriesCarousel
+            onClickImage={handleClickPoultry}
+            poultries={poultries.female}
+          />
+        </StyledPoultriesCarousel>
+      )}
     </Main>
   )
 }
