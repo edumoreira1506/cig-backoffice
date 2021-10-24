@@ -2,6 +2,11 @@ export enum PoultryTypes {
   IndioGigante = 'INDIO_GIGANTE'
 }
 
+export enum PoultryColors {
+  Black = '#000000',
+  White = '#ffffff'
+}
+
 export enum PoultryGenders {
   Reproductive = 'REPRODUTOR',
   Matrix = 'MATRIZ',

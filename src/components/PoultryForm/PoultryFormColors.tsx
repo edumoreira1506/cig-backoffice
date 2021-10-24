@@ -1,12 +1,25 @@
 import React, { useCallback } from 'react'
-import { SketchPicker, ColorResult } from 'react-color'
 import { useTranslation } from 'react-i18next'
 
 import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import { selectColors } from 'contexts/PoultryContext/poultrySelectors'
 import { setColor } from 'contexts/PoultryContext/poultryActions'
+import { PoultryColors } from 'constants/poultry'
 
-import { StyledContainer, StyledPicker, StyledLabel, StyledItem } from './PoultryFormColors.styles'
+import { StyledContainer, StyledItem } from './PoultryFormColors.styles'
+import { Select } from '@cig-platform/ui'
+
+
+const availableColors = [
+  {
+    value: PoultryColors.Black,
+    label: 'Preto'
+  },
+  {
+    value: PoultryColors.White,
+    label: 'Branco'
+  }
+]
 
 export default function PoultryFormColors() {
   const { t } = useTranslation()
@@ -15,37 +28,49 @@ export default function PoultryFormColors() {
 
   const dispatch = usePoultryDispatch()
 
-  const handleChangePlumage = useCallback(({ hex }: ColorResult) => {
-    dispatch(setColor(hex, 'plumage'))
+  const handleChangePlumage = useCallback((newColor: string | number) => {
+    dispatch(setColor(String(newColor), 'plumage'))
   }, [dispatch])
 
-  const handleChangeShins =  useCallback(({ hex }: ColorResult) => {
-    dispatch(setColor(hex, 'shins'))
+  const handleChangeShins =  useCallback((newColor: string | number) => {
+    dispatch(setColor(String(newColor), 'shins'))
   }, [dispatch])
 
-  const handleChangeEyes =  useCallback(({ hex }: ColorResult) => {
-    dispatch(setColor(hex, 'eyes'))
+  const handleChangeEyes =  useCallback((newColor: string | number) => {
+    dispatch(setColor(String(newColor), 'eyes'))
   }, [dispatch])
 
   return (
     <StyledContainer>
       <StyledItem>
-        <StyledLabel>{t('poultry.fields.colors.plumage')}</StyledLabel>
-        <StyledPicker>
-          <SketchPicker color={colors.plumage} onChange={handleChangePlumage} />
-        </StyledPicker>
+        <Select
+          options={availableColors}
+          label={t('poultry.fields.colors.plumage')}
+          value={colors.plumage ?? ''}
+          onChange={handleChangePlumage}
+          showEmptyOption
+          emptyOptionText={t('common.select-the-color')}
+        />
       </StyledItem>
       <StyledItem>
-        <StyledLabel>{t('poultry.fields.colors.shins')}</StyledLabel>
-        <StyledPicker>
-          <SketchPicker color={colors.shins} onChange={handleChangeShins} />
-        </StyledPicker>
+        <Select
+          options={availableColors}
+          label={t('poultry.fields.colors.shins')}
+          value={colors.shins ?? ''}
+          onChange={handleChangeShins}
+          showEmptyOption
+          emptyOptionText={t('common.select-the-color')}
+        />
       </StyledItem>
       <StyledItem>
-        <StyledLabel>{t('poultry.fields.colors.eyes')}</StyledLabel>
-        <StyledPicker>
-          <SketchPicker color={colors.eyes} onChange={handleChangeEyes} />
-        </StyledPicker>
+        <Select
+          options={availableColors}
+          label={t('poultry.fields.colors.eyes')}
+          value={colors.eyes ?? ''}
+          onChange={handleChangeEyes}
+          showEmptyOption
+          emptyOptionText={t('common.select-the-color')}
+        />
       </StyledItem>
     </StyledContainer>
   )
