@@ -23,7 +23,10 @@ export default function ViewPoultry() {
     (async () => {
       const poultryData = await BackofficeBffService.getPoultry(breeder.id, poultryId, token)
 
-      setPoultry(poultryData)
+      setPoultry({
+        ...poultryData,
+        birthDate: new Date(poultryData.birthDate)
+      })
     })()
   }, [poultryId, token, breeder])
 
