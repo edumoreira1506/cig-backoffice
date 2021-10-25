@@ -25,7 +25,7 @@ $ yarn
 For run server local.
 
 ```console
-$ yarn start
+$ yarn dev
 ```
 
 ## Tests
