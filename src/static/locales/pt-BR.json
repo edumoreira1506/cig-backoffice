@@ -66,5 +66,10 @@
   "poultry.fields.videos.walking": "Vídeo Andando",
   "poultry.fields.colors.plumage": "Plumagem",
   "poultry.fields.colors.shins": "Canelas",
-  "poultry.fields.colors.eyes": "Olhos"
+  "poultry.fields.colors.eyes": "Olhos",
+  "register.fields.type.images": "Imagens",
+  "register.fields.type.measurement": "Medição",
+  "register.fields.type.weighing": "Pesagem",
+  "register.fields.type.vaccination": "Vacinação",
+  "register.fields.description": "Descrição"
 }

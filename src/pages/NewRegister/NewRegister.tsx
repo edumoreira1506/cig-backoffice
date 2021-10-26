@@ -1,7 +1,12 @@
 import React from 'react'
 
+import { RegisterProvider } from 'contexts/RegisterContext/RegisterContext'
+import NewRegisterContainer from 'containers/NewRegisterContainer/NewRegisterContainer'
+
 export default function NewRegister() {
   return (
-    <h1>NewRegister</h1>
+    <RegisterProvider>
+      <NewRegisterContainer />
+    </RegisterProvider>
   )
 }
