@@ -1,19 +1,24 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useHistory } from 'react-router'
 import { Button, Tabs } from '@cig-platform/ui'
 
 import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterContext/RegisterContext'
 import { setType } from 'contexts/RegisterContext/registerActions'
 import RegisterImageForm from 'components/RegisterImageForm/RegisterImageForm'
-
-import { StyledButton } from './NewRegisterContainer.styles'
 import useSaveRegister from 'hooks/useSaveRegister'
 import { selectType, selectDescription, selectFiles } from 'contexts/RegisterContext/registerSelectors'
+import { Routes } from 'constants/routes'
+import { success } from 'utils/alert'
+
+import { StyledButton } from './NewRegisterContainer.styles'
 
 const registerTypes = ['IMAGENS', 'MEDIÇÃO', 'PESAGEM', 'VACINAÇÃO']
 
 export default function NewRegisterContainer() {
   const { t } = useTranslation()
+
+  const history = useHistory()
 
   const type = useRegisterSelector(selectType)
   const description = useRegisterSelector(selectDescription)
@@ -25,7 +30,11 @@ export default function NewRegisterContainer() {
     dispatch(setType(registerTypes[newTypeIndex]))
   }, [dispatch])
 
-  const saveRegister = useSaveRegister({ onSuccess: () => alert('deu bão!') })
+  const handleSuccess = useCallback(() => {
+    success(t('common.saved'), t, () => history.push(Routes.ListPoultries))
+  }, [t, history])
+
+  const saveRegister = useSaveRegister({ onSuccess: handleSuccess })
 
   const handleSave = useCallback(() => {
     saveRegister({ description, type }, files.map(file => file.file))
