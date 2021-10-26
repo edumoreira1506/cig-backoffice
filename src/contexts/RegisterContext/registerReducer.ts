@@ -2,10 +2,15 @@ import { DefaultState, ActionType } from '@cig-platform/context'
 
 import * as actions from './registerActions'
 
+export interface IFile {
+  file: File;
+  src: string;
+}
+
 export interface RegisterState extends DefaultState {
   type: string;
   description: string;
-  files: File[]
+  files: IFile[]
 }
 
 export const INITIAL_STATE: RegisterState = {

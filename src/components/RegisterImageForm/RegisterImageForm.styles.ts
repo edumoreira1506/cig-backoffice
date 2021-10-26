@@ -5,7 +5,7 @@ export const StyledForm = styled.div`
   width: 100%;
 
   ${createMinWidthMediaQuery(`
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
   `)}
 `
