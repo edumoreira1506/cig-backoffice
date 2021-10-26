@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router'
+import { useTranslation } from 'react-i18next'
+import { Button } from '@cig-platform/ui'
 import { IPoultry, IPoultryImage } from '@cig-platform/types'
 
 import BackofficeBffService from 'services/BackofficeBffService'
@@ -8,8 +10,15 @@ import useAuth from 'hooks/useAuth'
 import MicroFrontend from 'components/MicroFrontend/MicroFrontend'
 import { POULTRY_PAGE_URL } from 'constants/url'
 
+import { StyledContainer, StyledButton } from './ViewPoultry.styles'
+import { Routes } from 'constants/routes'
+
 export default function ViewPoultry() {
   const [poultry, setPoultry] = useState<undefined | IPoultry & { images: IPoultryImage[] }>()
+
+  const { t } = useTranslation()
+
+  const history = useHistory()
 
   const { poultryId } = useParams<{ poultryId: string }>()
 
@@ -30,17 +39,28 @@ export default function ViewPoultry() {
     })()
   }, [poultryId, token, breeder])
 
+  const handleNavigateToNewRegisterPage = useCallback(() =>
+    history.push(Routes.NewRegister.replaceAll(':poultryId', poultryId))
+  , [history, poultryId])
+
   if (!poultry) return null
 
   return (
-    <div id="poultry-preview">
-      <MicroFrontend
-        name="PoultryPage"
-        host={POULTRY_PAGE_URL}
-        containerId="poultry-preview"
-        poultry={poultry}
-        images={poultry.images}
-      />
-    </div>
+    <StyledContainer>
+      <StyledButton>
+        <Button onClick={handleNavigateToNewRegisterPage}>
+          {t('new-register')}
+        </Button>
+      </StyledButton>
+      <div id="poultry-preview">
+        <MicroFrontend
+          name="PoultryPage"
+          host={POULTRY_PAGE_URL}
+          containerId="poultry-preview"
+          poultry={poultry}
+          images={poultry.images}
+        />
+      </div>
+    </StyledContainer>
   )
 }
