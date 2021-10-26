@@ -9,6 +9,7 @@ import ListPoultries from 'pages/ListPoultries/ListPoultries'
 import NewPoultry from 'pages/NewPoultry/NewPoultry'
 import EditPoultry from 'pages/EditPoultry/EditPoultry'
 import ViewPoultry from 'pages/ViewPoultry/ViewPoultry'
+import NewRegister from 'pages/NewRegister/NewRegister'
 
 export default function Router() {
   return (
@@ -20,6 +21,7 @@ export default function Router() {
       <Route exact path={Routes.NewPoultry} component={NewPoultry} />
       <Route exact path={Routes.EditPoultry} component={EditPoultry} />
       <Route exact path={Routes.ViewPoultry} component={ViewPoultry} />
+      <Route exact path={Routes.NewRegister} component={NewRegister} />
     </>
   )
 }
