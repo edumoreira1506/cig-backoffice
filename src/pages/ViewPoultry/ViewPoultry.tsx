@@ -34,7 +34,11 @@ export default function ViewPoultry() {
 
       setPoultry({
         ...poultryData,
-        birthDate: new Date(poultryData.birthDate)
+        birthDate: new Date(poultryData.birthDate),
+        registers: poultryData.registers.map((register) => ({
+          ...register,
+          date: new Date(register.date),
+        }))
       })
     })()
   }, [poultryId, token, breeder])
