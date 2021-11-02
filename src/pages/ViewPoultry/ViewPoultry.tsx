@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@cig-platform/ui'
-import { IPoultry, IPoultryImage } from '@cig-platform/types'
+import { IPoultry, IPoultryImage, IPoultryRegister } from '@cig-platform/types'
 
 import BackofficeBffService from 'services/BackofficeBffService'
 import useBreeder from 'hooks/useBreeder'
@@ -14,7 +14,7 @@ import { StyledContainer, StyledButton } from './ViewPoultry.styles'
 import { Routes } from 'constants/routes'
 
 export default function ViewPoultry() {
-  const [poultry, setPoultry] = useState<undefined | IPoultry & { images: IPoultryImage[] }>()
+  const [poultry, setPoultry] = useState<undefined | IPoultry & { images: IPoultryImage[]; registers: IPoultryRegister[]; }>()
 
   const { t } = useTranslation()
 
@@ -59,6 +59,7 @@ export default function ViewPoultry() {
           containerId="poultry-preview"
           poultry={poultry}
           images={poultry.images}
+          registers={poultry.registers}
         />
       </div>
     </StyledContainer>

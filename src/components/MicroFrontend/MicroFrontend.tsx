@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { IBreeder, IPoultry, IPoultryImage } from '@cig-platform/types'
+import { IBreeder, IPoultry, IPoultryImage, IPoultryRegister } from '@cig-platform/types'
 
 export interface MicroFrontendProps {
   name: string;
@@ -8,6 +8,7 @@ export interface MicroFrontendProps {
   breeder?: Partial<IBreeder>;
   poultry?: Partial<IPoultry>;
   images?: IPoultryImage[];
+  registers?: IPoultryRegister[];
 }
 
 export default function MicroFrontend({
@@ -16,7 +17,8 @@ export default function MicroFrontend({
   containerId,
   breeder,
   poultry,
-  images
+  images,
+  registers
 }: MicroFrontendProps) {
   useEffect(() => {
     const renderMicroFrontend = () => {
@@ -27,8 +29,8 @@ export default function MicroFrontend({
           windowRender(containerId, breeder)
         }
 
-        if (poultry && images) {
-          windowRender(containerId, poultry, images)
+        if (poultry && images && registers) {
+          windowRender(containerId, poultry, images, registers)
         }
       }
     }
