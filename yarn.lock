@@ -1278,7 +1278,7 @@
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/types@0.0.16":
+"@cig-platform/types@0.0.16", "@cig-platform/types@^0.0.16":
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.16.tgz#26af7c9bb6d2a6b2303f389309f3c0a10e87f0f8"
   integrity sha512-bWRWW/wlNm+/lsogAMKbas5sEkcheQ3FQ1p3qTeEbYK+IcZnjya59gJC+EKcPfeJYw7ii/7PQngd93SVmenLWA==
@@ -1289,13 +1289,6 @@
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.8.tgz#60165a722590e4690b26788bd31aca53b29ddbb5"
   integrity sha512-iNvyHcLUu3fxvUvzFmKa7kBTYtu3TBKI1aH3679HWJpC2QF0i/GJQSdz0rI9chPhbMHMU3GQufOoVitVzf+ybw==
-  dependencies:
-    express "^4.17.1"
-
-"@cig-platform/types@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.15.tgz#757a0364369aae6f23daa2852c28d7091cc1ae75"
-  integrity sha512-Skn/jGIUfN0h/9VUHe+dfJ55ZwxtUlyC3oAmhhLFp0IdosjC3ormllRhl1cSnT1bY0Vdnpz9s2ZyX30/nx1WFA==
   dependencies:
     express "^4.17.1"
 
