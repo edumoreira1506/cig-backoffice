@@ -8,6 +8,11 @@ export enum PoultryColors {
 }
 
 export enum PoultryGenders {
+  Female = 'FEMEA',
+  Male = 'MACHO',
+}
+
+export enum PoultryGenderCategories {
   Reproductive = 'REPRODUTOR',
   Matrix = 'MATRIZ',
   MaleChicken = 'FRANGO',

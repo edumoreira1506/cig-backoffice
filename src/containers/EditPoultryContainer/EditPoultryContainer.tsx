@@ -25,6 +25,7 @@ import {
   setType,
   setVideo,
   setDescription,
+  setGenderCategory,
 } from 'contexts/PoultryContext/poultryActions'
 
 export default function EditPoultryContainer() {
@@ -59,6 +60,7 @@ export default function EditPoultryContainer() {
 
         poultryDispatch(setType(poultry.type))
         poultryDispatch(setBirthDate(poultry.birthDate?.toString() ?? ''))
+        poultryDispatch(setGenderCategory(poultry.genderCategory))
 
         if (poultry.description) {
           poultryDispatch(setDescription(poultry.description))

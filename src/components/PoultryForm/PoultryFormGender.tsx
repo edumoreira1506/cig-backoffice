@@ -9,21 +9,13 @@ import { setGender } from 'contexts/PoultryContext/poultryActions'
 
 const availableGenders = [
   {
-    value: PoultryGenders.FemaleChicken,
-    label: 'Franga'
+    value: PoultryGenders.Male,
+    label: 'Macho'
   },
   {
-    value: PoultryGenders.MaleChicken,
-    label: 'Frango'
+    value: PoultryGenders.Female,
+    label: 'Fêmea'
   },
-  {
-    value: PoultryGenders.Matrix,
-    label: 'Matriz'
-  },
-  {
-    value: PoultryGenders.Reproductive,
-    label: 'Reprodutor'
-  }
 ]
 
 export interface PoultryFormGenderProps {
