@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IPoultry } from '@cig-platform/types'
 
@@ -13,12 +13,17 @@ import PoultryFormVideos from './PoultryFormVideos'
 import PoultryFormSubmitButton from './PoultryFormSubmitButton'
 import PoultryFormImages from './PoultryFormImages'
 import PoultryFormGender from './PoultryFormGender'
+import PoultryFormGenderCategory from './PoultryFormGenderCategory'
 import PoultryFormName from './PoultryFormName'
 import PoultryFormRegister from './PoultryFormRegister'
 import PoultryFormCrest from './PoultryFormCrest'
 import PoultryFormDewlap from './PoultryFormDewlap'
 import PoultryFormTail from './PoultryFormTail'
 import PoultryFormDescription from './PoultryFormDescription'
+import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
+import { selectGender } from 'contexts/PoultryContext/poultrySelectors'
+import { PoultryGenderCategories, PoultryGenders } from 'constants/poultry'
+import { setAvailableGenderCategories } from 'contexts/PoultryContext/poultryActions'
 
 export interface PoultryFormProps {
   onSubmit: (poultry: Partial<IPoultry> & { images: PoultryState['images'] }) => void;
@@ -28,6 +33,20 @@ export interface PoultryFormProps {
 export default function PoultryForm({ onSubmit, disabledFields }: PoultryFormProps) {
   const { t } = useTranslation()
 
+  const gender = usePoultrySelector(selectGender)
+
+  const dispatch = usePoultryDispatch()
+
+  useEffect(() => {
+    if (gender === PoultryGenders.Female) {
+      dispatch(setAvailableGenderCategories([PoultryGenderCategories.FemaleChicken, PoultryGenderCategories.Matrix]))
+    }
+
+    if (gender === PoultryGenders.Male) {
+      dispatch(setAvailableGenderCategories([PoultryGenderCategories.MaleChicken, PoultryGenderCategories.Reproductive]))
+    }
+  }, [gender, dispatch])
+
   return (
     <StyledForm onSubmit={preventDefaultHandler}>
       <StyledFormField>
@@ -35,6 +54,9 @@ export default function PoultryForm({ onSubmit, disabledFields }: PoultryFormPro
       </StyledFormField>
       <StyledFormField>
         <PoultryFormGender disabled={disabledFields?.includes('gender')} />
+      </StyledFormField>
+      <StyledFormField>
+        <PoultryFormGenderCategory />
       </StyledFormField>
       <StyledFormField>
         <PoultryFormCrest />

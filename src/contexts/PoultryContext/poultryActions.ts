@@ -47,6 +47,16 @@ export const setCrest = (crest: string) => ({
   type: 'SET_CREST'
 } as const)
 
+export const setGenderCategory = (genderCategory: string) => ({
+  payload: { genderCategory },
+  type: 'SET_GENDER_CATEGORY'
+} as const)
+
+export const setAvailableGenderCategories = (genderCategories: string[]) => ({
+  payload: { genderCategories },
+  type: 'SET_AVAILABLE_GENDER_CATEGORIES'
+} as const)
+
 export const setRegister = (register: string) => ({
   payload: { register },
   type: 'SET_REGISTER'
