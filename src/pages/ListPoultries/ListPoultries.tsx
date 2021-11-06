@@ -133,7 +133,7 @@ export default function ListPoultriesPage() {
       {Boolean(poultries.matrix.length) && (
         <StyledPoultriesCarousel>
           <StyledPoultriesCarouselTitle>
-            {t('poultry.fields.gender.matrix')}
+            {t('poultry.fields.gender-category.matrix')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
             onEditPoultry={handleNavigateToEditPoultry}
@@ -146,7 +146,7 @@ export default function ListPoultriesPage() {
       {Boolean(poultries.reproductives.length) && (
         <StyledPoultriesCarousel>
           <StyledPoultriesCarouselTitle>
-            {t('poultry.fields.gender.reproductive')}
+            {t('poultry.fields.gender-category.reproductive')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
             onEditPoultry={handleNavigateToEditPoultry}
@@ -159,7 +159,7 @@ export default function ListPoultriesPage() {
       {Boolean(poultries.male.length) && (
         <StyledPoultriesCarousel>
           <StyledPoultriesCarouselTitle>
-            {t('poultry.fields.gender.male')}
+            {t('poultry.fields.gender-category.male')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
             onEditPoultry={handleNavigateToEditPoultry}
@@ -172,7 +172,7 @@ export default function ListPoultriesPage() {
       {Boolean(poultries.female.length) && (
         <StyledPoultriesCarousel>
           <StyledPoultriesCarouselTitle>
-            {t('poultry.fields.gender.female')}
+            {t('poultry.fields.gender-category.female')}
           </StyledPoultriesCarouselTitle>
           <PoultriesCarousel
             onEditPoultry={handleNavigateToEditPoultry}
