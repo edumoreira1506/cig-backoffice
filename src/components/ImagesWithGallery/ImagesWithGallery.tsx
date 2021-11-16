@@ -5,6 +5,8 @@ import Modal from '../Modal/Modal'
 import { useTranslation } from 'react-i18next'
 import { createImageUrl } from 'utils/s3'
 
+import 'react-image-gallery/styles/css/image-gallery.css'
+
 export interface ImagesWithGalleryProps {
   images: {
     isNew?: boolean;
