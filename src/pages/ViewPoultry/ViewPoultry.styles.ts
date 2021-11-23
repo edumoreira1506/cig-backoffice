@@ -8,7 +8,7 @@ export const StyledButton = styled.div`
   margin-bottom: 3px;
 
   ${createMinWidthMediaQuery(`
-    width: 49%;
+    width: 32.5%;
   `)}
 `
 
