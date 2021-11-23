@@ -56,7 +56,7 @@ export default function EditPoultryContainer() {
       try {
         appDispatch(setIsLoading(true))
 
-        const poultry = await BackofficeBffService.getPoultry(breeder.id, poultryId, token)
+        const { poultry } = await BackofficeBffService.getPoultry(breeder.id, poultryId, token)
 
         poultryDispatch(setType(poultry.type))
         poultryDispatch(setBirthDate(poultry.birthDate?.toString() ?? ''))

@@ -34,3 +34,23 @@ export const info = (
     notConfirmedCallback()
   }
 })
+
+export const withInput = async (
+  message: string,
+  t: TFunction,
+  callback: (word: string) => void
+) => {
+  const { value } = await Swal.fire({
+    title: message,
+    input: 'text',
+    inputValue: '',
+    showCancelButton: true,
+    inputValidator: (string) => {
+      if (!string) return 'Teste'
+
+      return null
+    },
+  })
+
+  if (value) return callback(value)
+}

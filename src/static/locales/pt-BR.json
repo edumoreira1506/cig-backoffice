@@ -45,6 +45,7 @@
   "new-poultry": "Nova ave",
   "new-register": "Atualizar informações da ave",
   "edit-poultry": "Editar ave",
+  "announce-poultry": "Anúnciar ave",
   "poultry.fields.type": "Raça da ave",
   "poultry.fields.tail": "Rabo da ave",
   "poultry.fields.crest": "Tipo de crista",
@@ -75,5 +76,7 @@
   "register.fields.type.measurement": "Medição",
   "register.fields.type.weighing": "Pesagem",
   "register.fields.type.vaccination": "Vacinação",
-  "register.fields.description": "Descrição"
+  "register.fields.description": "Descrição",
+  "create-poultry-advertising": "Por qual valor gostaria de anúnciar essa ave?",
+  "save-poultry-advertising-success": "Anúncio realizado com sucesso!"
 }
