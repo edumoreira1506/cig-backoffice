@@ -118,6 +118,7 @@ export default function ViewPoultry() {
           poultry={poultry}
           images={poultry.images}
           registers={poultry.registers}
+          advertising={advertising}
         />
       </div>
     </StyledContainer>
