@@ -10,7 +10,11 @@ import useAuth from 'hooks/useAuth'
 import MicroFrontend from 'components/MicroFrontend/MicroFrontend'
 import { POULTRY_PAGE_URL } from 'constants/url'
 
-import { StyledContainer, StyledButton } from './ViewPoultry.styles'
+import {
+  StyledContainer,
+  StyledButton,
+  StyledButtons
+} from './ViewPoultry.styles'
 import { Routes } from 'constants/routes'
 
 export default function ViewPoultry() {
@@ -47,15 +51,26 @@ export default function ViewPoultry() {
     history.push(Routes.NewRegister.replaceAll(':poultryId', poultryId))
   , [history, poultryId])
 
+  const handleNavigateToEditPage = useCallback(() =>
+    history.push(Routes.EditPoultry.replaceAll(':poultryId', poultryId))
+  , [history, poultryId])
+
   if (!poultry) return null
 
   return (
     <StyledContainer>
-      <StyledButton>
-        <Button onClick={handleNavigateToNewRegisterPage}>
-          {t('new-register')}
-        </Button>
-      </StyledButton>
+      <StyledButtons>
+        <StyledButton>
+          <Button onClick={handleNavigateToNewRegisterPage}>
+            {t('new-register')}
+          </Button>
+        </StyledButton>
+        <StyledButton>
+          <Button onClick={handleNavigateToEditPage}>
+            {t('edit-poultry')}
+          </Button>
+        </StyledButton>
+      </StyledButtons>
       <div id="poultry-preview">
         <MicroFrontend
           name="PoultryPage"
