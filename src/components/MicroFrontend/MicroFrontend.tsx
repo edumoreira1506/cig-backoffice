@@ -30,8 +30,8 @@ export default function MicroFrontend({
         if (breeder) {
           windowRender(containerId, breeder)
         }
-
-        if (poultry && images && registers && advertising) {
+        
+        if (poultry && images && registers) {
           windowRender(containerId, poultry, images, registers, advertising)
         }
       }
