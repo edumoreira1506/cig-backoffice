@@ -23,6 +23,7 @@ import useRemovePoultryAdvertising from 'hooks/useRemovePoultryAdvertising'
 export default function ViewPoultry() {
   const [poultry, setPoultry] = useState<undefined | IPoultry & { images: IPoultryImage[]; registers: IPoultryRegister[]; }>()
   const [advertising, setAdvertising] = useState<undefined | IAdvertising>()
+  const [isLoading, setIsLoading] = useState(true)
 
   const { t } = useTranslation()
 
@@ -48,6 +49,8 @@ export default function ViewPoultry() {
 
   useEffect(() => {
     if (!poultryId || !breeder) return
+
+    setIsLoading(true);
    
     (async () => {
       const { poultry: poultryData, advertisings } = await BackofficeBffService.getPoultry(breeder.id, poultryId, token)
@@ -62,6 +65,7 @@ export default function ViewPoultry() {
       })
 
       setAdvertising(advertisings?.[0])
+      setIsLoading(false)
     })()
   }, [poultryId, token, breeder])
 
@@ -128,17 +132,19 @@ export default function ViewPoultry() {
           </Button>
         </StyledButton>
       </StyledButtons>
-      <div id="poultry-preview">
-        <MicroFrontend
-          name="PoultryPage"
-          host={POULTRY_PAGE_URL}
-          containerId="poultry-preview"
-          poultry={poultry}
-          images={poultry.images}
-          registers={poultry.registers}
-          advertising={advertising}
-        />
-      </div>
+      {!isLoading && (
+        <div id="poultry-preview">
+          <MicroFrontend
+            name="PoultryPage"
+            host={POULTRY_PAGE_URL}
+            containerId="poultry-preview"
+            poultry={poultry}
+            images={poultry.images}
+            registers={poultry.registers}
+            advertising={advertising}
+          />
+        </div>
+      )}
     </StyledContainer>
   )
 }
