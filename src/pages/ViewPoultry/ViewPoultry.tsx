@@ -101,8 +101,8 @@ export default function ViewPoultry() {
   }, [t, saveAdvertising])
 
   const handleRemoveAdvertising = useCallback(() => {
-    info(t('remove-poultry-advertising'), t, () => removeAdvertising())
-  }, [t])
+    info(t('remove-poultry-advertising'), t, removeAdvertising)
+  }, [t, removeAdvertising])
 
   const hasAdvertising = Boolean(advertising)
 
