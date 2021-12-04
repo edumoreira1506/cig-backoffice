@@ -16,12 +16,14 @@ import {
   StyledButtons
 } from './ViewPoultry.styles'
 import { Routes } from 'constants/routes'
-import { success, withInput } from 'utils/alert'
+import { success, withInput, info } from 'utils/alert'
 import useSavePoultryAdvertising from 'hooks/useSavePoultryAdvertising'
+import useRemovePoultryAdvertising from 'hooks/useRemovePoultryAdvertising'
 
 export default function ViewPoultry() {
   const [poultry, setPoultry] = useState<undefined | IPoultry & { images: IPoultryImage[]; registers: IPoultryRegister[]; }>()
   const [advertising, setAdvertising] = useState<undefined | IAdvertising>()
+  const [isLoading, setIsLoading] = useState(true)
 
   const { t } = useTranslation()
 
@@ -33,14 +35,22 @@ export default function ViewPoultry() {
 
   const { token } = useAuth()
 
-  const handleSaveAdvertisingSuccess = useCallback(() => {
-    success(t('save-poultry-advertising-success'), t, () => window.location.reload())
+  const handleSaveSuccess = useCallback(() => {
+    success(t('action-success'), t, () => window.location.reload())
   }, [])
 
-  const saveAdvertising = useSavePoultryAdvertising({ poultryId: poultry?.id ?? '', onSuccess: handleSaveAdvertisingSuccess })
+  const saveAdvertising = useSavePoultryAdvertising({ poultryId: poultry?.id ?? '', onSuccess: handleSaveSuccess })
+
+  const removeAdvertising = useRemovePoultryAdvertising({
+    poultryId,
+    advertisingId: advertising?.id ?? '',
+    onSuccess: handleSaveSuccess,
+  })
 
   useEffect(() => {
     if (!poultryId || !breeder) return
+
+    setIsLoading(true);
    
     (async () => {
       const { poultry: poultryData, advertisings } = await BackofficeBffService.getPoultry(breeder.id, poultryId, token)
@@ -55,6 +65,7 @@ export default function ViewPoultry() {
       })
 
       setAdvertising(advertisings?.[0])
+      setIsLoading(false)
     })()
   }, [poultryId, token, breeder])
 
@@ -89,6 +100,17 @@ export default function ViewPoultry() {
     })
   }, [t, saveAdvertising])
 
+  const handleRemoveAdvertising = useCallback(() => {
+    info(t('remove-poultry-advertising'), t, removeAdvertising)
+  }, [t, removeAdvertising])
+
+  const hasAdvertising = Boolean(advertising)
+
+  const handleClickAdvertisingButton = useCallback(() =>
+    hasAdvertising ? handleRemoveAdvertising() : handleAnnouncePoultry(),
+  [hasAdvertising, handleRemoveAdvertising, handleAnnouncePoultry]
+  )
+
   if (!poultry) return null
 
   return (
@@ -105,22 +127,24 @@ export default function ViewPoultry() {
           </Button>
         </StyledButton>
         <StyledButton>
-          <Button disabled={Boolean(advertising)} onClick={handleAnnouncePoultry}>
-            {t('announce-poultry')}
+          <Button onClick={handleClickAdvertisingButton}>
+            {t(hasAdvertising ? 'remove-poultry' : 'announce-poultry')}
           </Button>
         </StyledButton>
       </StyledButtons>
-      <div id="poultry-preview">
-        <MicroFrontend
-          name="PoultryPage"
-          host={POULTRY_PAGE_URL}
-          containerId="poultry-preview"
-          poultry={poultry}
-          images={poultry.images}
-          registers={poultry.registers}
-          advertising={advertising}
-        />
-      </div>
+      {!isLoading && (
+        <div id="poultry-preview">
+          <MicroFrontend
+            name="PoultryPage"
+            host={POULTRY_PAGE_URL}
+            containerId="poultry-preview"
+            poultry={poultry}
+            images={poultry.images}
+            registers={poultry.registers}
+            advertising={advertising}
+          />
+        </div>
+      )}
     </StyledContainer>
   )
 }
