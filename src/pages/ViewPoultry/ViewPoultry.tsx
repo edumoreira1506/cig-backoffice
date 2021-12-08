@@ -1,29 +1,41 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@cig-platform/ui'
-import { IAdvertising, IPoultry, IPoultryImage, IPoultryRegister } from '@cig-platform/types'
+import { Button, Modal, Autocomplete } from '@cig-platform/ui'
+import {
+  IAdvertising,
+  IBreeder,
+  IPoultry,
+  IPoultryImage,
+  IPoultryRegister,
+} from '@cig-platform/types'
+import { useDebouncedEffect } from '@cig-platform/hooks'
 
 import BackofficeBffService from 'services/BackofficeBffService'
+import ContentSearchService from 'services/ContentSearchService'
 import useBreeder from 'hooks/useBreeder'
 import useAuth from 'hooks/useAuth'
 import MicroFrontend from 'components/MicroFrontend/MicroFrontend'
 import { POULTRY_PAGE_URL } from 'constants/url'
+import { Routes } from 'constants/routes'
+import { success, withInput, info } from 'utils/alert'
+import useSavePoultryAdvertising from 'hooks/useSavePoultryAdvertising'
+import useRemovePoultryAdvertising from 'hooks/useRemovePoultryAdvertising'
 
 import {
   StyledContainer,
   StyledButton,
   StyledButtons
 } from './ViewPoultry.styles'
-import { Routes } from 'constants/routes'
-import { success, withInput, info } from 'utils/alert'
-import useSavePoultryAdvertising from 'hooks/useSavePoultryAdvertising'
-import useRemovePoultryAdvertising from 'hooks/useRemovePoultryAdvertising'
 
 export default function ViewPoultry() {
   const [poultry, setPoultry] = useState<undefined | IPoultry & { images: IPoultryImage[]; registers: IPoultryRegister[]; }>()
   const [advertising, setAdvertising] = useState<undefined | IAdvertising>()
   const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingBreeders, setIsLoadingBreeders] = useState(false)
+  const [showTrasnferModal, setShowTransferModal] = useState(false)
+  const [searchedBreeder, setSearchedBreeder] = useState('')
+  const [breeders, setBreeders] = useState<IBreeder[]>([])
 
   const { t } = useTranslation()
 
@@ -32,6 +44,8 @@ export default function ViewPoultry() {
   const { poultryId } = useParams<{ poultryId: string }>()
 
   const breeder = useBreeder()
+
+  const breederNames = useMemo(() => breeders.map(breeder => breeder.name), [breeders])
 
   const { token } = useAuth()
 
@@ -68,6 +82,29 @@ export default function ViewPoultry() {
       setIsLoading(false)
     })()
   }, [poultryId, token, breeder])
+
+  useDebouncedEffect(() => {
+    (async () => {
+      if (!breeder || !searchedBreeder) {
+        setBreeders([])
+
+        return
+      }
+
+      try {
+        setIsLoadingBreeders(true)
+
+        const breedersData = await ContentSearchService.getBreeders(searchedBreeder)
+        const filteredBreeders = breedersData?.breeders.filter((b) => b.id !== breeder.id)
+
+        setBreeders(filteredBreeders)
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setIsLoadingBreeders(false)
+      }
+    })()
+  }, 1500, [searchedBreeder, breeder])
 
   const handleNavigateToNewRegisterPage = useCallback(() =>
     history.push(Routes.NewRegister.replaceAll(':poultryId', poultryId))
@@ -111,10 +148,23 @@ export default function ViewPoultry() {
   [hasAdvertising, handleRemoveAdvertising, handleAnnouncePoultry]
   )
 
+  const handleShowTransferModal = useCallback(() => setShowTransferModal(true), [])
+  const handleCloseTransferModal = useCallback(() => setShowTransferModal(false), [])
+
   if (!poultry) return null
 
   return (
     <StyledContainer>
+      <Modal isOpen={showTrasnferModal} onClose={handleCloseTransferModal}>
+        <Autocomplete
+          onChange={setSearchedBreeder}
+          items={breederNames} 
+          inputProps={{
+            placeholder: t('search-breeder'),
+            isLoading: isLoadingBreeders
+          }}
+        />
+      </Modal>
       <StyledButtons>
         <StyledButton>
           <Button onClick={handleNavigateToNewRegisterPage}>
@@ -129,6 +179,11 @@ export default function ViewPoultry() {
         <StyledButton>
           <Button onClick={handleClickAdvertisingButton}>
             {t(hasAdvertising ? 'remove-poultry' : 'announce-poultry')}
+          </Button>
+        </StyledButton>
+        <StyledButton>
+          <Button onClick={handleShowTransferModal}>
+            {t('transfer-poultry')}
           </Button>
         </StyledButton>
       </StyledButtons>
