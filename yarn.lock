@@ -1465,10 +1465,10 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
 
-"@cig-platform/ui@^0.1.67":
-  version "0.1.67"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.67.tgz#60277f2ebc7845f6be5101b2573a29fb5ad92662"
-  integrity sha512-GzJMaynpxNWdP7rDRvThx0bYXY6E1T2qHkcvHtuKn6F5RatXrRg2HWq8WMabfgnue6ZsuXsDgU0XwCiuaJ/IrA==
+"@cig-platform/ui@^0.1.68":
+  version "0.1.68"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.68.tgz#7529a56261793308ac06b75a584804cce29c219f"
+  integrity sha512-NV4xVXOPMIzpwwvUcfIbiZnf6X9MoWB7yo1ncvzj4V4SlTLCE10+4JQ/lw8NGcBi1XWhofM3zGARcI9NSvr2kA==
   dependencies:
     "@cig-platform/types" "^0.0.14"
     "@testing-library/jest-dom" "^5.11.4"
