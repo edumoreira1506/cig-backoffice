@@ -25,8 +25,11 @@ import useRemovePoultryAdvertising from 'hooks/useRemovePoultryAdvertising'
 import {
   StyledContainer,
   StyledButton,
-  StyledButtons
+  StyledButtons,
+  StyledTransferButton,
+  StyledAutocomplete
 } from './ViewPoultry.styles'
+import useTransferPoultry from 'hooks/useTransferPoultry'
 
 export default function ViewPoultry() {
   const [poultry, setPoultry] = useState<undefined | IPoultry & { images: IPoultryImage[]; registers: IPoultryRegister[]; }>()
@@ -47,11 +50,20 @@ export default function ViewPoultry() {
 
   const breederNames = useMemo(() => breeders.map(breeder => breeder.name), [breeders])
 
+  const selectedBreeder = useMemo(() => breeders.find(breeder => breeder.name === searchedBreeder), [
+    searchedBreeder,
+    breeders
+  ])
+
   const { token } = useAuth()
 
   const handleSaveSuccess = useCallback(() => {
     success(t('action-success'), t, () => window.location.reload())
-  }, [])
+  }, [t])
+
+  const handleTransferPoultrySuccess = useCallback(() => {
+    success(t('action-success'), t, () => history.push(Routes.ListPoultries))
+  }, [t, history])
 
   const saveAdvertising = useSavePoultryAdvertising({ poultryId: poultry?.id ?? '', onSuccess: handleSaveSuccess })
 
@@ -59,6 +71,11 @@ export default function ViewPoultry() {
     poultryId,
     advertisingId: advertising?.id ?? '',
     onSuccess: handleSaveSuccess,
+  })
+
+  const transferPoultry = useTransferPoultry({
+    onSuccess: handleTransferPoultrySuccess,
+    poultryId: poultryId
   })
 
   useEffect(() => {
@@ -148,6 +165,12 @@ export default function ViewPoultry() {
   [hasAdvertising, handleRemoveAdvertising, handleAnnouncePoultry]
   )
 
+  const handleTransferPoultry = useCallback(() => {
+    if (!selectedBreeder) return
+
+    transferPoultry(selectedBreeder.id)
+  }, [selectedBreeder, transferPoultry])
+
   const handleShowTransferModal = useCallback(() => setShowTransferModal(true), [])
   const handleCloseTransferModal = useCallback(() => setShowTransferModal(false), [])
 
@@ -156,14 +179,21 @@ export default function ViewPoultry() {
   return (
     <StyledContainer>
       <Modal isOpen={showTrasnferModal} onClose={handleCloseTransferModal}>
-        <Autocomplete
-          onChange={setSearchedBreeder}
-          items={breederNames} 
-          inputProps={{
-            placeholder: t('search-breeder'),
-            isLoading: isLoadingBreeders
-          }}
-        />
+        <StyledAutocomplete>
+          <Autocomplete
+            onChange={setSearchedBreeder}
+            items={breederNames} 
+            inputProps={{
+              placeholder: t('search-breeder'),
+              isLoading: isLoadingBreeders
+            }}
+          />
+        </StyledAutocomplete>
+        <StyledTransferButton>
+          <Button onClick={handleTransferPoultry} disabled={!selectedBreeder}>
+            {t('confirm-transfer')}
+          </Button>
+        </StyledTransferButton>
       </Modal>
       <StyledButtons>
         <StyledButton>

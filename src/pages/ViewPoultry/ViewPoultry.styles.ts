@@ -12,6 +12,16 @@ export const StyledButton = styled.div`
   `)}
 `
 
+export const StyledTransferButton = styled.div`
+  margin-top: 10px;
+`
+
+export const StyledAutocomplete = styled.div`
+  & > div {
+    z-index: 9;
+  }
+`
+
 export const StyledButtons = styled.div`
   display: flex;
   flex-direction: column;
