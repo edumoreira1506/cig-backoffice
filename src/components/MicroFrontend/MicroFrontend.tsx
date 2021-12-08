@@ -54,7 +54,7 @@ export default function MicroFrontend({
     return () => {
       (window as any)[`unmount${name}`] && (window as any)[`unmount${name}`](`${name}-container`)
     }
-  })
+  }, [name, host, containerId, breeder, poultry, images, registers, advertising])
 
   return <main id={`${name}-container`} />
 }
