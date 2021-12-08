@@ -168,7 +168,7 @@ export default function ViewPoultry() {
   const handleTransferPoultry = useCallback(() => {
     if (!selectedBreeder) return
 
-    transferPoultry(selectedBreeder.id)
+    info(t('common.confirm-transfer-poultry'), t, () => transferPoultry(selectedBreeder.id))
   }, [selectedBreeder, transferPoultry])
 
   const handleShowTransferModal = useCallback(() => setShowTransferModal(true), [])

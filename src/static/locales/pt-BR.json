@@ -37,6 +37,7 @@
   "common.success": "Boa!",
   "common.ops": "Ops!",
   "common.confirm-delete-image": "Tem certeza que deseja remover essa imagem?",
+  "common.confirm-transfer-poultry": "Tem certeza que deseja transferir essa ave para outro criatório?",
   "breeder.upload-image": "Alterar imagem de perfil",
   "breeder.preview": "Pré-visualizar alterações",
   "user.edit-password": "Editar senha",
