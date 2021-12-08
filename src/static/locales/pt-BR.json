@@ -1,5 +1,6 @@
 {
   "app-name": "CIG Backoffice",
+  "search-breeder": "Buscar criatório...",
   "edit-breeder": "Edição de criatório",
   "create-poultry": "Nova ave",
   "common.save": "Salvar",
@@ -36,6 +37,7 @@
   "common.success": "Boa!",
   "common.ops": "Ops!",
   "common.confirm-delete-image": "Tem certeza que deseja remover essa imagem?",
+  "common.confirm-transfer-poultry": "Tem certeza que deseja transferir essa ave para outro criatório?",
   "breeder.upload-image": "Alterar imagem de perfil",
   "breeder.preview": "Pré-visualizar alterações",
   "user.edit-password": "Editar senha",
@@ -47,6 +49,8 @@
   "edit-poultry": "Editar ave",
   "announce-poultry": "Anúnciar ave",
   "remove-poultry": "Remover anúncio",
+  "transfer-poultry": "Transferir para outro criatório",
+  "confirm-transfer": "Confirmar transferência",
   "poultry.fields.type": "Raça da ave",
   "poultry.fields.tail": "Rabo da ave",
   "poultry.fields.crest": "Tipo de crista",
