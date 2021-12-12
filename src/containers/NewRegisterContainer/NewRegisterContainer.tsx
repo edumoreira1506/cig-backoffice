@@ -6,6 +6,7 @@ import { Button, Tabs } from '@cig-platform/ui'
 import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterContext/RegisterContext'
 import { setType } from 'contexts/RegisterContext/registerActions'
 import RegisterImageForm from 'components/RegisterImageForm/RegisterImageForm'
+import RegisterVaccinationForm from 'components/RegisterVaccinationForm/RegisterVaccinationForm'
 import useSaveRegister from 'hooks/useSaveRegister'
 import { selectType, selectDescription, selectFiles } from 'contexts/RegisterContext/registerSelectors'
 import { Routes } from 'constants/routes'
@@ -50,9 +51,7 @@ export default function NewRegisterContainer() {
         <div title={t('register.fields.type.weighing')}>
         Pesagem
         </div>
-        <div title={t('register.fields.type.vaccination')}>
-        Vacinação
-        </div>
+        <RegisterVaccinationForm title={t('register.fields.type.vaccination')} />
       </Tabs>
       <StyledButton>
         <Button onClick={handleSave}>
