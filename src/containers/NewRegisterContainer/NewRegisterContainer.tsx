@@ -6,8 +6,9 @@ import { Button, Tabs } from '@cig-platform/ui'
 import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterContext/RegisterContext'
 import { setType } from 'contexts/RegisterContext/registerActions'
 import RegisterImageForm from 'components/RegisterImageForm/RegisterImageForm'
+import RegisterVaccinationForm from 'components/RegisterVaccinationForm/RegisterVaccinationForm'
 import useSaveRegister from 'hooks/useSaveRegister'
-import { selectType, selectDescription, selectFiles } from 'contexts/RegisterContext/registerSelectors'
+import { selectType, selectDescription, selectFiles, selectVaccination } from 'contexts/RegisterContext/registerSelectors'
 import { Routes } from 'constants/routes'
 import { success } from 'utils/alert'
 
@@ -23,6 +24,7 @@ export default function NewRegisterContainer() {
   const type = useRegisterSelector(selectType)
   const description = useRegisterSelector(selectDescription)
   const files = useRegisterSelector(selectFiles)
+  const vaccination = useRegisterSelector(selectVaccination)
 
   const dispatch = useRegisterDispatch()
 
@@ -37,8 +39,20 @@ export default function NewRegisterContainer() {
   const saveRegister = useSaveRegister({ onSuccess: handleSuccess })
 
   const handleSave = useCallback(() => {
-    saveRegister({ description, type }, files.map(file => file.file))
-  }, [saveRegister, type, description, files])
+    switch (type) {
+    case 'IMAGENS':
+      saveRegister({ description, type }, files.map(file => file.file))
+      break
+    case 'VACINAÇÃO':
+      saveRegister({
+        description,
+        type,
+        date: new Date(vaccination.date),
+        metadata: { dose: vaccination.dose, name: vaccination.name }
+      })
+      break
+    }
+  }, [saveRegister, type, description, files, vaccination])
 
   return (
     <>
@@ -50,9 +64,7 @@ export default function NewRegisterContainer() {
         <div title={t('register.fields.type.weighing')}>
         Pesagem
         </div>
-        <div title={t('register.fields.type.vaccination')}>
-        Vacinação
-        </div>
+        <RegisterVaccinationForm title={t('register.fields.type.vaccination')} />
       </Tabs>
       <StyledButton>
         <Button onClick={handleSave}>
