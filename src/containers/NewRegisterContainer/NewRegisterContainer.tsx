@@ -20,6 +20,7 @@ import { Routes } from 'constants/routes'
 import { success } from 'utils/alert'
 
 import { StyledButton } from './NewRegisterContainer.styles'
+import stringToDate from 'formatters/stringToDate'
 
 const registerTypes = ['IMAGENS', 'MEDIÇÃO E PESAGEM', 'VACINAÇÃO']
 
@@ -55,7 +56,7 @@ export default function NewRegisterContainer() {
       saveRegister({
         description,
         type,
-        date: new Date(vaccination.date),
+        date: stringToDate(vaccination.date),
         metadata: { dose: vaccination.dose, name: vaccination.name }
       })
       break
@@ -63,7 +64,7 @@ export default function NewRegisterContainer() {
       saveRegister({
         description,
         type,
-        date: new Date(measurementAndWeighing.date),
+        date: stringToDate(measurementAndWeighing.date),
         metadata: { weight: measurementAndWeighing.weight, measurement: measurementAndWeighing.measurement }
       })
       break

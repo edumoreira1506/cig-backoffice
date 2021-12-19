@@ -19,6 +19,7 @@ import {
   selectDescription,
   selectGenderCategory
 } from 'contexts/PoultryContext/poultrySelectors'
+import stringToDate from 'formatters/stringToDate'
 
 export interface PoultryFormSubmitButtonProps {
   onSubmit: PoultryFormProps['onSubmit']
@@ -48,7 +49,7 @@ export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitB
       type,
       colors,
       videos,
-      birthDate: new Date(birthDate),
+      birthDate: stringToDate(birthDate),
       images,
       gender,
       name,

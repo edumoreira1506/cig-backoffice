@@ -33,6 +33,7 @@ import { BREEDER_PAGE_URL } from '../../constants/url'
 
 import { StyledPreview } from './EditBreederContainer.styles'
 import './editBreederContainer.css'
+import stringToDate from 'formatters/stringToDate'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
@@ -127,7 +128,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
             name="BreederPage"
             host={BREEDER_PAGE_URL}
             containerId="breeder-preview"
-            breeder={{ ...editedBreeder, foundationDate: new Date(editedBreeder.foundationDate) }}
+            breeder={{ ...editedBreeder, foundationDate: stringToDate(editedBreeder.foundationDate) }}
           />
         </StyledPreview>
       </Modal>
