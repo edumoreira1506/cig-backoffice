@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, Input, TextField } from '@cig-platform/ui'
+import { Button, Input, TextField, Table } from '@cig-platform/ui'
+import { useParams } from 'react-router-dom'
 
 import {
   selectDescription,
@@ -15,6 +16,7 @@ import {
   setMeasurementAndWeighingDate,
   setWeighing,
 } from 'contexts/RegisterContext/registerActions'
+import usePoultryRegisters from 'hooks/usePoultryRegisters'
 
 import {
   StyledContainer,
@@ -22,6 +24,8 @@ import {
   StyledForm,
   StyledField,
   StyledDescriptionField,
+  StyledTitle,
+  StyledTable
 } from './RegisterMeasurementAndWeighingForm.styles'
 
 interface RegisterMeasurementAndWeighingFormProps {
@@ -32,6 +36,10 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
   const [showForm, setShowForm] = useState(false)
 
   const { t } = useTranslation()
+
+  const { poultryId } = useParams<{ poultryId: string }>()
+
+  const registers = usePoultryRegisters({ registerType: 'MEDIÇÃO E PESAGEM', poultryId })
 
   const dispatch = useRegisterDispatch()
 
@@ -58,8 +66,21 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
     dispatch(setDescription(newDescription.toString()))
   }, [dispatch])
 
+  const formattedRows = useMemo(() => registers.map(register => ({
+    items: [new Intl.DateTimeFormat('pt-BR').format(new Date(register.date)), `${register?.metadata?.weight} KG`, `${register?.metadata?.measurement} CM`],
+    expandedContent: register.description
+  })).reverse(), [registers])
+
   return (
     <StyledContainer title={title}>
+      <StyledTitle>AMFA</StyledTitle>
+      <StyledTable>
+        <Table
+          hasExpandColumn
+          columns={[t('register.fields.measurement-and-weighing.date'), t('register.fields.measurement-and-weighing.weight'), t('register.fields.measurement-and-weighing.measurement')]}
+          rows={formattedRows}
+        />
+      </StyledTable>
       <StyledButton>
         <Button onClick={openForm}>
           Add novo
