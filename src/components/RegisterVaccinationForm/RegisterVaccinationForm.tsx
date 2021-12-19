@@ -1,20 +1,22 @@
 import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, Input, Select } from '@cig-platform/ui'
+import { Button, Input, Select, TextField } from '@cig-platform/ui'
 
 import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterContext/RegisterContext'
 import {
+  selectDescription,
   selectVaccinationDate,
   selectVaccinationDose,
   selectVaccinationName,
 } from 'contexts/RegisterContext/registerSelectors'
-import { setVaccinationName, setVaccinationDate, setVaccinationDose } from 'contexts/RegisterContext/registerActions'
+import { setVaccinationName, setVaccinationDate, setVaccinationDose, setDescription } from 'contexts/RegisterContext/registerActions'
 
 import {
   StyledContainer,
   StyledButton,
   StyledForm,
-  StyledField
+  StyledField,
+  StyledDescriptionField,
 } from './RegisterVaccinationForm.styles'
 export interface RegisterVaccinationFormProps {
   title: string;
@@ -47,6 +49,7 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
   const name = useRegisterSelector(selectVaccinationName)
   const dose = useRegisterSelector(selectVaccinationDose)
   const date = useRegisterSelector(selectVaccinationDate)
+  const description = useRegisterSelector(selectDescription)
 
   const handleChangeName = useCallback((newName: string | number) => {
     dispatch(setVaccinationName(newName.toString()))
@@ -58,6 +61,10 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
 
   const handleChangeDate = useCallback((newDate: string | number) => {
     dispatch(setVaccinationDate(newDate.toString()))
+  }, [dispatch])
+
+  const handleChangeDescription = useCallback((newDescription: number | string) => {
+    dispatch(setDescription(newDescription.toString()))
   }, [dispatch])
 
   return (
@@ -95,6 +102,14 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
               emptyOptionText={t('select-the-dose')}
             />
           </StyledField>
+          <StyledDescriptionField>
+            <TextField
+              value={description}
+              onChange={handleChangeDescription}
+              placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae laoreet nisi. Cras sed libero consectetur, sodales lorem at, rutrum nulla."
+              label={t('register.fields.description')}
+            />
+          </StyledDescriptionField>
         </StyledForm>
       )}
     </StyledContainer>

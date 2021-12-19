@@ -22,6 +22,7 @@ export const StyledForm = styled.form`
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
+  flex-wrap: wrap;
 `
 
 export const StyledField = styled.div`
@@ -30,4 +31,9 @@ export const StyledField = styled.div`
   ${createMinWidthMediaQuery(`
     width: 32%;
   `)}
+`
+
+export const StyledDescriptionField = styled.div`
+  width: 100%;
+  margin-top: 15px;
 `
