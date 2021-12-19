@@ -14,3 +14,18 @@ export const setFiles = (files: IFile[]) => ({
   payload: { files },
   type: 'SET_FILES'
 } as const)
+
+export const setVaccinationName = (name: string) => ({
+  payload: { name },
+  type: 'SET_VACCINATION_NAME'
+} as const)
+
+export const setVaccinationDose = (dose: string) => ({
+  payload: { dose },
+  type: 'SET_VACCINATION_DOSE'
+} as const)
+
+export const setVaccinationDate = (date: string) => ({
+  payload: { date },
+  type: 'SET_VACCINATION_DATE'
+} as const)

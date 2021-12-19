@@ -10,13 +10,23 @@ export interface IFile {
 export interface RegisterState extends DefaultState {
   type: string;
   description: string;
-  files: IFile[]
+  files: IFile[];
+  vaccination: {
+    name: string;
+    dose: string;
+    date: string;
+  }
 }
 
 export const INITIAL_STATE: RegisterState = {
   type: 'IMAGENS',
   description: '',
   files: [],
+  vaccination: {
+    name: '',
+    dose: '',
+    date: '',
+  }
 }
 
 export type RegisterActionTypes = ActionType<typeof actions>
@@ -32,6 +42,12 @@ export default function breederReducer(
     return { ...state, type: action.payload.type }
   case 'SET_FILES':
     return { ...state, files: action.payload.files }
+  case 'SET_VACCINATION_NAME':
+    return { ...state, vaccination: { ...state.vaccination, name: action.payload.name } }
+  case 'SET_VACCINATION_DOSE':
+    return { ...state, vaccination: { ...state.vaccination, dose: action.payload.dose } }
+  case 'SET_VACCINATION_DATE':
+    return { ...state, vaccination: { ...state.vaccination, date: action.payload.date } }
   default:
     return state
   }

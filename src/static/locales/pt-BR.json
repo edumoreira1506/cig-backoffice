@@ -82,6 +82,10 @@
   "register.fields.type.weighing": "Pesagem",
   "register.fields.type.vaccination": "Vacinação",
   "register.fields.description": "Descrição",
+  "register.fields.vaccination.name": "Nome",
+  "register.fields.vaccination.dose": "Dose",
+  "register.fields.vaccination.date": "Data",
+  "select-the-dose": "Selecione a dose...",
   "create-poultry-advertising": "Por qual valor gostaria de anúnciar essa ave?",
   "remove-poultry-advertising": "Tem certeza que deseja remover o anúncio dessa ave?",
   "action-success": "Ação realizada com sucesso!"
