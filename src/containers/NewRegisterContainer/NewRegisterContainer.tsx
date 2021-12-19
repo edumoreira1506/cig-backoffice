@@ -7,14 +7,22 @@ import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterConte
 import { setType } from 'contexts/RegisterContext/registerActions'
 import RegisterImageForm from 'components/RegisterImageForm/RegisterImageForm'
 import RegisterVaccinationForm from 'components/RegisterVaccinationForm/RegisterVaccinationForm'
+import RegisterMeasurementAndWeighingForm from 'components/RegisterMeasurementAndWeighingForm/RegisterMeasurementAndWeighingForm'
 import useSaveRegister from 'hooks/useSaveRegister'
-import { selectType, selectDescription, selectFiles, selectVaccination } from 'contexts/RegisterContext/registerSelectors'
+import {
+  selectType,
+  selectDescription,
+  selectFiles,
+  selectVaccination,
+  selectMeasurementAndWeighing,
+} from 'contexts/RegisterContext/registerSelectors'
 import { Routes } from 'constants/routes'
 import { success } from 'utils/alert'
 
 import { StyledButton } from './NewRegisterContainer.styles'
+import stringToDate from 'formatters/stringToDate'
 
-const registerTypes = ['IMAGENS', 'MEDIÇÃO', 'PESAGEM', 'VACINAÇÃO']
+const registerTypes = ['IMAGENS', 'MEDIÇÃO E PESAGEM', 'VACINAÇÃO']
 
 export default function NewRegisterContainer() {
   const { t } = useTranslation()
@@ -25,6 +33,7 @@ export default function NewRegisterContainer() {
   const description = useRegisterSelector(selectDescription)
   const files = useRegisterSelector(selectFiles)
   const vaccination = useRegisterSelector(selectVaccination)
+  const measurementAndWeighing = useRegisterSelector(selectMeasurementAndWeighing)
 
   const dispatch = useRegisterDispatch()
 
@@ -47,23 +56,26 @@ export default function NewRegisterContainer() {
       saveRegister({
         description,
         type,
-        date: new Date(vaccination.date),
+        date: stringToDate(vaccination.date),
         metadata: { dose: vaccination.dose, name: vaccination.name }
       })
       break
+    case 'MEDIÇÃO E PESAGEM':
+      saveRegister({
+        description,
+        type,
+        date: stringToDate(measurementAndWeighing.date),
+        metadata: { weight: measurementAndWeighing.weight, measurement: measurementAndWeighing.measurement }
+      })
+      break
     }
-  }, [saveRegister, type, description, files, vaccination])
+  }, [saveRegister, type, description, files, vaccination, measurementAndWeighing])
 
   return (
     <>
       <Tabs setTab={handleChangeType}>
         <RegisterImageForm title={t('register.fields.type.images')} />
-        <div title={t('register.fields.type.measurement')}>
-        Medição
-        </div>
-        <div title={t('register.fields.type.weighing')}>
-        Pesagem
-        </div>
+        <RegisterMeasurementAndWeighingForm title={t('register.fields.type.measurement-and-weighing')} />
         <RegisterVaccinationForm title={t('register.fields.type.vaccination')} />
       </Tabs>
       <StyledButton>

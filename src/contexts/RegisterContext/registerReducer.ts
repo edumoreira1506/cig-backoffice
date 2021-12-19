@@ -15,6 +15,11 @@ export interface RegisterState extends DefaultState {
     name: string;
     dose: string;
     date: string;
+  };
+  measurementAndWeighing: {
+    weight: string;
+    date: string;
+    measurement: string;
   }
 }
 
@@ -25,6 +30,11 @@ export const INITIAL_STATE: RegisterState = {
   vaccination: {
     name: '',
     dose: '',
+    date: '',
+  },
+  measurementAndWeighing: {
+    weight: '',
+    measurement: '',
     date: '',
   }
 }
@@ -48,6 +58,12 @@ export default function breederReducer(
     return { ...state, vaccination: { ...state.vaccination, dose: action.payload.dose } }
   case 'SET_VACCINATION_DATE':
     return { ...state, vaccination: { ...state.vaccination, date: action.payload.date } }
+  case 'SET_MEASUREMENT':
+    return { ...state, measurementAndWeighing: { ...state.measurementAndWeighing, measurement: action.payload.measurement } }
+  case 'SET_WEIGHING':
+    return { ...state, measurementAndWeighing: { ...state.measurementAndWeighing, weight: action.payload.weight } }
+  case 'SET_MEASUREMENT_AND_WEIGHIN_DATE':
+    return { ...state, measurementAndWeighing: { ...state.measurementAndWeighing, date: action.payload.date } }
   default:
     return state
   }

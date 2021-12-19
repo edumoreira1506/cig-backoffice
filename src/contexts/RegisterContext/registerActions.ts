@@ -29,3 +29,18 @@ export const setVaccinationDate = (date: string) => ({
   payload: { date },
   type: 'SET_VACCINATION_DATE'
 } as const)
+
+export const setMeasurement = (measurement: string) => ({
+  payload: { measurement },
+  type: 'SET_MEASUREMENT'
+} as const)
+
+export const setWeighing = (weight: string) => ({
+  payload: { weight },
+  type: 'SET_WEIGHING'
+} as const)
+
+export const setMeasurementAndWeighingDate = (date: string) => ({
+  payload: { date },
+  type: 'SET_MEASUREMENT_AND_WEIGHIN_DATE'
+} as const)

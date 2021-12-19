@@ -30,6 +30,7 @@ import {
   StyledAutocomplete
 } from './ViewPoultry.styles'
 import useTransferPoultry from 'hooks/useTransferPoultry'
+import stringToDate from 'formatters/stringToDate'
 
 export default function ViewPoultry() {
   const [poultry, setPoultry] = useState<undefined | IPoultry & { images: IPoultryImage[]; registers: IPoultryRegister[]; }>()
@@ -88,10 +89,10 @@ export default function ViewPoultry() {
 
       setPoultry({
         ...poultryData,
-        birthDate: new Date(poultryData.birthDate),
+        birthDate: stringToDate(poultryData.birthDate as any),
         registers: poultryData.registers.map((register) => ({
           ...register,
-          date: new Date(register.date),
+          date: stringToDate(register.date as any),
         }))
       })
 
