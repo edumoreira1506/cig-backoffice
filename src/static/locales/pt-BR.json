@@ -84,6 +84,7 @@
   "register.fields.vaccination.name": "Nome",
   "register.fields.vaccination.dose": "Dose",
   "register.fields.vaccination.date": "Data",
+  "applied-vaccinations": "Vacinas aplicadas",
   "register.fields.measurement-and-weighing.date": "Data",
   "register.fields.measurement-and-weighing.weight": "Peso",
   "register.fields.measurement-and-weighing.measurement": "Medida",

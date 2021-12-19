@@ -37,3 +37,13 @@ export const StyledDescriptionField = styled.div`
   width: 100%;
   margin-top: 15px;
 `
+
+export const StyledTable = styled.div`
+  margin-bottom: 15px;
+`
+
+export const StyledTitle = styled.p`
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5em;
+`

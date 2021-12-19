@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, Input, Select, TextField } from '@cig-platform/ui'
+import { Button, Input, Select, TextField, Table } from '@cig-platform/ui'
+import { useParams } from 'react-router-dom'
 
 import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterContext/RegisterContext'
 import {
@@ -9,7 +10,13 @@ import {
   selectVaccinationDose,
   selectVaccinationName,
 } from 'contexts/RegisterContext/registerSelectors'
-import { setVaccinationName, setVaccinationDate, setVaccinationDose, setDescription } from 'contexts/RegisterContext/registerActions'
+import {
+  setVaccinationName,
+  setVaccinationDate,
+  setVaccinationDose,
+  setDescription,
+} from 'contexts/RegisterContext/registerActions'
+import usePoultryRegisters from 'hooks/usePoultryRegisters'
 
 import {
   StyledContainer,
@@ -17,6 +24,8 @@ import {
   StyledForm,
   StyledField,
   StyledDescriptionField,
+  StyledTable,
+  StyledTitle
 } from './RegisterVaccinationForm.styles'
 export interface RegisterVaccinationFormProps {
   title: string;
@@ -39,6 +48,10 @@ const DOSE_OPTIONS = [
 
 export default function RegisterVaccinationForm({ title }: RegisterVaccinationFormProps) {
   const [showForm, setShowForm] = useState(false)
+  
+  const { poultryId } = useParams<{ poultryId: string }>()
+
+  const vaccines = usePoultryRegisters({ registerType: 'VACINAÇÃO', poultryId })
 
   const { t } = useTranslation()
 
@@ -67,8 +80,21 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
     dispatch(setDescription(newDescription.toString()))
   }, [dispatch])
 
+  const formattedRows = useMemo(() => vaccines.map(vaccine => ({
+    items: [new Intl.DateTimeFormat('pt-BR').format(new Date(vaccine.date)), vaccine?.metadata?.name, `${vaccine?.metadata?.dose}ª`],
+    expandedContent: vaccine.description
+  })).reverse(), [vaccines])
+
   return (
     <StyledContainer title={title}>
+      <StyledTitle>{t('applied-vaccinations')}</StyledTitle>
+      <StyledTable>
+        <Table
+          hasExpandColumn
+          columns={[t('register.fields.vaccination.date'), t('register.fields.vaccination.name'), t('register.fields.vaccination.dose')]}
+          rows={formattedRows}
+        />
+      </StyledTable>
       <StyledButton>
         <Button onClick={openForm}>
         Add novo

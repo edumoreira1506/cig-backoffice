@@ -1380,13 +1380,13 @@
     "@cig-platform/types" "0.0.14"
     axios "^0.21.4"
 
-"@cig-platform/backoffice-bff-client@0.0.25":
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.25.tgz#28f844bd8e8ac3dbcba9dc3156b73f3d1b60f278"
-  integrity sha512-amsTK7zjda85OX2zDr2i3BWN34oF1sqvQcNUnsT3nSgrbmXUuE1cTK6jNi5VlJcoBUwW6SN2W6JoTslhIT3nmw==
+"@cig-platform/backoffice-bff-client@0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.26.tgz#e2d34d93ccf6067db5f7e004f5331c044453b8ec"
+  integrity sha512-8vYZQZNa2ksuQIhGPAVfecsiL7CQlDsF3t9r9N0VZHCfobkoD0s9V8ThUkQ3okPdorZXnFU+UtsmZChhLCQxWQ==
   dependencies:
     "@cig-platform/decorators" "0.0.1"
-    "@cig-platform/types" "0.0.19"
+    "@cig-platform/types" "0.0.20"
     axios "0.21.4"
     form-data "^4.0.0"
 
@@ -1439,10 +1439,10 @@
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/types@0.0.19":
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.19.tgz#581294312dcca29a2cb56e867a104ec615e88e5c"
-  integrity sha512-bwOtd81+uoYp0X5o4whD55lCE2KeKWeYRlpphxFeAr4apfFgK/cNazfMIlMek7Oqjg8vJZ2QeN2FeOV/j/E58g==
+"@cig-platform/types@0.0.20", "@cig-platform/types@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.20.tgz#b55518ef8cd49f747073538e8bc6acda3ce1e761"
+  integrity sha512-RXW3wjljO2SQiUEvsmUeAb5rmtKZBwtKTLiVKgl7DxJ539U2njvu2jqVd8KL5SM4xIRJtP/LZ1KsMr6HXqw06Q==
   dependencies:
     express "^4.17.1"
 
@@ -1453,22 +1453,15 @@
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/types@^0.0.20":
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.20.tgz#b55518ef8cd49f747073538e8bc6acda3ce1e761"
-  integrity sha512-RXW3wjljO2SQiUEvsmUeAb5rmtKZBwtKTLiVKgl7DxJ539U2njvu2jqVd8KL5SM4xIRJtP/LZ1KsMr6HXqw06Q==
-  dependencies:
-    express "^4.17.1"
-
 "@cig-platform/types@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
 
-"@cig-platform/ui@^0.1.70":
-  version "0.1.70"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.70.tgz#0f290b0e88a8d53faab590633a858575414c59f0"
-  integrity sha512-gmy1mHmMFB2uH3Dn2DcRMHsS+4AB1F+9qCLdB+zUogzFYBBmVG9RTFmTnphy8alF8LPBVdhF/i2Lgp+hNvzHeg==
+"@cig-platform/ui@^0.1.71":
+  version "0.1.71"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.71.tgz#f9a8c3774f2a6331259a6e8e8a8c733da46a9c1f"
+  integrity sha512-qe/5cjlH+nZ7zM0uZDnzdiNzVv1gVbN/sA91d/4lM5sQBQBxQEn66JObpt3U1FQdkYlFQ1KBu+hRaLvMPlgXDg==
   dependencies:
     "@cig-platform/types" "^0.0.14"
     "@testing-library/jest-dom" "^5.11.4"
