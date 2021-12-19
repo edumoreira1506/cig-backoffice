@@ -1,5 +1,4 @@
 export default function stringToDate(string = '') {
-  console.log({ string })
   const nowDate = new Date()
 
   if (!string) return nowDate
