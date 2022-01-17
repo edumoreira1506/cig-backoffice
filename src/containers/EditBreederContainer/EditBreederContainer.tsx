@@ -33,15 +33,12 @@ import { BREEDER_PAGE_URL } from '../../constants/url'
 
 import { StyledPreview } from './EditBreederContainer.styles'
 import './editBreederContainer.css'
-import stringToDate from 'formatters/stringToDate'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
 }
 
 export default function EditBreederContainer({ breeder }: EditBreederContainerProps) {
-  const editedBreeder = useEditBreederSelector(state => state)
-
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
 
   const breeders = useBreederSelector(selectBreeders)
@@ -111,7 +108,6 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
         dispatch(setContacts(contacts))
       } catch(error) {
         console.error('Error on EditBreederContainer::getBreeder')
-        console.log(error)
       }
     })()
   }, [breederId, token])
@@ -125,10 +121,10 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
       <Modal isOpen={isPreviewOpen} onClose={hidePreview} className="preview-modal">
         <StyledPreview id="breeder-preview">
           <MicroFrontend
+            breederId={breederId}
             name="BreederPage"
             host={BREEDER_PAGE_URL}
             containerId="breeder-preview"
-            breeder={{ ...editedBreeder, foundationDate: stringToDate(editedBreeder.foundationDate) }}
           />
         </StyledPreview>
       </Modal>
