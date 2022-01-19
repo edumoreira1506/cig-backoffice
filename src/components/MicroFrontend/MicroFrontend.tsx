@@ -1,38 +1,31 @@
 import React, { useEffect } from 'react'
-import { IAdvertising, IPoultry, IPoultryImage, IPoultryRegister } from '@cig-platform/types'
 
 export interface MicroFrontendProps {
   name: string;
   host: string;
   containerId: string;
-  poultry?: Partial<IPoultry>;
-  images?: IPoultryImage[];
-  registers?: IPoultryRegister[];
-  advertising?: IAdvertising;
   breederId?: string;
+  poultryId?: string;
 }
 
 export default function MicroFrontend({
   name,
   host,
   containerId,
-  poultry,
-  images,
-  registers,
-  advertising,
-  breederId
+  breederId,
+  poultryId
 }: MicroFrontendProps) {
   useEffect(() => {
     const renderMicroFrontend = () => {
       const windowRender = (window as any)?.[`render${name}`]
 
       if (windowRender) {
-        if (breederId) {
+        if (breederId && !poultryId) {
           windowRender(containerId, breederId)
         }
         
-        if (poultry && images && registers) {
-          windowRender(containerId, poultry, images, registers, advertising)
+        if (breederId && poultryId) {
+          windowRender(containerId, breederId, poultryId)
         }
       }
     }
@@ -54,7 +47,7 @@ export default function MicroFrontend({
     return () => {
       (window as any)[`unmount${name}`] && (window as any)[`unmount${name}`](`${name}-container`)
     }
-  }, [name, host, containerId, poultry, images, registers, advertising])
+  }, [name, host, containerId, poultryId])
 
   return <main id={`${name}-container`} />
 }
