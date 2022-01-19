@@ -2,13 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button, Modal, Autocomplete } from '@cig-platform/ui'
-import {
-  IAdvertising,
-  IBreeder,
-  IPoultry,
-  IPoultryImage,
-  IPoultryRegister,
-} from '@cig-platform/types'
+import { IAdvertising, IBreeder } from '@cig-platform/types'
 import { useDebouncedEffect } from '@cig-platform/hooks'
 
 import BackofficeBffService from 'services/BackofficeBffService'
@@ -30,10 +24,8 @@ import {
   StyledAutocomplete
 } from './ViewPoultry.styles'
 import useTransferPoultry from 'hooks/useTransferPoultry'
-import stringToDate from 'formatters/stringToDate'
 
 export default function ViewPoultry() {
-  const [poultry, setPoultry] = useState<undefined | IPoultry & { images: IPoultryImage[]; registers: IPoultryRegister[]; }>()
   const [advertising, setAdvertising] = useState<undefined | IAdvertising>()
   const [isLoading, setIsLoading] = useState(true)
   const [isLoadingBreeders, setIsLoadingBreeders] = useState(false)
@@ -66,7 +58,7 @@ export default function ViewPoultry() {
     success(t('action-success'), t, () => history.push(Routes.ListPoultries))
   }, [t, history])
 
-  const saveAdvertising = useSavePoultryAdvertising({ poultryId: poultry?.id ?? '', onSuccess: handleSaveSuccess })
+  const saveAdvertising = useSavePoultryAdvertising({ poultryId, onSuccess: handleSaveSuccess })
 
   const removeAdvertising = useRemovePoultryAdvertising({
     poultryId,
@@ -76,7 +68,7 @@ export default function ViewPoultry() {
 
   const transferPoultry = useTransferPoultry({
     onSuccess: handleTransferPoultrySuccess,
-    poultryId: poultryId
+    poultryId
   })
 
   useEffect(() => {
@@ -85,16 +77,7 @@ export default function ViewPoultry() {
     setIsLoading(true);
    
     (async () => {
-      const { poultry: poultryData, advertisings } = await BackofficeBffService.getPoultry(breeder.id, poultryId, token)
-
-      setPoultry({
-        ...poultryData,
-        birthDate: stringToDate(poultryData.birthDate as any),
-        registers: poultryData.registers.map((register) => ({
-          ...register,
-          date: stringToDate(register.date as any),
-        }))
-      })
+      const { advertisings } = await BackofficeBffService.getPoultry(breeder.id, poultryId, token)
 
       setAdvertising(advertisings?.[0])
       setIsLoading(false)
@@ -175,8 +158,6 @@ export default function ViewPoultry() {
   const handleShowTransferModal = useCallback(() => setShowTransferModal(true), [])
   const handleCloseTransferModal = useCallback(() => setShowTransferModal(false), [])
 
-  if (!poultry) return null
-
   return (
     <StyledContainer>
       <Modal isOpen={showTrasnferModal} onClose={handleCloseTransferModal}>
@@ -224,10 +205,8 @@ export default function ViewPoultry() {
             name="PoultryPage"
             host={POULTRY_PAGE_URL}
             containerId="poultry-preview"
-            poultry={poultry}
-            images={poultry.images}
-            registers={poultry.registers}
-            advertising={advertising}
+            breederId={breeder?.id}
+            poultryId={poultryId}
           />
         </div>
       )}
