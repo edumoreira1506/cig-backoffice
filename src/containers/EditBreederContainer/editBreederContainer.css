@@ -5,3 +5,11 @@
   border-radius: 3px;
   overflow: hidden auto;
 }
+
+.preview-modal main {
+  position: relative;
+}
+
+.preview-modal main ul {
+  position: absolute;
+}
