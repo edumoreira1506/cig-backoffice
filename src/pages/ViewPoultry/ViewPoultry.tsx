@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { Button, Modal, Autocomplete } from '@cig-platform/ui'
+import { Button, Modal, Autocomplete, ListModal } from '@cig-platform/ui'
 import { IAdvertising, IBreeder } from '@cig-platform/types'
 import { useDebouncedEffect } from '@cig-platform/hooks'
 
@@ -18,8 +18,6 @@ import useRemovePoultryAdvertising from 'hooks/useRemovePoultryAdvertising'
 
 import {
   StyledContainer,
-  StyledButton,
-  StyledButtons,
   StyledTransferButton,
   StyledAutocomplete
 } from './ViewPoultry.styles'
@@ -33,6 +31,7 @@ export default function ViewPoultry() {
   const [showTrasnferModal, setShowTransferModal] = useState(false)
   const [searchedBreeder, setSearchedBreeder] = useState('')
   const [breeders, setBreeders] = useState<IBreeder[]>([])
+  const [isOpenModalConfig, setIsOpenModalConfig] = useState(false)
 
   const { t } = useTranslation()
 
@@ -50,6 +49,9 @@ export default function ViewPoultry() {
   ])
 
   const { token } = useAuth()
+
+  const handleCloseModalConfig = useCallback(() => setIsOpenModalConfig(false), [])
+  const handleOpenModalConfig = useCallback(() => setIsOpenModalConfig(true), [])
 
   const handleSaveSuccess = useCallback(() => {
     success(t('action-success'), t, () => window.location.reload())
@@ -188,8 +190,38 @@ export default function ViewPoultry() {
   const handleShowTransferModal = useCallback(() => setShowTransferModal(true), [])
   const handleCloseTransferModal = useCallback(() => setShowTransferModal(false), [])
 
-  const callbacks = useMemo(() => ({ onEditAdvertising: handleEditPoultryAdvertising }), [
-    handleEditPoultryAdvertising
+  const callbacks = useMemo(() => ({
+    onEditAdvertising: handleEditPoultryAdvertising,
+    onSeeConfig: handleOpenModalConfig
+  }), [
+    handleEditPoultryAdvertising,
+    handleOpenModalConfig
+  ])
+
+  const configModalItems = useMemo(() => ([
+    {
+      onClick: handleNavigateToNewRegisterPage,
+      label: t('new-register')
+    },
+    {
+      onClick: handleNavigateToEditPage,
+      label: t('edit-poultry')
+    },
+    {
+      onClick: handleClickAdvertisingButton,
+      label: t(hasAdvertising ? 'remove-poultry' : 'announce-poultry')
+    },
+    {
+      onClick: handleShowTransferModal,
+      label: t('transfer-poultry')
+    }
+  ]), [
+    handleNavigateToNewRegisterPage,
+    handleNavigateToEditPage,
+    handleClickAdvertisingButton,
+    handleShowTransferModal,
+    hasAdvertising,
+    t
   ])
 
   return (
@@ -211,28 +243,9 @@ export default function ViewPoultry() {
           </Button>
         </StyledTransferButton>
       </Modal>
-      <StyledButtons>
-        <StyledButton>
-          <Button onClick={handleNavigateToNewRegisterPage}>
-            {t('new-register')}
-          </Button>
-        </StyledButton>
-        <StyledButton>
-          <Button onClick={handleNavigateToEditPage}>
-            {t('edit-poultry')}
-          </Button>
-        </StyledButton>
-        <StyledButton>
-          <Button onClick={handleClickAdvertisingButton}>
-            {t(hasAdvertising ? 'remove-poultry' : 'announce-poultry')}
-          </Button>
-        </StyledButton>
-        <StyledButton>
-          <Button onClick={handleShowTransferModal}>
-            {t('transfer-poultry')}
-          </Button>
-        </StyledButton>
-      </StyledButtons>
+
+      <ListModal isOpen={isOpenModalConfig} onClose={handleCloseModalConfig} items={configModalItems} />
+
       {!isLoading && (
         <div id="poultry-preview">
           <MicroFrontend
