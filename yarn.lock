@@ -2342,10 +2342,10 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
-"@cig-platform/microfrontend-helper@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@cig-platform/microfrontend-helper/-/microfrontend-helper-0.0.1.tgz#f2cc3867935bad9a6bd053683a3d1d7e1c563d89"
-  integrity sha512-uQOdsjGZhbigT6WsXyp5n8jXrkU8cSFZNd2Yfhjy2jayzBAqQunFBN898Ymn93fEXoRvSMSoci35bIZQMK2HbQ==
+"@cig-platform/microfrontend-helper@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@cig-platform/microfrontend-helper/-/microfrontend-helper-0.0.2.tgz#df3d573760338c45a66eb5a0164204526ed5b2a5"
+  integrity sha512-dtr4T3p3LSGGq73HC6U30ynkCY4qx2CRFyhSfHxs59gLd5b7+E8jjC3xEd7wItNbjTmTfR0ZHY+YA+Z6U9xJog==
   dependencies:
     react "^17.0.2"
     react-scripts "^5.0.0"
