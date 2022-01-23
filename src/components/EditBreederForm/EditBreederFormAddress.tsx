@@ -174,6 +174,7 @@ export default function EditBreederFormAddress() {
           <GoogleMapReact
             bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
             defaultCenter={{ lat: latitude, lng: longitude }}
+            center={{ lat: latitude, lng: longitude }}
             defaultZoom={11}
             onDragEnd={handleDragMap}
           >
