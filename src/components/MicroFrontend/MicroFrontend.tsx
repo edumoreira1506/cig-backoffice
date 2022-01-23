@@ -6,6 +6,7 @@ export interface MicroFrontendProps {
   containerId: string;
   breederId?: string;
   poultryId?: string;
+  callbacks?: Record<string, () => void>;
 }
 
 export default function MicroFrontend({
@@ -13,7 +14,8 @@ export default function MicroFrontend({
   host,
   containerId,
   breederId,
-  poultryId
+  poultryId,
+  callbacks
 }: MicroFrontendProps) {
   useEffect(() => {
     const renderMicroFrontend = () => {
@@ -25,7 +27,7 @@ export default function MicroFrontend({
         }
         
         if (breederId && poultryId) {
-          windowRender(containerId, breederId, poultryId)
+          windowRender(containerId, breederId, poultryId, callbacks)
         }
       }
     }
@@ -47,7 +49,7 @@ export default function MicroFrontend({
     return () => {
       (window as any)[`unmount${name}`] && (window as any)[`unmount${name}`](`${name}-container`)
     }
-  }, [name, host, containerId, poultryId])
+  }, [name, host, containerId, poultryId, callbacks])
 
   return <main id={`${name}-container`} />
 }
