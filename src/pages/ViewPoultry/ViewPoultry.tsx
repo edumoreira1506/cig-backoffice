@@ -24,6 +24,7 @@ import {
   StyledAutocomplete
 } from './ViewPoultry.styles'
 import useTransferPoultry from 'hooks/useTransferPoultry'
+import useEditPoultryAdvertising from 'hooks/useEditPoultryAdvertising'
 
 export default function ViewPoultry() {
   const [advertising, setAdvertising] = useState<undefined | IAdvertising>()
@@ -59,6 +60,12 @@ export default function ViewPoultry() {
   }, [t, history])
 
   const saveAdvertising = useSavePoultryAdvertising({ poultryId, onSuccess: handleSaveSuccess })
+
+  const editAdvertising = useEditPoultryAdvertising({
+    poultryId,
+    onSuccess: handleSaveSuccess,
+    advertisingId: String(advertising?.id ?? '')
+  })
 
   const removeAdvertising = useRemovePoultryAdvertising({
     poultryId,
@@ -155,8 +162,35 @@ export default function ViewPoultry() {
     info(t('common.confirm-transfer-poultry'), t, () => transferPoultry(selectedBreeder.id))
   }, [selectedBreeder, transferPoultry])
 
+  const handleEditPoultryAdvertising = useCallback(() => {
+    withInput(t('edit-poultry-advertising'), t, (a) => {
+      const price = Number(a.replace(/[^0-9]/g,''))
+
+      editAdvertising(price)
+    })
+
+    document.querySelector('.swal2-input')?.addEventListener('keyup', () => {
+      const inputElement = document.querySelector('.swal2-input') as HTMLInputElement
+
+      if (!inputElement) return
+
+      const typed = inputElement.value
+      const numbers = typed.replace(/[^0-9]/g,'')
+
+      if (typed.includes('R')) {
+        inputElement.value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(numbers) / 100)
+      } else {
+        inputElement.value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(numbers))
+      }
+    })
+  }, [editAdvertising, t])
+
   const handleShowTransferModal = useCallback(() => setShowTransferModal(true), [])
   const handleCloseTransferModal = useCallback(() => setShowTransferModal(false), [])
+
+  const callbacks = useMemo(() => ({ onEditAdvertising: handleEditPoultryAdvertising }), [
+    handleEditPoultryAdvertising
+  ])
 
   return (
     <StyledContainer>
@@ -207,6 +241,7 @@ export default function ViewPoultry() {
             containerId="poultry-preview"
             breederId={breeder?.id}
             poultryId={poultryId}
+            callbacks={callbacks}
           />
         </div>
       )}

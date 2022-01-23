@@ -90,6 +90,7 @@
   "register.fields.measurement-and-weighing.measurement": "Medida",
   "select-the-dose": "Selecione a dose...",
   "create-poultry-advertising": "Por qual valor gostaria de anúnciar essa ave?",
+  "edit-poultry-advertising": "Qual o novo valor do anúncio dessa ave?",
   "remove-poultry-advertising": "Tem certeza que deseja remover o anúncio dessa ave?",
   "action-success": "Ação realizada com sucesso!"
 }
