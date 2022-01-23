@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { Button, Modal, Autocomplete, ListModal } from '@cig-platform/ui'
 import { IAdvertising, IBreeder } from '@cig-platform/types'
 import { useDebouncedEffect } from '@cig-platform/hooks'
+import MicroFrontend from '@cig-platform/microfrontend-helper'
 
 import BackofficeBffService from 'services/BackofficeBffService'
 import ContentSearchService from 'services/ContentSearchService'
 import useBreeder from 'hooks/useBreeder'
 import useAuth from 'hooks/useAuth'
-import MicroFrontend from 'components/MicroFrontend/MicroFrontend'
 import { POULTRY_PAGE_URL } from 'constants/url'
 import { Routes } from 'constants/routes'
 import { success, withInput, info } from 'utils/alert'
@@ -224,6 +224,11 @@ export default function ViewPoultry() {
     t
   ])
 
+  const microFrontendParams = useMemo(() => ({
+    breederId: breeder?.id ?? '',
+    poultryId
+  }), [breeder?.id, poultryId])
+
   return (
     <StyledContainer>
       <Modal isOpen={showTrasnferModal} onClose={handleCloseTransferModal}>
@@ -252,8 +257,7 @@ export default function ViewPoultry() {
             name="PoultryPage"
             host={POULTRY_PAGE_URL}
             containerId="poultry-preview"
-            breederId={breeder?.id}
-            poultryId={poultryId}
+            params={microFrontendParams}
             callbacks={callbacks}
           />
         </div>
