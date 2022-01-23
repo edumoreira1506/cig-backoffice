@@ -11,7 +11,7 @@ import { Routes } from '../../constants/routes'
 import { useBreederDispatch } from '../../contexts/BreederContext/BreederContext'
 import { setBreeders, setSelected } from '../../contexts/BreederContext/breederActions'
 import useQueryParam from '../../hooks/useQueryParam'
-import { LOGIN_URL } from '../../constants/url'
+import { LOGIN_URL, LOGO_URL } from '../../constants/url'
 import useRefreshToken from '../../hooks/useRefreshToken'
 import { useAppSelector } from '../../contexts/AppContext/AppContext'
 import { selectError } from '../../contexts/AppContext/appSelectors'
@@ -128,6 +128,7 @@ export default function Container({ children }: ContainerProps) {
       user={user}
       shortcuts={shortcuts}
       onShortcutClick={handleShortcutClick}
+      logoUrl={LOGO_URL}
     >
       {children}
     </UIContainer>
