@@ -4,6 +4,8 @@ on: [push]
 
 jobs:
   tests:
+    env:
+      SKIP_PREFLIGHT_CHECK: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -27,6 +29,8 @@ jobs:
           yarn test
 
   lint:
+    env:
+      SKIP_PREFLIGHT_CHECK: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
