@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Select } from '@cig-platform/ui'
+import { PoultryTypeEnum } from '@cig-platform/enums'
 
-import { PoultryTypes } from 'constants/poultry'
 import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import { selectType } from 'contexts/PoultryContext/poultrySelectors'
 import { setType } from 'contexts/PoultryContext/poultryActions'
@@ -13,7 +13,7 @@ export interface PoultryFormTypeProps {
 
 const availableTypes = [
   {
-    value: PoultryTypes.IndioGigante,
+    value: PoultryTypeEnum.IndioGigante,
     label: 'Indio Gigante'
   }
 ]

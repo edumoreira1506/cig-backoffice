@@ -1,23 +1,23 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Select } from '@cig-platform/ui'
+import { PoultryDewlapEnum } from '@cig-platform/enums'
 
-import { PoultryDewlaps } from 'constants/poultry'
 import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import { selectDewlap } from 'contexts/PoultryContext/poultrySelectors'
 import { setDewlap } from 'contexts/PoultryContext/poultryActions'
 
 const availableDewlaps = [
   {
-    value: PoultryDewlaps.DOUBLE,
+    value: PoultryDewlapEnum.DOUBLE,
     label: 'Dupla'
   },
   {
-    value: PoultryDewlaps.EMPTY,
+    value: PoultryDewlapEnum.EMPTY,
     label: 'Ausência total'
   },
   {
-    value: PoultryDewlaps.SINGLE,
+    value: PoultryDewlapEnum.SINGLE,
     label: 'Única (Barbela de Boi)'
   }
 ]

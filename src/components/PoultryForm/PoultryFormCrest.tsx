@@ -1,19 +1,19 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Select } from '@cig-platform/ui'
+import { PoultryCrestEnum } from '@cig-platform/enums'
 
-import { PoultryCrests } from 'constants/poultry'
 import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import { selectCrest } from 'contexts/PoultryContext/poultrySelectors'
 import { setCrest } from 'contexts/PoultryContext/poultryActions'
 
 const availableCrests = [
   {
-    value: PoultryCrests.Ball,
+    value: PoultryCrestEnum.Ball,
     label: 'Bola'
   },
   {
-    value: PoultryCrests.Pea,
+    value: PoultryCrestEnum.Pea,
     label: 'Ervilha'
   }
 ]

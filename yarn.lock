@@ -2326,6 +2326,11 @@
   dependencies:
     axios "^0.22.0"
 
+"@cig-platform/enums@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@cig-platform/enums/-/enums-0.0.1.tgz#24cd47fbe2b8aaa6cd7fe96ad33dc722e8022f2d"
+  integrity sha512-9+Kd5HprB0VYO0ysqKDAjONoymTustCOyyjTVFG2RSURSj8hlD+2sn/F4WV2jHbRzjuxcKnpqR7tYVKvL6YqzQ==
+
 "@cig-platform/factories@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@cig-platform/factories/-/factories-0.0.6.tgz#8991d562e5cbae1014a86337c9b1dac9b6897c21"
