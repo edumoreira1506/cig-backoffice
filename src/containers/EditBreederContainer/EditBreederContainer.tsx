@@ -30,8 +30,10 @@ import BackofficeBffService from '../../services/BackofficeBffService'
 import useAuth from '../../hooks/useAuth'
 import Modal from '../../components/Modal/Modal'
 import { BREEDER_PAGE_URL } from '../../constants/url'
+import { Routes } from '../../constants/routes'
 
 import { StyledPreview } from './EditBreederContainer.styles'
+
 import './editBreederContainer.css'
 
 export interface EditBreederContainerProps {
@@ -112,9 +114,19 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
     })()
   }, [breederId, token])
 
+  const handleNavigateToViewPoultry = useCallback(({ poultryId }: { poultryId: string }) => {
+    if (poultryId) {
+      history.push(Routes.ViewPoultry.replace(':poultryId', poultryId))
+    }
+  }, [history])
+
   const microFrontendParams = useMemo(() => ({
     breederId
   }), [breederId])
+
+  const microFrontendCallbacks = useMemo<Record<string, any>>(() => ({
+    onViewPoultry: handleNavigateToViewPoultry
+  }), [handleNavigateToViewPoultry])
 
   return (
     <>
@@ -129,6 +141,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
             name="BreederPage"
             host={BREEDER_PAGE_URL}
             containerId="breeder-preview"
+            callbacks={microFrontendCallbacks}
           />
         </StyledPreview>
       </Modal>
