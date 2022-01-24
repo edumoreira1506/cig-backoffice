@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useMemo } from 'react'
 import { useHistory } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
 import { Button } from '@cig-platform/ui'
+import MicroFrontend from '@cig-platform/microfrontend-helper'
 
 import EditBreederForm from '../../components/EditBreederForm/EditBreederForm'
 import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
@@ -28,7 +29,6 @@ import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 import BackofficeBffService from '../../services/BackofficeBffService'
 import useAuth from '../../hooks/useAuth'
 import Modal from '../../components/Modal/Modal'
-import MicroFrontend from '../../components/MicroFrontend/MicroFrontend'
 import { BREEDER_PAGE_URL } from '../../constants/url'
 
 import { StyledPreview } from './EditBreederContainer.styles'
@@ -98,7 +98,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   }, [breeder])
 
   useEffect(() => {
-    if (!token || !breederId) return
+    if (!token || !breederId) return;
 
     (async  () => {
       try {
@@ -112,6 +112,10 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
     })()
   }, [breederId, token])
 
+  const microFrontendParams = useMemo(() => ({
+    breederId
+  }), [breederId])
+
   return (
     <>
       <EditBreederForm onSubmit={editBreeder} />
@@ -121,7 +125,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
       <Modal isOpen={isPreviewOpen} onClose={hidePreview} className="preview-modal">
         <StyledPreview id="breeder-preview">
           <MicroFrontend
-            breederId={breederId}
+            params={microFrontendParams}
             name="BreederPage"
             host={BREEDER_PAGE_URL}
             containerId="breeder-preview"

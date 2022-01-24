@@ -14,6 +14,7 @@
     "@cig-platform/decorators": "^0.0.1",
     "@cig-platform/factories": "^0.0.6",
     "@cig-platform/hooks": "^0.0.2",
+    "@cig-platform/microfrontend-helper": "^0.0.2",
     "@cig-platform/types": "^0.0.20",
     "@cig-platform/ui": "^0.1.90",
     "@testing-library/jest-dom": "^5.11.4",
