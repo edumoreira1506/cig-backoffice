@@ -16,7 +16,6 @@ import useRefreshToken from '../../hooks/useRefreshToken'
 import { useAppSelector } from '../../contexts/AppContext/AppContext'
 import { selectError } from '../../contexts/AppContext/appSelectors'
 import { error as showError } from '../../utils/alert'
-import useLogout from '../../hooks/useLogout'
 
 export interface ContainerProps {
   children: ReactChild;
@@ -40,20 +39,20 @@ export const items = [
   },
   {
     title: 'Sair',
-    icon: <AiOutlinePoweroff />
+    icon: <AiOutlinePoweroff />,
+    route: Routes.Logout
   }
 ]
 
 export const shortcuts = ['Sair', 'Editar senha']
 
 const shortcutLinks = {
-  [shortcuts[1]]: Routes.EditPassword
+  [shortcuts[0]]: Routes.Logout,
+  [shortcuts[1]]: Routes.EditPassword,
 }
 
 export default function Container({ children }: ContainerProps) {
   const { remove: removeQueryParamToken } = useQueryParam('token')
-
-  const logout = useLogout()
 
   const { set } = useLocalStorage('token')
 
@@ -80,19 +79,13 @@ export default function Container({ children }: ContainerProps) {
     if (item) {
       if (item.route) {
         history.push(item.route)
-      } else {
-        logout()
       }
     }
-  }, [history, logout])
+  }, [history])
 
   const handleShortcutClick = useCallback((shortcut: string) => {
-    if (shortcut === 'Sair') {
-      logout()
-    } else {
-      history.push(shortcutLinks[shortcut])
-    }
-  }, [history, logout])
+    history.push(shortcutLinks[shortcut])
+  }, [history])
 
   useEffect(() => {
     dispatch(setBreeders(userData?.breeders ?? []))
