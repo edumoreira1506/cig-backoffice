@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
 import { Button, Tabs } from '@cig-platform/ui'
+import { RegisterTypeEnum } from '@cig-platform/enums'
 
 import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterContext/RegisterContext'
 import { setType } from 'contexts/RegisterContext/registerActions'
@@ -22,7 +23,11 @@ import { success } from 'utils/alert'
 import { StyledButton } from './NewRegisterContainer.styles'
 import stringToDate from 'formatters/stringToDate'
 
-const registerTypes = ['IMAGENS', 'MEDIÇÃO E PESAGEM', 'VACINAÇÃO']
+const registerTypes = [
+  RegisterTypeEnum.Images,
+  RegisterTypeEnum.MeasurementAndWeighing,
+  RegisterTypeEnum.Vaccination
+]
 
 export default function NewRegisterContainer() {
   const { t } = useTranslation()
@@ -49,10 +54,10 @@ export default function NewRegisterContainer() {
 
   const handleSave = useCallback(() => {
     switch (type) {
-    case 'IMAGENS':
+    case RegisterTypeEnum.Images:
       saveRegister({ description, type }, files.map(file => file.file))
       break
-    case 'VACINAÇÃO':
+    case RegisterTypeEnum.Vaccination:
       saveRegister({
         description,
         type,
@@ -60,7 +65,7 @@ export default function NewRegisterContainer() {
         metadata: { dose: vaccination.dose, name: vaccination.name }
       })
       break
-    case 'MEDIÇÃO E PESAGEM':
+    case RegisterTypeEnum.MeasurementAndWeighing:
       saveRegister({
         description,
         type,

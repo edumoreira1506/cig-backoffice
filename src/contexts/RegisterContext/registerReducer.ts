@@ -1,4 +1,5 @@
 import { DefaultState, ActionType } from '@cig-platform/context'
+import { RegisterTypeEnum } from '@cig-platform/enums'
 
 import * as actions from './registerActions'
 
@@ -24,7 +25,7 @@ export interface RegisterState extends DefaultState {
 }
 
 export const INITIAL_STATE: RegisterState = {
-  type: 'IMAGENS',
+  type: RegisterTypeEnum.Images,
   description: '',
   files: [],
   vaccination: {

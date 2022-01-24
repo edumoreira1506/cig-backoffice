@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IoIosRemoveCircle, IoIosAddCircle } from 'react-icons/io'
 import { Input, Select } from '@cig-platform/ui'
+import { BreederContactTypeEnum } from '@cig-platform/enums'
 
 import { useEditBreederDispatch, useEditBreederSelector } from 'contexts/EditBreederContext/EditBreederContext'
 import { selectContacts } from 'contexts/EditBreederContext/editBreederSelectors'
@@ -15,7 +16,7 @@ import {
 } from './EditBreederFormContacts.styles'
 import { setContacts } from 'contexts/EditBreederContext/editBreederActions'
 
-const CONTACT_TYPES = ['WHATS_APP', 'PHONE']
+const CONTACT_TYPES = Object.values(BreederContactTypeEnum)
 
 export default function EditBreederFormContacts() {
   const contacts = useEditBreederSelector(selectContacts)

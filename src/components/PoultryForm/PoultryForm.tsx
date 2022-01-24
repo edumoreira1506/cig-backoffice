@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IPoultry } from '@cig-platform/types'
+import { PoultryGenderCategoryEnum, PoultryGenderEnum } from '@cig-platform/enums'
 
 import { preventDefaultHandler } from 'utils/dom'
 import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
@@ -22,7 +23,6 @@ import PoultryFormTail from './PoultryFormTail'
 import PoultryFormDescription from './PoultryFormDescription'
 import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import { selectGender } from 'contexts/PoultryContext/poultrySelectors'
-import { PoultryGenderCategories, PoultryGenders } from 'constants/poultry'
 import { setAvailableGenderCategories } from 'contexts/PoultryContext/poultryActions'
 
 export interface PoultryFormProps {
@@ -38,12 +38,12 @@ export default function PoultryForm({ onSubmit, disabledFields }: PoultryFormPro
   const dispatch = usePoultryDispatch()
 
   useEffect(() => {
-    if (gender === PoultryGenders.Female) {
-      dispatch(setAvailableGenderCategories([PoultryGenderCategories.FemaleChicken, PoultryGenderCategories.Matrix]))
+    if (gender === PoultryGenderEnum.Female) {
+      dispatch(setAvailableGenderCategories([PoultryGenderCategoryEnum.FemaleChicken, PoultryGenderCategoryEnum.Matrix]))
     }
 
-    if (gender === PoultryGenders.Male) {
-      dispatch(setAvailableGenderCategories([PoultryGenderCategories.MaleChicken, PoultryGenderCategories.Reproductive]))
+    if (gender === PoultryGenderEnum.Male) {
+      dispatch(setAvailableGenderCategories([PoultryGenderCategoryEnum.MaleChicken, PoultryGenderCategoryEnum.Reproductive]))
     }
   }, [gender, dispatch])
 

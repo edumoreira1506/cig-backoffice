@@ -1,19 +1,19 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Select } from '@cig-platform/ui'
+import { PoultryGenderEnum } from '@cig-platform/enums'
 
-import { PoultryGenders } from 'constants/poultry'
 import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import { selectGender } from 'contexts/PoultryContext/poultrySelectors'
 import { setGender } from 'contexts/PoultryContext/poultryActions'
 
 const availableGenders = [
   {
-    value: PoultryGenders.Male,
+    value: PoultryGenderEnum.Male,
     label: 'Macho'
   },
   {
-    value: PoultryGenders.Female,
+    value: PoultryGenderEnum.Female,
     label: 'Fêmea'
   },
 ]

@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { PoultryColorEnum } from '@cig-platform/enums'
 
 import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import { selectColors } from 'contexts/PoultryContext/poultrySelectors'
 import { setColor } from 'contexts/PoultryContext/poultryActions'
-import { PoultryColors } from 'constants/poultry'
 
 import { StyledContainer, StyledItem } from './PoultryFormColors.styles'
 import { Select } from '@cig-platform/ui'
@@ -12,11 +12,11 @@ import { Select } from '@cig-platform/ui'
 
 const availableColors = [
   {
-    value: PoultryColors.Black,
+    value: PoultryColorEnum.BLACK,
     label: 'Preto'
   },
   {
-    value: PoultryColors.White,
+    value: PoultryColorEnum.WHITE,
     label: 'Branco'
   }
 ]
