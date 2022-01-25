@@ -92,5 +92,6 @@
   "create-poultry-advertising": "Por qual valor gostaria de anúnciar essa ave?",
   "edit-poultry-advertising": "Qual o novo valor do anúncio dessa ave?",
   "remove-poultry-advertising": "Tem certeza que deseja remover o anúncio dessa ave?",
-  "action-success": "Ação realizada com sucesso!"
+  "action-success": "Ação realizada com sucesso!",
+  "edit-gender-category": "A ave atingiu a idade para ser reprodutor/matriz. Deseja alterar automaticamente?"
 }
