@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useParams } from 'react-router'
+import { PoultryGenderCategoryEnum } from '@cig-platform/enums'
 
 import { Routes } from 'constants/routes'
-import { success } from 'utils/alert'
+import { success, info } from 'utils/alert'
 import useEditPoultry from 'hooks/useEditPoultry'
 import PoultryForm from 'components/PoultryForm/PoultryForm'
 import { useAppDispatch } from 'contexts/AppContext/AppContext'
@@ -12,7 +13,7 @@ import { setError } from 'contexts/AppContext/appActions'
 import BackofficeBffService from 'services/BackofficeBffService'
 import useBreeder from 'hooks/useBreeder'
 import useAuth from 'hooks/useAuth'
-import { usePoultryDispatch } from 'contexts/PoultryContext/PoultryContext'
+import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import {
   setBirthDate,
   setColor,
@@ -27,6 +28,13 @@ import {
   setDescription,
   setGenderCategory,
 } from 'contexts/PoultryContext/poultryActions'
+import { selectBirthDate, selectGenderCategory } from 'contexts/PoultryContext/poultrySelectors'
+
+const SECOND = 1000
+const MINUTE = 60 * SECOND
+const HOUR = 60 * MINUTE
+const DAY = 24 * HOUR
+const MONTH = 30 * DAY
 
 export default function EditPoultryContainer() {
   const { t } = useTranslation()
@@ -35,6 +43,9 @@ export default function EditPoultryContainer() {
 
   const poultryDispatch = usePoultryDispatch()
 
+  const birthDate = usePoultrySelector(selectBirthDate)
+  const genderCategory = usePoultrySelector(selectGenderCategory)
+
   const history = useHistory()
 
   const { token } = useAuth()
@@ -42,6 +53,15 @@ export default function EditPoultryContainer() {
   const breeder = useBreeder()
 
   const { poultryId } = useParams<{ poultryId: string }>()
+
+  const needsToSeeWarningAutoGenderCategoryChange = useMemo(() => {
+    const now = new Date()
+    const poultryTimeInMonths = Math.floor((now.getTime() - new Date(birthDate).getTime()) / MONTH)
+    const isInAdultTarget = poultryTimeInMonths >= 11
+    const isFemaleOrMaleChicken = PoultryGenderCategoryEnum.FemaleChicken === genderCategory || genderCategory === PoultryGenderCategoryEnum.MaleChicken
+
+    return isFemaleOrMaleChicken && isInAdultTarget
+  }, [birthDate, genderCategory])
 
   const handleSuccess = useCallback(() => {
     success(t('common.saved'), t, () => history.push(Routes.ListPoultries))
@@ -124,6 +144,18 @@ export default function EditPoultryContainer() {
       }
     })()
   }, [appDispatch, breeder, poultryId, token, poultryDispatch])
+
+  useEffect(() => {
+    if (needsToSeeWarningAutoGenderCategoryChange) {
+      info(t('edit-gender-category'), t, () => {
+        if (genderCategory === PoultryGenderCategoryEnum.FemaleChicken) {
+          editPoultry({ genderCategory: PoultryGenderCategoryEnum.Matrix })
+        } else if (genderCategory === PoultryGenderCategoryEnum.MaleChicken) {
+          editPoultry({ genderCategory: PoultryGenderCategoryEnum.Reproductive })
+        }
+      })
+    }
+  }, [needsToSeeWarningAutoGenderCategoryChange, t, genderCategory, editPoultry])
 
   return (
     <PoultryForm onSubmit={editPoultry} disabledFields={['gender', 'type']} />
