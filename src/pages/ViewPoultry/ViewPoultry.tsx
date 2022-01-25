@@ -23,6 +23,7 @@ import {
 } from './ViewPoultry.styles'
 import useTransferPoultry from 'hooks/useTransferPoultry'
 import useEditPoultryAdvertising from 'hooks/useEditPoultryAdvertising'
+import useAnswerAdvertisingQuestion from 'hooks/useAnswerAdvertisingQuestion'
 
 export default function ViewPoultry() {
   const [advertising, setAdvertising] = useState<undefined | IAdvertising>()
@@ -62,6 +63,12 @@ export default function ViewPoultry() {
   }, [t, history])
 
   const saveAdvertising = useSavePoultryAdvertising({ poultryId, onSuccess: handleSaveSuccess })
+
+  const saveAdvertisingQuestionAnswer = useAnswerAdvertisingQuestion({
+    poultryId,
+    onSuccess: handleSaveSuccess,
+    advertisingId: String(advertising?.id ?? '')
+  })
 
   const editAdvertising = useEditPoultryAdvertising({
     poultryId,
@@ -190,12 +197,14 @@ export default function ViewPoultry() {
   const handleShowTransferModal = useCallback(() => setShowTransferModal(true), [])
   const handleCloseTransferModal = useCallback(() => setShowTransferModal(false), [])
 
-  const callbacks = useMemo(() => ({
+  const callbacks = useMemo<Record<string, any>>(() => ({
     onEditAdvertising: handleEditPoultryAdvertising,
-    onSeeConfig: handleOpenModalConfig
+    onSeeConfig: handleOpenModalConfig,
+    onAnswer: saveAdvertisingQuestionAnswer
   }), [
     handleEditPoultryAdvertising,
-    handleOpenModalConfig
+    handleOpenModalConfig,
+    saveAdvertisingQuestionAnswer
   ])
 
   const configModalItems = useMemo(() => ([
