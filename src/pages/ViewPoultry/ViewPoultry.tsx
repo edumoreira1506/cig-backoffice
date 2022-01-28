@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { Button, Modal, Autocomplete, ListModal } from '@cig-platform/ui'
+import { Button, Modal, Autocomplete, ListModal, Checkbox } from '@cig-platform/ui'
 import { IAdvertising, IBreeder } from '@cig-platform/types'
 import { useDebouncedEffect } from '@cig-platform/hooks'
 import MicroFrontend from '@cig-platform/microfrontend-helper'
@@ -19,7 +19,8 @@ import useRemovePoultryAdvertising from 'hooks/useRemovePoultryAdvertising'
 import {
   StyledContainer,
   StyledTransferButton,
-  StyledAutocomplete
+  StyledAutocomplete,
+  StyledTransferCheckbox
 } from './ViewPoultry.styles'
 import useTransferPoultry from 'hooks/useTransferPoultry'
 import useEditPoultryAdvertising from 'hooks/useEditPoultryAdvertising'
@@ -33,6 +34,7 @@ export default function ViewPoultry() {
   const [searchedBreeder, setSearchedBreeder] = useState('')
   const [breeders, setBreeders] = useState<IBreeder[]>([])
   const [isOpenModalConfig, setIsOpenModalConfig] = useState(false)
+  const [isTransferAllowed, setIsTransferAllowed] = useState(false)
 
   const { t } = useTranslation()
 
@@ -50,6 +52,10 @@ export default function ViewPoultry() {
   ])
 
   const { token } = useAuth()
+
+  const toggleTransferAllowed = useCallback(() => setIsTransferAllowed(
+    prevIsTransferAllowed => !prevIsTransferAllowed
+  ), [])
 
   const handleCloseModalConfig = useCallback(() => setIsOpenModalConfig(false), [])
   const handleOpenModalConfig = useCallback(() => setIsOpenModalConfig(true), [])
@@ -194,7 +200,11 @@ export default function ViewPoultry() {
     })
   }, [editAdvertising, t])
 
-  const handleShowTransferModal = useCallback(() => setShowTransferModal(true), [])
+  const handleShowTransferModal = useCallback(() => {
+    setShowTransferModal(true)
+    setIsOpenModalConfig(false)
+  }, [])
+
   const handleCloseTransferModal = useCallback(() => setShowTransferModal(false), [])
 
   const callbacks = useMemo<Record<string, any>>(() => ({
@@ -251,8 +261,17 @@ export default function ViewPoultry() {
             }}
           />
         </StyledAutocomplete>
+
+        <StyledTransferCheckbox>
+          <Checkbox
+            checked={isTransferAllowed}
+            onToggle={toggleTransferAllowed}
+            label={t('confirm-poultry-transfer')}
+          />
+        </StyledTransferCheckbox>
+
         <StyledTransferButton>
-          <Button onClick={handleTransferPoultry} disabled={!selectedBreeder}>
+          <Button onClick={handleTransferPoultry} disabled={!selectedBreeder || !isTransferAllowed}>
             {t('confirm-transfer')}
           </Button>
         </StyledTransferButton>

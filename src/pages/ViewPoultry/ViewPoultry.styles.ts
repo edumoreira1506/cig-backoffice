@@ -11,3 +11,11 @@ export const StyledAutocomplete = styled.div`
     z-index: 9;
   }
 `
+
+export const StyledTransferCheckbox = styled.div`
+  margin-top: 10px;
+
+  & > div {
+    align-items: flex-start;
+  }
+`
