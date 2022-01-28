@@ -194,7 +194,11 @@ export default function ViewPoultry() {
     })
   }, [editAdvertising, t])
 
-  const handleShowTransferModal = useCallback(() => setShowTransferModal(true), [])
+  const handleShowTransferModal = useCallback(() => {
+    setShowTransferModal(true)
+    setIsOpenModalConfig(false)
+  }, [])
+
   const handleCloseTransferModal = useCallback(() => setShowTransferModal(false), [])
 
   const callbacks = useMemo<Record<string, any>>(() => ({
