@@ -44,6 +44,8 @@
   "user.fields.password": "Senha",
   "user.fields.confirm-password": "Confirmação de senha",
   "list-poultries": "Minhas aves",
+  "sales": "Vendas",
+  "purchases": "Compras",
   "new-poultry": "Nova ave",
   "new-register": "Atualizar informações da ave",
   "edit-poultry": "Editar ave",

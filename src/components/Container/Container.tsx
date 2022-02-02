@@ -1,7 +1,7 @@
 import React, { ReactChild, useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai'
-import { GiChicken } from 'react-icons/gi'
+import { GiChicken, GiReceiveMoney } from 'react-icons/gi'
 import { useHistory } from 'react-router'
 import { Container as UIContainer } from '@cig-platform/ui'
 import { useLocalStorage } from '@cig-platform/hooks'
@@ -36,6 +36,16 @@ export const items = [
     title: 'Minhas aves',
     icon: <GiChicken />,
     route: Routes.ListPoultries
+  },
+  {
+    title: 'Vendas',
+    icon: <GiReceiveMoney />,
+    route: Routes.Sales
+  },
+  {
+    title: 'Compras',
+    icon: <GiReceiveMoney />,
+    route: Routes.Purchases
   },
   {
     title: 'Sair',
