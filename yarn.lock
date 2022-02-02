@@ -2362,7 +2362,7 @@
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/types@0.0.26":
+"@cig-platform/types@0.0.26", "@cig-platform/types@^0.0.26":
   version "0.0.26"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.26.tgz#2cd27f1663027cd86d1aa7fea08e95364b5cc2e6"
   integrity sha512-OkyuupHuMkNagkwiNrFJJGNUURzeOzB1RbwbagfnTxbKYLHqtjl16rBUQKXOD8X2jdQ5FWGC8vQwTvnHp0BH6w==
