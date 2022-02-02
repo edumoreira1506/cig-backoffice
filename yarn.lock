@@ -2290,10 +2290,10 @@
     "@cig-platform/types" "0.0.14"
     axios "^0.21.4"
 
-"@cig-platform/backoffice-bff-client@0.0.32":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.32.tgz#f1b82e3d10e1160c30a4b470695ec070727778f1"
-  integrity sha512-f4FU7JUjOzN+2BnjZBM0gQ0k3hiIPYeFyazHcUlPyRc28nacUKqVHp/bgntH+JtObiaDPa5BH0i1S6TnHrvPgA==
+"@cig-platform/backoffice-bff-client@0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.33.tgz#24ecd5c0839ee1db78e214e19f0d8b5a1b3abe4c"
+  integrity sha512-U3AobsbEzmLik3mqoQtU79a72TILbDfCusgWvEmJvKGbDOmtqv6MMbtV5h6Lfy9PIW+xkPkpaK1QCrTqQuP6Vg==
   dependencies:
     "@cig-platform/decorators" "0.0.1"
     "@cig-platform/types" "0.0.26"
