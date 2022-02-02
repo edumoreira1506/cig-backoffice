@@ -2355,7 +2355,7 @@
     react "^17.0.2"
     react-scripts "^5.0.0"
 
-"@cig-platform/types@0.0.14", "@cig-platform/types@^0.0.14":
+"@cig-platform/types@0.0.14":
   version "0.0.14"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.14.tgz#0ff5cf055a97da735b32ec4703f2f813306c063b"
   integrity sha512-BLPzdGqZuDJWRjh/3jtHS1M6dMGJyKRZobnNhsSCbh/ZdnzYB1fKxGxsevXMe4ikQGlhSd60+T1zPsKHMJT+CQ==
@@ -2388,12 +2388,12 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
 
-"@cig-platform/ui@^0.1.99":
-  version "0.1.99"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.99.tgz#c9c263fdeff5930eaf30982bb93e045c35aaf695"
-  integrity sha512-XgFBTSIj79vAc9wpRoEk0scKbdp1YK/+UIJledYy57v2pacSOCF/fF7aHRsiEjw7fulTIuzQraDBiw/0EEp3oQ==
+"@cig-platform/ui@^0.1.102":
+  version "0.1.102"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.102.tgz#942ed0b8646fe6c2fa1f2ced851b2a4f3c391b60"
+  integrity sha512-fQVoXG01Vi53kG+AzMVDiOBtxxK6VnldLF5D0ps6glJXQoSzyXDxRRHXtp+IeEr0eqPICf9fReF9XtGfsqX+jw==
   dependencies:
-    "@cig-platform/types" "^0.0.14"
+    "@cig-platform/types" "^0.0.26"
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
     "@testing-library/user-event" "^12.1.10"
