@@ -1,4 +1,4 @@
-import { IAdvertising, IDeal, IPoultry } from '@cig-platform/types'
+import { IAdvertising, IBreeder, IDeal, IPoultry } from '@cig-platform/types'
 import { useEffect, useState } from 'react'
 
 import BackofficeBffService from '../services/BackofficeBffService'
@@ -9,10 +9,11 @@ type UseDealsOptions = {
   filter: 'SELLER'| 'BUYER';
 }
 
-type Deal = {
+export type Deal = {
   poultry: IPoultry;
   advertising: IAdvertising;
   deal: IDeal;
+  breeder: IBreeder;
 }
 
 export default function useDeals({ filter }: UseDealsOptions) {
