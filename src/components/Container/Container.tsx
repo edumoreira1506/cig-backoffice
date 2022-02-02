@@ -43,6 +43,11 @@ export const items = [
     route: Routes.Sales
   },
   {
+    title: 'Compras',
+    icon: <GiReceiveMoney />,
+    route: Routes.Purchases
+  },
+  {
     title: 'Sair',
     icon: <AiOutlinePoweroff />,
     route: Routes.Logout
