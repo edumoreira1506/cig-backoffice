@@ -9,5 +9,6 @@ export enum Routes {
   NewRegister = '/ave/:poultryId/novo-registro',
   Logout = '/logout',
   Sales = '/vendas',
-  Purchases = '/compras'
+  Purchases = '/compras',
+  Purchase = '/compras/:dealId'
 }
