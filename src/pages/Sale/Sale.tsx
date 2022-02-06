@@ -22,6 +22,15 @@ const Sale: VFC = () => {
 
   const confirmDeal = useConfirmDeal({ onSuccess: handleSuccess })
 
+  const handleConfirmDeal = useCallback((params = {}) => {
+    if (!breeder) return
+
+    confirmDeal({
+      ...params,
+      breederId: breeder.id,
+    })
+  }, [confirmDeal])
+
   const cancelDeal = useCancelDeal({ onSuccess: handleSuccess })
 
   const handleCancelDeal = useCallback(({ advertisingId, dealId, poultryId, breederId }: {
@@ -43,7 +52,7 @@ const Sale: VFC = () => {
   }), [dealId, breeder])
 
   const microFrontendCallbacks = useMemo<Record<string, any>>(() => ({
-    onConfirmDeal: confirmDeal,
+    onConfirmDeal: handleConfirmDeal,
     onCancelDeal: handleCancelDeal,
   }), [])
 
