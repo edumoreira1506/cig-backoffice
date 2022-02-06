@@ -35,7 +35,7 @@ const Sales: VFC = () => {
       <StyledItems>
         {dealInfos.map((deal, index) => (
           <StyledItem key={deals[index].deal.id}>
-            <DealInfo {...deal} onViewDeal={handleViewDeal} />
+            <DealInfo {...deal} onViewDeal={() => handleViewDeal(deals[index].deal.id)} />
           </StyledItem>
         ))}
       </StyledItems>
