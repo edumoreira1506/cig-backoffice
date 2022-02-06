@@ -10,5 +10,6 @@ export enum Routes {
   Logout = '/logout',
   Sales = '/vendas',
   Purchases = '/compras',
-  Purchase = '/compras/:dealId'
+  Purchase = '/compras/:dealId',
+  Sale = '/vendas/:dealId'
 }
