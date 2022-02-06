@@ -13,6 +13,7 @@ import NewRegister from 'pages/NewRegister/NewRegister'
 import Logout from 'pages/Logout/Logout'
 import Sales from 'pages/Sales/Sales'
 import Purchases from 'pages/Purchases/Purchases'
+import Purchase from 'pages/Purchase/Purchase'
 
 export default function Router() {
   return (
@@ -28,6 +29,7 @@ export default function Router() {
       <Route exact path={Routes.Logout} component={Logout} />
       <Route exact path={Routes.Sales} component={Sales} />
       <Route exact path={Routes.Purchases} component={Purchases} />
+      <Route exact path={Routes.Purchase} component={Purchase} />
     </>
   )
 }
