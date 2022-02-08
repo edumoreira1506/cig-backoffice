@@ -14,7 +14,7 @@ import useQueryParam from '../../hooks/useQueryParam'
 import { LOGIN_URL, LOGO_URL } from '../../constants/url'
 import useRefreshToken from '../../hooks/useRefreshToken'
 import { useAppSelector } from '../../contexts/AppContext/AppContext'
-import { selectError } from '../../contexts/AppContext/appSelectors'
+import { selectError, selectIsLoading } from '../../contexts/AppContext/appSelectors'
 import { error as showError } from '../../utils/alert'
 
 export interface ContainerProps {
@@ -67,6 +67,8 @@ export default function Container({ children }: ContainerProps) {
   const { set } = useLocalStorage('token')
 
   const dispatch = useBreederDispatch()
+
+  const isLoading = useAppSelector(selectIsLoading)
 
   const error = useAppSelector(selectError)
 
@@ -132,6 +134,7 @@ export default function Container({ children }: ContainerProps) {
       shortcuts={shortcuts}
       onShortcutClick={handleShortcutClick}
       logoUrl={LOGO_URL}
+      isLoading={isLoading}
     >
       {children}
     </UIContainer>
