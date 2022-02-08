@@ -10,3 +10,10 @@ export const StyledItems = styled.ul`
 export const StyledItem = styled.li`
   margin-bottom: 15px;
 `
+
+export const StyledEmptyState = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`

@@ -12,6 +12,7 @@ import {
   StyledContainer,
   StyledItem,
   StyledItems,
+  StyledEmptyState
 } from './Sales.styles'
 
 const Sales: VFC = () => {
@@ -38,6 +39,12 @@ const Sales: VFC = () => {
             <DealInfo {...deal} onViewDeal={() => handleViewDeal(deals[index].deal.id)} />
           </StyledItem>
         ))}
+
+        {Boolean(!dealInfos?.length) && (
+          <StyledEmptyState>
+            {t('empty-text.sales')}
+          </StyledEmptyState>
+        )}
       </StyledItems>
     </StyledContainer>
   )
