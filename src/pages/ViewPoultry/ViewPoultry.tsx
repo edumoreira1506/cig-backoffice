@@ -248,6 +248,11 @@ export default function ViewPoultry() {
     poultryId
   }), [breeder?.id, poultryId])
 
+  const autocompleteInputProps = useMemo(() => ({
+    placeholder: t('search-breeder'),
+    isLoading: isLoadingBreeders
+  }), [isLoadingBreeders, t])
+
   return (
     <StyledContainer>
       <Modal isOpen={showTrasnferModal} onClose={handleCloseTransferModal}>
@@ -255,10 +260,7 @@ export default function ViewPoultry() {
           <Autocomplete
             onChange={setSearchedBreeder}
             items={breederNames} 
-            inputProps={{
-              placeholder: t('search-breeder'),
-              isLoading: isLoadingBreeders
-            }}
+            inputProps={autocompleteInputProps}
           />
         </StyledAutocomplete>
 
