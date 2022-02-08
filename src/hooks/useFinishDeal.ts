@@ -3,14 +3,18 @@ import { useCallback } from 'react'
 import { useAppDispatch } from '../contexts/AppContext/AppContext'
 import { setError, setIsLoading } from '../contexts/AppContext/appActions'
 import BackofficeBffService from '../services/BackofficeBffService'
+import { info } from '../utils/alert'
 
 import useAuth from './useAuth'
+import { useTranslation } from 'react-i18next'
 
 export default function useFinishDeal({
   onSuccess,
 }: {
   onSuccess: () => void;
 }) {
+  const { t } = useTranslation()
+
   const appDispatch = useAppDispatch()
 
   const { token } = useAuth()
@@ -26,24 +30,30 @@ export default function useFinishDeal({
     advertisingId: string;
     poultryId: string;
   }) => {
-    try {
-      appDispatch(setIsLoading(true))
-
-      await BackofficeBffService.finishDeal(
-        breederId,
-        poultryId,
-        advertisingId,
-        dealId,
-        token
-      )
-  
-      onSuccess()
-    } catch (error) {
-      appDispatch(setError(error))
-    } finally {
-      appDispatch(setIsLoading(false))
-    }
-  }, [onSuccess, appDispatch, token])
+    info(
+      t('confirm-finish-deal'),
+      t,
+      async () => {
+        try {
+          appDispatch(setIsLoading(true))
+    
+          await BackofficeBffService.finishDeal(
+            breederId,
+            poultryId,
+            advertisingId,
+            dealId,
+            token
+          )
+      
+          onSuccess()
+        } catch (error) {
+          appDispatch(setError(error))
+        } finally {
+          appDispatch(setIsLoading(false))
+        }
+      }
+    )
+  }, [onSuccess, appDispatch, token, t])
 
   return handleFinishDeal
 }
