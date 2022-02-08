@@ -2331,6 +2331,11 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/enums/-/enums-0.0.1.tgz#24cd47fbe2b8aaa6cd7fe96ad33dc722e8022f2d"
   integrity sha512-9+Kd5HprB0VYO0ysqKDAjONoymTustCOyyjTVFG2RSURSj8hlD+2sn/F4WV2jHbRzjuxcKnpqR7tYVKvL6YqzQ==
 
+"@cig-platform/enums@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@cig-platform/enums/-/enums-0.0.3.tgz#dcec8ec55ca30dff410041f27650326ce5ee7706"
+  integrity sha512-0wKd4Ub3ZTujimPEhc+68y1yu/NZwhpkZJRfTYrk24AmVH5vWWold+zQdK6pTWMQ/qQuCvtpBM1JdEEjZtG68w==
+
 "@cig-platform/factories@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@cig-platform/factories/-/factories-0.0.6.tgz#8991d562e5cbae1014a86337c9b1dac9b6897c21"
@@ -2388,11 +2393,12 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
 
-"@cig-platform/ui@^0.1.104":
-  version "0.1.104"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.104.tgz#78542dfd0c559d0eb978fab350e229a8607d69c2"
-  integrity sha512-pzrh2wRCDdwglo+gsGVjONJFYGtYtUKuEDZzZwoNnt2Rkz7pYUCgKOeyfOtn8wmQigjZkRhL3ZIRs1ErRjProA==
+"@cig-platform/ui@^0.1.106":
+  version "0.1.106"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.106.tgz#7c9759169f3d1ae64296e6e3ab3e70c5124604a3"
+  integrity sha512-W3pHfXimnAvPmpu2+cDMhSXEYi+HID6jlNOjExDBtxrSZlg+hBPhJRnsho1xbq8jt9jJY+YJ9cVjQqGGL4qDdQ==
   dependencies:
+    "@cig-platform/enums" "^0.0.3"
     "@cig-platform/types" "^0.0.26"
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
