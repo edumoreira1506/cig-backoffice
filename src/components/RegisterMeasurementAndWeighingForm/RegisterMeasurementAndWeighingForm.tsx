@@ -79,6 +79,7 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
           hasExpandColumn
           columns={[t('register.fields.measurement-and-weighing.date'), t('register.fields.measurement-and-weighing.weight'), t('register.fields.measurement-and-weighing.measurement')]}
           rows={formattedRows}
+          emptyStateText={t('empty-text.measurement-and-weighing')}
         />
       </StyledTable>
       <StyledButton>

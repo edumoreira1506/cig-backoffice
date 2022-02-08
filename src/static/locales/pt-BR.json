@@ -100,5 +100,7 @@
   "reason-of-cancel": "Qual a razão para o cancelamento da compra?",
   "confirm-finish-deal": "Tem certeza que deseja finalizar a negociação?",
   "confirm-cancel-deal": "Tem certeza que deseja cancelar a negociação?",
-  "confirm-deal": "Tem certeza que deseja confirmar a negociação?"
+  "confirm-deal": "Tem certeza que deseja confirmar a negociação?",
+  "empty-text.measurement-and-weighing": "Não há registros de medição/pesagem",
+  "empty-text.vaccination": "Não há registros de vacinação"
 }

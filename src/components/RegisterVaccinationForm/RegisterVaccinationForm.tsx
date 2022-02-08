@@ -93,6 +93,7 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
           hasExpandColumn
           columns={[t('register.fields.vaccination.date'), t('register.fields.vaccination.name'), t('register.fields.vaccination.dose')]}
           rows={formattedRows}
+          emptyStateText={t('empty-text.vaccination')}
         />
       </StyledTable>
       <StyledButton>
