@@ -15,6 +15,10 @@ import { Routes } from 'constants/routes'
 import { success, withInput, info } from 'utils/alert'
 import useSavePoultryAdvertising from 'hooks/useSavePoultryAdvertising'
 import useRemovePoultryAdvertising from 'hooks/useRemovePoultryAdvertising'
+import useTransferPoultry from 'hooks/useTransferPoultry'
+import useEditPoultryAdvertising from 'hooks/useEditPoultryAdvertising'
+import useAnswerAdvertisingQuestion from 'hooks/useAnswerAdvertisingQuestion'
+import { createImageUrl } from 'utils/s3'
 
 import {
   StyledContainer,
@@ -22,9 +26,6 @@ import {
   StyledAutocomplete,
   StyledTransferCheckbox
 } from './ViewPoultry.styles'
-import useTransferPoultry from 'hooks/useTransferPoultry'
-import useEditPoultryAdvertising from 'hooks/useEditPoultryAdvertising'
-import useAnswerAdvertisingQuestion from 'hooks/useAnswerAdvertisingQuestion'
 
 export default function ViewPoultry() {
   const [advertising, setAdvertising] = useState<undefined | IAdvertising>()
@@ -44,7 +45,11 @@ export default function ViewPoultry() {
 
   const breeder = useBreeder()
 
-  const breederNames = useMemo(() => breeders.map(breeder => breeder.name), [breeders])
+  const breederOptions = useMemo(() => breeders.map(breeder => ({
+    content: breeder.name,
+    key: breeder.id,
+    image: createImageUrl({ folder: 'breeders', subfolder: 'profile', fileName: breeder.profileImageUrl })
+  })), [breeders])
 
   const selectedBreeder = useMemo(() => breeders.find(breeder => breeder.name === searchedBreeder), [
     searchedBreeder,
@@ -259,7 +264,7 @@ export default function ViewPoultry() {
         <StyledAutocomplete>
           <Autocomplete
             onChange={setSearchedBreeder}
-            items={breederNames} 
+            items={breederOptions} 
             inputProps={autocompleteInputProps}
           />
         </StyledAutocomplete>
