@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useAppDispatch } from '../contexts/AppContext/AppContext'
 import { setError, setIsLoading } from '../contexts/AppContext/appActions'
@@ -6,7 +7,6 @@ import BackofficeBffService from '../services/BackofficeBffService'
 import { info } from '../utils/alert'
 
 import useAuth from './useAuth'
-import { useTranslation } from 'react-i18next'
 
 export default function useFinishDeal({
   onSuccess,
