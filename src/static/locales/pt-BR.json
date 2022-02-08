@@ -102,5 +102,7 @@
   "confirm-cancel-deal": "Tem certeza que deseja cancelar a negociação?",
   "confirm-deal": "Tem certeza que deseja confirmar a negociação?",
   "empty-text.measurement-and-weighing": "Não há registros de medição/pesagem",
-  "empty-text.vaccination": "Não há registros de vacinação"
+  "empty-text.vaccination": "Não há registros de vacinação",
+  "empty-text.purchases": "Não há compras",
+  "empty-text.sales": "Não há vendas"
 }

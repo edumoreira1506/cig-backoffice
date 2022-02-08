@@ -12,6 +12,7 @@ import {
   StyledContainer,
   StyledItem,
   StyledItems,
+  StyledEmptyState
 } from './Purchases.styles'
 
 const Purchases: VFC = () => {
@@ -39,6 +40,12 @@ const Purchases: VFC = () => {
           </StyledItem>
         ))}
       </StyledItems>
+
+      {Boolean(!dealInfos?.length) && (
+        <StyledEmptyState>
+          {t('empty-text.purchases')}
+        </StyledEmptyState>
+      )}
     </StyledContainer>
   )
 }
