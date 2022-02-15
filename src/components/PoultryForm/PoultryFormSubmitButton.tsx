@@ -17,7 +17,9 @@ import {
   selectDewlap,
   selectTail,
   selectDescription,
-  selectGenderCategory
+  selectGenderCategory,
+  selectMeasurement,
+  selectWeight
 } from 'contexts/PoultryContext/poultrySelectors'
 import stringToDate from 'formatters/stringToDate'
 
@@ -41,6 +43,8 @@ export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitB
   const tail = usePoultrySelector(selectTail)
   const description = usePoultrySelector(selectDescription)
   const genderCategory = usePoultrySelector(selectGenderCategory)
+  const measurement = usePoultrySelector(selectMeasurement)
+  const weight = usePoultrySelector(selectWeight)
 
   const handleSubmit = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -59,6 +63,8 @@ export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitB
       tail,
       description,
       genderCategory,
+      weight,
+      measurement
     })
   }, [
     name,
@@ -75,6 +81,8 @@ export default function PoultryFormSubmitButton({ onSubmit }: PoultryFormSubmitB
     tail,
     description,
     genderCategory,
+    weight,
+    measurement
   ])
 
   return (

@@ -2,6 +2,16 @@ import { IPoultryImage } from '@cig-platform/types'
 
 import { PoultryState } from './poultryReducer'
 
+export const setMeasurement = (measurement: number) => ({
+  payload: { measurement },
+  type: 'SET_MEASUREMENT'
+} as const)
+
+export const setWeight = (weight: number) => ({
+  payload: { weight },
+  type: 'SET_WEIGHT'
+} as const)
+
 export const setDewlap = (dewlap: string) => ({
   payload: { dewlap },
   type: 'SET_DEWLAP'

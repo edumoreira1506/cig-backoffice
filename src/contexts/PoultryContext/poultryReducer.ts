@@ -24,6 +24,8 @@ export interface PoultryState extends DefaultState {
   tail: string;
   description: string;
   availableGenderCategories: string[];
+  measurement?: number;
+  weight?: number;
 }
 
 export const INITIAL_STATE: PoultryState = {
@@ -48,7 +50,9 @@ export const INITIAL_STATE: PoultryState = {
   images: [] as PoultryImage[],
   gender: '',
   genderCategory: '',
-  availableGenderCategories: []
+  availableGenderCategories: [],
+  measurement: undefined,
+  weight: undefined,
 }
 
 export type PoultryActionTypes = ActionType<typeof actions>
@@ -58,6 +62,16 @@ export default function breederReducer(
   action: PoultryActionTypes
 ): PoultryState {
   switch (action.type) {
+  case 'SET_MEASUREMENT':
+    return {
+      ...state,
+      measurement: action.payload.measurement
+    }
+  case 'SET_WEIGHT':
+    return {
+      ...state,
+      weight: action.payload.weight
+    }
   case 'SET_GENDER_CATEGORY':
     return {
       ...state,
