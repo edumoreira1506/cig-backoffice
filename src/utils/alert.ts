@@ -52,5 +52,5 @@ export const withInput = async (
     },
   })
 
-  if (value) return callback(value)
+  return callback(value)
 }
