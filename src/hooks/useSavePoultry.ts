@@ -17,7 +17,7 @@ export default function useSavePoultry({ onSuccess }: { onSuccess: () => void })
 
   const { token } = useAuth()
 
-  const handleSavePoultry = useCallback(async (poultry: Partial<IPoultry> & { images?: PoultryState['images'] }) => {
+  const handleSavePoultry = useCallback(async (poultry: Partial<IPoultry> & { images?: PoultryState['images']; weight?: number; measurement?: number; }) => {
     if (!breeder) return
 
     try {
@@ -27,7 +27,13 @@ export default function useSavePoultry({ onSuccess }: { onSuccess: () => void })
 
       delete poultry['images']
 
-      await BackofficeBffService.postPoultry(breeder.id, token, filterObject(poultry), images)
+      await BackofficeBffService.postPoultry(
+        breeder.id,
+        token,
+        filterObject(poultry),
+        images,
+        { measurement: poultry.measurement, weight: poultry.weight }
+      )
   
       onSuccess()
     } catch (error) {
