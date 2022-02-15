@@ -19,6 +19,6 @@ export default function NewPoultryContainer() {
   const savePoultry = useSavePoultry({ onSuccess: handleSuccess })
 
   return (
-    <PoultryForm onSubmit={savePoultry} />
+    <PoultryForm onSubmit={savePoultry} showMeasurementAndWeight />
   )
 }

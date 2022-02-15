@@ -79,6 +79,8 @@
   "poultry.fields.colors.plumage": "Plumagem",
   "poultry.fields.colors.shins": "Canelas",
   "poultry.fields.colors.eyes": "Olhos",
+  "poultry.fields.measurement": "Medida",
+  "poultry.fields.weight": "Pesagem",
   "register.fields.type.images": "Imagens",
   "register.fields.type.measurement-and-weighing": "Medição e Pesagem",
   "register.fields.type.vaccination": "Vacinação",

@@ -24,13 +24,20 @@ import PoultryFormDescription from './PoultryFormDescription'
 import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
 import { selectGender } from 'contexts/PoultryContext/poultrySelectors'
 import { setAvailableGenderCategories } from 'contexts/PoultryContext/poultryActions'
+import PoultryFormMeasurement from './PoultryFormMeasurement'
+import PoultryFormWeight from './PoultryFormWeight'
 
 export interface PoultryFormProps {
-  onSubmit: (poultry: Partial<IPoultry> & { images: PoultryState['images'] }) => void;
-  disabledFields?: (keyof IPoultry)[]
+  onSubmit: (poultry: Partial<IPoultry> & { images: PoultryState['images']; measurement?: number; weight?: number; }) => void;
+  disabledFields?: (keyof IPoultry)[];
+  showMeasurementAndWeight?: boolean;
 }
 
-export default function PoultryForm({ onSubmit, disabledFields }: PoultryFormProps) {
+export default function PoultryForm({
+  onSubmit,
+  disabledFields,
+  showMeasurementAndWeight = false
+}: PoultryFormProps) {
   const { t } = useTranslation()
 
   const gender = usePoultrySelector(selectGender)
@@ -79,6 +86,16 @@ export default function PoultryForm({ onSubmit, disabledFields }: PoultryFormPro
       <StyledFormField>
         <PoultryFormBirthDate />
       </StyledFormField>
+      {showMeasurementAndWeight && (
+        <>
+          <StyledFormField>
+            <PoultryFormMeasurement />
+          </StyledFormField>
+          <StyledFormField>
+            <PoultryFormWeight />
+          </StyledFormField>
+        </>
+      )}
       <StyledSubtitle>{t('poultry.fields.colors')}</StyledSubtitle>
       <PoultryFormColors />
       <StyledSubtitle>{t('poultry.fields.videos')}</StyledSubtitle>
