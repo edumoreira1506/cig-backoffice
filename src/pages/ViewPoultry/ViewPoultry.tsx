@@ -144,9 +144,11 @@ export default function ViewPoultry() {
 
   const handleAnnouncePoultry = useCallback(() => {
     withInput(t('create-poultry-advertising'), t, (a) => {
-      const price = Number(a.replace(/[^0-9]/g,''))
+      if (a) {
+        const price = Number(a.replace(/[^0-9]/g,''))
 
-      saveAdvertising({ price })
+        saveAdvertising({ price })
+      }
     })
 
     document.querySelector('.swal2-input')?.addEventListener('keyup', () => {
@@ -184,9 +186,11 @@ export default function ViewPoultry() {
 
   const handleEditPoultryAdvertising = useCallback(() => {
     withInput(t('edit-poultry-advertising'), t, (a) => {
-      const price = Number(a.replace(/[^0-9]/g,''))
+      if (a) {
+        const price = Number(a.replace(/[^0-9]/g,''))
 
-      editAdvertising(price)
+        editAdvertising(price)
+      }
     })
 
     document.querySelector('.swal2-input')?.addEventListener('keyup', () => {

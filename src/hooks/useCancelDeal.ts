@@ -30,11 +30,11 @@ export default function useCancelDeal({
     advertisingId: string;
     poultryId: string;
   }) => {
-    withInput(t('reason-of-cancel'), t, (reason = '') => {
-      info(
-        t('confirm-cancel-deal'),
-        t,
-        async () => {
+    info(
+      t('confirm-cancel-deal'),
+      t,
+      () => {
+        withInput(t('reason-of-cancel'), t, async (reason = '') => {
           try {
             appDispatch(setIsLoading(true))
       
@@ -53,9 +53,9 @@ export default function useCancelDeal({
           } finally {
             appDispatch(setIsLoading(false))
           }
-        }
-      )
-    })
+        })
+      }
+    )
   }, [onSuccess, appDispatch, token, t])
 
   return handleCancelDeal
