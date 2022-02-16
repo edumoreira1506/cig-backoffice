@@ -1,7 +1,9 @@
 import { IDeal } from '@cig-platform/types'
 import { Colors } from '@cig-platform/ui'
 
-import { Deal } from '../hooks/useDeals'
+import { S3Folders, S3Subfolders } from 'constants/s3'
+import { Deal } from 'hooks/useDeals'
+import { createImageUrl } from 'utils/s3'
 
 const getDealStatus = (deal: IDeal) => {
   if (deal.cancelled) return 'Cancelado'
@@ -29,6 +31,11 @@ export const dealToPoultryCard = (deal: Deal) => {
     description: `${deal.breeder.name} - ${[
       deal?.poultry?.birthDate && new Date(deal.poultry.birthDate).toLocaleDateString(),
       lastMeasurement?.metadata?.measurement && `${lastMeasurement.metadata.measurement} cm`
-    ].filter(Boolean).join(' ')}`
+    ].filter(Boolean).join(' ')}`,
+    image: deal?.mainImage && createImageUrl({
+      fileName: deal.mainImage,
+      subfolder: S3Subfolders.Images,
+      folder: S3Folders.Poultries
+    })
   }
 }

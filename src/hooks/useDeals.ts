@@ -15,6 +15,7 @@ export type Deal = {
   deal: IDeal;
   breeder: IBreeder;
   measurementAndWeight: IPoultryRegister[];
+  mainImage?: string;
 }
 
 export default function useDeals({ filter }: UseDealsOptions) {
