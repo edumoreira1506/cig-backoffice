@@ -11,8 +11,8 @@ const getDealStatus = (deal: IDeal) => {
 
 const getDealStatusColor = (deal: IDeal) => {
   if (deal.cancelled) return Colors.LightRed
-  if (deal.finished) return Colors.DarkBlueHover
-  return Colors.BlackTransparent
+  if (deal.finished) return Colors.SuccessGreen
+  return Colors.LightBlue
 }
 
 export const dealToPoultryCard = (deal: Deal) => {
