@@ -99,6 +99,8 @@ export default function Container({ children }: ContainerProps) {
     history.push(shortcutLinks[shortcut])
   }, [history])
 
+  const handleNavigateToMainPage = useCallback(() => history.push('/'), [history])
+
   useEffect(() => {
     dispatch(setBreeders(userData?.breeders ?? []))
 
@@ -135,6 +137,7 @@ export default function Container({ children }: ContainerProps) {
       onShortcutClick={handleShortcutClick}
       logoUrl={LOGO_URL}
       isLoading={isLoading}
+      onClickTitle={handleNavigateToMainPage}
     >
       {children}
     </UIContainer>
