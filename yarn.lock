@@ -2393,10 +2393,10 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
 
-"@cig-platform/ui@^0.1.114":
-  version "0.1.114"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.114.tgz#408a2ad584164d5f6008fe1f82871e11e46bb01a"
-  integrity sha512-t8ptXh+v9mqHwVAG1M2P9yow4f7hBCwRux+eVBKzAh5+uRgE7j81KlLNVGeosGtV36OUoQQ9cM075CD7h2Uhew==
+"@cig-platform/ui@^0.1.129":
+  version "0.1.129"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.129.tgz#c4fe12b1a49cf5f7b78eab74b7c9b13642b2eaf9"
+  integrity sha512-RE0umlCTPxGrpRfjgrU0W2QuHvp5Mn9QOYnJE/u1YeQ+tiz1d2tkbCN2FQphH0PzUILh6uNe3ooE6O6Ve4/ZAQ==
   dependencies:
     "@cig-platform/enums" "^0.0.3"
     "@cig-platform/types" "^0.0.26"
