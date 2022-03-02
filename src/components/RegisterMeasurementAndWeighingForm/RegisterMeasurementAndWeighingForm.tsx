@@ -67,7 +67,11 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
   }, [dispatch])
 
   const formattedRows = useMemo(() => registers.map(register => ({
-    items: [new Intl.DateTimeFormat('pt-BR').format(new Date(register.date)), `${register?.metadata?.weight} KG`, `${register?.metadata?.measurement} CM`],
+    items: [
+      new Intl.DateTimeFormat('pt-BR').format(new Date(register.date)),
+      register?.metadata?.weight ? `${register.metadata.weight} KG` : 'Não informado',
+      register?.metadata?.measurement ? `${register.metadata.measurement} CM` : 'Não informado'
+    ],
     expandedContent: register.description
   })).reverse(), [registers])
 
