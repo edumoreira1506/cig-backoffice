@@ -1,18 +1,23 @@
 import React, { VFC, useMemo, useCallback } from 'react'
 import MicroFrontend from '@cig-platform/microfrontend-helper'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { IDeal } from '@cig-platform/types'
 
 import useBreeder from '../../hooks/useBreeder'
 import { DEAL_PAGE_URL } from '../../constants/url'
 import useFinishDeal from '../../hooks/useFinishDeal'
 import { success } from '../../utils/alert'
-import useCancelDeal from 'hooks/useCancelDeal'
+import useCancelDeal from '../../hooks/useCancelDeal'
+import useReBuy from '../../hooks/useReBuy'
+import { Routes } from '../../constants/routes'
 
 const Purchase: VFC = () => {
   const { dealId } = useParams<{ dealId: string }>()
 
   const { t } = useTranslation()
+
+  const history = useHistory()
 
   const breeder = useBreeder()
 
@@ -20,9 +25,15 @@ const Purchase: VFC = () => {
     success(t('common.updated'), t, () => window.location.reload())
   }, [])
 
+  const handleSuccessRebuy = useCallback((deal: IDeal) => {
+    history.push(`${Routes.Purchase.replace(':dealId', deal.id)}`)
+  }, [history.push])
+
   const finishDeal = useFinishDeal({ onSuccess: handleSuccess })
 
   const cancelDeal = useCancelDeal({ onSuccess: handleSuccess })
+
+  const reBuy = useReBuy({ onSuccess: handleSuccessRebuy })
 
   const microFrontendParams = useMemo(() => ({
     dealId,
@@ -32,7 +43,8 @@ const Purchase: VFC = () => {
   const microFrontendCallbacks = useMemo<Record<string, any>>(() => ({
     onFinishDeal: finishDeal,
     onCancelDeal: cancelDeal,
-  }), [])
+    onReBuy: reBuy
+  }), [finishDeal, cancelDeal])
 
   if (!breeder) return null
 
