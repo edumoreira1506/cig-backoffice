@@ -2344,10 +2344,10 @@
     "@cig-platform/types" "0.0.8"
     faker "^5.5.3"
 
-"@cig-platform/hooks@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cig-platform/hooks/-/hooks-0.0.2.tgz#464634522df0a7c415647463992d9d9d1402bc99"
-  integrity sha512-Fw1LRym4QbLMjjMWoZ5oKjKNDi9n0XDfwMTFCzc56omOPYvNjE+X9SYg+nqdZdi16FgKtQFvDmEZOxq6sHelCA==
+"@cig-platform/hooks@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@cig-platform/hooks/-/hooks-0.0.3.tgz#78374db9d2b7bf8b08421cac7ef2cfd9c40d288e"
+  integrity sha512-2k4XA5G0ysyJekVf62/+5yY+fEEqr+G19v6t+bu8qAAN6hws/zjTiiuiifmjyJn24pOxAPchpjPihsWbJooSWg==
   dependencies:
     react "^17.0.2"
     react-dom "^17.0.2"
