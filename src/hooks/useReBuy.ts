@@ -48,33 +48,37 @@ export default function useReBuy({
       t('confirm-deal-value'),
       t,
       async (rawValue) => {
-        const value = Number(rawValue.replace(/[^0-9]/g,''))
+        if (rawValue) {
+          const value = Number(rawValue.replace(/[^0-9]/g,''))
 
-        document.querySelector('.swal2-input')?.removeEventListener('keyup', handleOnChangeInputAlert)
-
-        withInput(
-          t('confirm-deal-description'),
-          t,
-          async (description = '') => {
-            try {
-              appDispatch(setIsLoading(true))
-
-              const deal = await MarketplaceBffService.postDeal(
-                breederId,
-                poultryId,
-                advertisingId,
-                token,
-                { value, description }
-              )
-
-              onSuccess(deal)
-            } catch (error) {
-              appDispatch(setError(error))
-            } finally {
-              appDispatch(setIsLoading(false))
-            }
-          },
-        )
+          document.querySelector('.swal2-input')?.removeEventListener('keyup', handleOnChangeInputAlert)
+  
+          withInput(
+            t('confirm-deal-description'),
+            t,
+            async (description) => {
+              if (description) {
+                try {
+                  appDispatch(setIsLoading(true))
+    
+                  const deal = await MarketplaceBffService.postDeal(
+                    breederId,
+                    poultryId,
+                    advertisingId,
+                    token,
+                    { value, description }
+                  )
+    
+                  onSuccess(deal)
+                } catch (error) {
+                  appDispatch(setError(error))
+                } finally {
+                  appDispatch(setIsLoading(false))
+                }
+              }
+            },
+          )
+        }
       },
     )
 

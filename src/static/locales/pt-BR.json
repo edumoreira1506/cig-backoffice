@@ -107,5 +107,6 @@
   "empty-text.vaccination": "Não há registros de vacinação",
   "empty-text.purchases": "Não há compras",
   "empty-text.sales": "Não há vendas",
-  "confirm-deal-value": "Qual o valor da nova proposta que você deseja fazer?"
+  "confirm-deal-value": "Qual o valor da nova proposta que você deseja fazer?",
+  "confirm-deal-description": "Deseja enviar alguma mensagem na proposta?"
 }
