@@ -2290,10 +2290,10 @@
     "@cig-platform/types" "0.0.14"
     axios "^0.21.4"
 
-"@cig-platform/backoffice-bff-client@0.0.43":
-  version "0.0.43"
-  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.43.tgz#cbf40202700e26e0c7b9151625e6320b0ebb8284"
-  integrity sha512-jm453JJ4A57y9O9jGAKxvpMZeKkGv59bh5UgAqLPfVFe84xH8T7p9HzHpMmzt7EnhQYmtjK7jJmf368nafy2yg==
+"@cig-platform/backoffice-bff-client@0.0.45":
+  version "0.0.45"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.45.tgz#d1e9d5e0ea6506da94e301972e31eef287f1c200"
+  integrity sha512-5HTmw9iBWadhJUHR2B+34oTgEt8JbKU7CofX4Ufr1oDoc+WhdYefyo/SbHOYUSIZyMxtUvY7ngpMd0OqB2bKQQ==
   dependencies:
     "@cig-platform/decorators" "0.0.1"
     "@cig-platform/types" "0.0.26"
@@ -2344,10 +2344,10 @@
     "@cig-platform/types" "0.0.8"
     faker "^5.5.3"
 
-"@cig-platform/hooks@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cig-platform/hooks/-/hooks-0.0.2.tgz#464634522df0a7c415647463992d9d9d1402bc99"
-  integrity sha512-Fw1LRym4QbLMjjMWoZ5oKjKNDi9n0XDfwMTFCzc56omOPYvNjE+X9SYg+nqdZdi16FgKtQFvDmEZOxq6sHelCA==
+"@cig-platform/hooks@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@cig-platform/hooks/-/hooks-0.0.3.tgz#78374db9d2b7bf8b08421cac7ef2cfd9c40d288e"
+  integrity sha512-2k4XA5G0ysyJekVf62/+5yY+fEEqr+G19v6t+bu8qAAN6hws/zjTiiuiifmjyJn24pOxAPchpjPihsWbJooSWg==
   dependencies:
     react "^17.0.2"
     react-dom "^17.0.2"
