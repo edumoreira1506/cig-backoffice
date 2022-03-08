@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { useHistory, useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button, Modal, Autocomplete, ListModal, Checkbox } from '@cig-platform/ui'
 import { IAdvertising, IBreeder } from '@cig-platform/types'
@@ -39,7 +39,7 @@ export default function ViewPoultry() {
 
   const { t } = useTranslation()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const { poultryId } = useParams<{ poultryId: string }>()
 
@@ -70,32 +70,32 @@ export default function ViewPoultry() {
   }, [t])
 
   const handleTransferPoultrySuccess = useCallback(() => {
-    success(t('action-success'), t, () => history.push(Routes.ListPoultries))
-  }, [t, history])
+    success(t('action-success'), t, () => navigate(Routes.ListPoultries))
+  }, [t, navigate])
 
-  const saveAdvertising = useSavePoultryAdvertising({ poultryId, onSuccess: handleSaveSuccess })
+  const saveAdvertising = useSavePoultryAdvertising({ poultryId: poultryId || '', onSuccess: handleSaveSuccess })
 
   const saveAdvertisingQuestionAnswer = useAnswerAdvertisingQuestion({
-    poultryId,
+    poultryId: poultryId || '',
     onSuccess: handleSaveSuccess,
     advertisingId: String(advertising?.id ?? '')
   })
 
   const editAdvertising = useEditPoultryAdvertising({
-    poultryId,
+    poultryId: poultryId || '',
     onSuccess: handleSaveSuccess,
     advertisingId: String(advertising?.id ?? '')
   })
 
   const removeAdvertising = useRemovePoultryAdvertising({
-    poultryId,
+    poultryId: poultryId || '',
     advertisingId: advertising?.id ?? '',
     onSuccess: handleSaveSuccess,
   })
 
   const transferPoultry = useTransferPoultry({
     onSuccess: handleTransferPoultrySuccess,
-    poultryId
+    poultryId: poultryId || '',
   })
 
   useEffect(() => {
@@ -135,12 +135,12 @@ export default function ViewPoultry() {
   }, 1500, [searchedBreeder, breeder])
 
   const handleNavigateToNewRegisterPage = useCallback(() =>
-    history.push(Routes.NewRegister.replaceAll(':poultryId', poultryId))
-  , [history, poultryId])
+    navigate(Routes.NewRegister.replaceAll(':poultryId', poultryId || ''))
+  , [navigate, poultryId])
 
   const handleNavigateToEditPage = useCallback(() =>
-    history.push(Routes.EditPoultry.replaceAll(':poultryId', poultryId))
-  , [history, poultryId])
+    navigate(Routes.EditPoultry.replaceAll(':poultryId', poultryId || ''))
+  , [navigate, poultryId])
 
   const handleAnnouncePoultry = useCallback(() => {
     withInput(t('create-poultry-advertising'), t, (a) => {
@@ -254,7 +254,7 @@ export default function ViewPoultry() {
 
   const microFrontendParams = useMemo(() => ({
     breederId: breeder?.id ?? '',
-    poultryId
+    poultryId: poultryId || ''
   }), [breeder?.id, poultryId])
 
   const autocompleteInputProps = useMemo(() => ({

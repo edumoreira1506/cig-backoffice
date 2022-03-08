@@ -1,10 +1,10 @@
 import { useMemo, useCallback } from 'react'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function useQueryParam(paramName: string) {
   const { search } = useLocation()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const urlSearchParams = useMemo(() => new URLSearchParams(search), [])
 
@@ -16,11 +16,11 @@ export default function useQueryParam(paramName: string) {
     if (urlSearchParams.has(paramName)) {
       urlSearchParams.delete(paramName)
 
-      history.replace({
+      navigate({
         search: urlSearchParams.toString(),
       })
     }
-  }, [urlSearchParams, paramName])
+  }, [urlSearchParams, paramName, navigate])
 
   return { value, remove }
 }

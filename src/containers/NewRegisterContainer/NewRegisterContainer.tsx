@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router'
 import { Button, Tabs } from '@cig-platform/ui'
 import { RegisterTypeEnum } from '@cig-platform/enums'
 
@@ -32,7 +32,7 @@ const registerTypes = [
 export default function NewRegisterContainer() {
   const { t } = useTranslation()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const type = useRegisterSelector(selectType)
   const description = useRegisterSelector(selectDescription)
@@ -47,8 +47,8 @@ export default function NewRegisterContainer() {
   }, [dispatch])
 
   const handleSuccess = useCallback(() => {
-    success(t('common.saved'), t, () => history.push(Routes.ListPoultries))
-  }, [t, history])
+    success(t('common.saved'), t, () => navigate(Routes.ListPoultries))
+  }, [t, navigate])
 
   const saveRegister = useSaveRegister({ onSuccess: handleSuccess })
 

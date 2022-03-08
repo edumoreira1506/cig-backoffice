@@ -2,7 +2,7 @@ import React, { ReactChild, useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai'
 import { GiChicken, GiReceiveMoney } from 'react-icons/gi'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router'
 import { Container as UIContainer } from '@cig-platform/ui'
 import { useLocalStorage } from '@cig-platform/hooks'
 
@@ -78,7 +78,7 @@ export default function Container({ children }: ContainerProps) {
 
   const refreshToken = useRefreshToken(token)
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const user = useMemo(() => ({
     image: 'https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png',
@@ -90,16 +90,16 @@ export default function Container({ children }: ContainerProps) {
 
     if (item) {
       if (item.route) {
-        history.push(item.route)
+        navigate(item.route)
       }
     }
-  }, [history])
+  }, [navigate])
 
   const handleShortcutClick = useCallback((shortcut: string) => {
-    history.push(shortcutLinks[shortcut])
-  }, [history])
+    navigate(shortcutLinks[shortcut])
+  }, [navigate])
 
-  const handleNavigateToMainPage = useCallback(() => history.push('/'), [history])
+  const handleNavigateToMainPage = useCallback(() => navigate('/'), [navigate])
 
   useEffect(() => {
     dispatch(setBreeders(userData?.breeders ?? []))

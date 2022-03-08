@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { PoultryGenderCategoryEnum } from '@cig-platform/enums'
 
 import { Routes } from 'constants/routes'
@@ -46,7 +46,7 @@ export default function EditPoultryContainer() {
   const birthDate = usePoultrySelector(selectBirthDate)
   const genderCategory = usePoultrySelector(selectGenderCategory)
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const { token } = useAuth()
 
@@ -64,10 +64,10 @@ export default function EditPoultryContainer() {
   }, [birthDate, genderCategory])
 
   const handleSuccess = useCallback(() => {
-    success(t('common.saved'), t, () => history.push(Routes.ListPoultries))
-  }, [t, history])
+    success(t('common.saved'), t, () => navigate(Routes.ListPoultries))
+  }, [t, navigate])
 
-  const editPoultry = useEditPoultry({ onSuccess: handleSuccess, poultryId })
+  const editPoultry = useEditPoultry({ onSuccess: handleSuccess, poultryId: poultryId ?? '' })
 
   useEffect(() => {
     if (!breeder || !poultryId) return

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, useMemo } from 'react'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
 import { Button, Modal } from '@cig-platform/ui'
@@ -48,7 +48,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
 
   const breederDispatch = useBreederDispatch()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const { t } = useTranslation()
 
@@ -115,9 +115,9 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
 
   const handleNavigateToViewPoultry = useCallback(({ poultryId }: { poultryId: string }) => {
     if (poultryId) {
-      history.push(Routes.ViewPoultry.replace(':poultryId', poultryId))
+      navigate(Routes.ViewPoultry.replace(':poultryId', poultryId))
     }
-  }, [history])
+  }, [navigate])
 
   const microFrontendParams = useMemo(() => ({
     breederId

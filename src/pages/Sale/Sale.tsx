@@ -34,7 +34,7 @@ const Sale: VFC = () => {
   const cancelDeal = useCancelDeal({ onSuccess: handleSuccess })
 
   const microFrontendParams = useMemo(() => ({
-    dealId,
+    dealId: dealId || '',
     breederId: breeder?.id ?? '',
   }), [dealId, breeder])
 
