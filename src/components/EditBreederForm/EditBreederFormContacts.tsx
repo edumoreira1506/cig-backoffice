@@ -102,7 +102,7 @@ export default function EditBreederFormContacts() {
             />
           </StyledContactValue>
           <StyledActions>
-            <IoIosRemoveCircle onClick={() => handleDeleteContact(index)} />
+            <IoIosRemoveCircle data-testid="remove-contact" onClick={() => handleDeleteContact(index)} />
           </StyledActions>
         </StyledContact>
       ))}
@@ -118,6 +118,7 @@ export default function EditBreederFormContacts() {
             }))}
             value={newContactType}
             emptyOptionText={t('breeder.fields.contacts.type')}
+            inputTestId="contact-type"
           />
         </StyledContactType>
         <StyledContactValue>
@@ -131,7 +132,7 @@ export default function EditBreederFormContacts() {
           />
         </StyledContactValue>
         <StyledActions>
-          <IoIosAddCircle onClick={handleAddNumber} />
+          <IoIosAddCircle data-testid="add-number" onClick={handleAddNumber} />
         </StyledActions>
       </StyledContact>
     </StyledContainer>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router'
+import { Route, Routes as ReactRouterRoutes } from 'react-router'
 
 import { Routes } from 'constants/routes'
 import Home from 'pages/Home/Home'
@@ -18,20 +18,20 @@ import Sale from 'pages/Sale/Sale'
 
 export default function Router() {
   return (
-    <>
-      <Route exact path={Routes.Home} component={Home} />
-      <Route exact path={Routes.EditBreeder} component={EditBreeder} />
-      <Route exact path={Routes.EditPassword} component={EditPassword} />
-      <Route exact path={Routes.ListPoultries} component={ListPoultries} />
-      <Route exact path={Routes.NewPoultry} component={NewPoultry} />
-      <Route exact path={Routes.EditPoultry} component={EditPoultry} />
-      <Route exact path={Routes.ViewPoultry} component={ViewPoultry} />
-      <Route exact path={Routes.NewRegister} component={NewRegister} />
-      <Route exact path={Routes.Logout} component={Logout} />
-      <Route exact path={Routes.Sales} component={Sales} />
-      <Route exact path={Routes.Purchases} component={Purchases} />
-      <Route exact path={Routes.Purchase} component={Purchase} />
-      <Route exact path={Routes.Sale} component={Sale} />
-    </>
+    <ReactRouterRoutes>
+      <Route path={Routes.Home} element={<Home />} />
+      <Route path={Routes.EditBreeder} element={<EditBreeder />} />
+      <Route path={Routes.EditPassword} element={<EditPassword />} />
+      <Route path={Routes.ListPoultries} element={<ListPoultries />} />
+      <Route path={Routes.NewPoultry} element={<NewPoultry />} />
+      <Route path={Routes.EditPoultry} element={<EditPoultry />} />
+      <Route path={Routes.ViewPoultry} element={<ViewPoultry />} />
+      <Route path={Routes.NewRegister} element={<NewRegister />} />
+      <Route path={Routes.Logout} element={<Logout />} />
+      <Route path={Routes.Sales} element={<Sales />} />
+      <Route path={Routes.Purchases} element={<Purchases />} />
+      <Route path={Routes.Purchase} element={<Purchase />} />
+      <Route path={Routes.Sale} element={<Sale />} />
+    </ReactRouterRoutes>
   )
 }

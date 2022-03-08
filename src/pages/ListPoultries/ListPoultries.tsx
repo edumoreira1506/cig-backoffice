@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router'
 import { Button } from '@cig-platform/ui'
 import MicroFrontend from '@cig-platform/microfrontend-helper'
 
@@ -18,25 +18,25 @@ import {
 export default function ListPoultriesPage() {
   const { t } = useTranslation()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const breeder = useBreeder()
 
   const handleNavigateToNewPoultry = useCallback(() => {
-    history.push(Routes.NewPoultry)
-  }, [history])
+    navigate(Routes.NewPoultry)
+  }, [navigate])
 
   const handleNavigateToEditPoultry = useCallback(({ poultryId }: { poultryId: string }) => {
     if (poultryId) {
-      history.push(Routes.EditPoultry.replace(':poultryId', poultryId))
+      navigate(Routes.EditPoultry.replace(':poultryId', poultryId))
     }
-  }, [history])
+  }, [navigate])
 
   const handleNavigateToViewPoultry = useCallback(({ poultryId }: { poultryId: string }) => {
     if (poultryId) {
-      history.push(Routes.ViewPoultry.replace(':poultryId', poultryId))
+      navigate(Routes.ViewPoultry.replace(':poultryId', poultryId))
     }
-  }, [history])
+  }, [navigate])
 
   const microFrontendParams = useMemo(() => ({
     breederId: breeder?.id ?? ''

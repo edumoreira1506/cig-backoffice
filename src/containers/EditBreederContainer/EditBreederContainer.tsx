@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState, useMemo } from 'react'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
-import { Button } from '@cig-platform/ui'
+import { Button, Modal } from '@cig-platform/ui'
 import MicroFrontend from '@cig-platform/microfrontend-helper'
 
 import EditBreederForm from '../../components/EditBreederForm/EditBreederForm'
@@ -28,7 +28,6 @@ import { selectId } from '../../contexts/EditBreederContext/editBreederSelectors
 import { PROFILE_IMAGE_PLACEHOLDER } from '../../constants/s3'
 import BackofficeBffService from '../../services/BackofficeBffService'
 import useAuth from '../../hooks/useAuth'
-import Modal from '../../components/Modal/Modal'
 import { BREEDER_PAGE_URL } from '../../constants/url'
 import { Routes } from '../../constants/routes'
 
@@ -49,7 +48,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
 
   const breederDispatch = useBreederDispatch()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const { t } = useTranslation()
 
@@ -116,9 +115,9 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
 
   const handleNavigateToViewPoultry = useCallback(({ poultryId }: { poultryId: string }) => {
     if (poultryId) {
-      history.push(Routes.ViewPoultry.replace(':poultryId', poultryId))
+      navigate(Routes.ViewPoultry.replace(':poultryId', poultryId))
     }
-  }, [history])
+  }, [navigate])
 
   const microFrontendParams = useMemo(() => ({
     breederId

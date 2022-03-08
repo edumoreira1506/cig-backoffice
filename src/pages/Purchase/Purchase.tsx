@@ -1,6 +1,6 @@
 import React, { VFC, useMemo, useCallback } from 'react'
 import MicroFrontend from '@cig-platform/microfrontend-helper'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { IDeal } from '@cig-platform/types'
 
@@ -17,7 +17,7 @@ const Purchase: VFC = () => {
 
   const { t } = useTranslation()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const breeder = useBreeder()
 
@@ -26,8 +26,8 @@ const Purchase: VFC = () => {
   }, [])
 
   const handleSuccessRebuy = useCallback((deal: IDeal) => {
-    history.push(`${Routes.Purchase.replace(':dealId', deal.id)}`)
-  }, [history.push])
+    navigate(`${Routes.Purchase.replace(':dealId', deal.id)}`)
+  }, [navigate])
 
   const finishDeal = useFinishDeal({ onSuccess: handleSuccess })
 
@@ -36,7 +36,7 @@ const Purchase: VFC = () => {
   const reBuy = useReBuy({ onSuccess: handleSuccessRebuy })
 
   const microFrontendParams = useMemo(() => ({
-    dealId,
+    dealId: dealId || '',
     breederId: breeder?.id ?? '',
   }), [dealId, breeder])
 

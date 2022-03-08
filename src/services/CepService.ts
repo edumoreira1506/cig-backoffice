@@ -49,6 +49,7 @@ export default class CepService {
 
     if (!data?.results?.length) return null
 
+    // eslint-disable-next-line no-unsafe-optional-chaining
     const { lat, lng } = data?.results?.[0]?.geometry?.location
 
     return { latitude: lat, longitude: lng }

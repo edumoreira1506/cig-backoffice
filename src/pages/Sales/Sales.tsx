@@ -1,7 +1,7 @@
 import React, { useCallback, VFC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PoultryCard } from '@cig-platform/ui'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import useDeals from '../../hooks/useDeals'
 import { dealToPoultryCard } from '../../formatters/dealToPoultryCard'
@@ -18,15 +18,15 @@ import {
 const Sales: VFC = () => {
   const { t } = useTranslation()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const deals = useDeals({ filter: 'SELLER' })
 
   const poultryCards = useMemo(() => deals.map(dealToPoultryCard), [deals])
 
   const handleViewDeal = useCallback((dealId) => {
-    history.push(Routes.Sale.replace(':dealId', dealId))
-  }, [history])
+    navigate(Routes.Sale.replace(':dealId', dealId))
+  }, [navigate])
 
   return (
     <StyledContainer>
