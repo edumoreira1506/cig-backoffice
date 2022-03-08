@@ -1,12 +1,12 @@
 import React from 'react'
 import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
 import { createEditBreederContextRenderer } from '../../../utils/test'
 import { INITIAL_STATE } from '../../../contexts/EditBreederContext/editBreederReducer'
 import * as actions from '../../../contexts/EditBreederContext/editBreederActions'
 
 import EditBreederFormAddress from '../EditBreederFormAddress'
-import userEvent from '@testing-library/user-event'
 
 jest.mock('@cig-platform/ui', () => {
   const original = jest.requireActual('@cig-platform/ui')

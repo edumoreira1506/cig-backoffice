@@ -1,7 +1,6 @@
 import React, { useCallback, useState, useMemo } from 'react'
-import { FileImagesCarousel, ImageGallery } from '@cig-platform/ui'
+import { FileImagesCarousel, ImageGallery, Modal } from '@cig-platform/ui'
 
-import Modal from '../Modal/Modal'
 import { useTranslation } from 'react-i18next'
 import { createImageUrl } from 'utils/s3'
 
