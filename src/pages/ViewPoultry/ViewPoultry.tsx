@@ -125,7 +125,7 @@ export default function ViewPoultry() {
         const breedersData = await ContentSearchService.getBreeders(searchedBreeder)
         const filteredBreeders = breedersData?.breeders.filter((b) => b.id !== breeder.id)
 
-        setBreeders(filteredBreeders)
+        setBreeders(filteredBreeders as any)
       } catch (error) {
         console.log(error)
       } finally {
