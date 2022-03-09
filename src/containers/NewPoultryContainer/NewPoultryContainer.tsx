@@ -13,7 +13,7 @@ export default function NewPoultryContainer() {
   const navigate = useNavigate()
 
   const handleSuccess = useCallback(() => {
-    success(t('common.saved'), t, () => navigate(Routes.ListPoultries))
+    success(t('common.saved'), t, () => navigate(Routes.Home))
   }, [t, navigate])
 
   const savePoultry = useSavePoultry({ onSuccess: handleSuccess })

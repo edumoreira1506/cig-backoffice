@@ -47,7 +47,7 @@ export default function NewRegisterContainer() {
   }, [dispatch])
 
   const handleSuccess = useCallback(() => {
-    success(t('common.saved'), t, () => navigate(Routes.ListPoultries))
+    success(t('common.saved'), t, () => navigate(Routes.Home))
   }, [t, navigate])
 
   const saveRegister = useSaveRegister({ onSuccess: handleSuccess })
