@@ -35,6 +35,7 @@ export default function PoultryFormGenderCategory({ disabled = false }: PoultryF
       onChange={handleChangeGenderCategory}
       showEmptyOption
       disabled={disabled}
+      name="poultry-gender-category"
       emptyOptionText={t('common.select-the-gender-category')}
     />
   )

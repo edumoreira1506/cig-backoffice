@@ -109,6 +109,7 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
               label={t('register.fields.vaccination.name')}
               value={name}
               onChange={handleChangeName}
+              name="vaccine-name"
             />
           </StyledField>
           <StyledField>
@@ -117,6 +118,7 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
               value={date}
               onChange={handleChangeDate}
               type='date'
+              name="vaccine-date"
             />
           </StyledField>
           <StyledField>
@@ -127,6 +129,7 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
               showEmptyOption
               options={DOSE_OPTIONS}
               emptyOptionText={t('select-the-dose')}
+              name="vaccine-dose"
             />
           </StyledField>
           <StyledDescriptionField>
@@ -135,6 +138,7 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
               onChange={handleChangeDescription}
               placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae laoreet nisi. Cras sed libero consectetur, sodales lorem at, rutrum nulla."
               label={t('register.fields.description')}
+              name="vaccine-description"
             />
           </StyledDescriptionField>
         </StyledForm>

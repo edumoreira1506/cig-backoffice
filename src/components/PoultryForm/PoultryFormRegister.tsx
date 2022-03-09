@@ -20,6 +20,7 @@ export default function PoultryFormRegister() {
   return (
     <Input
       type="text"
+      name="poultry-register"
       label={t('poultry.fields.register')}
       value={register}
       onChange={handleChangeRegister}

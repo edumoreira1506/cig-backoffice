@@ -37,6 +37,7 @@ export default function PoultryFormVideos() {
           label={t('poultry.fields.videos.presentation')}
           value={videos.presentation ?? ''}
           onChange={handleChangePresentation}
+          name="poultry-videos-presentation"
         />
       </StyledFormField>
       {youtubeUrl.valid(videos.presentation) && (
@@ -47,6 +48,7 @@ export default function PoultryFormVideos() {
           type="text"
           label={t('poultry.fields.videos.walking')}
           value={videos.walking ?? ''}
+          name="poultry-videos-walking"
           onChange={handleChangeWalking}
         />
       </StyledFormField>
@@ -58,6 +60,7 @@ export default function PoultryFormVideos() {
           type="text"
           label={t('poultry.fields.videos.measurement')}
           value={videos.measurement ?? ''}
+          name="poultry-videos-measurement"
           onChange={handleChangeMeasurement}
         />
       </StyledFormField>

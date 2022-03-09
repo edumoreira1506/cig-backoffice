@@ -65,6 +65,7 @@ export default function RegisterImageForm({ title }: RegisterImageFormProps) {
           onChange={handleChangeDescription}
           placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae laoreet nisi. Cras sed libero consectetur, sodales lorem at, rutrum nulla."
           label={t('register.fields.description')}
+          name="description"
         />
       </StyledFormField>
       <FileImagesCarousel

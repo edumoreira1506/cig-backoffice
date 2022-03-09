@@ -23,6 +23,7 @@ export default function PoultryFormMeasurement() {
       label={t('poultry.fields.measurement')}
       value={measurement || ''}
       onChange={handleChangeMeasurement}
+      name="poultry-measurement"
     />
   )
 }

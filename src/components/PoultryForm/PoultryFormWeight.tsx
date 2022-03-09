@@ -23,6 +23,7 @@ export default function PoultryFormWeight() {
       label={t('poultry.fields.weight')}
       value={weight || ''}
       onChange={handleChangeWeight}
+      name="poultry-weight"
     />
   )
 }
