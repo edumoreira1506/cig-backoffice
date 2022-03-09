@@ -99,6 +99,7 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
               value={date}
               onChange={handleChangeDate}
               type="date"
+              name="date"
             />
           </StyledField>
           <StyledField>
@@ -107,6 +108,7 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
               value={weight}
               onChange={handleChangeWeight}
               placeholder='Peso em KG'
+              name="weight"
             />
           </StyledField>
           <StyledField>
@@ -115,6 +117,7 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
               value={measurement}
               onChange={handleChangeMeasurement}
               placeholder='Medida em CM'
+              name="measurement"
             />
           </StyledField>
           <StyledDescriptionField>
@@ -123,6 +126,7 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
               onChange={handleChangeDescription}
               placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae laoreet nisi. Cras sed libero consectetur, sodales lorem at, rutrum nulla."
               label={t('register.fields.description')}
+              name="description"
             />
           </StyledDescriptionField>
         </StyledForm>
