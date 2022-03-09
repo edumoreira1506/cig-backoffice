@@ -45,6 +45,7 @@ export default function PoultryFormTail({ disabled = false }: PoultryFormTailPro
       onChange={handleChangeTail}
       showEmptyOption
       disabled={disabled}
+      name="poultry-tail"
       emptyOptionText={t('common.select-the-tail')}
     />
   )
