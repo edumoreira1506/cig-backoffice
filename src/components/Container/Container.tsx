@@ -23,7 +23,7 @@ export interface ContainerProps {
 
 export const items = [
   {
-    title: 'Home',
+    title: 'Meu plantel',
     icon: <AiFillHome />,
     route: Routes.Home
   },
