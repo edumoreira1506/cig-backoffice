@@ -22,6 +22,7 @@ export default function PoultryFormName() {
       type="text"
       label={t('poultry.fields.name')}
       value={name}
+      name="poultry-name"
       onChange={handleChangeName}
     />
   )

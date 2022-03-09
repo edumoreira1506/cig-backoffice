@@ -37,6 +37,7 @@ export default function PoultryFormType({ disabled = false }: PoultryFormTypePro
       onChange={handleChangeType}
       showEmptyOption
       disabled={disabled}
+      name="poultry-type"
       emptyOptionText={t('common.select-the-type')}
     />
   )

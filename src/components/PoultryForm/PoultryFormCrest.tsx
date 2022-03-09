@@ -41,6 +41,7 @@ export default function PoultryFormCrest({ disabled = false }: PoultryFormCrestP
       onChange={handleChangeCrest}
       showEmptyOption
       disabled={disabled}
+      name="poultry-crest"
       emptyOptionText={t('common.select-the-crest')}
     />
   )

@@ -23,6 +23,7 @@ export default function PoultryFormBirthDate() {
       label={t('poultry.fields.birth-date')}
       value={birthDate}
       onChange={handleChangeBirthDate}
+      name="poultry-birth-date"
     />
   )
 }

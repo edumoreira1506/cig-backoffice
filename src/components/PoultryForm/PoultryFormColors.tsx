@@ -50,6 +50,7 @@ export default function PoultryFormColors() {
           onChange={handleChangePlumage}
           showEmptyOption
           emptyOptionText={t('common.select-the-color')}
+          name="poultry-color-plumage"
         />
       </StyledItem>
       <StyledItem>
@@ -58,6 +59,7 @@ export default function PoultryFormColors() {
           label={t('poultry.fields.colors.shins')}
           value={colors.shins ?? ''}
           onChange={handleChangeShins}
+          name="poultry-color-shins"
           showEmptyOption
           emptyOptionText={t('common.select-the-color')}
         />
@@ -68,6 +70,7 @@ export default function PoultryFormColors() {
           label={t('poultry.fields.colors.eyes')}
           value={colors.eyes ?? ''}
           onChange={handleChangeEyes}
+          name="poultry-color-eyes"
           showEmptyOption
           emptyOptionText={t('common.select-the-color')}
         />

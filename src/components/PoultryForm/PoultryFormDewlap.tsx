@@ -45,6 +45,7 @@ export default function PoultryFormDewlap({ disabled = false }: PoultryFormDewla
       onChange={handleChangeDewlap}
       showEmptyOption
       disabled={disabled}
+      name="poultry-dewlap"
       emptyOptionText={t('common.select-the-dewlap')}
     />
   )

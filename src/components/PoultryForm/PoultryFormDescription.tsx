@@ -21,6 +21,7 @@ export default function PoultryFormDescription() {
     <TextField
       label={t('poultry.fields.description')}
       value={description}
+      name="poultry-description"
       onChange={handleChangeDescription}
     />
   )
