@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Routes as ReactRouterRoutes } from 'react-router'
 
 import { Routes } from 'constants/routes'
-import Home from 'pages/Home/Home'
 import EditBreeder from 'pages/EditBreeder/EditBreeder'
 import EditPassword from 'pages/EditPassword/EditPassword'
 import ListPoultries from 'pages/ListPoultries/ListPoultries'
@@ -19,10 +18,9 @@ import Sale from 'pages/Sale/Sale'
 export default function Router() {
   return (
     <ReactRouterRoutes>
-      <Route path={Routes.Home} element={<Home />} />
+      <Route path={Routes.Home} element={<ListPoultries />} />
       <Route path={Routes.EditBreeder} element={<EditBreeder />} />
       <Route path={Routes.EditPassword} element={<EditPassword />} />
-      <Route path={Routes.ListPoultries} element={<ListPoultries />} />
       <Route path={Routes.NewPoultry} element={<NewPoultry />} />
       <Route path={Routes.EditPoultry} element={<EditPoultry />} />
       <Route path={Routes.ViewPoultry} element={<ViewPoultry />} />

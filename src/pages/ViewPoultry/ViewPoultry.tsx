@@ -70,7 +70,7 @@ export default function ViewPoultry() {
   }, [t])
 
   const handleTransferPoultrySuccess = useCallback(() => {
-    success(t('action-success'), t, () => navigate(Routes.ListPoultries))
+    success(t('action-success'), t, () => navigate(Routes.Home))
   }, [t, navigate])
 
   const saveAdvertising = useSavePoultryAdvertising({ poultryId: poultryId || '', onSuccess: handleSaveSuccess })

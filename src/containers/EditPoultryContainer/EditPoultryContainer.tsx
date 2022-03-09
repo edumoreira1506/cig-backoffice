@@ -64,7 +64,7 @@ export default function EditPoultryContainer() {
   }, [birthDate, genderCategory])
 
   const handleSuccess = useCallback(() => {
-    success(t('common.saved'), t, () => navigate(Routes.ListPoultries))
+    success(t('common.saved'), t, () => navigate(Routes.Home))
   }, [t, navigate])
 
   const editPoultry = useEditPoultry({ onSuccess: handleSuccess, poultryId: poultryId ?? '' })
