@@ -1,16 +1,24 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FormField, Input, Button } from '@cig-platform/ui'
+import { useNavigate } from 'react-router-dom'
 
 import PageTitle from '../../components/PageTitle/PageTitle'
 import Main from '../../components/Main/Main'
 import useEditPassword from '../../hooks/useEditPassword'
 import { success } from '../../utils/alert'
+import useAuth from '../../hooks/useAuth'
+import { Routes } from '../../constants/routes'
 
 import { StyledForm, StyledField } from './EditPassword.styles'
+import { UserRegisterTypeEnum } from '@cig-platform/enums'
 
 export default function EditPasswordPage() {
   const { t } = useTranslation()
+
+  const navigate = useNavigate()
+
+  const { userData } = useAuth()
 
   const handleSuccessEditPassword = useCallback(() => {
     success(t('common.updated'), t)
@@ -39,6 +47,12 @@ export default function EditPasswordPage() {
   const handleChangeConfirmPassword = useCallback((newConfirmPassword: string | number) =>
     setConfirmPassword(String(newConfirmPassword))
   , [])
+
+  useEffect(() => {
+    if (userData?.registerType !== UserRegisterTypeEnum.Default) {
+      navigate(Routes.Home)
+    }
+  }, [navigate, userData?.registerType])
 
   return (
     <Main>
