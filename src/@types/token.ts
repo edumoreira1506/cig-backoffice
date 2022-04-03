@@ -5,4 +5,5 @@ export interface IDecodedToken {
   email: IUser['email'];
   id: IUser['id'];
   name: IUser['name'];
+  registerType: IUser['registerType'];
 }
