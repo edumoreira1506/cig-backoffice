@@ -16,6 +16,7 @@ import useRefreshToken from '../../hooks/useRefreshToken'
 import { useAppSelector } from '../../contexts/AppContext/AppContext'
 import { selectError, selectIsLoading } from '../../contexts/AppContext/appSelectors'
 import { error as showError } from '../../utils/alert'
+import { UserRegisterTypeEnum } from '@cig-platform/enums'
 
 export interface ContainerProps {
   children: ReactChild;
@@ -49,11 +50,14 @@ export const items = [
   }
 ]
 
-export const shortcuts = ['Sair', 'Editar senha']
+enum Shortcuts {
+  LOGOUT = 'Sair',
+  EDIT_PASSWORD = 'Editar senha'
+}
 
 const shortcutLinks = {
-  [shortcuts[0]]: Routes.Logout,
-  [shortcuts[1]]: Routes.EditPassword,
+  [Shortcuts.LOGOUT]: Routes.Logout,
+  [Shortcuts.EDIT_PASSWORD]: Routes.EditPassword,
 }
 
 export default function Container({ children }: ContainerProps) {
@@ -80,6 +84,13 @@ export default function Container({ children }: ContainerProps) {
     name: userData?.name ?? ''
   }), [userData?.name])
 
+  const shortcuts = useMemo(() => userData?.registerType === UserRegisterTypeEnum.Default
+    ? [Shortcuts.EDIT_PASSWORD, Shortcuts.LOGOUT]
+    : [Shortcuts.LOGOUT],
+  [
+    userData?.registerType
+  ])
+
   const handleNavigate = useCallback((pageTitle: string) => {
     const item = items.find(({ title }) => title === pageTitle)
 
@@ -91,7 +102,7 @@ export default function Container({ children }: ContainerProps) {
   }, [navigate])
 
   const handleShortcutClick = useCallback((shortcut: string) => {
-    navigate(shortcutLinks[shortcut])
+    navigate(shortcutLinks[shortcut as Shortcuts])
   }, [navigate])
 
   const handleNavigateToMainPage = useCallback(() => navigate('/'), [navigate])
