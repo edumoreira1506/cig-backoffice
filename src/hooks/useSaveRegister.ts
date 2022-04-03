@@ -5,6 +5,7 @@ import { IPoultryRegister } from '@cig-platform/types'
 import { useAppDispatch } from 'contexts/AppContext/AppContext'
 import { setError, setIsLoading } from 'contexts/AppContext/appActions'
 import BackofficeBffService from 'services/BackofficeBffService'
+import { filterObject } from 'utils/object'
 
 import useBreeder from './useBreeder'
 import useAuth from './useAuth'
@@ -24,7 +25,7 @@ export default function useSaveRegister({ onSuccess }: { onSuccess: () => void }
     try {
       appDispatch(setIsLoading(true))
 
-      await BackofficeBffService.postRegister(breeder.id, poultryId, token, register, files)
+      await BackofficeBffService.postRegister(breeder.id, poultryId, token, filterObject(register), files)
   
       onSuccess()
     } catch (error) {
