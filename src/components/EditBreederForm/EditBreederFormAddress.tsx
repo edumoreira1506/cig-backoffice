@@ -48,9 +48,9 @@ export default function EditBreederFormAddress() {
   const latitude = useEditBreederSelector(selectLatitude)
   const longitude = useEditBreederSelector(selectLongitude)
 
-  const dispatch = useEditBreederDispatch()
+  const [initialAddressCoords, setInitialAddressCoords] = useState<{ lat:number; lng: number }>()
 
-  const initialAddressCoordsRef = useRef<{ lat:number; lng: number }>()
+  const dispatch = useEditBreederDispatch()
 
   const hasValidCoords = useMemo(() => Boolean(latitude && longitude), [latitude, longitude])
 
@@ -91,10 +91,10 @@ export default function EditBreederFormAddress() {
   }, [handleChangeLatitude, handleChangeLongitude])
 
   useEffect(() => {
-    if (latitude && longitude && !initialAddressCoordsRef.current) {
-      initialAddressCoordsRef.current = { lat: latitude, lng: longitude }
+    if (latitude && longitude && !initialAddressCoords) {
+      setInitialAddressCoords({ lat: latitude, lng: longitude })
     }
-  }, [latitude, longitude])
+  }, [latitude, longitude, initialAddressCoords])
 
   useDebouncedEffect(() => {
     (async () => {
@@ -177,12 +177,12 @@ export default function EditBreederFormAddress() {
           placeholder="São Paulo"
         />
       </StyledCity>
-      {(hasValidCoords && initialAddressCoordsRef.current) && (
+      {(hasValidCoords && initialAddressCoords) && (
         <StyledMapContainer data-testid="map">
           <GoogleMapReact
             bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
-            defaultCenter={initialAddressCoordsRef.current}
-            defaultZoom={11}
+            defaultCenter={initialAddressCoords}
+            defaultZoom={15}
             onDrag={handleDragMap}
           >
             <Pin lat={latitude} lng={longitude} />
