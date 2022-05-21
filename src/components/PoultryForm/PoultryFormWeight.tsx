@@ -14,14 +14,14 @@ export default function PoultryFormWeight() {
   const dispatch = usePoultryDispatch()
 
   const handleChangeWeight = useCallback((newWeight: string | number) => {
-    dispatch(setWeight(Number(newWeight)))
+    dispatch(setWeight(Number(String(newWeight).replace(' KG', ''))))
   }, [dispatch])
   
   return (
     <Input
-      type="number"
+      type="text"
       label={t('poultry.fields.weight')}
-      value={weight || ''}
+      value={weight ? `${weight} KG` : ''}
       onChange={handleChangeWeight}
       name="poultry-weight"
     />
