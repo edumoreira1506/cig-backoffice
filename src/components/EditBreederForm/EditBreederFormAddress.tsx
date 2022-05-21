@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import GoogleMapReact from 'google-map-react'
 import { Input, Select } from '@cig-platform/ui'
@@ -50,6 +50,8 @@ export default function EditBreederFormAddress() {
 
   const dispatch = useEditBreederDispatch()
 
+  const initialAddressCoordsRef = useRef<{ lat:number; lng: number }>()
+
   const hasValidCoords = useMemo(() => Boolean(latitude && longitude), [latitude, longitude])
 
   const handleChangeStreet = useCallback((newStreet: string | number) => {
@@ -87,6 +89,12 @@ export default function EditBreederFormAddress() {
     handleChangeLatitude(newLatitude)
     handleChangeLongitude(newLongitude)
   }, [handleChangeLatitude, handleChangeLongitude])
+
+  useEffect(() => {
+    if (latitude && longitude && !initialAddressCoordsRef.current) {
+      initialAddressCoordsRef.current = { lat: latitude, lng: longitude }
+    }
+  }, [latitude, longitude])
 
   useDebouncedEffect(() => {
     (async () => {
@@ -169,14 +177,13 @@ export default function EditBreederFormAddress() {
           placeholder="São Paulo"
         />
       </StyledCity>
-      {hasValidCoords && (
+      {(hasValidCoords && initialAddressCoordsRef.current) && (
         <StyledMapContainer data-testid="map">
           <GoogleMapReact
             bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
-            defaultCenter={{ lat: latitude, lng: longitude }}
-            center={{ lat: latitude, lng: longitude }}
+            defaultCenter={initialAddressCoordsRef.current}
             defaultZoom={11}
-            onDragEnd={handleDragMap}
+            onDrag={handleDragMap}
           >
             <Pin lat={latitude} lng={longitude} />
           </GoogleMapReact>
