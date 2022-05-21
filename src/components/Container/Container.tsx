@@ -101,7 +101,9 @@ export default function Container({ children }: ContainerProps) {
     const item = items.find(({ title }) => title === pageTitle)
 
     if (item) {
-      if (item.route) {
+      if (item.route === MARKETPLACE_URL) {
+        window.location.assign(MARKETPLACE_URL)
+      } else {
         navigate(item.route)
       }
     }
