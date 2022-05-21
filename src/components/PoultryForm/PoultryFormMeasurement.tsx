@@ -14,14 +14,14 @@ export default function PoultryFormMeasurement() {
   const dispatch = usePoultryDispatch()
 
   const handleChangeMeasurement = useCallback((newMeasurement: string | number) => {
-    dispatch(setMeasurement(Number(newMeasurement)))
+    dispatch(setMeasurement(Number(String(newMeasurement).replace(' CM', ''))))
   }, [dispatch])
   
   return (
     <Input
-      type="number"
+      type="text"
       label={t('poultry.fields.measurement')}
-      value={measurement || ''}
+      value={measurement ? `${measurement} CM` : ''}
       onChange={handleChangeMeasurement}
       name="poultry-measurement"
     />
