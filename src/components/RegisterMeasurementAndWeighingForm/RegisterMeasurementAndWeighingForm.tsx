@@ -51,11 +51,11 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
   const description = useRegisterSelector(selectDescription)
 
   const handleChangeWeight = useCallback((newWeight: string | number) => {
-    dispatch(setWeighing(newWeight.toString()))
+    dispatch(setWeighing(String(newWeight).replace(' KG', '')))
   }, [dispatch])
 
   const handleChangeMeasurement = useCallback((newMeasurement: string | number) => {
-    dispatch(setMeasurement(newMeasurement.toString()))
+    dispatch(setMeasurement(String(newMeasurement).replace(' CM', '')))
   }, [dispatch])
 
   const handleChangeDate = useCallback((newDate: string | number) => {
@@ -105,7 +105,7 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
           <StyledField>
             <Input
               label={t('register.fields.measurement-and-weighing.weight')}
-              value={weight}
+              value={weight ? `${weight} KG` : ''}
               onChange={handleChangeWeight}
               placeholder='Peso em KG'
               name="weight"
@@ -114,8 +114,8 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
           <StyledField>
             <Input
               label={t('register.fields.measurement-and-weighing.measurement')}
-              value={measurement}
               onChange={handleChangeMeasurement}
+              value={measurement ? `${measurement} CM` : ''}
               placeholder='Medida em CM'
               name="measurement"
             />
