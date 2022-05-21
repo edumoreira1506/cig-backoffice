@@ -2,6 +2,7 @@ import React, { ReactChild, useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai'
 import { GiReceiveMoney } from 'react-icons/gi'
+import { FaHandsHelping } from 'react-icons/fa'
 import { useNavigate } from 'react-router'
 import { Container as UIContainer } from '@cig-platform/ui'
 import { useLocalStorage } from '@cig-platform/hooks'
@@ -11,7 +12,7 @@ import { Routes } from '../../constants/routes'
 import { useBreederDispatch } from '../../contexts/BreederContext/BreederContext'
 import { setBreeders, setSelected } from '../../contexts/BreederContext/breederActions'
 import useQueryParam from '../../hooks/useQueryParam'
-import { LOGIN_URL, LOGO_URL } from '../../constants/url'
+import { LOGIN_URL, LOGO_URL, MARKETPLACE_URL } from '../../constants/url'
 import useRefreshToken from '../../hooks/useRefreshToken'
 import { useAppSelector } from '../../contexts/AppContext/AppContext'
 import { selectError, selectIsLoading } from '../../contexts/AppContext/appSelectors'
@@ -23,6 +24,11 @@ export interface ContainerProps {
 }
 
 export const items = [
+  {
+    title: 'Mercado',
+    icon: <FaHandsHelping />,
+    route: MARKETPLACE_URL
+  },
   {
     title: 'Meu plantel',
     icon: <AiFillHome />,
@@ -95,7 +101,9 @@ export default function Container({ children }: ContainerProps) {
     const item = items.find(({ title }) => title === pageTitle)
 
     if (item) {
-      if (item.route) {
+      if (item.route === MARKETPLACE_URL) {
+        window.location.assign(MARKETPLACE_URL)
+      } else {
         navigate(item.route)
       }
     }
