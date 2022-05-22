@@ -52,5 +52,7 @@ export const withInput = async (
     },
   })
 
+  if (!value) return
+
   return callback(value)
 }
