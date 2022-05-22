@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, Input, TextField, Table } from '@cig-platform/ui'
+import { Button, Input, TextField, Table, DatePicker } from '@cig-platform/ui'
 import { useParams } from 'react-router-dom'
 
 import {
@@ -58,8 +58,8 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
     dispatch(setMeasurement(String(newMeasurement).replace(' CM', '')))
   }, [dispatch])
 
-  const handleChangeDate = useCallback((newDate: string | number) => {
-    dispatch(setMeasurementAndWeighingDate(newDate.toString()))
+  const handleChangeDate = useCallback((newDate: Date) => {
+    dispatch(setMeasurementAndWeighingDate(newDate?.toISOString?.()?.split?.('T')?.[0]))
   }, [dispatch])
 
   const handleChangeDescription = useCallback((newDescription: number | string) => {
@@ -94,11 +94,10 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
       {showForm && (
         <StyledForm>
           <StyledField>
-            <Input
+            <DatePicker
               label={t('register.fields.measurement-and-weighing.date')}
-              value={date}
-              onChange={handleChangeDate}
-              type="date"
+              value={date ? new Date(date) : undefined as any}
+              onChange={handleChangeDate as any}
               name="date"
             />
           </StyledField>

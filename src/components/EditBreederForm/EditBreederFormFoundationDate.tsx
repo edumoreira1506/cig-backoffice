@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Input } from '@cig-platform/ui'
+import { DatePicker } from '@cig-platform/ui'
 
 import { useEditBreederDispatch, useEditBreederSelector } from '../../contexts/EditBreederContext/EditBreederContext'
 import { selectFoundationDate } from '../../contexts/EditBreederContext/editBreederSelectors'
@@ -13,11 +13,15 @@ export default function EditBreederFormFoundationDate() {
 
   const dispatch = useEditBreederDispatch()
 
-  const handleChangeFoundationDate = useCallback((newFoundationDate: string | number) => {
-    dispatch(setFoundationDate(String(newFoundationDate)))
+  const handleChangeFoundationDate = useCallback((newFoundationDate: Date) => {
+    dispatch(setFoundationDate(newFoundationDate?.toISOString?.()?.split?.('T')?.[0]))
   }, [dispatch])
 
   return (
-    <Input type="date" label={t('breeder.fields.foundation-date')} value={foundationDate} onChange={handleChangeFoundationDate} />
+    <DatePicker
+      label={t('breeder.fields.foundation-date')}
+      value={foundationDate ? new Date(foundationDate) : undefined as any}
+      onChange={handleChangeFoundationDate as any}
+    />
   )
 }

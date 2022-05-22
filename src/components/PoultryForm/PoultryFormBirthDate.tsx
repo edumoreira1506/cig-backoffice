@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Input } from '@cig-platform/ui'
+import { DatePicker } from '@cig-platform/ui'
 import { useTranslation } from 'react-i18next'
 
 import { usePoultryDispatch, usePoultrySelector } from 'contexts/PoultryContext/PoultryContext'
@@ -13,16 +13,15 @@ export default function PoultryFormBirthDate() {
 
   const { t } = useTranslation()
 
-  const handleChangeBirthDate = useCallback((newBirthDate: string | number) => {
-    dispatch(setBirthDate(String(newBirthDate)))
+  const handleChangeBirthDate = useCallback((newBirthDate: Date) => {
+    dispatch(setBirthDate(newBirthDate?.toISOString?.()?.split?.('T')?.[0]))
   }, [dispatch])
 
   return (
-    <Input
-      type="date"
+    <DatePicker
       label={t('poultry.fields.birth-date')}
-      value={birthDate}
-      onChange={handleChangeBirthDate}
+      value={birthDate ? new Date(birthDate) : undefined as any}
+      onChange={handleChangeBirthDate as any}
       name="poultry-birth-date"
     />
   )

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, Input, Select, TextField, Table } from '@cig-platform/ui'
+import { Button, Input, Select, TextField, Table, DatePicker } from '@cig-platform/ui'
 import { useParams } from 'react-router-dom'
 
 import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterContext/RegisterContext'
@@ -72,8 +72,8 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
     dispatch(setVaccinationDose(newDose.toString()))
   }, [dispatch])
 
-  const handleChangeDate = useCallback((newDate: string | number) => {
-    dispatch(setVaccinationDate(newDate.toString()))
+  const handleChangeDate = useCallback((newDate: Date) => {
+    dispatch(setVaccinationDate(newDate?.toISOString?.()?.split?.('T')?.[0]))
   }, [dispatch])
 
   const handleChangeDescription = useCallback((newDescription: number | string) => {
@@ -113,11 +113,10 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
             />
           </StyledField>
           <StyledField>
-            <Input
+            <DatePicker
               label={t('register.fields.vaccination.date')}
-              value={date}
-              onChange={handleChangeDate}
-              type='date'
+              value={date ? new Date(date) : undefined as any}
+              onChange={handleChangeDate as any}
               name="vaccine-date"
             />
           </StyledField>
