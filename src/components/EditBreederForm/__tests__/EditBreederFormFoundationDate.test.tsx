@@ -16,6 +16,6 @@ describe('EditBreederFormFoundationDate', () => {
 
     render(<EditBreederFormFoundationDate />)
 
-    expect(screen.getByDisplayValue(mockStore.foundationDate)).toBeInTheDocument()
+    expect(screen.getByDisplayValue(new Date(mockStore.foundationDate).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }))).toBeInTheDocument()
   })
 })
