@@ -46,7 +46,6 @@ export default function useReBuy({
   }) => {
     withInput(
       t('confirm-deal-value'),
-      t,
       async (rawValue) => {
         if (rawValue) {
           const value = Number(rawValue.replace(/[^0-9]/g,''))
@@ -55,7 +54,6 @@ export default function useReBuy({
   
           withInput(
             t('confirm-deal-description'),
-            t,
             async (description) => {
               if (description) {
                 try {

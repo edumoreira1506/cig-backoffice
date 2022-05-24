@@ -37,7 +37,6 @@ export const info = (
 
 export const withInput = async (
   message: string,
-  t: TFunction,
   callback: (word: string) => void
 ) => {
   const { value } = await Swal.fire({
@@ -45,11 +44,6 @@ export const withInput = async (
     input: 'text',
     inputValue: '',
     showCancelButton: true,
-    inputValidator: (string) => {
-      if (!string) return 'Teste'
-
-      return null
-    },
   })
 
   if (!value) return
