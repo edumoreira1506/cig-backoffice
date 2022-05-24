@@ -143,7 +143,7 @@ export default function ViewPoultry() {
   , [navigate, poultryId])
 
   const handleAnnouncePoultry = useCallback(() => {
-    withInput(t('create-poultry-advertising'), t, (a) => {
+    withInput(t('create-poultry-advertising'), (a) => {
       if (a) {
         const price = Number(a.replace(/[^0-9]/g,''))
 
@@ -185,7 +185,7 @@ export default function ViewPoultry() {
   }, [selectedBreeder, transferPoultry])
 
   const handleEditPoultryAdvertising = useCallback(() => {
-    withInput(t('edit-poultry-advertising'), t, (a) => {
+    withInput(t('edit-poultry-advertising'), (a) => {
       if (a) {
         const price = Number(a.replace(/[^0-9]/g,''))
 

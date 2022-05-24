@@ -34,7 +34,7 @@ export default function useCancelDeal({
       t('confirm-cancel-deal'),
       t,
       () => {
-        withInput(t('reason-of-cancel'), t, async (reason = '') => {
+        withInput(t('reason-of-cancel'), async (reason = '') => {
           try {
             appDispatch(setIsLoading(true))
       
