@@ -19,9 +19,10 @@ export default function PoultryFormWeight() {
   
   return (
     <Input
-      type="text"
+      type="number"
+      mask='### KG'
       label={t('poultry.fields.weight')}
-      value={weight ? `${weight} KG` : ''}
+      value={weight ?? ''}
       onChange={handleChangeWeight}
       name="poultry-weight"
     />

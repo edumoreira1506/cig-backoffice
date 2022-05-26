@@ -104,19 +104,23 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
           <StyledField>
             <Input
               label={t('register.fields.measurement-and-weighing.weight')}
-              value={weight ? `${weight} KG` : ''}
+              value={weight ?? ''}
               onChange={handleChangeWeight}
               placeholder='Peso em KG'
               name="weight"
+              type='number'
+              mask='### KG'
             />
           </StyledField>
           <StyledField>
             <Input
               label={t('register.fields.measurement-and-weighing.measurement')}
               onChange={handleChangeMeasurement}
-              value={measurement ? `${measurement} CM` : ''}
+              value={measurement ?? ''}
               placeholder='Medida em CM'
               name="measurement"
+              mask='#### CM'
+              type='number'
             />
           </StyledField>
           <StyledDescriptionField>
