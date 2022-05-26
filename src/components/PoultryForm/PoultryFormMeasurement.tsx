@@ -19,9 +19,10 @@ export default function PoultryFormMeasurement() {
   
   return (
     <Input
-      type="text"
+      type="number"
       label={t('poultry.fields.measurement')}
-      value={measurement ? `${measurement} CM` : ''}
+      value={measurement ?? ''}
+      mask="#### CM"
       onChange={handleChangeMeasurement}
       name="poultry-measurement"
     />
