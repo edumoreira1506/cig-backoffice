@@ -2311,13 +2311,13 @@
     "@cig-platform/types" "0.0.34"
     axios "^0.26.0"
 
-"@cig-platform/backoffice-bff-client@0.0.47":
-  version "0.0.47"
-  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.47.tgz#b356dd7703f4f4e14e94c341b127e63197df404e"
-  integrity sha512-AucUhllWZl5zshflNGBByXt6p/KGU2XWK3MYQZZAlZtbBubRLF95pvxD88aeEvm8ixsbNil24IKWkfc2N+H2gQ==
+"@cig-platform/backoffice-bff-client@0.0.49":
+  version "0.0.49"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.49.tgz#956dbfcb40ff75ff7530807010c4c708448568bf"
+  integrity sha512-PdUNXxOhm7bePe3NdOS7Q5YrBFuJALBNpZyiaNdYNDYCpyGZY66WUwXngcy6tEaOPJhSx/wLzheMB+h+27Y6kQ==
   dependencies:
     "@cig-platform/decorators" "0.0.2"
-    "@cig-platform/types" "0.0.33"
+    "@cig-platform/types" "0.0.34"
     axios "0.26.0"
     form-data "^4.0.0"
 
@@ -2392,13 +2392,6 @@
     react "^17.0.2"
     react-scripts "^5.0.0"
 
-"@cig-platform/types@0.0.33", "@cig-platform/types@^0.0.33":
-  version "0.0.33"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.33.tgz#6f7927454ab6abf9d5fbf8fcefce545b36a5aa8a"
-  integrity sha512-vcXeIWPaSP2Aza/EhKbygtUNx/OoK46Qqe2Bk3i8Aci1OvoeOa+NSEajhewY+E/maCyor9Vo4yKHb2bdogCWjw==
-  dependencies:
-    express "^4.17.1"
-
 "@cig-platform/types@0.0.34":
   version "0.0.34"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.34.tgz#bed7a96b57703db33bb454d4022c55df5617d90b"
@@ -2410,6 +2403,13 @@
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
+
+"@cig-platform/types@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.33.tgz#6f7927454ab6abf9d5fbf8fcefce545b36a5aa8a"
+  integrity sha512-vcXeIWPaSP2Aza/EhKbygtUNx/OoK46Qqe2Bk3i8Aci1OvoeOa+NSEajhewY+E/maCyor9Vo4yKHb2bdogCWjw==
+  dependencies:
+    express "^4.17.1"
 
 "@cig-platform/ui@^0.1.146":
   version "0.1.146"

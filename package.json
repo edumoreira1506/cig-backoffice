@@ -8,7 +8,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
     "@cig-platform/auth-bff-client": "^0.1.13",
-    "@cig-platform/backoffice-bff-client": "0.0.47",
+    "@cig-platform/backoffice-bff-client": "0.0.49",
     "@cig-platform/content-search-client": "^0.0.16",
     "@cig-platform/context": "^0.1.7",
     "@cig-platform/decorators": "^0.0.2",
