@@ -58,12 +58,14 @@ export const items = [
 
 enum Shortcuts {
   LOGOUT = 'Sair',
-  EDIT_PASSWORD = 'Editar senha'
+  EDIT_PASSWORD = 'Editar senha',
+  EDIT_PROFILE = 'Editar perfil'
 }
 
 const shortcutLinks = {
   [Shortcuts.LOGOUT]: Routes.Logout,
   [Shortcuts.EDIT_PASSWORD]: Routes.EditPassword,
+  [Shortcuts.EDIT_PROFILE]: Routes.EditProfile
 }
 
 export default function Container({ children }: ContainerProps) {
@@ -91,8 +93,8 @@ export default function Container({ children }: ContainerProps) {
   }), [userData?.name])
 
   const shortcuts = useMemo(() => userData?.registerType === UserRegisterTypeEnum.Default
-    ? [Shortcuts.EDIT_PASSWORD, Shortcuts.LOGOUT]
-    : [Shortcuts.LOGOUT],
+    ? [Shortcuts.EDIT_PASSWORD, Shortcuts.EDIT_PROFILE, Shortcuts.LOGOUT]
+    : [Shortcuts.EDIT_PROFILE, Shortcuts.LOGOUT],
   [
     userData?.registerType
   ])

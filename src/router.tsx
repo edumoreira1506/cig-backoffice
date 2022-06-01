@@ -14,6 +14,7 @@ import Sales from 'pages/Sales/Sales'
 import Purchases from 'pages/Purchases/Purchases'
 import Purchase from 'pages/Purchase/Purchase'
 import Sale from 'pages/Sale/Sale'
+import EditProfile from 'pages/EditProfile/EditProfile'
 
 export default function Router() {
   return (
@@ -21,6 +22,7 @@ export default function Router() {
       <Route path={Routes.Home} element={<ListPoultries />} />
       <Route path={Routes.EditBreeder} element={<EditBreeder />} />
       <Route path={Routes.EditPassword} element={<EditPassword />} />
+      <Route path={Routes.EditProfile} element={<EditProfile />} />
       <Route path={Routes.NewPoultry} element={<NewPoultry />} />
       <Route path={Routes.EditPoultry} element={<EditPoultry />} />
       <Route path={Routes.ViewPoultry} element={<ViewPoultry />} />
