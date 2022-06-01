@@ -2411,10 +2411,10 @@
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/ui@^0.1.146":
-  version "0.1.146"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.146.tgz#749338175263b384a401ee78e17594dae3ce8115"
-  integrity sha512-ZrYtLtkCvdfSmHsK+d2JOZ3V21/olAslGck1XTmhBlmIVNezqXHJ89r01obDMQYP1Dyv9PnmMNIJGoi7tYJN/Q==
+"@cig-platform/ui@^0.1.150":
+  version "0.1.150"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.150.tgz#d9e3eb5825de3db10b08b5330ff9684c8f0262c4"
+  integrity sha512-zFNtgmvVNb6j7uDfk3jP4VUWE+46QDIz0nXLYSzouqMPoa1rMYcQqWsHPehWnmY2w/KdvuvRZf0LB2FKAaUdIA==
   dependencies:
     "@cig-platform/enums" "^0.0.5"
     "@cig-platform/factories" "^0.0.20"
