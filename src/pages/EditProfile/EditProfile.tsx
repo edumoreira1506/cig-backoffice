@@ -1,16 +1,20 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FormField, Input, Button, DatePicker } from '@cig-platform/ui'
 
 import PageTitle from '../../components/PageTitle/PageTitle'
 import Main from '../../components/Main/Main'
 import useEditProfile from '../../hooks/useEditProfile'
+import authBffClient from 'services/AuthBffService'
 import { success } from '../../utils/alert'
+import useAuth from 'hooks/useAuth'
 
 import { StyledForm, StyledField } from './EditProfile.styles'
 
 export default function EditProfilePage() {
   const { t } = useTranslation()
+
+  const { token } = useAuth()
 
   const handleSuccessEditProfile = useCallback(() => {
     success(t('common.updated'), t)
@@ -23,6 +27,26 @@ export default function EditProfilePage() {
   const [name, setName] = useState('')
   const [birthDate, setBirthDate] = useState<Date>()
   const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    if (!token) return
+
+    (async () => {
+      const userData = await authBffClient.getProfileData(token)
+
+      if (userData.register) {
+        setRegister(userData.register)
+      }
+
+      setName(userData.name)
+
+      if (userData.birthDate) {
+        setBirthDate(new Date(userData.birthDate))
+      }
+
+      setEmail(userData.email)
+    })()
+  }, [token])
 
   const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
