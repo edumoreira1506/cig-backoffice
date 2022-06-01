@@ -58,6 +58,8 @@
   "remove-poultry": "Remover anúncio",
   "transfer-poultry": "Transferir para outro criatório",
   "confirm-transfer": "Confirmar transferência",
+  "confirm-kill-poultry": "Confirmação de comunicado de morte",
+  "kill-poultry": "Comunicado de morte",
   "poultry.fields.type": "Raça da ave",
   "poultry.fields.tail": "Rabo da ave",
   "poultry.fields.crest": "Tipo de crista",
