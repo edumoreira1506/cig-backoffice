@@ -2,6 +2,7 @@ export enum Routes {
   Home = '/',
   EditBreeder = '/criatorio',
   EditPassword = '/editar-senha',
+  EditProfile = '/editar-perfil',
   NewPoultry = '/nova-ave',
   EditPoultry = '/ave/:poultryId/editar',
   ViewPoultry = '/ave/:poultryId/visualizar',
