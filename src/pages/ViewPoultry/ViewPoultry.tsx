@@ -19,6 +19,7 @@ import useTransferPoultry from 'hooks/useTransferPoultry'
 import useEditPoultryAdvertising from 'hooks/useEditPoultryAdvertising'
 import useAnswerAdvertisingQuestion from 'hooks/useAnswerAdvertisingQuestion'
 import { createImageUrl } from 'utils/s3'
+import useKillPoultry from 'hooks/useKillPoultry'
 
 import {
   StyledContainer,
@@ -72,6 +73,8 @@ export default function ViewPoultry() {
   const handleTransferPoultrySuccess = useCallback(() => {
     success(t('action-success'), t, () => navigate(Routes.Home))
   }, [t, navigate])
+
+  const killPoultry = useKillPoultry({ poultryId: poultryId ||  '', onSuccess: handleSaveSuccess })
 
   const saveAdvertising = useSavePoultryAdvertising({ poultryId: poultryId || '', onSuccess: handleSaveSuccess })
 
@@ -228,6 +231,10 @@ export default function ViewPoultry() {
 
   const configModalItems = useMemo(() => ([
     {
+      onClick: killPoultry,
+      label: t('kill-poultry')
+    },
+    {
       onClick: handleNavigateToNewRegisterPage,
       label: t('new-register')
     },
@@ -249,6 +256,7 @@ export default function ViewPoultry() {
     handleClickAdvertisingButton,
     handleShowTransferModal,
     hasAdvertising,
+    killPoultry,
     t
   ])
 
