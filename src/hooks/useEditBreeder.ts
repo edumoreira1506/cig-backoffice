@@ -26,9 +26,6 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
     editBreederDispatch(setIsLoading(true))
     appDispatch(setIsLoading(true))
 
-    const newImages = (breeder?.images?.filter(image => image.isNew && image.raw).map(image => image.raw) ?? []) as File[]
-    const removedImageIds = breeder?.images?.filter(image => image.isDeleted).map(image => image.id) ?? []
-
     const removedContactIds = breeder?.contacts?.filter(contact => contact.isDeleted).map(contact => contact.id) ?? []
     const contacts = breeder?.contacts?.filter(contact => !contact.isDeleted)
 
@@ -42,8 +39,8 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
         breederId,
         token,
         { ...filteredObject, ...(filteredObject.address ? ({ address: JSON.stringify(filteredObject.address) }) : ({})) } as any,
-        newImages,
-        removedImageIds,
+        [],
+        [],
         removedContactIds,
         contacts
       )
