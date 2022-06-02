@@ -45,6 +45,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   const breeders = useBreederSelector(selectBreeders)
 
   const breederId = useEditBreederSelector(selectId)
+  const previewBreederData = useEditBreederSelector(state => state)
 
   const breederDispatch = useBreederDispatch()
 
@@ -127,6 +128,10 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
     onViewPoultry: handleNavigateToViewPoultry
   }), [handleNavigateToViewPoultry])
 
+  const microFrontEndData = useMemo(() =>  ({
+    breederData: previewBreederData
+  }), [previewBreederData])
+
   return (
     <>
       <EditBreederForm onSubmit={editBreeder} />
@@ -141,6 +146,7 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
             host={BREEDER_PAGE_URL}
             containerId="breeder-preview"
             callbacks={microFrontendCallbacks}
+            data={microFrontEndData}
           />
         </StyledPreview>
       </Modal>

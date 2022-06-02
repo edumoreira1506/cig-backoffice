@@ -2384,10 +2384,10 @@
     "@cig-platform/types" "^0.0.33"
     axios "^0.26.0"
 
-"@cig-platform/microfrontend-helper@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@cig-platform/microfrontend-helper/-/microfrontend-helper-0.0.3.tgz#15e5dc994cbcbbaa02f07a204a42be39693f2eb6"
-  integrity sha512-cNzbHB4gf3i/D80GrRx98QDHi/GYtiCnk64okWRSc2d437+Xrktm7QedY6eXZk8YvJ5qDxGUkvGZUBaQ8lvAVA==
+"@cig-platform/microfrontend-helper@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@cig-platform/microfrontend-helper/-/microfrontend-helper-0.0.5.tgz#732b3a1f6e3002b77feafc219fe395227bf4bd8d"
+  integrity sha512-DUtDnZRLSCaX9agvDw+p7dhJDUNwAoNzsPWPyJx86/vE07F+HeybRnj/T5wHkjSFJxlorn9NYfbtT7B9thDFag==
   dependencies:
     react "^17.0.2"
     react-scripts "^5.0.0"

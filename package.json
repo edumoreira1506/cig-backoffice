@@ -16,7 +16,7 @@
     "@cig-platform/factories": "^0.0.20",
     "@cig-platform/hooks": "^0.0.3",
     "@cig-platform/marketplace-bff-client": "^0.0.14",
-    "@cig-platform/microfrontend-helper": "^0.0.3",
+    "@cig-platform/microfrontend-helper": "^0.0.5",
     "@cig-platform/types": "^0.0.33",
     "@cig-platform/ui": "^0.1.150",
     "@testing-library/jest-dom": "^5.16.2",
