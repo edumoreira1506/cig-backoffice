@@ -7,12 +7,10 @@ import { setError } from '../contexts/AppContext/appActions'
 import { selectId } from '../contexts/EditBreederContext/editBreederSelectors'
 import useAuth from './useAuth'
 import useRefreshToken from './useRefreshToken'
-import { filterObject } from '../utils/object'
-import { EditBreederFormProps } from 'components/EditBreederForm/EditBreederForm'
-import { BreederWithFilesAndContacts } from '../@types/breeder'
 import { useAppDispatch } from '../contexts/AppContext/AppContext'
+import { EditBreederImage } from 'contexts/EditBreederContext/editBreederReducer'
 
-export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFormProps['onSubmit'] }) {
+export default function useSaveBreederImages({ onSuccess }: { onSuccess: () => void }) {
   const editBreederDispatch = useEditBreederDispatch()
   const appDispatch = useAppDispatch()
 
@@ -22,31 +20,24 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
 
   const refreshToken = useRefreshToken(token)
 
-  const handleEditBreeder = useCallback(async (breeder: Partial<BreederWithFilesAndContacts>) => {
+  const handleSaveBreederImages = useCallback(async (images: EditBreederImage[]) => {
     editBreederDispatch(setIsLoading(true))
     appDispatch(setIsLoading(true))
 
-    const removedContactIds = breeder?.contacts?.filter(contact => contact.isDeleted).map(contact => contact.id) ?? []
-    const contacts = breeder?.contacts?.filter(contact => !contact.isDeleted)
-
-    delete breeder['images']
-    delete breeder['contacts']
-
-    const filteredObject = filterObject(breeder)
+    const newImages = (images?.filter(image => image.isNew && image.raw).map(image => image.raw) ?? []) as File[]
+    const removedImageIds = images?.filter(image => image.isDeleted).map(image => image.id) ?? []
 
     try {
       await BackofficeBffService.updateBreeder(
         breederId,
         token,
-        { ...filteredObject, ...(filteredObject.address ? ({ address: JSON.stringify(filteredObject.address) }) : ({})) } as any,
-        [],
-        [],
-        removedContactIds,
-        contacts
+        {},
+        newImages,
+        removedImageIds,
       )
 
       refreshToken()
-      onSuccess({ ...breeder, foundationDate: String(breeder.foundationDate?.toString() ?? '') })
+      onSuccess()
     } catch (error) {
       appDispatch(setError(error))
     } finally {
@@ -55,5 +46,5 @@ export default function useEditBreeder({ onSuccess }: { onSuccess: EditBreederFo
     }
   }, [token, onSuccess, breederId, editBreederDispatch, appDispatch, refreshToken])
 
-  return handleEditBreeder
+  return handleSaveBreederImages
 }
