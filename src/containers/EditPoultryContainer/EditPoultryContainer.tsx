@@ -29,6 +29,8 @@ import {
   setGenderCategory,
 } from 'contexts/PoultryContext/poultryActions'
 import { selectBirthDate, selectGenderCategory } from 'contexts/PoultryContext/poultrySelectors'
+import { selectImages } from 'contexts/PoultryContext/poultrySelectors'
+import useSavePoultryimages from 'hooks/useSavePoultryImages'
 
 const SECOND = 1000
 const MINUTE = 60 * SECOND
@@ -45,6 +47,7 @@ export default function EditPoultryContainer() {
 
   const birthDate = usePoultrySelector(selectBirthDate)
   const genderCategory = usePoultrySelector(selectGenderCategory)
+  const poultryImages = usePoultrySelector(selectImages)
 
   const navigate = useNavigate()
 
@@ -68,6 +71,28 @@ export default function EditPoultryContainer() {
   }, [t, navigate])
 
   const editPoultry = useEditPoultry({ onSuccess: handleSuccess, poultryId: poultryId ?? '' })
+
+  const saveImages = useSavePoultryimages({ onSuccess: () => null, poultryId: poultryId ?? '' })
+
+  useEffect(() => {
+    if (!poultryImages?.length || !breeder || !poultryId) return
+
+    const allImagesIsPersisted = poultryImages.every(image => !image.isDeleted && !image.isNew)
+
+    if (allImagesIsPersisted) return
+
+    (async () => {
+      await saveImages(poultryImages)
+
+      const { poultry } = await BackofficeBffService.getPoultry(breeder.id, poultryId, token)
+
+      setTimeout(() => {
+        if (poultry?.images) {
+          poultryDispatch(setImages(poultry.images))
+        }
+      }, 1000)
+    })()
+  }, [poultryImages])
 
   useEffect(() => {
     if (!breeder || !poultryId) return
