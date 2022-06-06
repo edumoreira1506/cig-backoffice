@@ -1,8 +1,6 @@
 import { useCallback } from 'react'
-import { IPoultry } from '@cig-platform/types'
 
 import { useAppDispatch } from 'contexts/AppContext/AppContext'
-import { filterObject } from 'utils/object'
 import { setError, setIsLoading } from 'contexts/AppContext/appActions'
 import BackofficeBffService from 'services/BackofficeBffService'
 import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
@@ -10,27 +8,29 @@ import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
 import useBreeder from './useBreeder'
 import useAuth from './useAuth'
 
-export default function useEditPoultry({ onSuccess, poultryId }: { onSuccess: () => void; poultryId: string; }) {
+export default function useSavePoultryimages({ onSuccess, poultryId }: { onSuccess: () => void; poultryId: string; }) {
   const appDispatch = useAppDispatch()
 
   const breeder = useBreeder()
 
   const { token } = useAuth()
 
-  const handleEditPoultry = useCallback(async (poultry: Partial<IPoultry> & { images?: PoultryState['images'] }) => {
-    if (!breeder || !poultryId) return
+  const handleSavePoultryImages = useCallback(async (images: PoultryState['images'] = []) => {
+    if (!breeder || !poultryId || !images?.length) return
 
     try {
       appDispatch(setIsLoading(true))
 
-      delete poultry['images']
-      delete poultry['gender']
+      const newImages = (images?.filter(image => image.isNew && image.raw).map(image => image.raw) ?? []) as File[]
+      const removedImageIds = images?.filter(image => image.isDeleted).map(image => image.id) ?? []
 
       await BackofficeBffService.updatePoultry(
         breeder.id,
         poultryId,
         token,
-        filterObject(poultry)
+        {},
+        newImages,
+        removedImageIds
       )
   
       onSuccess()
@@ -41,5 +41,5 @@ export default function useEditPoultry({ onSuccess, poultryId }: { onSuccess: ()
     }
   }, [onSuccess, appDispatch, breeder, token, poultryId])
 
-  return handleEditPoultry
+  return handleSavePoultryImages
 }
