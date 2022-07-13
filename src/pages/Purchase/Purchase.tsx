@@ -29,7 +29,7 @@ const Purchase: VFC = () => {
     navigate(`${Routes.Purchase.replace(':dealId', deal.id)}`)
   }, [navigate])
 
-  const finishDeal = useFinishDeal({ onSuccess: handleSuccess })
+  const finishDeal = useFinishDeal({ onSuccess: () => success(t('common.updated'), t, () => navigate(Routes.ReviewPurchase.replace(':dealId', dealId ?? ''))) })
 
   const cancelDeal = useCancelDeal({ onSuccess: handleSuccess })
 
