@@ -68,7 +68,7 @@ describe('EditBreederFormContacts', () => {
     expect(screen.getByDisplayValue('')).toBeInTheDocument()
     expect(setContacts).toHaveBeenCalledWith([
       ...contacts,
-      { value: newContact.value, type: newContact.type, id: '', breederId: '' }
+      expect.objectContaining({ value: newContact.value, type: newContact.type, id: '', breederId: '' })
     ])
   })
 
