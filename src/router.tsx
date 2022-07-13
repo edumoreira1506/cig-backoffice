@@ -15,6 +15,7 @@ import Purchases from 'pages/Purchases/Purchases'
 import Purchase from 'pages/Purchase/Purchase'
 import Sale from 'pages/Sale/Sale'
 import EditProfile from 'pages/EditProfile/EditProfile'
+import ReviewPurchase from 'pages/ReviewPurchase/ReviewPurchase'
 
 export default function Router() {
   return (
@@ -32,6 +33,7 @@ export default function Router() {
       <Route path={Routes.Purchases} element={<Purchases />} />
       <Route path={Routes.Purchase} element={<Purchase />} />
       <Route path={Routes.Sale} element={<Sale />} />
+      <Route path={Routes.ReviewPurchase} element={<ReviewPurchase />} />
     </ReactRouterRoutes>
   )
 }

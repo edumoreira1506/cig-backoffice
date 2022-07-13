@@ -11,5 +11,6 @@ export enum Routes {
   Sales = '/vendas',
   Purchases = '/compras',
   Purchase = '/compras/:dealId',
-  Sale = '/vendas/:dealId'
+  Sale = '/vendas/:dealId',
+  ReviewPurchase = '/compras/:dealId/avaliar'
 }

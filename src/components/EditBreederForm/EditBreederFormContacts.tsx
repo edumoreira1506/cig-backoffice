@@ -66,7 +66,7 @@ export default function EditBreederFormContacts() {
   const handleAddNumber = useCallback(() => {
     if (!newContactValue || !newContactType) return
 
-    const newContacts = [...contacts, { value: newContactValue, type: newContactType, id: '', breederId: '' }]
+    const newContacts = [...contacts, { value: newContactValue, type: newContactType, id: '', breederId: '', createdAt: new Date() }]
 
     dispatch(setContacts(newContacts))
 

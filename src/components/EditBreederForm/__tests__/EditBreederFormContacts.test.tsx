@@ -16,13 +16,15 @@ describe('EditBreederFormContacts', () => {
         id: '',
         breederId: '',
         value: '(15) 99644-2031',
-        type: BreederContactTypeEnum.WHATS_APP
+        type: BreederContactTypeEnum.WHATS_APP,
+        createdAt: new Date()
       },
       {
         id: '',
         breederId: '',
         value: '(15) 99798-6248',
-        type: BreederContactTypeEnum.WHATS_APP
+        type: BreederContactTypeEnum.WHATS_APP,
+        createdAt: new Date()
       }
     ]
     const render = createEditBreederContextRenderer({ ...INITIAL_STATE, contacts })
@@ -44,14 +46,16 @@ describe('EditBreederFormContacts', () => {
         id: '',
         breederId: '',
         value: '(15) 99798-6248',
-        type: BreederContactTypeEnum.WHATS_APP
+        type: BreederContactTypeEnum.WHATS_APP,
+        createdAt: new Date()
       }
     ]
     const newContact = {
       id: '',
       breederId: '',
       value: '(15) 99644-2031',
-      type: BreederContactTypeEnum.WHATS_APP
+      type: BreederContactTypeEnum.WHATS_APP,
+      createdAt: new Date()
     }
     const render = createEditBreederContextRenderer({ ...INITIAL_STATE, contacts })
 
@@ -68,7 +72,7 @@ describe('EditBreederFormContacts', () => {
     expect(screen.getByDisplayValue('')).toBeInTheDocument()
     expect(setContacts).toHaveBeenCalledWith([
       ...contacts,
-      { value: newContact.value, type: newContact.type, id: '', breederId: '' }
+      expect.objectContaining({ value: newContact.value, type: newContact.type, id: '', breederId: '' })
     ])
   })
 
@@ -82,7 +86,8 @@ describe('EditBreederFormContacts', () => {
         id: '',
         breederId: '',
         value: '(15) 99798-6248',
-        type: BreederContactTypeEnum.WHATS_APP
+        type: BreederContactTypeEnum.WHATS_APP,
+        createdAt: new Date()
       }
     ]
     const render = createEditBreederContextRenderer({ ...INITIAL_STATE, contacts })
