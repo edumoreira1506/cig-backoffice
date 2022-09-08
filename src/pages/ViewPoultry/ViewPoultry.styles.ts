@@ -1,6 +1,14 @@
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
-export const StyledContainer = styled.div``
+export const GlobalStyle = createGlobalStyle`
+  .ReactModal__Content--after-open {
+    transform: translateY(60vh) !important;
+    height: 40vh !important;
+  }
+`
+
+export const StyledContainer = styled.div`
+`
 
 export const StyledTransferButton = styled.div`
   margin-top: 10px;

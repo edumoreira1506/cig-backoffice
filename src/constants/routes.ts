@@ -5,6 +5,7 @@ export enum Routes {
   EditProfile = '/editar-perfil',
   NewPoultry = '/nova-ave',
   EditPoultry = '/ave/:poultryId/editar',
+  ManagePoultryTree = '/ave/:poultryId/arvore-genealogica',
   ViewPoultry = '/ave/:poultryId/visualizar',
   NewRegister = '/ave/:poultryId/novo-registro',
   Logout = '/logout',

@@ -2311,25 +2311,25 @@
     "@cig-platform/types" "0.0.34"
     axios "^0.26.0"
 
-"@cig-platform/backoffice-bff-client@0.0.50":
-  version "0.0.50"
-  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.50.tgz#000ceb9dc3052b265f94f315d8111b44fa370644"
-  integrity sha512-pjIvnHV74H9oZR71t0RnQan6NQOK6lrA9PC9vxuzuBF9eApbWkRmLB0BRsZ8tOysDNoiH4JPv7F9O/w7GM+GIQ==
+"@cig-platform/backoffice-bff-client@0.0.51":
+  version "0.0.51"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.51.tgz#866b43c7629e3927147ca2946444c506ea7a5fa7"
+  integrity sha512-6AEc07mFcnxryo38i0g3o2Gj/nYPJaUx2IbB0rMoC8nitDInX2ha0hprX3Q1ohW2++P95xa84o9eZE2Ee2Zd4g==
   dependencies:
     "@cig-platform/decorators" "0.0.2"
-    "@cig-platform/types" "0.0.42"
+    "@cig-platform/types" "0.0.43"
     axios "0.26.0"
     form-data "^4.0.0"
 
-"@cig-platform/content-search-client@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@cig-platform/content-search-client/-/content-search-client-0.0.16.tgz#08d97644adf7d43b29af801842e27c5c6e81caeb"
-  integrity sha512-1A+LjsBhlSxNY+Sw+dR785wBN1cyWnaRIN4R7O6PsvPXwq68pzQYwnezxUGB6Nhh/sVuvFrmN04Qd8XuLsEMOg==
+"@cig-platform/content-search-client@^0.0.27":
+  version "0.0.27"
+  resolved "https://registry.yarnpkg.com/@cig-platform/content-search-client/-/content-search-client-0.0.27.tgz#e1ac4fe6dc2634c061c7b36382efdc33d08ea9a5"
+  integrity sha512-bp+zGAzajSrcxftCzj5IzCv9yK/n5MiRt9EOfVJw+s4cQm9KHIwZGrilf64g9TB2xE5gIFVdO3oXNKAAJxGfZQ==
   dependencies:
-    "@babel/plugin-proposal-decorators" "^7.16.4"
-    "@cig-platform/decorators" "^0.0.1"
-    "@cig-platform/types" "^0.0.33"
-    axios "^0.24.0"
+    "@babel/plugin-proposal-decorators" "^7.17.2"
+    "@cig-platform/decorators" "^0.0.2"
+    "@cig-platform/types" "^0.0.43"
+    axios "^0.26.0"
 
 "@cig-platform/context@^0.1.7":
   version "0.1.7"
@@ -2344,13 +2344,6 @@
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@cig-platform/decorators/-/decorators-0.0.2.tgz#727cf7bb03c3e7376406d95e542eccab987e0c85"
   integrity sha512-9eXiqQJE4Yj41GE1Q7XRESM4v/1UscrmcnnzFoU/rvqaspiZhSsKggnsgZR0QxN0O6Gnp6w62yMPL4vmbVnQVQ==
-  dependencies:
-    axios "^0.22.0"
-
-"@cig-platform/decorators@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@cig-platform/decorators/-/decorators-0.0.1.tgz#6714481803ed94e8c46a68f51bd207b3129f6462"
-  integrity sha512-gJXseewZipGW7ONTVH566/YwkGIGn5fHKZD8BNrxDKMZVuQjw+764hElgujXg3q0D4u2Mw4rmhup7Ft5sWfhqQ==
   dependencies:
     axios "^0.22.0"
 
@@ -2406,10 +2399,10 @@
   dependencies:
     express "^4.17.3"
 
-"@cig-platform/types@0.0.42", "@cig-platform/types@^0.0.42":
-  version "0.0.42"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.42.tgz#8516a446a9d90fb38a4d737aa6f9665c6ca72b63"
-  integrity sha512-+WPYhKk4IjILd/jF3dhfG0HqIKCkeEACmBJGDlZC6+m/p+LGqlmw+D/fIY9snCPzy5kPMPt4CMcaJ+DKJJ2iZA==
+"@cig-platform/types@0.0.43", "@cig-platform/types@^0.0.43":
+  version "0.0.43"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.43.tgz#5893eb718d738b374e42cb2cbee330c65e38b3b1"
+  integrity sha512-ftq7SaUTgVApmWtbowrgWcrEaqU0a5VspnJs8KKbONat+NvWcFt+Bq91VKJvnq9qlh5qr6pwC+vi+i6EzQ1OKA==
   dependencies:
     express "^4.17.3"
 
@@ -4908,13 +4901,6 @@ axios@0.26.0, axios@^0.26.0:
   integrity sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==
   dependencies:
     follow-redirects "^1.14.8"
-
-axios@^0.24.0:
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.24.0.tgz#804e6fa1e4b9c5288501dd9dff56a7a0940d20d6"
-  integrity sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==
-  dependencies:
-    follow-redirects "^1.14.4"
 
 axobject-query@^2.2.0:
   version "2.2.0"
@@ -14118,6 +14104,13 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
+react-family-tree@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-family-tree/-/react-family-tree-3.2.0.tgz#60be2e4edd3fc166f4fb7e2285f922a9457cec6a"
+  integrity sha512-TCoLWPSLoP89CpfzK7vTxA2Ss0Qu6PuusdwjuLHeSrYiQfW6PLYCc8wTidRfKTjH+4FueF5OLMolj7rhh+c3MA==
+  dependencies:
+    relatives-tree "3.2.x"
+
 react-fast-compare@^3.0.1:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
@@ -14557,6 +14550,11 @@ relateurl@^0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
+
+relatives-tree@3.2.x:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/relatives-tree/-/relatives-tree-3.2.0.tgz#9c309ac6250f487c39007dabbf61eaf52f2c5fcc"
+  integrity sha512-orxhI+jECes1VTfF7TLUVlDW7uWFGKyrmYtbUyrQNOYry+Jt+WZeYhrq5q7Axl2l0o1vABEew6xaKNMZEnzdQw==
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"

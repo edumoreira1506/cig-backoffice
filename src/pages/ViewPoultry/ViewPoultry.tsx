@@ -25,7 +25,8 @@ import {
   StyledContainer,
   StyledTransferButton,
   StyledAutocomplete,
-  StyledTransferCheckbox
+  StyledTransferCheckbox,
+  GlobalStyle
 } from './ViewPoultry.styles'
 
 export default function ViewPoultry() {
@@ -145,6 +146,10 @@ export default function ViewPoultry() {
     navigate(Routes.EditPoultry.replaceAll(':poultryId', poultryId || ''))
   , [navigate, poultryId])
 
+  const handleNavigateToManageTreePage = useCallback(() =>
+    navigate(Routes.ManagePoultryTree.replaceAll(':poultryId', poultryId || ''))
+  , [navigate, poultryId])
+
   const handleAnnouncePoultry = useCallback(() => {
     withInput(t('create-poultry-advertising'), (a) => {
       if (a) {
@@ -249,6 +254,10 @@ export default function ViewPoultry() {
     {
       onClick: handleShowTransferModal,
       label: t('transfer-poultry')
+    },
+    {
+      onClick: handleNavigateToManageTreePage,
+      label: t('poultry-tree')
     }
   ]), [
     handleNavigateToNewRegisterPage,
@@ -272,6 +281,8 @@ export default function ViewPoultry() {
 
   return (
     <StyledContainer>
+      <GlobalStyle />
+      
       <Modal isOpen={showTrasnferModal} onClose={handleCloseTransferModal}>
         <StyledAutocomplete>
           <Autocomplete
