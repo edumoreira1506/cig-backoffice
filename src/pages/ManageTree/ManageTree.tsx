@@ -1,13 +1,15 @@
 import { PoultryGenderEnum } from '@cig-platform/enums'
 import { IPoultry } from '@cig-platform/types'
 import useBreeder from 'hooks/useBreeder'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import ReactFamilyTree from 'react-family-tree'
 import { useParams } from 'react-router-dom'
 import ContentSearchService from 'services/ContentSearchService'
 import type { ExtNode } from 'relatives-tree/lib/types'
 
-import { TreeCrest, TreeDewlap, TreeGender, TreeInfo, TreeItem, TreeName, TreeTail, Container, TreeItemContainer } from './ManagreTree.styles'
+import { TreeCrest, TreeDewlap, TreeGender, TreeInfo, TreeItem, TreeName, TreeTail, Container, TreeItemContainer, TreeItemExpand } from './ManagreTree.styles'
+import { useAppDispatch } from 'contexts/AppContext/AppContext'
+import { setIsLoading } from 'contexts/AppContext/appActions'
 
 const WIDTH = 150
 const HEIGHT = 150
@@ -39,12 +41,16 @@ const ManageTreePage = () => {
 
   const breeder = useBreeder()
 
+  const dispatch = useAppDispatch()
+
   const [poultries, setPoultries] = useState<IPoultry[]>([])
 
   useEffect(() => {
     if (!poultryId || !breeder?.id) return
 
     (async () => {
+      dispatch(setIsLoading(true))
+
       try {
         const poultryData = await ContentSearchService.getPoultry(breeder.id, poultryId)
         const poultry = poultryData?.poultry
@@ -64,6 +70,8 @@ const ManageTreePage = () => {
         ])
       } catch (error) {
         console.log(error)
+      } finally {
+        dispatch(setIsLoading(false))
       }
     })()
   }, [poultryId, breeder?.id])
@@ -71,16 +79,16 @@ const ManageTreePage = () => {
   const nodes = useMemo<Node[]>(() => poultries.map((poultry) => {
     const parents = []
 
-    if (poultry.mom) {
+    if (poultry.momId && poultries.some(p => p.id === poultry.momId)) {
       parents.push({
-        id: poultry.mom.id,
+        id: poultry.momId,
         type: 'blood'
       })
     }
 
-    if (poultry.dad) {
+    if (poultry.dadId && poultries.some(p => p.id === poultry.dadId)) {
       parents.push({
-        id: poultry.dad.id,
+        id: poultry.dadId,
         type: 'blood'
       })
     }
@@ -115,6 +123,33 @@ const ManageTreePage = () => {
     }
   }), [poultries])
 
+  const handleClickExpandButton = useCallback(async (poultryId: string) => {
+    dispatch(setIsLoading(true))
+
+    try {
+      const poultryData = await ContentSearchService.getPoultry(breeder?.id, poultryId)
+      const poultry = poultryData?.poultry
+      const parents: IPoultry[] = []
+
+      if (poultry?.mom) {
+        parents.push(poultry.mom)
+      }
+
+      if (poultry?.dad) {
+        parents.push(poultry.dad)
+      }
+
+      setPoultries(prevPoultries => [
+        ...prevPoultries,
+        ...parents
+      ])
+    } catch (error) {
+      console.log(error)
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }, [breeder?.id])
+
   if (!poultries.length) return null
   
   return (
@@ -127,16 +162,27 @@ const ManageTreePage = () => {
         renderNode={(node) => {
           const poultry = poultries.find(p => p.id === node.id)
 
+          if (!poultry) return null
+
+          const shouldRenderExpandButton = Boolean(poultry.dadId || poultry.momId) && poultries.every(p => poultry.dadId ? p.id !== poultry.dadId : p.id !== poultry.momId)
+
           return (
             <TreeItemContainer key={node.id} style={getNodeStyle(node)}>
               <TreeItem>
+                {shouldRenderExpandButton && (
+                  <TreeItemExpand onClick={() => handleClickExpandButton(poultry.id)}>+</TreeItemExpand>
+                )}
+
                 <TreeName>{poultry?.name}</TreeName>
                 <TreeGender>{poultry?.gender}</TreeGender>
-                <TreeInfo>
-                  <TreeDewlap>{poultry?.dewlap}</TreeDewlap>
-                  <TreeCrest>{poultry?.crest}</TreeCrest>
-                  <TreeTail>{poultry?.tail}</TreeTail>
-                </TreeInfo>
+
+                {Boolean(poultry?.dewlap || poultry?.crest || poultry?.tail) && (
+                  <TreeInfo>
+                    <TreeDewlap>{poultry?.dewlap}</TreeDewlap>
+                    <TreeCrest>{poultry?.crest}</TreeCrest>
+                    <TreeTail>{poultry?.tail}</TreeTail>
+                  </TreeInfo>
+                )}
               </TreeItem>
             </TreeItemContainer>
           )

@@ -27,6 +27,7 @@ export const TreeItem = styled.div`
   width: 100px;
   border-radius: ${DEFAULT_BORDER_RADIUS};
   padding: 10px;
+  position: relative;
 `
 
 export const TreeName = styled.span`
@@ -49,3 +50,13 @@ export const TreeTail = styled.span``
 export const TreeDewlap = styled.span``
 
 export const TreeCrest = styled.span``
+
+export const TreeItemExpand = styled.button`
+  position: absolute;
+  top: -26px;
+  cursor: pointer;
+  background: ${Colors.DarkBlue};
+  border: none;
+  color: ${Colors.White};
+  border-radius: ${DEFAULT_BORDER_RADIUS};
+`
