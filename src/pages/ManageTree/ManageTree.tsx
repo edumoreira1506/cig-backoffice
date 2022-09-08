@@ -6,10 +6,13 @@ import ReactFamilyTree from 'react-family-tree'
 import { useParams } from 'react-router-dom'
 import ContentSearchService from 'services/ContentSearchService'
 import type { ExtNode } from 'relatives-tree/lib/types'
+import { BsGenderMale, BsGenderFemale } from 'react-icons/bs'
 
-import { TreeCrest, TreeDewlap, TreeGender, TreeInfo, TreeItem, TreeName, TreeTail, Container, TreeItemContainer, TreeItemExpand } from './ManagreTree.styles'
+import { TreeCrest, TreeDewlap, TreeGender, TreeInfo, TreeItem, TreeName, TreeTail, Container, TreeItemContainer, TreeItemExpand, TreeItemAddMom, TreeItemAddDad } from './ManagreTree.styles'
 import { useAppDispatch } from 'contexts/AppContext/AppContext'
 import { setIsLoading } from 'contexts/AppContext/appActions'
+import BackofficeBffService from 'services/BackofficeBffService'
+import useAuth from 'hooks/useAuth'
 
 const WIDTH = 150
 const HEIGHT = 150
@@ -42,6 +45,8 @@ const ManageTreePage = () => {
   const breeder = useBreeder()
 
   const dispatch = useAppDispatch()
+
+  const { token } = useAuth()
 
   const [poultries, setPoultries] = useState<IPoultry[]>([])
 
@@ -92,7 +97,7 @@ const ManageTreePage = () => {
         type: 'blood'
       })
     }
-
+    
     const children = poultries.filter(p => p.momId === poultry.id || p.dadId === poultry.id).map(p => ({
       id:p.id,
       type: 'blood'
@@ -148,10 +153,44 @@ const ManageTreePage = () => {
     } finally {
       dispatch(setIsLoading(false))
     }
-  }, [breeder?.id])
+  }, [breeder?.id, dispatch])
+
+  const handleAddParent = useCallback(async ({ dadId, momId }: { dadId?: string; momId?: string }, poultryId: string) => {
+    if (!breeder) return
+
+    try {
+      dispatch(setIsLoading(true))
+
+      await BackofficeBffService.updatePoultry(breeder.id, poultryId, token, { dadId, momId })
+
+      setPoultries(prevPoultries => prevPoultries.map(p => p.id === poultryId ? ({
+        ...p,
+        ...(dadId ? { dadId } : {}),
+        ...(momId ? { momId } : {})
+      }) : ({ ...p })))
+
+      handleClickExpandButton(poultryId)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      dispatch(setIsLoading(false))
+    }
+  }, [handleClickExpandButton, dispatch, breeder?.id, token])
+
+  const handleAddDad = useCallback((poultryId: string) => {
+    const dadId = window.prompt('Qual o id do pai?') ?? ''
+
+    handleAddParent({ dadId }, poultryId)
+  }, [handleAddParent])
+
+  const handleAddMom = useCallback((poultryId: string) => {
+    const momId = window.prompt('Qual o id do mãe?') ?? ''
+
+    handleAddParent({ momId }, poultryId)
+  }, [handleAddParent])
 
   if (!poultries.length) return null
-  
+
   return (
     <Container>
       <ReactFamilyTree
@@ -165,10 +204,28 @@ const ManageTreePage = () => {
           if (!poultry) return null
 
           const shouldRenderExpandButton = Boolean(poultry.dadId || poultry.momId) && poultries.every(p => poultry.dadId ? p.id !== poultry.dadId : p.id !== poultry.momId)
+          const shouldRenderAddDadButton = !poultry.dadId
+          const shouldRenderAddMomButton = !poultry.momId
 
           return (
             <TreeItemContainer key={node.id} style={getNodeStyle(node)}>
               <TreeItem>
+                {shouldRenderAddDadButton && (
+                  <TreeItemAddDad onClick={() => handleAddDad(poultry.id)}>
+                    + <BsGenderMale />
+                  </TreeItemAddDad>
+                )}
+
+                {shouldRenderAddMomButton && (
+                  <TreeItemAddMom onClick={() => handleAddMom(poultry.id)}>
+                    + <BsGenderFemale />
+                  </TreeItemAddMom>
+                )}
+
+                {shouldRenderExpandButton && (
+                  <TreeItemExpand onClick={() => alert(poultry.id)}>+</TreeItemExpand>
+                )}
+
                 {shouldRenderExpandButton && (
                   <TreeItemExpand onClick={() => handleClickExpandButton(poultry.id)}>+</TreeItemExpand>
                 )}

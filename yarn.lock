@@ -2311,13 +2311,13 @@
     "@cig-platform/types" "0.0.34"
     axios "^0.26.0"
 
-"@cig-platform/backoffice-bff-client@0.0.50":
-  version "0.0.50"
-  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.50.tgz#000ceb9dc3052b265f94f315d8111b44fa370644"
-  integrity sha512-pjIvnHV74H9oZR71t0RnQan6NQOK6lrA9PC9vxuzuBF9eApbWkRmLB0BRsZ8tOysDNoiH4JPv7F9O/w7GM+GIQ==
+"@cig-platform/backoffice-bff-client@0.0.51":
+  version "0.0.51"
+  resolved "https://registry.yarnpkg.com/@cig-platform/backoffice-bff-client/-/backoffice-bff-client-0.0.51.tgz#866b43c7629e3927147ca2946444c506ea7a5fa7"
+  integrity sha512-6AEc07mFcnxryo38i0g3o2Gj/nYPJaUx2IbB0rMoC8nitDInX2ha0hprX3Q1ohW2++P95xa84o9eZE2Ee2Zd4g==
   dependencies:
     "@cig-platform/decorators" "0.0.2"
-    "@cig-platform/types" "0.0.42"
+    "@cig-platform/types" "0.0.43"
     axios "0.26.0"
     form-data "^4.0.0"
 
@@ -2399,10 +2399,10 @@
   dependencies:
     express "^4.17.3"
 
-"@cig-platform/types@0.0.42":
-  version "0.0.42"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.42.tgz#8516a446a9d90fb38a4d737aa6f9665c6ca72b63"
-  integrity sha512-+WPYhKk4IjILd/jF3dhfG0HqIKCkeEACmBJGDlZC6+m/p+LGqlmw+D/fIY9snCPzy5kPMPt4CMcaJ+DKJJ2iZA==
+"@cig-platform/types@0.0.43", "@cig-platform/types@^0.0.43":
+  version "0.0.43"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.43.tgz#5893eb718d738b374e42cb2cbee330c65e38b3b1"
+  integrity sha512-ftq7SaUTgVApmWtbowrgWcrEaqU0a5VspnJs8KKbONat+NvWcFt+Bq91VKJvnq9qlh5qr6pwC+vi+i6EzQ1OKA==
   dependencies:
     express "^4.17.3"
 
@@ -2422,13 +2422,6 @@
   version "0.0.41"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.41.tgz#36f18829b17adc914f6d840a5551a9c660d05b31"
   integrity sha512-IVUOZQvuoSKa+zHHnQTn9kxvnLTEdwts4qhKP+Mu13wZ2xgEboWrfXs4ohTscMHOYj3xabahwT2VUox1Gv29bQ==
-  dependencies:
-    express "^4.17.3"
-
-"@cig-platform/types@^0.0.43":
-  version "0.0.43"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.43.tgz#5893eb718d738b374e42cb2cbee330c65e38b3b1"
-  integrity sha512-ftq7SaUTgVApmWtbowrgWcrEaqU0a5VspnJs8KKbONat+NvWcFt+Bq91VKJvnq9qlh5qr6pwC+vi+i6EzQ1OKA==
   dependencies:
     express "^4.17.3"
 

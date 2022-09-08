@@ -1,5 +1,5 @@
 import { Colors, DEFAULT_BORDER_RADIUS, MAIN_FONT } from '@cig-platform/ui'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -51,7 +51,7 @@ export const TreeDewlap = styled.span``
 
 export const TreeCrest = styled.span``
 
-export const TreeItemExpand = styled.button`
+const itemButtonStyle = css`
   position: absolute;
   top: -26px;
   cursor: pointer;
@@ -59,4 +59,20 @@ export const TreeItemExpand = styled.button`
   border: none;
   color: ${Colors.White};
   border-radius: ${DEFAULT_BORDER_RADIUS};
+`
+
+export const TreeItemExpand = styled.button`
+  ${itemButtonStyle}
+`
+
+export const TreeItemAddDad = styled.button`
+  ${itemButtonStyle}
+
+  right: 0;
+`
+
+export const TreeItemAddMom = styled.button`
+  ${itemButtonStyle}
+
+  left: 0;
 `
