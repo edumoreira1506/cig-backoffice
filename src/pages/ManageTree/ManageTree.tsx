@@ -97,7 +97,7 @@ const ManageTreePage = () => {
         type: 'blood'
       })
     }
-    
+
     const children = poultries.filter(p => p.momId === poultry.id || p.dadId === poultry.id).map(p => ({
       id:p.id,
       type: 'blood'
@@ -180,11 +180,15 @@ const ManageTreePage = () => {
   const handleAddDad = useCallback((poultryId: string) => {
     const dadId = window.prompt('Qual o id do pai?') ?? ''
 
+    if (!dadId) return
+
     handleAddParent({ dadId }, poultryId)
   }, [handleAddParent])
 
   const handleAddMom = useCallback((poultryId: string) => {
     const momId = window.prompt('Qual o id do mãe?') ?? ''
+
+    if (!momId) return
 
     handleAddParent({ momId }, poultryId)
   }, [handleAddParent])
