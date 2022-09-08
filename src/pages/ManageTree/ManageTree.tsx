@@ -227,10 +227,6 @@ const ManageTreePage = () => {
                 )}
 
                 {shouldRenderExpandButton && (
-                  <TreeItemExpand onClick={() => alert(poultry.id)}>+</TreeItemExpand>
-                )}
-
-                {shouldRenderExpandButton && (
                   <TreeItemExpand onClick={() => handleClickExpandButton(poultry.id)}>+</TreeItemExpand>
                 )}
 
