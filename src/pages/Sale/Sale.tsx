@@ -8,16 +8,19 @@ import { DEAL_PAGE_URL } from '../../constants/url'
 import useConfirmDeal from '../../hooks/useConfirmDeal'
 import { success } from '../../utils/alert'
 import useCancelDeal from 'hooks/useCancelDeal'
+import { useRefetch } from '@cig-platform/hooks'
 
 const Sale: VFC = () => {
   const { dealId } = useParams<{ dealId: string }>()
+
+  const { refetch, setRefetch } = useRefetch()
 
   const { t } = useTranslation()
 
   const breeder = useBreeder()
 
   const handleSuccess = useCallback(() => {
-    success(t('common.updated'), t, () => window.location.reload())
+    success(t('common.updated'), t, () => setRefetch(true))
   }, [])
 
   const confirmDeal = useConfirmDeal({ onSuccess: handleSuccess })
@@ -36,7 +39,8 @@ const Sale: VFC = () => {
   const microFrontendParams = useMemo(() => ({
     dealId: dealId || '',
     breederId: breeder?.id ?? '',
-  }), [dealId, breeder])
+    refetch
+  }), [dealId, breeder, refetch])
 
   const microFrontendCallbacks = useMemo<Record<string, any>>(() => ({
     onConfirmDeal: handleConfirmDeal,
