@@ -1,15 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button, Modal, Autocomplete, ListModal, Checkbox } from '@cig-platform/ui'
-import { IAdvertising, IBreeder } from '@cig-platform/types'
+import { IBreeder } from '@cig-platform/types'
 import { useDebouncedEffect } from '@cig-platform/hooks'
 import MicroFrontend from '@cig-platform/microfrontend-helper'
 
-import BackofficeBffService from 'services/BackofficeBffService'
 import ContentSearchService from 'services/ContentSearchService'
 import useBreeder from 'hooks/useBreeder'
-import useAuth from 'hooks/useAuth'
 import { POULTRY_PAGE_URL } from 'constants/url'
 import { Routes } from 'constants/routes'
 import { success, withInput, info } from 'utils/alert'
@@ -28,22 +26,24 @@ import {
   StyledTransferCheckbox,
   GlobalStyle
 } from './ViewPoultry.styles'
+import usePoultryAdvertising from 'hooks/usePoultryAdvertising'
 
 export default function ViewPoultry() {
-  const [advertising, setAdvertising] = useState<undefined | IAdvertising>()
-  const [isLoading, setIsLoading] = useState(true)
   const [isLoadingBreeders, setIsLoadingBreeders] = useState(false)
   const [showTrasnferModal, setShowTransferModal] = useState(false)
   const [searchedBreeder, setSearchedBreeder] = useState('')
   const [breeders, setBreeders] = useState<IBreeder[]>([])
   const [isOpenModalConfig, setIsOpenModalConfig] = useState(false)
   const [isTransferAllowed, setIsTransferAllowed] = useState(false)
+  const [refetchMicroFrontendData, setRefetchMicroFrontendData] = useState(false)
 
   const { t } = useTranslation()
 
   const navigate = useNavigate()
 
   const { poultryId } = useParams<{ poultryId: string }>()
+
+  const { advertising, isLoading, refetch: refetchAdvertising } = usePoultryAdvertising(poultryId ?? '')
 
   const breeder = useBreeder()
 
@@ -58,8 +58,6 @@ export default function ViewPoultry() {
     breeders
   ])
 
-  const { token } = useAuth()
-
   const toggleTransferAllowed = useCallback(() => setIsTransferAllowed(
     prevIsTransferAllowed => !prevIsTransferAllowed
   ), [])
@@ -68,8 +66,11 @@ export default function ViewPoultry() {
   const handleOpenModalConfig = useCallback(() => setIsOpenModalConfig(true), [])
 
   const handleSaveSuccess = useCallback(() => {
-    success(t('action-success'), t, () => window.location.reload())
-  }, [t])
+    success(t('action-success'), t, () => {
+      setRefetchMicroFrontendData(true)
+      refetchAdvertising()
+    })
+  }, [t, refetchAdvertising])
 
   const handleTransferPoultrySuccess = useCallback(() => {
     success(t('action-success'), t, () => navigate(Routes.Home))
@@ -102,18 +103,11 @@ export default function ViewPoultry() {
     poultryId: poultryId || '',
   })
 
-  useEffect(() => {
-    if (!poultryId || !breeder) return
-
-    setIsLoading(true);
-   
-    (async () => {
-      const { advertisings } = await BackofficeBffService.getPoultry(breeder.id, poultryId, token)
-
-      setAdvertising(advertisings?.[0])
-      setIsLoading(false)
-    })()
-  }, [poultryId, token, breeder])
+  useDebouncedEffect(() => {
+    if (refetchMicroFrontendData) {
+      setRefetchMicroFrontendData(false)
+    }
+  }, 1000, [refetchMicroFrontendData])
 
   useDebouncedEffect(() => {
     (async () => {
@@ -271,8 +265,9 @@ export default function ViewPoultry() {
 
   const microFrontendParams = useMemo(() => ({
     breederId: breeder?.id ?? '',
-    poultryId: poultryId || ''
-  }), [breeder?.id, poultryId])
+    poultryId: poultryId || '',
+    refetch: refetchMicroFrontendData
+  }), [breeder?.id, poultryId, refetchMicroFrontendData])
 
   const autocompleteInputProps = useMemo(() => ({
     placeholder: t('search-breeder'),
