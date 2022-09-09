@@ -22,7 +22,6 @@ module.exports = {
       exclude: /node_modules\/(?!(@cig-platform)\/)/i,
     });
     
-    c
     return config;
   },
   jest: function(config) {
