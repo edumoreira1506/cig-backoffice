@@ -166,7 +166,7 @@ const ManageTreePage = () => {
   }, [handleCloseParentModal, parentModalContext, handleAddParent, parentModalPoultryId, selectedPoultry])
 
   const poultryOptions = useMemo(() => searchedPoultries.map(poultry => ({
-    content: poultry.name,
+    content: `${poultry.name} - ${poultry.gender}`,
     key: poultry.id,
   })), [searchedPoultries])
 
