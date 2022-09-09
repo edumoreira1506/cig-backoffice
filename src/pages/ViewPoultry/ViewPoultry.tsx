@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button, Modal, Autocomplete, ListModal, Checkbox } from '@cig-platform/ui'
 import { IBreeder } from '@cig-platform/types'
-import { useDebouncedEffect } from '@cig-platform/hooks'
+import { useDebouncedEffect, useRefetch } from '@cig-platform/hooks'
 import MicroFrontend from '@cig-platform/microfrontend-helper'
 
 import ContentSearchService from 'services/ContentSearchService'
@@ -35,7 +35,8 @@ export default function ViewPoultry() {
   const [breeders, setBreeders] = useState<IBreeder[]>([])
   const [isOpenModalConfig, setIsOpenModalConfig] = useState(false)
   const [isTransferAllowed, setIsTransferAllowed] = useState(false)
-  const [refetchMicroFrontendData, setRefetchMicroFrontendData] = useState(false)
+
+  const { refetch: refetchMicroFrontendData, setRefetch: setRefetchMicroFrontendData } = useRefetch()
 
   const { t } = useTranslation()
 
@@ -102,12 +103,6 @@ export default function ViewPoultry() {
     onSuccess: handleTransferPoultrySuccess,
     poultryId: poultryId || '',
   })
-
-  useDebouncedEffect(() => {
-    if (refetchMicroFrontendData) {
-      setRefetchMicroFrontendData(false)
-    }
-  }, 1000, [refetchMicroFrontendData])
 
   useDebouncedEffect(() => {
     (async () => {
