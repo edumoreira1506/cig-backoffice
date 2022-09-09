@@ -6,9 +6,9 @@ import { setIsLoading } from 'contexts/AppContext/appActions'
 import useBreeder from './useBreeder'
 import useAuth from './useAuth'
 import BackofficeBffService from 'services/BackofficeBffService'
-import { useQuery } from 'react-query'
 import { IPoultryRegister } from '@cig-platform/types'
 import { AxiosResponse } from 'axios'
+import { useData } from '@cig-platform/data-helper'
 
 interface UsePoultryRegistersOptions {
   poultryId: string;
@@ -30,12 +30,11 @@ export default function usePoultryRegisters({
 
   const { token } = useAuth()
 
-  const { isLoading, data, ...reactQueryData } = useQuery<AxiosResponse<Data>>(
-    ['getPoultryRregisters', breeder?.id, poultryId, token, registerType],
+  const { isLoading, data, ...reactQueryData } = useData<AxiosResponse<Data>>(
+    'getPoultryRregisters',
     () => BackofficeBffService.getRegisters(breeder?.id ?? '', poultryId, token, registerType),
-    {
-      enabled: Boolean(token && poultryId && breeder?.id && registerType),
-    }
+    [breeder?.id, poultryId, token, registerType],
+    {}
   )
 
   useEffect(() => {

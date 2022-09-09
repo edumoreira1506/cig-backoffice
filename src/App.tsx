@@ -1,13 +1,12 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { QueryClientProvider } from 'react-query'
+import { queryClient } from '@cig-platform/data-helper'
 
 import Router from './router'
 import Container from './components/Container/Container'
 import { BreederProvider } from './contexts/BreederContext/BreederContext'
 import { AppProvider } from './contexts/AppContext/AppContext'
-import { QueryClient, QueryClientProvider } from 'react-query'
-
-const queryClient = new QueryClient()
 
 export default function App() {
   return (
