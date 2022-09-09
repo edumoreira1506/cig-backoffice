@@ -1,7 +1,7 @@
 import { IPoultry } from '@cig-platform/types'
-import { Tree } from '@cig-platform/ui'
+import { Autocomplete, Button, Modal, Tree } from '@cig-platform/ui'
 import useBreeder from 'hooks/useBreeder'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ContentSearchService from 'services/ContentSearchService'
 
@@ -9,17 +9,32 @@ import { useAppDispatch } from 'contexts/AppContext/AppContext'
 import { setIsLoading } from 'contexts/AppContext/appActions'
 import BackofficeBffService from 'services/BackofficeBffService'
 import useAuth from 'hooks/useAuth'
+import { StyledAutocomplete, StyledModalButton } from './ManagreTree.styles'
+import { useDebouncedEffect } from '@cig-platform/hooks'
+import { useTranslation } from 'react-i18next'
 
 const ManageTreePage = () => {
   const { poultryId } = useParams<{ poultryId: string }>()
+
+  const [parentModalContext, setParentModalContext] = useState<undefined | 'dadId' | 'momId'>()
+  const [parentModalPoultryId, setParentModalPoultryId] = useState<string>()
+  const [poultrySearchKeyword, setPoultrySearchKeyword] = useState<string>()
+  const [searchedPoultries, setSearchedPoultries] = useState<IPoultry[]>([])
 
   const breeder = useBreeder()
 
   const dispatch = useAppDispatch()
 
+  const { t } = useTranslation()
+
   const { token } = useAuth()
 
   const [poultries, setPoultries] = useState<IPoultry[]>([])
+
+  const selectedPoultry = useMemo(() => searchedPoultries.find(breeder => breeder.name === poultrySearchKeyword), [
+    searchedPoultries,
+    poultrySearchKeyword
+  ])
 
   useEffect(() => {
     if (!poultryId || !breeder?.id) return
@@ -51,6 +66,35 @@ const ManageTreePage = () => {
       }
     })()
   }, [poultryId, breeder?.id])
+
+  useDebouncedEffect(() => {
+    if (!poultrySearchKeyword) return
+
+    (async () => {
+      try {
+        dispatch(setIsLoading(true))
+
+        const { all } = await ContentSearchService.getBreederPoultries(
+          breeder?.id,
+          {},
+          poultrySearchKeyword
+        )
+
+        setSearchedPoultries(all)
+      } catch (error) {
+        console.log(error)
+      } finally {
+        dispatch(setIsLoading(false))
+      }
+    })()
+  }, 1000, [poultrySearchKeyword, dispatch, breeder?.id])
+
+  const handleCloseParentModal = useCallback(() => {
+    setParentModalContext(undefined)
+    setParentModalPoultryId(undefined)
+    setSearchedPoultries([])
+    setPoultrySearchKeyword('')
+  }, [])
 
   const handleClickExpandButton = useCallback(async (poultryId: string) => {
     dispatch(setIsLoading(true))
@@ -102,31 +146,63 @@ const ManageTreePage = () => {
   }, [handleClickExpandButton, dispatch, breeder?.id, token])
 
   const handleAddDad = useCallback((poultryId: string) => {
-    const dadId = window.prompt('Qual o id do pai?') ?? ''
-
-    if (!dadId) return
-
-    handleAddParent({ dadId }, poultryId)
-  }, [handleAddParent])
+    setParentModalContext('dadId')
+    setParentModalPoultryId(poultryId)
+  }, [])
 
   const handleAddMom = useCallback((poultryId: string) => {
-    const momId = window.prompt('Qual o id do mãe?') ?? ''
+    setParentModalContext('momId')
+    setParentModalPoultryId(poultryId)
+  }, [])
 
-    if (!momId) return
+  const handleSaveParent = useCallback(async () => {
+    if (!parentModalContext || !parentModalPoultryId) return
 
-    handleAddParent({ momId }, poultryId)
-  }, [handleAddParent])
+    await handleAddParent({
+      [parentModalContext]: selectedPoultry?.id
+    }, parentModalPoultryId)
+
+    handleCloseParentModal()
+  }, [handleCloseParentModal, parentModalContext, handleAddParent, parentModalPoultryId, selectedPoultry])
+
+  const poultryOptions = useMemo(() => searchedPoultries.map(poultry => ({
+    content: `${poultry.name} - ${poultry.gender}`,
+    key: poultry.id,
+  })), [searchedPoultries])
+
+  const autocompleteInputProps = useMemo(() => ({
+    placeholder: t('search-poultry'),
+  }), [t])
 
   if (!poultries.length) return null
 
   return (
-    <Tree
-      poultries={poultries}
-      onAddDad={handleAddDad}
-      onAddMom={handleAddMom}
-      onExpand={handleClickExpandButton}
-      rootId={poultryId ?? ''}
-    />
+    <>
+      <Tree
+        poultries={poultries}
+        onAddDad={handleAddDad}
+        onAddMom={handleAddMom}
+        onExpand={handleClickExpandButton}
+        rootId={poultryId ?? ''}
+      />
+
+      <Modal onClose={handleCloseParentModal} isOpen={Boolean(parentModalContext)}>
+        <StyledAutocomplete>
+          <Autocomplete
+            onChange={setPoultrySearchKeyword}
+            items={poultryOptions} 
+            inputProps={autocompleteInputProps}
+          />
+        </StyledAutocomplete>
+
+        <StyledModalButton>
+          <Button onClick={handleSaveParent}>
+            Salvar
+          </Button>
+        </StyledModalButton>
+      </Modal>
+    </>
+    
   )
 }
 
