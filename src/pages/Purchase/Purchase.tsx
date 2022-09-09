@@ -11,9 +11,12 @@ import { success } from '../../utils/alert'
 import useCancelDeal from '../../hooks/useCancelDeal'
 import useReBuy from '../../hooks/useReBuy'
 import { Routes } from '../../constants/routes'
+import { useRefetch } from '@cig-platform/hooks'
 
 const Purchase: VFC = () => {
   const { dealId } = useParams<{ dealId: string }>()
+
+  const { refetch, setRefetch } = useRefetch()
 
   const { t } = useTranslation()
 
@@ -22,7 +25,7 @@ const Purchase: VFC = () => {
   const breeder = useBreeder()
 
   const handleSuccess = useCallback(() => {
-    success(t('common.updated'), t, () => window.location.reload())
+    success(t('common.updated'), t, () => setRefetch(true))
   }, [])
 
   const handleSuccessRebuy = useCallback((deal: IDeal) => {
@@ -38,7 +41,8 @@ const Purchase: VFC = () => {
   const microFrontendParams = useMemo(() => ({
     dealId: dealId || '',
     breederId: breeder?.id ?? '',
-  }), [dealId, breeder])
+    refetch
+  }), [dealId, breeder, refetch])
 
   const microFrontendCallbacks = useMemo<Record<string, any>>(() => ({
     onFinishDeal: finishDeal,
