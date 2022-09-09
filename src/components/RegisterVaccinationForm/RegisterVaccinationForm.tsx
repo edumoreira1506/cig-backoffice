@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Input, Select, TextField, Table, DatePicker } from '@cig-platform/ui'
 import { useParams } from 'react-router-dom'
@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterContext/RegisterContext'
 import {
   selectDescription,
+  selectRefetchData,
   selectVaccinationDate,
   selectVaccinationDose,
   selectVaccinationName,
@@ -51,7 +52,7 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
   
   const { poultryId } = useParams<{ poultryId: string }>()
 
-  const { data } = usePoultryRegisters({ registerType: 'VACINAÇÃO', poultryId: poultryId || '' })
+  const { data, refetch } = usePoultryRegisters({ registerType: 'VACINAÇÃO', poultryId: poultryId || '' })
 
   const vaccines = data?.registers ?? []
   
@@ -65,6 +66,7 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
   const dose = useRegisterSelector(selectVaccinationDose)
   const date = useRegisterSelector(selectVaccinationDate)
   const description = useRegisterSelector(selectDescription)
+  const refetchData = useRegisterSelector(selectRefetchData)
 
   const handleChangeName = useCallback((newName: string | number) => {
     dispatch(setVaccinationName(newName.toString()))
@@ -86,6 +88,17 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
     items: [new Intl.DateTimeFormat('pt-BR').format(new Date(vaccine.date)), vaccine?.metadata?.name, `${vaccine?.metadata?.dose}ª`],
     expandedContent: vaccine.description
   })).reverse(), [vaccines])
+
+  useEffect(() => {
+    if (refetchData && refetch) {
+      refetch()
+
+      dispatch(setVaccinationName(''))
+      dispatch(setDescription(''))
+      dispatch(setVaccinationDose(''))
+      dispatch(setVaccinationDate(''))
+    }
+  }, [refetch, refetchData, dispatch])
 
   return (
     <StyledContainer title={title}>

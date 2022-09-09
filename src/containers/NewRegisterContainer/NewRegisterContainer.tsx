@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { Button, Tabs } from '@cig-platform/ui'
 import { RegisterTypeEnum } from '@cig-platform/enums'
+import { useParams } from 'react-router-dom'
 
 import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterContext/RegisterContext'
-import { setType } from 'contexts/RegisterContext/registerActions'
+import { setRefetchData, setType } from 'contexts/RegisterContext/registerActions'
 import RegisterImageForm from 'components/RegisterImageForm/RegisterImageForm'
 import RegisterVaccinationForm from 'components/RegisterVaccinationForm/RegisterVaccinationForm'
 import RegisterMeasurementAndWeighingForm from 'components/RegisterMeasurementAndWeighingForm/RegisterMeasurementAndWeighingForm'
@@ -16,12 +17,14 @@ import {
   selectFiles,
   selectVaccination,
   selectMeasurementAndWeighing,
+  selectRefetchData,
 } from 'contexts/RegisterContext/registerSelectors'
 import { Routes } from 'constants/routes'
 import { success } from 'utils/alert'
 
 import { StyledButton } from './NewRegisterContainer.styles'
 import stringToDate from 'formatters/stringToDate'
+import { useDebouncedEffect } from '@cig-platform/hooks'
 
 const registerTypes = [
   RegisterTypeEnum.Images,
@@ -34,11 +37,14 @@ export default function NewRegisterContainer() {
 
   const navigate = useNavigate()
 
+  const { poultryId } = useParams<{ poultryId: string }>()
+
   const type = useRegisterSelector(selectType)
   const description = useRegisterSelector(selectDescription)
   const files = useRegisterSelector(selectFiles)
   const vaccination = useRegisterSelector(selectVaccination)
   const measurementAndWeighing = useRegisterSelector(selectMeasurementAndWeighing)
+  const refetchData = useRegisterSelector(selectRefetchData)
 
   const dispatch = useRegisterDispatch()
 
@@ -47,8 +53,20 @@ export default function NewRegisterContainer() {
   }, [dispatch])
 
   const handleSuccess = useCallback(() => {
-    success(t('common.saved'), t, () => navigate(Routes.Home))
-  }, [t, navigate])
+    success(t('common.saved'), t, () => {
+      if (type === RegisterTypeEnum.Images) {
+        navigate(Routes.ViewPoultry.replace(':poultryId', poultryId ?? ''))
+      } else {
+        dispatch(setRefetchData(true))
+      }
+    })
+  }, [t, navigate, type, dispatch])
+
+  useDebouncedEffect(() => {
+    if (refetchData) {
+      dispatch(setRefetchData(false))
+    }
+  }, 1000, [refetchData, dispatch])
 
   const saveRegister = useSaveRegister({ onSuccess: handleSuccess })
 

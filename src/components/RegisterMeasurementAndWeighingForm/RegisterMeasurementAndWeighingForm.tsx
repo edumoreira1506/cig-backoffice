@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Input, TextField, Table, DatePicker } from '@cig-platform/ui'
 import { useParams } from 'react-router-dom'
@@ -7,6 +7,7 @@ import {
   selectDescription,
   selectMeasurement,
   selectMeasurementAndWeighingDate,
+  selectRefetchData,
   selectWeight,
 } from 'contexts/RegisterContext/registerSelectors'
 import { useRegisterDispatch, useRegisterSelector } from 'contexts/RegisterContext/RegisterContext'
@@ -39,7 +40,7 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
 
   const { poultryId } = useParams<{ poultryId: string }>()
 
-  const { data } = usePoultryRegisters({ registerType: 'MEDIÇÃO E PESAGEM', poultryId: poultryId || '' })
+  const { data, refetch } = usePoultryRegisters({ registerType: 'MEDIÇÃO E PESAGEM', poultryId: poultryId || '' })
 
   const registers = data?.registers ?? []
 
@@ -51,6 +52,18 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
   const measurement = useRegisterSelector(selectMeasurement)
   const date = useRegisterSelector(selectMeasurementAndWeighingDate)
   const description = useRegisterSelector(selectDescription)
+  const refetchData = useRegisterSelector(selectRefetchData)
+
+  useEffect(() => {
+    if (refetchData && refetch) {
+      refetch()
+
+      dispatch(setWeighing(''))
+      dispatch(setMeasurement(''))
+      dispatch(setMeasurementAndWeighingDate(''))
+      dispatch(setDescription(''))
+    }
+  }, [refetch, refetchData, dispatch])
 
   const handleChangeWeight = useCallback((newWeight: string | number) => {
     dispatch(setWeighing(String(newWeight).replace(' KG', '')))

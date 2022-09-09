@@ -21,13 +21,15 @@ export interface RegisterState extends DefaultState {
     weight: string;
     date: string;
     measurement: string;
-  }
+  };
+  refetchData: boolean;
 }
 
 export const INITIAL_STATE: RegisterState = {
   type: RegisterTypeEnum.Images,
   description: '',
   files: [],
+  refetchData: false,
   vaccination: {
     name: '',
     dose: '',
@@ -47,6 +49,8 @@ export default function breederReducer(
   action: RegisterActionTypes
 ): RegisterState {
   switch (action.type) {
+  case 'SET_REFETCH_DATA':
+    return { ...state, refetchData: action.payload.refetchData }
   case 'SET_DESCRIPTION':
     return { ...state, description: action.payload.description }
   case 'SET_TYPE':

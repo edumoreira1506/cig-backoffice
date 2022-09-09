@@ -21,3 +21,5 @@ export const selectMeasurement = (state: RegisterState) => selectMeasurementAndW
 export const selectWeight = (state: RegisterState) => selectMeasurementAndWeighing(state).weight
 
 export const selectMeasurementAndWeighingDate = (state: RegisterState) => selectMeasurementAndWeighing(state).date
+
+export const selectRefetchData = (state: RegisterState) => state.refetchData

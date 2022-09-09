@@ -44,3 +44,8 @@ export const setMeasurementAndWeighingDate = (date: string) => ({
   payload: { date },
   type: 'SET_MEASUREMENT_AND_WEIGHIN_DATE'
 } as const)
+
+export const setRefetchData = (refetchData: boolean) => ({
+  payload: { refetchData },
+  type: 'SET_REFETCH_DATA'
+} as const)
