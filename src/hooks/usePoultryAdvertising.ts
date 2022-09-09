@@ -9,7 +9,7 @@ type Data = {
   poultry: IPoultry & {
     images: IPoultryImage[];
     registers: IPoultryRegister[];
-};
+  };
   advertisings: IAdvertising[];
 }
 
