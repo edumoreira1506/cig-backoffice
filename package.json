@@ -9,7 +9,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@cig-platform/auth-bff-client": "^0.1.13",
     "@cig-platform/backoffice-bff-client": "0.0.51",
-    "@cig-platform/content-search-client": "^0.0.27",
+    "@cig-platform/content-search-client": "^0.0.28",
     "@cig-platform/context": "^0.1.7",
     "@cig-platform/decorators": "^0.0.2",
     "@cig-platform/enums": "^0.0.5",

@@ -1,6 +1,7 @@
 {
   "app-name": "CIG Backoffice",
   "search-breeder": "Buscar criatório...",
+  "search-poultry": "Buscar ave...",
   "edit-breeder": "Edição de criatório",
   "create-poultry": "Nova ave",
   "common.save": "Salvar",
