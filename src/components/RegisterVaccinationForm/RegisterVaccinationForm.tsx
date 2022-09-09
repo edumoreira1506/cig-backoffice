@@ -51,8 +51,10 @@ export default function RegisterVaccinationForm({ title }: RegisterVaccinationFo
   
   const { poultryId } = useParams<{ poultryId: string }>()
 
-  const vaccines = usePoultryRegisters({ registerType: 'VACINAÇÃO', poultryId: poultryId || '' })
+  const { data } = usePoultryRegisters({ registerType: 'VACINAÇÃO', poultryId: poultryId || '' })
 
+  const vaccines = data?.registers ?? []
+  
   const { t } = useTranslation()
 
   const dispatch = useRegisterDispatch()

@@ -39,7 +39,9 @@ export default function RegisterMeasurementAndWeighingForm({ title }: RegisterMe
 
   const { poultryId } = useParams<{ poultryId: string }>()
 
-  const registers = usePoultryRegisters({ registerType: 'MEDIÇÃO E PESAGEM', poultryId: poultryId || '' })
+  const { data } = usePoultryRegisters({ registerType: 'MEDIÇÃO E PESAGEM', poultryId: poultryId || '' })
+
+  const registers = data?.registers ?? []
 
   const dispatch = useRegisterDispatch()
 
