@@ -2425,10 +2425,10 @@
   dependencies:
     express "^4.17.3"
 
-"@cig-platform/ui@^0.1.154":
-  version "0.1.154"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.154.tgz#ee7a1eab894742d8e63f53ec0d850dfc80613c80"
-  integrity sha512-jGE4zKsUKf7LTbbb+wqwTz04sC4V5Mwe8aPoddSZkqgVph3HZ/GBiaqan3oS/G3Yo7biGwg+8qVzliLaxoujZA==
+"@cig-platform/ui@^0.1.155":
+  version "0.1.155"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.155.tgz#41746364647902229f290400f10317ce242cc119"
+  integrity sha512-Mnl6Hu2eT3sr10jNVoJV8IECcxWnxDQzigu5IlnytDPWLXXuFotMq+2RlnpEdsNGDNO88hY0lF2UiGAKtfE6Ng==
   dependencies:
     "@cig-platform/enums" "^0.0.5"
     "@cig-platform/factories" "^0.0.22"
