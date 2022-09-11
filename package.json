@@ -19,7 +19,7 @@
     "@cig-platform/marketplace-bff-client": "^0.0.14",
     "@cig-platform/microfrontend-helper": "^0.2.0",
     "@cig-platform/types": "^0.0.43",
-    "@cig-platform/ui": "^0.1.155",
+    "@cig-platform/ui": "^0.2.7",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
