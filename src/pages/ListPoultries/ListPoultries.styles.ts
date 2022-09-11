@@ -10,4 +10,8 @@ export const StyledNewPoultry = styled.div`
 
 export const StyledPoultries = styled.div`
   overflow: hidden;
+
+  a {
+    color: inherit;
+  }
 `

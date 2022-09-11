@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { ReactNode, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { Button } from '@cig-platform/ui'
@@ -14,6 +14,14 @@ import {
   StyledNewPoultry,
   StyledPoultries
 } from './ListPoultries.styles'
+
+type LinkComponentProps = {
+  identifier: string;
+  params?: {
+    poultryId?: string
+  };
+  children?: ReactNode
+}
 
 export default function ListPoultriesPage() {
   const { t } = useTranslation()
@@ -39,7 +47,12 @@ export default function ListPoultriesPage() {
   }, [navigate])
 
   const microFrontendParams = useMemo(() => ({
-    breederId: breeder?.id ?? ''
+    breederId: breeder?.id ?? '',
+    linkComponent: ({ children, params }: LinkComponentProps) => (
+      <a href={Routes.ViewPoultry.replace(':poultryId', params?.poultryId ?? '')}>
+        {children}
+      </a>
+    ) as any
   }), [breeder?.id])
 
   const microFrontendCallbacks = useMemo<Record<string, any>>(() => ({
