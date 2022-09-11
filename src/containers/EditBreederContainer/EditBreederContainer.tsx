@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react'
+import React, { useCallback, useEffect, useState, useMemo, Fragment } from 'react'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
@@ -121,7 +121,8 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   }, [navigate])
 
   const microFrontendParams = useMemo(() => ({
-    breederId
+    breederId,
+    linkComponent: Fragment
   }), [breederId])
 
   const microFrontendCallbacks = useMemo<Record<string, any>>(() => ({

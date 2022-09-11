@@ -1,4 +1,4 @@
-import React, { VFC, useMemo, useCallback } from 'react'
+import React, { VFC, useMemo, useCallback, Fragment } from 'react'
 import MicroFrontend from '@cig-platform/microfrontend-helper'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -39,7 +39,8 @@ const Sale: VFC = () => {
   const microFrontendParams = useMemo(() => ({
     dealId: dealId || '',
     breederId: breeder?.id ?? '',
-    refetch
+    refetch,
+    linkComponent: Fragment
   }), [dealId, breeder, refetch])
 
   const microFrontendCallbacks = useMemo<Record<string, any>>(() => ({

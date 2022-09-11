@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button, Modal, Autocomplete, ListModal, Checkbox } from '@cig-platform/ui'
@@ -261,7 +261,8 @@ export default function ViewPoultry() {
   const microFrontendParams = useMemo(() => ({
     breederId: breeder?.id ?? '',
     poultryId: poultryId || '',
-    refetch: refetchMicroFrontendData
+    refetch: refetchMicroFrontendData,
+    linkComponent: Fragment
   }), [breeder?.id, poultryId, refetchMicroFrontendData])
 
   const autocompleteInputProps = useMemo(() => ({
