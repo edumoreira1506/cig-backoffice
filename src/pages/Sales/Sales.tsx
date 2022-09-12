@@ -1,7 +1,6 @@
-import React, { useCallback, VFC, useMemo } from 'react'
+import React, { VFC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PoultryCard } from '@cig-platform/ui'
-import { useNavigate } from 'react-router-dom'
 
 import useDeals from '../../hooks/useDeals'
 import { dealToPoultryCard } from '../../formatters/dealToPoultryCard'
@@ -14,19 +13,14 @@ import {
   StyledItems,
   StyledEmptyState
 } from './Sales.styles'
+import { Link } from 'react-router-dom'
 
 const Sales: VFC = () => {
   const { t } = useTranslation()
 
-  const navigate = useNavigate()
-
   const deals = useDeals({ filter: 'SELLER' })
 
   const poultryCards = useMemo(() => deals.map(dealToPoultryCard), [deals])
-
-  const handleViewDeal = useCallback((dealId) => {
-    navigate(Routes.Sale.replace(':dealId', dealId))
-  }, [navigate])
 
   return (
     <StyledContainer>
@@ -35,9 +29,11 @@ const Sales: VFC = () => {
       </PageTitle>
       <StyledItems>
         {poultryCards.map((deal, index) => (
-          <StyledItem key={deals[index].deal.id} onClick={() => handleViewDeal(deals[index].deal.id)}>
-            <PoultryCard {...deal} />
-          </StyledItem>
+          <Link to={Routes.Sale.replace(':dealId', deals[index].deal.id)} key={deals[index].deal.id}>
+            <StyledItem>
+              <PoultryCard {...deal} />
+            </StyledItem>
+          </Link>
         ))}
 
         {Boolean(!poultryCards?.length) && (
