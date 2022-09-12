@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useMemo, Fragment } from 'react'
+import React, { useCallback, useEffect, useState, useMemo, ReactNode } from 'react'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
@@ -37,6 +37,14 @@ import './editBreederContainer.css'
 
 export interface EditBreederContainerProps {
   breeder: IBreeder;
+}
+
+type LinkComponentProps = {
+  identifier: string;
+  params?: {
+    poultryId?: string
+  };
+  children?: ReactNode
 }
 
 export default function EditBreederContainer({ breeder }: EditBreederContainerProps) {
@@ -122,7 +130,11 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
 
   const microFrontendParams = useMemo(() => ({
     breederId,
-    linkComponent: Fragment
+    linkComponent: ({ children, params }: LinkComponentProps) => (
+      <a href={Routes.ViewPoultry.replace(':poultryId', params?.poultryId ?? '')}>
+        {children}
+      </a>
+    ) as any
   }), [breederId])
 
   const microFrontendCallbacks = useMemo<Record<string, any>>(() => ({
