@@ -5,6 +5,11 @@ export const GlobalStyle = createGlobalStyle`
     transform: translateY(60vh) !important;
     height: 40vh !important;
   }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `
 
 export const StyledContainer = styled.div`
