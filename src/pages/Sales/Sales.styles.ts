@@ -5,6 +5,11 @@ export const StyledContainer = styled.div``
 export const StyledItems = styled.ul`
   list-style: none;
   padding: 0;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `
 
 export const StyledItem = styled.li`
