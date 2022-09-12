@@ -1,10 +1,11 @@
-import React, { ReactChild, useCallback, useEffect, useMemo } from 'react'
+import React, { FC, ReactChild, useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai'
 import { GiReceiveMoney } from 'react-icons/gi'
 import { FaHandsHelping } from 'react-icons/fa'
 import { useNavigate } from 'react-router'
 import { Container as UIContainer } from '@cig-platform/ui'
+import { Link } from 'react-router-dom'
 import { useLocalStorage } from '@cig-platform/hooks'
 
 import useAuth from '../../hooks/useAuth'
@@ -67,6 +68,36 @@ const shortcutLinks = {
   [Shortcuts.EDIT_PASSWORD]: Routes.EditPassword,
   [Shortcuts.EDIT_PROFILE]: Routes.EditProfile
 }
+
+type LinkComponentProps = {
+  identifier: 'view-menu-link';
+  params?: {
+    title?: string
+  };
+}
+
+const LinkComponent: FC<LinkComponentProps> = ({
+  children,
+  params
+}) => {
+  const title = params?.title
+  const item = items.find((i) => i.title === title)
+
+  if (item?.route === MARKETPLACE_URL) {
+    return (
+      <a href={MARKETPLACE_URL}>
+        {children}
+      </a>
+    )
+  }
+
+  return (
+    <Link to={item?.route ?? ''}>
+      {children}
+    </Link>
+  )
+}
+
 
 export default function Container({ children }: ContainerProps) {
   const { remove: removeQueryParamToken } = useQueryParam('token')
@@ -154,6 +185,7 @@ export default function Container({ children }: ContainerProps) {
       logoUrl={LOGO_URL}
       isLoading={isLoading}
       onClickTitle={handleNavigateToMainPage}
+      linkComponent={LinkComponent}
     >
       {children}
     </UIContainer>
