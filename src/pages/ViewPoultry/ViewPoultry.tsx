@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMemo, useState } from 'react'
+import React, { Fragment, ReactNode, useCallback, useMemo, useState, VFC } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button, Modal, Autocomplete, ListModal, Checkbox } from '@cig-platform/ui'
@@ -27,6 +27,13 @@ import {
   GlobalStyle
 } from './ViewPoultry.styles'
 import usePoultryAdvertising from 'hooks/usePoultryAdvertising'
+import { Link } from 'react-router-dom'
+
+type LinkComponentProps = {
+  identifier: 'list-modal-link'
+  params?: { label?: string };
+  children?: ReactNode
+}
 
 export default function ViewPoultry() {
   const [isLoadingBreeders, setIsLoadingBreeders] = useState(false)
@@ -127,17 +134,9 @@ export default function ViewPoultry() {
     })()
   }, 1500, [searchedBreeder, breeder])
 
-  const handleNavigateToNewRegisterPage = useCallback(() =>
-    navigate(Routes.NewRegister.replaceAll(':poultryId', poultryId || ''))
-  , [navigate, poultryId])
-
-  const handleNavigateToEditPage = useCallback(() =>
-    navigate(Routes.EditPoultry.replaceAll(':poultryId', poultryId || ''))
-  , [navigate, poultryId])
-
-  const handleNavigateToManageTreePage = useCallback(() =>
-    navigate(Routes.ManagePoultryTree.replaceAll(':poultryId', poultryId || ''))
-  , [navigate, poultryId])
+  const handleNavigateToPage = useCallback((page: string) => {
+    navigate(page)
+  }, [navigate])
 
   const handleAnnouncePoultry = useCallback(() => {
     withInput(t('create-poultry-advertising'), (a) => {
@@ -223,40 +222,85 @@ export default function ViewPoultry() {
     saveAdvertisingQuestionAnswer
   ])
 
-  const configModalItems = useMemo(() => ([
-    {
-      onClick: killPoultry,
-      label: t('kill-poultry')
-    },
-    {
-      onClick: handleNavigateToNewRegisterPage,
-      label: t('new-register')
-    },
-    {
-      onClick: handleNavigateToEditPage,
-      label: t('edit-poultry')
-    },
-    {
-      onClick: handleClickAdvertisingButton,
-      label: t(hasAdvertising ? 'remove-poultry' : 'announce-poultry')
-    },
-    {
-      onClick: handleShowTransferModal,
-      label: t('transfer-poultry')
-    },
-    {
-      onClick: handleNavigateToManageTreePage,
-      label: t('poultry-tree')
-    }
-  ]), [
-    handleNavigateToNewRegisterPage,
-    handleNavigateToEditPage,
+  const configModalItems = useMemo(() => {
+    const newRegisterPage = Routes.NewRegister.replaceAll(':poultryId', poultryId || '')
+    const editPoultryPage = Routes.EditPoultry.replaceAll(':poultryId', poultryId || '')
+    const managreTreePage = Routes.ManagePoultryTree.replaceAll(':poultryId', poultryId || '')
+
+    return [
+      {
+        onClick: killPoultry,
+        label: t('kill-poultry')
+      },
+      {
+        onClick: () => handleNavigateToPage(newRegisterPage),
+        label: t('new-register')
+      },
+      {
+        onClick: () => handleNavigateToPage(editPoultryPage),
+        label: t('edit-poultry')
+      },
+      {
+        onClick: handleClickAdvertisingButton,
+        label: t(hasAdvertising ? 'remove-poultry' : 'announce-poultry')
+      },
+      {
+        onClick: handleShowTransferModal,
+        label: t('transfer-poultry')
+      },
+      {
+        onClick: () => handleNavigateToPage(managreTreePage),
+        label: t('poultry-tree')
+      }
+    ]
+  }, [
     handleClickAdvertisingButton,
     handleShowTransferModal,
     hasAdvertising,
     killPoultry,
     t
   ])
+
+  const LinkComponent: VFC<LinkComponentProps> = ({
+    children,
+    params
+  }) => {
+    const label = params?.label ?? ''
+    const needsOfLink = [
+      t('new-register'),
+      t('edit-poultry'),
+      t('poultry-tree')
+    ].includes(label)
+
+    const Wrapper = needsOfLink ? Link : Fragment
+
+    const link = (() => {
+      const newRegisterPage = Routes.NewRegister.replaceAll(':poultryId', poultryId || '')
+      const editPoultryPage = Routes.EditPoultry.replaceAll(':poultryId', poultryId || '')
+      const managreTreePage = Routes.ManagePoultryTree.replaceAll(':poultryId', poultryId || '')
+
+
+      if (label === t('new-register')) {
+        return newRegisterPage
+      }
+
+      if (label === t('edit-poultry')) {
+        return editPoultryPage
+      }
+
+      if (label === t('poultry-tree')) {
+        return managreTreePage
+      }
+
+      return '/'
+    })()
+
+    return (
+      <Wrapper to={link}>
+        {children}
+      </Wrapper>
+    )
+  }
 
   const microFrontendParams = useMemo(() => ({
     breederId: breeder?.id ?? '',
@@ -298,7 +342,12 @@ export default function ViewPoultry() {
         </StyledTransferButton>
       </Modal>
 
-      <ListModal isOpen={isOpenModalConfig} onClose={handleCloseModalConfig} items={configModalItems} />
+      <ListModal
+        isOpen={isOpenModalConfig}
+        onClose={handleCloseModalConfig}
+        items={configModalItems}
+        linkComponent={LinkComponent}
+      />
 
       {!isLoading && (
         <div id="poultry-preview">
