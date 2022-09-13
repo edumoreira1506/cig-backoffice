@@ -1,9 +1,20 @@
 import styled, { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
-  .ReactModal__Content--after-open {
-    transform: translateY(60vh) !important;
-    height: 40vh !important;
+  .transfer-modal {
+    position: absolute !important;
+    inset: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+
+    .ReactModal__Content--after-open {
+      transform: translateY(60vh) !important;
+      height: 40vh !important;
+    }
   }
 
   a {
