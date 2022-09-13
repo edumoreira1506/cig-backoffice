@@ -318,7 +318,11 @@ export default function ViewPoultry() {
     <StyledContainer>
       <GlobalStyle />
       
-      <Modal isOpen={showTrasnferModal} onClose={handleCloseTransferModal}>
+      <Modal
+        isOpen={showTrasnferModal}
+        onClose={handleCloseTransferModal}
+        className='transfer-modal'
+      >
         <StyledAutocomplete>
           <Autocomplete
             onChange={setSearchedBreeder}
