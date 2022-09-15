@@ -134,10 +134,6 @@ export default function ViewPoultry() {
     })()
   }, 1500, [searchedBreeder, breeder])
 
-  const handleNavigateToPage = useCallback((page: string) => {
-    navigate(page)
-  }, [navigate])
-
   const handleAnnouncePoultry = useCallback(() => {
     withInput(t('create-poultry-advertising'), (a) => {
       if (a) {
@@ -222,38 +218,30 @@ export default function ViewPoultry() {
     saveAdvertisingQuestionAnswer
   ])
 
-  const configModalItems = useMemo(() => {
-    const newRegisterPage = Routes.NewRegister.replaceAll(':poultryId', poultryId || '')
-    const editPoultryPage = Routes.EditPoultry.replaceAll(':poultryId', poultryId || '')
-    const managreTreePage = Routes.ManagePoultryTree.replaceAll(':poultryId', poultryId || '')
-
-    return [
-      {
-        onClick: killPoultry,
-        label: t('kill-poultry')
-      },
-      {
-        onClick: () => handleNavigateToPage(newRegisterPage),
-        label: t('new-register')
-      },
-      {
-        onClick: () => handleNavigateToPage(editPoultryPage),
-        label: t('edit-poultry')
-      },
-      {
-        onClick: handleClickAdvertisingButton,
-        label: t(hasAdvertising ? 'remove-poultry' : 'announce-poultry')
-      },
-      {
-        onClick: handleShowTransferModal,
-        label: t('transfer-poultry')
-      },
-      {
-        onClick: () => handleNavigateToPage(managreTreePage),
-        label: t('poultry-tree')
-      }
-    ]
-  }, [
+  const configModalItems = useMemo(() => ([
+    {
+      onClick: killPoultry,
+      label: t('kill-poultry')
+    },
+    {
+      label: t('new-register')
+    },
+    {
+      label: t('edit-poultry')
+    },
+    {
+      onClick: handleClickAdvertisingButton,
+      label: t(hasAdvertising ? 'remove-poultry' : 'announce-poultry')
+    },
+    {
+      onClick: handleShowTransferModal,
+      label: t('transfer-poultry')
+    },
+    {
+      label: t('poultry-tree')
+    }
+  ])
+  , [
     handleClickAdvertisingButton,
     handleShowTransferModal,
     hasAdvertising,

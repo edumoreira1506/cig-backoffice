@@ -130,18 +130,6 @@ export default function Container({ children }: ContainerProps) {
     userData?.registerType
   ])
 
-  const handleNavigate = useCallback((pageTitle: string) => {
-    const item = items.find(({ title }) => title === pageTitle)
-
-    if (item) {
-      if (item.route === MARKETPLACE_URL) {
-        window.location.assign(MARKETPLACE_URL)
-      } else {
-        navigate(item.route)
-      }
-    }
-  }, [navigate])
-
   const handleShortcutClick = useCallback((shortcut: string) => {
     navigate(shortcutLinks[shortcut as Shortcuts])
   }, [navigate])
@@ -178,7 +166,7 @@ export default function Container({ children }: ContainerProps) {
     <UIContainer
       title={t('app-name')}
       items={items}
-      onMenuClick={handleNavigate}
+      onMenuClick={() => null}
       user={user}
       shortcuts={shortcuts}
       onShortcutClick={handleShortcutClick}
