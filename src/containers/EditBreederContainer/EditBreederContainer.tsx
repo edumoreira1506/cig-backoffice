@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState, useMemo, ReactNode } from 'react'
-import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { IBreeder } from '@cig-platform/types'
 import { Button, Modal } from '@cig-platform/ui'
@@ -56,8 +55,6 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
   const previewBreederData = useEditBreederSelector(state => state)
 
   const breederDispatch = useBreederDispatch()
-
-  const navigate = useNavigate()
 
   const { t } = useTranslation()
 
@@ -122,12 +119,6 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
     })()
   }, [breederId, token])
 
-  const handleNavigateToViewPoultry = useCallback(({ poultryId }: { poultryId: string }) => {
-    if (poultryId) {
-      navigate(Routes.ViewPoultry.replace(':poultryId', poultryId))
-    }
-  }, [navigate])
-
   const microFrontendParams = useMemo(() => ({
     breederId,
     linkComponent: ({ children, params }: LinkComponentProps) => (
@@ -136,10 +127,6 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
       </a>
     ) as any
   }), [breederId])
-
-  const microFrontendCallbacks = useMemo<Record<string, any>>(() => ({
-    onViewPoultry: handleNavigateToViewPoultry
-  }), [handleNavigateToViewPoultry])
 
   const microFrontEndData = useMemo(() =>  ({
     breederData: previewBreederData
@@ -158,7 +145,6 @@ export default function EditBreederContainer({ breeder }: EditBreederContainerPr
             name="BreederPage"
             host={BREEDER_PAGE_URL}
             containerId="breeder-preview"
-            callbacks={microFrontendCallbacks}
             data={microFrontEndData}
           />
         </StyledPreview>
