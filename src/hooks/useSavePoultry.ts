@@ -10,7 +10,7 @@ import useBreeder from './useBreeder'
 import useAuth from './useAuth'
 import { PoultryState } from 'contexts/PoultryContext/poultryReducer'
 
-export default function useSavePoultry({ onSuccess }: { onSuccess: () => void }) {
+export default function useSavePoultry({ onSuccess }: { onSuccess: (poultry: IPoultry) => void }) {
   const appDispatch = useAppDispatch()
 
   const breeder = useBreeder()
@@ -27,7 +27,7 @@ export default function useSavePoultry({ onSuccess }: { onSuccess: () => void })
 
       delete poultry['images']
 
-      await BackofficeBffService.postPoultry(
+      const data = await BackofficeBffService.postPoultry(
         breeder.id,
         token,
         filterObject(poultry),
@@ -35,7 +35,7 @@ export default function useSavePoultry({ onSuccess }: { onSuccess: () => void })
         { measurement: poultry.measurement, weight: poultry.weight }
       )
   
-      onSuccess()
+      onSuccess(data.poultry)
     } catch (error) {
       appDispatch(setError(error))
     } finally {
